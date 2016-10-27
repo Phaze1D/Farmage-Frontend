@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from 'react-toolbox/lib/drawer';
 import Button from 'react-toolbox/lib/button';
 
+
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
@@ -19,8 +20,8 @@ export default class Dashboard extends React.Component{
   render() {
     return (
       <div>
-        <Button label='Show Drawer' raised accent onClick={this.drawerToggle} />
-        <Drawer active={this.state.active} onOverlayClick={this.drawerToggle} theme={theme}>
+        <Button label='Show Drawer' raised accent onClick={this.drawerToggle}/>
+        <Drawer active={this.state.active} onOverlayClick={this.drawerToggle}>
           <h5>This is your Drawer.</h5>
         </Drawer>
       </div>

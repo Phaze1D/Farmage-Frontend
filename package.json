@@ -15,6 +15,6 @@
     "react-toolbox": "^1.2.3"
   },
   "devDependencies": {
-    "node-sass": "^3.10.1"
+    
   }
 }
