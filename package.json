@@ -13,5 +13,8 @@
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
     "react-toolbox": "^1.2.3"
+  },
+  "devDependencies": {
+    "node-sass": "^3.10.1"
   }
 }
