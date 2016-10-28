@@ -1,4 +1,5 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 export default class App extends React.Component{
@@ -9,7 +10,9 @@ export default class App extends React.Component{
   render() {
     return (
       <div>
-        {this.props.children}
+        <MuiThemeProvider>
+          {this.props.children}
+        </MuiThemeProvider>
       </div>
     );
   }
