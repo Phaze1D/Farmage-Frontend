@@ -1,7 +1,6 @@
 import React from 'react';
-import Drawer from 'react-toolbox/lib/drawer';
-import Button from 'react-toolbox/lib/button';
-
+import {Drawer} from 'react-toolbox/lib/drawer';
+import {Button} from 'react-toolbox/lib/button';
 
 export default class Dashboard extends React.Component{
   constructor(props){
