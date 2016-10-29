@@ -1,0 +1,26 @@
+
+.right-drawer{
+  .shadow-6dp();
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 40%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition-delay: 0s;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: transform;
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  .open{
+    transform: translate(0, 0);
+  }
+
+  &:not(.open){
+    transform: translate(100%, 0);
+  }
+
+}
