@@ -5,7 +5,7 @@
   top: 0;
   right: 0;
   height: 100%;
-  width: 40%;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   transition-delay: 0s;
@@ -17,11 +17,16 @@
   z-index: @z-index-highest;
   background-color: @white;
 
+  @media(min-width: @layout-breakpoint-lg-tablet){
+    width: 40%
+  }
+
   .open{
     transform: translate(0, 0);
   }
 
   &:not(.open){
+    box-shadow: none;
     transform: translate(100%, 0);
   }
 }
@@ -48,6 +53,7 @@
   }
 
   &:not(.open){
+    transition: transform 0ms @animation-curve-default @animation-duration, opacity @animation-duration @animation-curve-default 0ms;
     opacity: 0;
     transform: translate(-100%, 0);
   }

@@ -11,8 +11,6 @@ export default class RightDrawer extends React.Component{
   }
 
 
-
-
   render(){
     rightCls = classnames('right-drawer', { 'open': this.props.open});
     overlayCls = classnames('overlay', {'open': this.props.open});
@@ -22,6 +20,7 @@ export default class RightDrawer extends React.Component{
         <div className={overlayCls} onTouchTap={this.props.onOverlayTap}>
 
         </div>
+
         <div className={rightCls}>
           {this.props.children}
         </div>
