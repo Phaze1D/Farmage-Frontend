@@ -7,20 +7,30 @@ export default class RightDrawer extends React.Component{
 
   constructor(props){
     super(props);
+
   }
+
+
 
 
   render(){
     rightCls = classnames('right-drawer', { 'open': this.props.open});
+    overlayCls = classnames('overlay', {'open': this.props.open});
 
     return (
-      <div className={rightCls} open={this.props.open}>
-        {this.props.children}
+      <div>
+        <div className={overlayCls} onTouchTap={this.props.onOverlayTap}>
+
+        </div>
+        <div className={rightCls}>
+          {this.props.children}
+        </div>
       </div>
     )
   }
 }
 
 RightDrawer.propTypes = {
-  open: React.PropTypes.bool.isRequired
+  open: React.PropTypes.bool.isRequired,
+  onOverlayTap: React.PropTypes.func.isRequired
 }

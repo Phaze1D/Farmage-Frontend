@@ -10,7 +10,17 @@ export default class MainPanel extends React.Component{
 
 
   render(){
-    
+    return(
+      <div className='main-panel'>
+        <div className='header'>
+          
+        </div>
+        <div className='panel'>
+          {this.props.children}
+        </div>
+      </div>
+    )
+
   }
 
 }

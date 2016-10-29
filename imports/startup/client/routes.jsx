@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import App from '../../ui/structure/App.jsx'
+import App from '../../ui/structure/app/App.jsx'
 import Dashboard from '../../ui/structure/dashboard/Dashboard.jsx'
 
 
