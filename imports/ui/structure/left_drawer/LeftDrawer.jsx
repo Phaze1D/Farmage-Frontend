@@ -3,12 +3,14 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
+import OrganizationMenu from './organization_menu/OrganizationMenu';
 
 export default class LeftDrawer extends React.Component{
   constructor(props){
     super(props);
     this.state = {omenu: null};
     this.handleClose = this.handleClose.bind(this);
+    this.handleResetOMenu = this.handleResetOMenu.bind(this);
   }
 
   handleClose() {
@@ -19,26 +21,9 @@ export default class LeftDrawer extends React.Component{
     this.setState({omenu: title});
   }
 
-
-  organizationMenu(omenu) {
-    if(omenu){
-      return(
-        <div>
-          <Subheader className='sub-title'>{omenu} Menu</Subheader>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Customers</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Providers</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Sells</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Expenses</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Products</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Inventories</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Resources</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Yields</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Units</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Events</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Users</MenuItem>
-        </div>
-      )
-    }
+  handleResetOMenu() {
+    this.setState({omenu: null});
+    this.handleClose();
   }
 
   render(){
@@ -49,8 +34,8 @@ export default class LeftDrawer extends React.Component{
         </div>
 
         <div className="mid">
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Profile</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleClose}>Organizations</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>Profile</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>Organizations</MenuItem>
           <Divider/>
 
           <Subheader className='sub-title'>Organizations</Subheader>
@@ -58,7 +43,7 @@ export default class LeftDrawer extends React.Component{
           <MenuItem className="menu-item" onTouchTap={this.handleOMenu.bind(this, "Granja Granada")} >Granja Granada</MenuItem>
           <Divider/>
 
-          {this.organizationMenu(this.state.omenu)}
+          <OrganizationMenu title={this.state.omenu} handleClose={this.handleClose}/>
 
         </div>
       </Drawer>
