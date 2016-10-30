@@ -7,7 +7,12 @@ export default class RightDrawer extends React.Component{
 
   constructor(props){
     super(props);
+    this.onOverlayTap = this.onOverlayTap.bind(this);
 
+  }
+
+  onOverlayTap(){
+    this.props.onRequestChange(false);
   }
 
 
@@ -17,7 +22,7 @@ export default class RightDrawer extends React.Component{
 
     return (
       <div>
-        <div className={overlayCls} onTouchTap={this.props.onOverlayTap}></div>
+        <div className={overlayCls} onTouchTap={this.onOverlayTap}/>
 
         <div className={rightCls}>
           {this.props.children}
@@ -29,5 +34,5 @@ export default class RightDrawer extends React.Component{
 
 RightDrawer.propTypes = {
   open: React.PropTypes.bool.isRequired,
-  onOverlayTap: React.PropTypes.func.isRequired
+  onRequestChange: React.PropTypes.func.isRequired
 }
