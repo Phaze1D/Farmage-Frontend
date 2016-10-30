@@ -17,9 +17,7 @@ export default class RightDrawer extends React.Component{
 
     return (
       <div>
-        <div className={overlayCls} onTouchTap={this.props.onOverlayTap}>
-
-        </div>
+        <div className={overlayCls} onTouchTap={this.props.onOverlayTap}></div>
 
         <div className={rightCls}>
           {this.props.children}
