@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 
 export default class MainPanel extends React.Component{
@@ -15,7 +16,7 @@ export default class MainPanel extends React.Component{
         <div className='header'>
 
         </div>
-        <div className='panel'>
+        <div className={'panel '+this.props.classes}>
           {this.props.children}
         </div>
       </div>

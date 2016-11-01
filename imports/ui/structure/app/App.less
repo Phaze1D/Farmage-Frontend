@@ -6,3 +6,44 @@
 @import '../left_drawer/LeftDrawer';
 @import '../right_drawer/RightDrawer';
 @import '../main_panel/MainPanel';
+@import '../../models/contact_info/ContactInfo';
+
+
+.fab{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: @z-index-high;
+
+  @media(min-width: @layout-breakpoint-lg-tablet){
+    bottom: 35px;
+    right: 35px;
+  }
+
+  button{
+    .shadow-3dp() !important;
+    background-color: @color-accent !important;
+    width: 56px !important;
+    height: 56px !important;
+
+    @media(min-width: @layout-breakpoint-lg-tablet){
+      width: 60px !important;
+      height: 60px !important;
+    }
+  }
+
+  .icon{
+    height: 56px !important;
+
+    @media(min-width: @layout-breakpoint-lg-tablet){
+      height: 60px !important;
+    }
+  }
+}
+
+.input-lg{
+  font-size: 23px !important;
+  font-weight: 400 !important;
+  line-height: 31px !important;
+  height: 78px !important;
+}

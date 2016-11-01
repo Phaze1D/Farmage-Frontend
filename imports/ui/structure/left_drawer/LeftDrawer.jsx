@@ -3,6 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
+import { Link } from 'react-router'
 import OrganizationMenu from './organization_menu/OrganizationMenu';
 
 export default class LeftDrawer extends React.Component{
@@ -35,7 +36,11 @@ export default class LeftDrawer extends React.Component{
 
         <div className="mid">
           <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>Profile</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>Organizations</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>
+            <Link to="/dashboard/organizations" className='menu-link'>
+              Organizations
+            </Link>
+          </MenuItem>
           <Divider/>
 
           <Subheader className='sub-title'>Organizations</Subheader>
