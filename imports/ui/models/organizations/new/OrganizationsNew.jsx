@@ -2,8 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import {indigo500} from 'material-ui/styles/colors';
 import MainPanel from '../../../structure/main_panel/MainPanel';
-import Addresses from '../../contact_info/addresses/Addresses';
-import Telephones from '../../contact_info/telephones/Telephones';
+import ContactInfo from '../../contact_info/ContactInfo';
 
 
 const focusColor ={
@@ -50,13 +49,13 @@ export default class OrganizationsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <Addresses title="Addresses"/>
+            <ContactInfo title="Addresses"/>
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <Telephones title="Telephones"/>
+            <ContactInfo title="Telephones"/>
           </div>
         </div>
 
