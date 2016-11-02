@@ -24,6 +24,63 @@ function TextFieldColumn(props){
   )
 }
 
+function AddressForm(props){
+  return(
+    <div className='row form-row address-form'>
+      <div className='col-xs-4'>
+        <TextField
+            name="address_name"
+            type="text"
+            className=""
+            hintText="Name"
+            underlineFocusStyle={focusColor}
+            fullWidth={true}/>
+      </div>
+
+      <div className='col-xs-8'>
+
+        <div className='row'>
+          <TextFieldColumn cSize='col-xs-12' name='street' type='text' floatText='Address Line 1' />
+        </div>
+
+        <div className='row'>
+          <TextFieldColumn cSize='col-xs-12' name='street2' type='text' floatText='Address Line 2'/>
+        </div>
+
+        <div className='row'>
+          <TextFieldColumn cSize='col-xs-6' name='city' type='text' floatText='City'/>
+          <TextFieldColumn cSize='col-xs-6' name='state' type='text' floatText='State'/>
+        </div>
+
+
+        <div className='row'>
+          <TextFieldColumn cSize='col-xs-6' name='zip_code' type='text' floatText='Zip Code'/>
+          <TextFieldColumn cSize='col-xs-6' name='country' type='text' floatText='Country'/>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+
+function TelephoneForm(props){
+  return(
+    <div className='row form-row low telephone-form'>
+      <div className='col-xs-4'>
+        <TextField
+            name="address_name"
+            type="text"
+            className=""
+            hintText="Name"
+            underlineFocusStyle={focusColor}
+            fullWidth={true}/>
+      </div>
+      <TextFieldColumn cSize='col-xs-8' name='number' type='text' floatText='Number' />
+    </div>
+  )
+}
+
 
 export default class ContactInfo extends React.Component{
   constructor(props){
@@ -35,67 +92,9 @@ export default class ContactInfo extends React.Component{
     event.stopPropagation()
   }
 
-  addressForm(){
-    return(
-      <div className='row form-row address-form'>
-        <div className='col-xs-4'>
-          <TextField
-              name="address_name"
-              type="text"
-              className=""
-              hintText="Name"
-              underlineFocusStyle={focusColor}
-              fullWidth={true}/>
-        </div>
-
-        <div className='col-xs-8'>
-
-          <div className='row'>
-            <TextFieldColumn cSize='col-xs-12' name='street' type='text' floatText='Address Line 1' />
-          </div>
-
-          <div className='row'>
-            <TextFieldColumn cSize='col-xs-12' name='street2' type='text' floatText='Address Line 2'/>
-          </div>
-
-          <div className='row'>
-            <TextFieldColumn cSize='col-xs-6' name='city' type='text' floatText='City'/>
-            <TextFieldColumn cSize='col-xs-6' name='state' type='text' floatText='State'/>
-          </div>
-
-
-          <div className='row'>
-            <TextFieldColumn cSize='col-xs-6' name='zip_code' type='text' floatText='Zip Code'/>
-            <TextFieldColumn cSize='col-xs-6' name='country' type='text' floatText='Country'/>
-          </div>
-
-        </div>
-      </div>
-    )
-  }
-
-  telephoneForm(){
-    return(
-      <div className='row form-row low telephone-form'>
-        <div className='col-xs-4'>
-          <TextField
-              name="address_name"
-              type="text"
-              className=""
-              hintText="Name"
-              underlineFocusStyle={focusColor}
-              fullWidth={true}/>
-        </div>
-
-        <TextFieldColumn cSize='col-xs-8' name='number' type='text' floatText='Number' />
-
-      </div>
-    )
-  }
-
   render(){
 
-    form = this.props.type ? this.addressForm() : this.telephoneForm();
+    form = this.props.type ? <AddressForm/> : <TelephoneForm/>
     return(
       <div>
         <div className='contact-button'>
