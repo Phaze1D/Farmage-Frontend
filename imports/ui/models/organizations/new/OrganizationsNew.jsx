@@ -49,13 +49,13 @@ export default class OrganizationsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Addresses"/>
+            <ContactInfo title="Addresses" type={true}/>
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Telephones"/>
+            <ContactInfo title="Telephones" type={false}/>
           </div>
         </div>
 
