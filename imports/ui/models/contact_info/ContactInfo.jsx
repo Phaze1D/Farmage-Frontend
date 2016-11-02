@@ -9,6 +9,21 @@ const focusColor ={
   borderColor: indigo500
 };
 
+function TextFieldColumn(props){
+  return(
+    <div className={props.cSize}>
+      <TextField
+          name={props.name}
+          type={props.type}
+          className=""
+          floatingLabelText={props.floatText}
+          floatingLabelFocusStyle={focusColor}
+          underlineFocusStyle={focusColor}
+          fullWidth={true}/>
+    </div>
+  )
+}
+
 
 export default class ContactInfo extends React.Component{
   constructor(props){
@@ -18,21 +33,6 @@ export default class ContactInfo extends React.Component{
 
   handleIconTouch(event){
     event.stopPropagation()
-  }
-
-  textfieldColumn(cSize, name, type, floatText){
-    return(
-      <div className={'col-xs-'+cSize}>
-        <TextField
-            name={name}
-            type={type}
-            className=""
-            floatingLabelText={floatText}
-            floatingLabelFocusStyle={focusColor}
-            underlineFocusStyle={focusColor}
-            fullWidth={true}/>
-      </div>
-    )
   }
 
   addressForm(){
@@ -51,22 +51,22 @@ export default class ContactInfo extends React.Component{
         <div className='col-xs-8'>
 
           <div className='row'>
-            {this.textfieldColumn('12', 'street', 'text', 'Address Line 1')}
+            <TextFieldColumn cSize='col-xs-12' name='street' type='text' floatText='Address Line 1' />
           </div>
 
           <div className='row'>
-            {this.textfieldColumn('12', 'street2', 'text', 'Address Line 2')}
+            <TextFieldColumn cSize='col-xs-12' name='street2' type='text' floatText='Address Line 2'/>
           </div>
 
           <div className='row'>
-            {this.textfieldColumn('6', 'city', 'text', 'City')}
-            {this.textfieldColumn('6', 'state', 'text', 'State')}
+            <TextFieldColumn cSize='col-xs-6' name='city' type='text' floatText='City'/>
+            <TextFieldColumn cSize='col-xs-6' name='state' type='text' floatText='State'/>
           </div>
 
 
           <div className='row'>
-            {this.textfieldColumn('6', 'zip_code', 'text', 'Zip Code')}
-            {this.textfieldColumn('6', 'country', 'text', 'Country')}
+            <TextFieldColumn cSize='col-xs-6' name='zip_code' type='text' floatText='Zip Code'/>
+            <TextFieldColumn cSize='col-xs-6' name='country' type='text' floatText='Country'/>
           </div>
 
         </div>
@@ -87,8 +87,8 @@ export default class ContactInfo extends React.Component{
               fullWidth={true}/>
         </div>
 
-        {this.textfieldColumn('8', 'number', 'text', 'Number')}
-        
+        <TextFieldColumn cSize='col-xs-8' name='number' type='text' floatText='Number' />
+
       </div>
     )
   }
