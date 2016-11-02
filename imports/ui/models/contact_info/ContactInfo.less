@@ -6,6 +6,7 @@
   align-items: center;
   margin: 30px 0 -10px;
   color: @grey-700;
+  background-color: @white;
   cursor: default;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -31,7 +32,15 @@
 
 .form-row{
   display: flex;
+  z-index: @z-index-low;
   align-items: center;
+  overflow: hidden;
+  transition-delay: 0s;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: height;
+  transform-style: preserve-3d;
+  will-change: height;
 
   &.low{
     align-items: flex-end;
