@@ -35,15 +35,22 @@
   z-index: @z-index-low;
   align-items: center;
   overflow: hidden;
-  transition-delay: 0s;
+  transition-delay: @animation-delay;
   transition-timing-function: @animation-curve-default;
   transition-duration: @animation-duration;
   transition-property: height;
   transform-style: preserve-3d;
   will-change: height;
+  height: 0;
+
+
 
   &.low{
     align-items: flex-end;
+  }
+
+  .address-inputs{
+    align-self: flex-start;
   }
 
   button{

@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component{
   }
 
   toggleLeft() {
-    this.setState({lopen: !this.state.lopen});
+    this.setState( (prevState, props) => ({lopen: !prevState.lopen}) );
   }
 
 

@@ -6,21 +6,39 @@ import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import AddressForm from './AddressForm';
 import TelephoneForm from './TelephoneForm';
+import update from 'immutability-helper';
+import uuid from 'uuid';
 
 
 export default class ContactInfo extends React.Component{
   constructor(props){
     super(props);
     this.handleAddTouch = this.handleAddTouch.bind(this);
+    this.state = {forms: {}};
   }
 
-  handleAddTouch(event){
+  handleAddTouch(){
+    this.setState( function(prevState, props) {
+      const pForms = prevState.forms;
+      const id = uuid.v1()
+      pForms[id] = 'lk'
+      return {forms: pForms}
+    });
+  }
+
+  onRemoveCall(key){
+    setTimeout(function(){
+      this.setState( function(prevState, props) {
+        const pForms = prevState.forms;
+        delete pForms[key];
+        return {forms: pForms}
+      });
+    }.bind(this), 400)
 
   }
 
   render(){
 
-    form = this.props.type ? <AddressForm/> : <TelephoneForm/>
     return(
       <div>
         <div className='contact-button'>
@@ -28,12 +46,19 @@ export default class ContactInfo extends React.Component{
             {this.props.title}
           </div>
 
-          <IconButton onTouchTap={this.handleIconTouch}>
+          <IconButton onTouchTap={this.handleAddTouch}>
             <ContentAddCircle />
           </IconButton>
         </div>
 
-        {form}
+        {
+          Object.keys(this.state.forms).map(function (key) {
+              element = this.props.type ? <AddressForm key={key} value={key} onRemoveCall={this.onRemoveCall.bind(this)}/> : <TelephoneForm key={key} value={key} onRemoveCall={this.onRemoveCall.bind(this)}/>
+            return(
+              element
+            )
+          }, this)
+        }
 
       </div>
     )

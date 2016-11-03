@@ -35,6 +35,7 @@ export default class TelephoneForm extends React.Component{
 
   handleRemoveTouch(){
     this.setState({height: '0px'});
+    this.props.onRemoveCall(this.props.value);
   }
 
   render(){

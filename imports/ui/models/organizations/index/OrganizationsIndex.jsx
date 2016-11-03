@@ -14,7 +14,7 @@ export default class OrganizationsIndex extends React.Component{
   }
 
   toggleRight() {
-    this.setState({ropen: !this.state.ropen});
+    this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
 
 
