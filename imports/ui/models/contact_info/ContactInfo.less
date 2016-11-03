@@ -35,15 +35,14 @@
   z-index: @z-index-low;
   align-items: center;
   overflow: hidden;
-  transition-delay: @animation-delay;
-  transition-timing-function: @animation-curve-default;
-  transition-duration: @animation-duration;
-  transition-property: height;
-  transform-style: preserve-3d;
-  will-change: height;
-  height: 0;
 
+  &.address-form{
+    height: 350px
+  }
 
+  &.telephone-form{
+    height: 72px
+  }
 
   &.low{
     align-items: flex-end;
@@ -61,6 +60,59 @@
     fill: @red-500 !important;
   }
 }
+
+.enter-address{
+  height: 0;
+  overflow: hidden;
+}
+
+.enter-address.enter-address-active {
+  height: 350px;
+  overflow: hidden;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: height;
+}
+
+.leave-address {
+  height: 350px;
+  overflow: hidden;
+}
+
+.leave-address.leave-address-active {
+  overflow: hidden;
+  height: 0;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: height;
+}
+
+.enter-telephone{
+  height: 0;
+  overflow: hidden;
+}
+
+.enter-telephone.enter-telephone-active {
+  height: 72px;
+  overflow: hidden;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: height;
+}
+
+.leave-telephone {
+  height: 72px;
+  overflow: hidden;
+}
+
+.leave-telephone.leave-telephone-active {
+  overflow: hidden;
+  height: 0;
+  transition-timing-function: @animation-curve-default;
+  transition-duration: @animation-duration;
+  transition-property: height;
+}
+
 
 .sm-p-right{
   padding-right: 5px;

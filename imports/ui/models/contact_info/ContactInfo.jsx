@@ -4,40 +4,44 @@ import {indigo500} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import uuid from 'uuid';
+import classnames from 'classnames';
+
+
 import AddressForm from './AddressForm';
 import TelephoneForm from './TelephoneForm';
-import update from 'immutability-helper';
-import uuid from 'uuid';
 
 
 export default class ContactInfo extends React.Component{
   constructor(props){
     super(props);
     this.handleAddTouch = this.handleAddTouch.bind(this);
-    this.state = {forms: {}};
+    this.state = {forms: []};
   }
 
   handleAddTouch(){
-    this.setState( function(prevState, props) {
-      const pForms = prevState.forms;
-      const id = uuid.v1()
-      pForms[id] = 'lk'
-      return {forms: pForms}
-    });
+    const newForms = this.state.forms.concat([uuid.v1()]);
+    this.setState({forms: newForms});
   }
 
-  onRemoveCall(key){
-    setTimeout(function(){
-      this.setState( function(prevState, props) {
-        const pForms = prevState.forms;
-        delete pForms[key];
-        return {forms: pForms}
-      });
-    }.bind(this), 400)
-
+  handleRemoveTouch(i){
+    let newForms = this.state.forms.slice();
+    newForms.splice(i, 1);
+    this.setState({forms: newForms});
   }
 
   render(){
+
+    const forms = this.state.forms.map(function(key, i){
+      if(this.props.type){
+        return(<AddressForm key={key} onRemoveCall={() => this.handleRemoveTouch(i)} />)
+      }else{
+        return(<TelephoneForm key={key} onRemoveCall={() => this.handleRemoveTouch(i)} />)
+      }
+    }, this);
+
+    const formClass = classnames({ 'address': this.props.type}, {'telephone': !this.props.type});
 
     return(
       <div>
@@ -51,14 +55,18 @@ export default class ContactInfo extends React.Component{
           </IconButton>
         </div>
 
-        {
-          Object.keys(this.state.forms).map(function (key) {
-              element = this.props.type ? <AddressForm key={key} value={key} onRemoveCall={this.onRemoveCall.bind(this)}/> : <TelephoneForm key={key} value={key} onRemoveCall={this.onRemoveCall.bind(this)}/>
-            return(
-              element
-            )
-          }, this)
-        }
+        <ReactCSSTransitionGroup
+          transitionName={ {
+            enter: 'enter-'+formClass,
+            leave: 'leave-'+formClass,
+            appear: 'appear'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}>
+          {forms}
+        </ReactCSSTransitionGroup>
+
+
 
       </div>
     )

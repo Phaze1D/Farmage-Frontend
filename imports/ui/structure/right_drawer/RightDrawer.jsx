@@ -17,8 +17,8 @@ export default class RightDrawer extends React.Component{
 
 
   render(){
-    rightCls = classnames('right-drawer', { 'open': this.props.open});
-    overlayCls = classnames('overlay', {'open': this.props.open});
+    const rightCls = classnames('right-drawer', { 'open': this.props.open});
+    const overlayCls = classnames('overlay', {'open': this.props.open});
 
     return (
       <div>

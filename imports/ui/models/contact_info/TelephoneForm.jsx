@@ -29,34 +29,33 @@ function TextFieldColumn(props){
 export default class TelephoneForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {height: '72px'};
     this.handleRemoveTouch = this.handleRemoveTouch.bind(this);
   }
 
   handleRemoveTouch(){
-    this.setState({height: '0px'});
-    this.props.onRemoveCall(this.props.value);
+    this.props.onRemoveCall();
   }
 
   render(){
-    height = {height: this.state.height}
     return(
-      <div className='row form-row low telephone-form' style={height}>
-        <div className='col-xs-4 sm-p-right'>
-          <TextField
-              name="address_name"
-              type="text"
-              className=""
-              hintText="Name"
-              underlineFocusStyle={focusColor}
-              fullWidth={true}/>
+      <div>
+        <div className='row form-row low telephone-form'>
+          <div className='col-xs-4 sm-p-right'>
+            <TextField
+                name="address_name"
+                type="text"
+                className=""
+                hintText="Name"
+                underlineFocusStyle={focusColor}
+                fullWidth={true}/>
+          </div>
+
+          <TextFieldColumn columClass='col-xs-8 sm-p-left' name='number' type='text' floatText='Number' />
+
+          <IconButton onTouchTap={this.handleRemoveTouch}>
+            <ContentRemoveCircle />
+          </IconButton>
         </div>
-
-        <TextFieldColumn columClass='col-xs-8 sm-p-left' name='number' type='text' floatText='Number' />
-
-        <IconButton onTouchTap={this.handleRemoveTouch}>
-          <ContentRemoveCircle />
-        </IconButton>
       </div>
     )
   }

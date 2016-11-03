@@ -4,7 +4,6 @@ import {indigo500} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Divider from 'material-ui/Divider';
-import classnames from 'classnames';
 
 
 
@@ -31,21 +30,18 @@ function TextFieldColumn(props){
 export default class AddressForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {height: '320px'};
     this.handleRemoveTouch = this.handleRemoveTouch.bind(this);
   }
 
   handleRemoveTouch(){
-    this.setState({height: '0px'});
-    this.props.onRemoveCall(this.props.value);
+    this.props.onRemoveCall();
   }
 
   render(){
-    const height = {height: this.state.height}
     return(
       <div>
 
-        <div className='row form-row address-form' style={height}>
+        <div className='row form-row address-form'>
           <div className='col-xs-4 sm-p-right'>
             <TextField
                 name="address_name"
