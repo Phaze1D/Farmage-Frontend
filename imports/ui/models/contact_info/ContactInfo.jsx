@@ -8,9 +8,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import uuid from 'uuid';
 import classnames from 'classnames';
 
-
-import AddressForm from './AddressForm';
-import TelephoneForm from './TelephoneForm';
+import Form from './Form';
 
 
 export default class ContactInfo extends React.Component{
@@ -46,11 +44,7 @@ export default class ContactInfo extends React.Component{
     const contactBClasses = classnames('contact-button', {'highlight':this.state.forms.length > 0});
 
     const forms = this.state.forms.map(function(key, i){
-      if(this.props.type){
-        return(<AddressForm key={key} onRemoveCall={() => this.handleRemoveTouch(i)} />)
-      }else{
-        return(<TelephoneForm key={key} onRemoveCall={() => this.handleRemoveTouch(i)} />)
-      }
+      return( <Form key={key} type={this.props.type} onRemoveCall={() => this.handleRemoveTouch(i)} />)
     }, this);
 
     const formClass = classnames({ 'address': this.props.type}, {'telephone': !this.props.type});
