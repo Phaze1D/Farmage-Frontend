@@ -1,16 +1,23 @@
 .contact-button{
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 0 -10px;
-  color: @grey-700;
+  margin: 30px 0 10px;
+  color: @grey-400;
   background-color: @white;
-  cursor: default;
+  border-bottom: 1px solid @grey-300;
+  cursor: text;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
+
+  &.highlight{
+    border: none;
+    color: @indigo-500;
+    cursor: default;
+  }
 
   button{
     margin-right: -12px !important;

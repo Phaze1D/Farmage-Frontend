@@ -17,12 +17,23 @@ export default class ContactInfo extends React.Component{
   constructor(props){
     super(props);
     this.handleAddTouch = this.handleAddTouch.bind(this);
+    this.handleContactTouch = this.handleContactTouch.bind(this);
     this.state = {forms: []};
   }
 
-  handleAddTouch(){
-    const newForms = this.state.forms.concat([uuid.v1()]);
-    this.setState({forms: newForms});
+  handleContactTouch(){
+    if(this.state.forms.length === 0){
+      const newForms = this.state.forms.concat([uuid.v1()]);
+      this.setState({forms: newForms});
+    }
+  }
+
+  handleAddTouch(event){
+    event.stopPropagation();
+    if(this.state.forms.length < 5){
+      const newForms = this.state.forms.concat([uuid.v1()]);
+      this.setState({forms: newForms});
+    }
   }
 
   handleRemoveTouch(i){
@@ -32,6 +43,7 @@ export default class ContactInfo extends React.Component{
   }
 
   render(){
+    const contactBClasses = classnames('contact-button', {'highlight':this.state.forms.length > 0});
 
     const forms = this.state.forms.map(function(key, i){
       if(this.props.type){
@@ -45,7 +57,7 @@ export default class ContactInfo extends React.Component{
 
     return(
       <div>
-        <div className='contact-button'>
+        <div className={contactBClasses} onTouchTap={this.handleContactTouch}>
           <div>
             {this.props.title}
           </div>
