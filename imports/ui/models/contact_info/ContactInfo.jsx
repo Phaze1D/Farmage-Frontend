@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {indigo500} from 'material-ui/styles/colors';
+import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
@@ -52,7 +52,7 @@ export default class ContactInfo extends React.Component{
     return(
       <div>
         <div className={contactBClasses} onTouchTap={this.handleContactTouch}>
-          <div>
+          <div className='title'>
             {this.props.title}
           </div>
 

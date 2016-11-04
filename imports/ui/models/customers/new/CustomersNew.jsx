@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {indigo500} from 'material-ui/styles/colors';
+import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -11,8 +11,8 @@ import TextArea from '../../../structure/textarea/TextArea';
 
 
 const focusColor ={
-  color: indigo500,
-  borderColor: indigo500
+  color: orangeA200,
+  borderColor: orangeA200
 };
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -114,18 +114,15 @@ export default class CustomersNew extends React.Component{
           </div>
         </div>
 
-
-
-
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Addresses" type={true}/>
+            <ContactInfo title="Telephones" type={false}/>
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Telephones" type={false}/>
+            <ContactInfo title="Addresses" type={true}/>
           </div>
         </div>
 
