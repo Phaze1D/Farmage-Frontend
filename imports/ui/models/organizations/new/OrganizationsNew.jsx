@@ -45,7 +45,7 @@ export default class OrganizationsNew extends React.Component{
         <div className='row'>
           <div className='col-xs-12'>
             <TextField
-                name="name"
+                name="email"
                 type="text"
                 className=""
                 hintText=""

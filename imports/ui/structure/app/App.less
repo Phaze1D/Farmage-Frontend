@@ -7,6 +7,7 @@
 @import '../right_drawer/RightDrawer';
 @import '../main_panel/MainPanel';
 @import '../../models/contact_info/ContactInfo';
+@import '../textarea/TextArea';
 
 
 .fab{
@@ -56,16 +57,26 @@
 
 
 .avatar-button{
-  width: 73px !important;
-  height: 73px !important;
+  width: 86px !important;
+  height: 86px !important;
   background-color: @teal-100 !important;
   border-radius: 50% !important;
   flex-shrink: 0;
   margin: 25px 20px 0 0 !important;
 
   svg{
-    width: 30px !important;
-    height: 30px !important;
+    width: 35px !important;
+    height: 35px !important;
     fill: @white !important;
+
+    @media(max-width: @layout-breakpoint-xxs){
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+
+  @media(max-width: @layout-breakpoint-xxs){
+    width: 73px !important;
+    height: 73px !important;
   }
 }

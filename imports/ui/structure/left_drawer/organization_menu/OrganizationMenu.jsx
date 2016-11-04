@@ -1,6 +1,8 @@
 import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
+import { Link } from 'react-router';
+
 
 export default class OrganizationMenu extends React.Component{
   constructor(props){
@@ -12,7 +14,13 @@ export default class OrganizationMenu extends React.Component{
       return(
         <div>
           <Subheader className='sub-title'>{this.props.title}</Subheader>
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Customers</MenuItem>
+
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
+            <Link to="/dashboard/customers" className='menu-link'>
+              Customers
+            </Link>
+          </MenuItem>
+
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Providers</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Sells</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Expenses</MenuItem>

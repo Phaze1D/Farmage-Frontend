@@ -1,0 +1,21 @@
+
+.count-root{
+  position: relative;
+  .count-box{
+    position: absolute;
+    bottom: -11px;
+    right: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: @grey-400;
+
+    &.focus{
+      color: @indigo-500;
+    }
+
+    &.error{
+      bottom: 5px;
+      color: @red-500;
+    }
+  }
+}
