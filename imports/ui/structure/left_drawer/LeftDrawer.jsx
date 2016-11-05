@@ -35,7 +35,11 @@ export default class LeftDrawer extends React.Component{
         </div>
 
         <div className="mid">
-          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>Profile</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>
+            <Link to="/dashboard" className='menu-link'>
+              Profile
+            </Link>
+          </MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>
             <Link to="/dashboard/organizations" className='menu-link'>
               Organizations

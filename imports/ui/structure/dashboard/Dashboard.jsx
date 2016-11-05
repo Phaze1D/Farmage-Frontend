@@ -3,6 +3,10 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import uuid from 'uuid';
+
+
 
 import RaisedButton from 'material-ui/RaisedButton';
 import LeftDrawer from '../left_drawer/LeftDrawer';
@@ -13,7 +17,7 @@ import MainPanel from '../main_panel/MainPanel';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false };
+    this.state = { lopen: false, ropen: false};
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
 
@@ -26,6 +30,8 @@ export default class Dashboard extends React.Component{
   toggleRight() {
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
+
+
 
 
   render() {
@@ -41,14 +47,31 @@ export default class Dashboard extends React.Component{
 
         </MainPanel>
 
-        
-        <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
-          {this.props.right}
-        </RightDrawer>
+        {this.props.right &&
+          <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
+            {this.props.right}
+          </RightDrawer>
+        }
 
-        <FloatingActionButton onTouchTap={this.toggleRight} className="fab">
-          <ContentAdd className="icon"/>
-        </FloatingActionButton>
+        <ReactCSSTransitionGroup
+          transitionName={ {
+            enter: 'enter-fab',
+            leave: 'leave-fab',
+            appear: 'appear-fab'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+            {this.props.right &&
+              <FloatingActionButton key='fab-main' onTouchTap={this.toggleRight} className="fab">
+                <ContentAdd className="icon"/>
+              </FloatingActionButton>
+            }
+
+        </ReactCSSTransitionGroup>
+
 
       </div>
     )

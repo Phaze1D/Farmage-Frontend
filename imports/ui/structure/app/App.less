@@ -80,3 +80,39 @@
     height: 73px !important;
   }
 }
+
+
+.appear-fab{
+  transform: scale(0,0) rotate(90deg) !important;
+  transition: none !important;
+}
+
+.appear-fab.appear-fab-active {
+  transform: scale(1,1) rotate(0deg)!important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.enter-fab{
+  transform: scale(0,0) rotate(90deg)!important;
+  transition: none !important;
+}
+
+.enter-fab.enter-fab-active {
+  transform: scale(1,1) rotate(0deg)!important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.leave-fab {
+  transform: scale(0,0) !important;
+}
+
+.leave-fab.leave-fab-active {
+  transform: scale(0,0) !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-duration: 0 !important;
+  transition-property: transform !important;
+}
