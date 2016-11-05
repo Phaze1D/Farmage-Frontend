@@ -41,7 +41,7 @@ function AddressForm(props){
               fullWidth={true}/>
         </div>
 
-        <div className='col-xs-8 sm-p-left address-inputs'>
+        <div className='col-xs-8 sm-p-left sm-p-right address-inputs'>
 
           <div className='row'>
             <TextFieldColumn columClass='col-xs-12' name='street' type='text' floatText='Address Line 1' />
@@ -88,7 +88,7 @@ function TelephoneForm(props){
               fullWidth={true}/>
         </div>
 
-        <TextFieldColumn columClass='col-xs-8 sm-p-left' name='number' type='text' floatText='Number' />
+        <TextFieldColumn columClass='col-xs-8 sm-p-left sm-p-right' name='number' type='text' floatText='Number' />
 
         <IconButton onTouchTap={props.handleRemoveTouch}>
           <ContentRemoveCircle />
