@@ -17,8 +17,9 @@
   z-index: @z-index-high;
 
   @media(min-width: @layout-breakpoint-lg-tablet){
-    bottom: 35px;
-    right: 35px;
+    top: 182px;
+    bottom: inherit;
+    right: 100px;
   }
 
   button{
@@ -83,36 +84,43 @@
 
 
 .appear-fab{
-  transform: scale(0,0) rotate(90deg) !important;
+  transform: scale(0,0) rotate(180deg) !important;
   transition: none !important;
 }
 
 .appear-fab.appear-fab-active {
   transform: scale(1,1) rotate(0deg)!important;
+  transform-origin: center;
   transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
   transition-duration: @animation-duration !important;
   transition-property: transform !important;
 }
 
 .enter-fab{
-  transform: scale(0,0) rotate(90deg)!important;
+  transform: scale(0,0) rotate(180deg)!important;
   transition: none !important;
 }
 
 .enter-fab.enter-fab-active {
   transform: scale(1,1) rotate(0deg)!important;
+  transform-origin: center;
   transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
   transition-duration: @animation-duration !important;
   transition-property: transform !important;
 }
 
 .leave-fab {
-  transform: scale(0,0) !important;
+  transform: scale(1,1) rotate(0deg) !important;
 }
 
 .leave-fab.leave-fab-active {
-  transform: scale(0,0) !important;
+  transform: scale(0,0) rotate(180deg) !important;
+  transform-origin: center;
   transition-timing-function: @animation-curve-default !important;
-  transition-duration: 0 !important;
+  transition-delay: @animation-delay !important;
+  transition-duration: @animation-duration !important;
   transition-property: transform !important;
+
 }
