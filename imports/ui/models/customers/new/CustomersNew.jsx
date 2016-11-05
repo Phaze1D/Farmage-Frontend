@@ -78,7 +78,7 @@ export default class CustomersNew extends React.Component{
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
-                month: 'long',
+                month: 'numeric',
                 year: 'numeric',
               }).format} />
           </div>
