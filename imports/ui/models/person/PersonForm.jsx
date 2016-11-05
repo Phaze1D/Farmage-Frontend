@@ -5,9 +5,9 @@ import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
-import MainPanel from '../../../structure/main_panel/MainPanel';
-import ContactInfo from '../../contact_info/ContactInfo';
-import TextArea from '../../../structure/textarea/TextArea';
+import MainPanel from '../../structure/main_panel/MainPanel';
+import ContactInfo from '../contact_info/ContactInfo';
+import TextArea from '../../structure/textarea/TextArea';
 
 
 const focusColor ={
@@ -17,7 +17,7 @@ const focusColor ={
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class CustomersNew extends React.Component{
+export default class PersonForm extends React.Component{
   constructor(props){
     super(props);
   }

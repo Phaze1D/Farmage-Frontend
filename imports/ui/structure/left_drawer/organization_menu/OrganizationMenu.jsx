@@ -21,7 +21,12 @@ export default class OrganizationMenu extends React.Component{
             </Link>
           </MenuItem>
 
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Providers</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
+            <Link to="/dashboard/providers" className='menu-link'>
+              Providers
+            </Link>
+          </MenuItem>
+
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Sells</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Expenses</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Products</MenuItem>
