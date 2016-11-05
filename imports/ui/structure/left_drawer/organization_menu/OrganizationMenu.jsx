@@ -29,12 +29,24 @@ export default class OrganizationMenu extends React.Component{
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Sells</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Expenses</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Products</MenuItem>
+
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
+            <Link to="/dashboard/products" className='menu-link'>
+              Products
+            </Link>
+          </MenuItem>
+          
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Inventories</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Resources</MenuItem>
+
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
+            <Link to="/dashboard/resources" className='menu-link'>
+              Resources
+            </Link>
+          </MenuItem>
+
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Yields</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Units</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Events</MenuItem>
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Movements</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Users</MenuItem>
         </div>
       )

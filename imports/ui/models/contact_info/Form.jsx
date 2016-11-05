@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {deepOrangeA200} from 'material-ui/styles/colors';
+import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Divider from 'material-ui/Divider';
@@ -8,8 +8,8 @@ import Divider from 'material-ui/Divider';
 
 
 const focusColor ={
-  color: deepOrangeA200,
-  borderColor: deepOrangeA200
+  color: orangeA200,
+  borderColor: orangeA200
 };
 
 function TextFieldColumn(props){
