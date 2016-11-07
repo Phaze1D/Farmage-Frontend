@@ -12,6 +12,9 @@ import ResourcesIndex from '../../ui/models/resources/index/ResourcesIndex';
 import ResourcesNew from '../../ui/models/resources/new/ResourcesNew';
 import ProductsIndex from '../../ui/models/products/index/ProductsIndex';
 import ProductsNew from '../../ui/models/products/new/ProductsNew';
+import UnitsIndex from '../../ui/models/units/index/UnitsIndex';
+import UnitsNew from '../../ui/models/units/new/UnitsNew';
+
 
 
 
@@ -27,7 +30,7 @@ export const renderRoutes = () => (
         <Route path='providers' components={{main: ProvidersIndex, right: PersonForm}}/>
         <Route path='resources' components={{main: ResourcesIndex, right: ResourcesNew}}/>
         <Route path='products' components={{main: ProductsIndex, right: ProductsNew}}/>
-
+        <Route path='units' components={{main: UnitsIndex, right: UnitsNew}}/>
 
 
       </Route>

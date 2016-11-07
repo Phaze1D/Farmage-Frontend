@@ -2,12 +2,12 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
-import ContactInfo from '../../contact_info/ContactInfo';
 import TextArea from '../../../structure/textarea/TextArea';
+import MTextField from '../../../structure/textfield/MTextField';
+
 
 
 const focusColor ={
@@ -15,11 +15,24 @@ const focusColor ={
   borderColor: orangeA200
 };
 
-let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class ProductsNew extends React.Component{
   constructor(props){
     super(props);
+
+    this.state = {total_price: ''}
+    this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+  }
+
+  handleTotalPriceChange(){
+    uv = this.unitPriceTF.input.value;
+    rv = this.taxRateTF.input.value;
+
+    uv = uv.length > 0 ? uv : 0.00;
+    rv = rv.length > 0 ? rv/100 : 0.00;
+    tp = uv * (1 + rv)
+    this.setState({total_price: tp.toFixed(2)});
+
   }
 
   render(){
@@ -74,7 +87,7 @@ export default class ProductsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-4 sm-p-right'>
-            <TextField
+            <MTextField
                 name="unit_price"
                 type="number"
                 className=""
@@ -82,11 +95,15 @@ export default class ProductsNew extends React.Component{
                 floatingLabelText="Unit Price"
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
-                fullWidth={true}/>
+                mref={(input) => this.unitPriceTF = input}
+                onChange={this.handleTotalPriceChange}
+                fullWidth={true}
+                prefix="$"
+                prefixSide="left"/>
           </div>
 
-          <div className='col-xs-4 sm-p-left'>
-            <TextField
+          <div className='col-xs-4 sm-p-left sm-p-right'>
+            <MTextField
                 name="tax_rate"
                 type="number"
                 className=""
@@ -94,24 +111,29 @@ export default class ProductsNew extends React.Component{
                 floatingLabelText="Tax Rate"
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
-                fullWidth={true}/>
+                mref={(input) => this.taxRateTF = input}
+                onChange={this.handleTotalPriceChange}
+                fullWidth={true}
+                prefix="%"
+                prefixSide="right"/>
           </div>
 
-          <div className='col-xs-4 sm-p-left'>
-            <TextField
+          <div className='col-xs-4 sm-p-left sm-p-right'>
+            <MTextField
                 name="tprice"
                 type="number"
                 className=""
                 hintText=""
+                value={this.state.total_price}
                 disabled={true}
                 floatingLabelText="Total Price"
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
-                fullWidth={true}/>
+                fullWidth={true}
+                prefix="$"
+                prefixSide="left"/>
           </div>
         </div>
-
-
 
         <div className='row'>
           <div className='col-xs-12'>
@@ -131,7 +153,7 @@ export default class ProductsNew extends React.Component{
         </div>
 
 
-        
+
 
       </MainPanel>
     )
