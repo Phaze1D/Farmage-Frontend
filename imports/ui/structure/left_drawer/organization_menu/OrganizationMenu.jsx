@@ -35,7 +35,7 @@ export default class OrganizationMenu extends React.Component{
               Products
             </Link>
           </MenuItem>
-          
+
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Inventories</MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
@@ -45,7 +45,13 @@ export default class OrganizationMenu extends React.Component{
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Yields</MenuItem>
-          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Units</MenuItem>
+
+          <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
+            <Link to="/dashboard/units" className='menu-link'>
+              Units
+            </Link>
+          </MenuItem>
+
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Movements</MenuItem>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>Users</MenuItem>
         </div>

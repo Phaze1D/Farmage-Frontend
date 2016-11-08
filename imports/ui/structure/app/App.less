@@ -9,6 +9,7 @@
 @import '../../models/contact_info/ContactInfo';
 @import '../textarea/TextArea';
 @import '../textfield/MTextField';
+@import '../../models/amount_changes/AmountChanges';
 
 
 .fab{
@@ -54,7 +55,11 @@
 .col-flex{
   display: flex;
   align-items: center;
+}
 
+.row-flex{
+  display: flex;
+  align-items: flex-end;
 }
 
 
@@ -123,5 +128,44 @@
   transition-delay: @animation-delay !important;
   transition-duration: @animation-duration !important;
   transition-property: transform !important;
+}
 
+.track-row{
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
+  transition-duration: @animation-duration !important;
+  transition-property: height !important;
+  height: 0;
+  margin-top: 20px;
+  // padding: 10px 0;
+  overflow: hidden;
+}
+
+.show-track{
+  height: 72px;
+}
+
+
+.mtoggle{
+  width: auto !important;
+  align-self: flex-end;
+}
+
+.mtoggle-info{
+  flex-grow: 1;
+  margin: 30px 0 0;
+}
+
+.mtoggle-title{
+  font-size: 16px;
+  color: @grey-600;
+  &.active{
+    color: @color-accent;
+  }
+}
+
+.mtoggle-sub{
+  font-size: 13px;
+  font-weight: 300;
+  color: @grey-400;
 }

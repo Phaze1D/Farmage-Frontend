@@ -13,10 +13,10 @@ export default class TextArea extends React.Component{
     this.onChange = this.onChange.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.checkCount = this.checkCount.bind(this);
   }
 
-  onChange(event){
-    const count = event.target.value.length;
+  checkCount(count){
     if(count > this.props.maxCount){
       this.setState({error: true});
       this.setState({errorText: 'Max'});
@@ -24,8 +24,17 @@ export default class TextArea extends React.Component{
       this.setState({error: false});
       this.setState({errorText: null});
     }
-
     this.setState({count: count});
+
+  }
+
+  componentDidMount(){
+    if(this.props.defaultValue)
+      this.checkCount(this.props.defaultValue.length);
+  }
+
+  onChange(event){
+    this.checkCount(event.target.value.length);
   }
 
   onFocus(event){
