@@ -32,17 +32,24 @@ const styles = {
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true};
+    this.state = {tracking: true, tauto: true};
     this.handleTracking = this.handleTracking.bind(this);
   }
 
 
   handleTracking(event, isChecked){
-    this.setState({tracking: isChecked});
+    if(isChecked){
+      this.setState({tracking: isChecked});
+      setTimeout(() => {this.setState({tauto: true})}, 400);
+    }else{
+      this.setState({tauto: false});
+      setTimeout(() => {this.setState({tracking: isChecked});}, 200);
+    }
+
   }
 
   render(){
-    const trClasses = classnames('row row-flex track-row', {'show-track': this.state.tracking});
+    const trClasses = classnames('row row-flex track-row', {'show-track': this.state.tracking}, {'track-auto': this.state.tauto});
     const totClasses = classnames('mtoggle-title', {'active': this.state.tracking});
 
     return(
