@@ -14,6 +14,10 @@ import ProductsIndex from '../../ui/models/products/index/ProductsIndex';
 import ProductsNew from '../../ui/models/products/new/ProductsNew';
 import UnitsIndex from '../../ui/models/units/index/UnitsIndex';
 import UnitsNew from '../../ui/models/units/new/UnitsNew';
+import YieldsIndex from '../../ui/models/yields/index/YieldsIndex';
+import YieldsNew from '../../ui/models/yields/new/YieldsNew';
+import ExpensesIndex from '../../ui/models/expenses/index/ExpensesIndex';
+import ExpensesNew from '../../ui/models/expenses/new/ExpensesNew';
 
 
 
@@ -31,6 +35,9 @@ export const renderRoutes = () => (
         <Route path='resources' components={{main: ResourcesIndex, right: ResourcesNew}}/>
         <Route path='products' components={{main: ProductsIndex, right: ProductsNew}}/>
         <Route path='units' components={{main: UnitsIndex, right: UnitsNew}}/>
+        <Route path='yields' components={{main: YieldsIndex, right: YieldsNew}}/>
+        <Route path='expenses' components={{main: ExpensesIndex, right: ExpensesNew}}/>
+
 
 
       </Route>

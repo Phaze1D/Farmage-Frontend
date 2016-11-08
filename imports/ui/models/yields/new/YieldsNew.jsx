@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200, orangeA100} from 'material-ui/styles/colors';
+import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import Toggle from 'material-ui/Toggle';
@@ -19,38 +19,13 @@ const focusColor = {
   borderColor: orangeA200
 };
 
-const styles = {
-  thumbSwitched: {
-    backgroundColor: orangeA200,
-  },
-  trackSwitched: {
-    backgroundColor: orangeA100,
-  },
-}
 
-
-export default class UnitsNew extends React.Component{
+export default class YieldsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true, tauto: true};
-    this.handleTracking = this.handleTracking.bind(this);
-  }
-
-
-  handleTracking(event, isChecked){
-    if(isChecked){
-      this.setState({tracking: isChecked});
-      setTimeout(() => {this.setState({tauto: true})}, 400);
-    }else{
-      this.setState({tauto: false});
-      setTimeout(() => {this.setState({tracking: isChecked});}, 200);
-    }
-
   }
 
   render(){
-    const trClasses = classnames('row row-flex track-row', {'show-track': this.state.tracking}, {'track-auto': this.state.tauto});
-    const totClasses = classnames('mtoggle-title', {'active': this.state.tracking});
 
     return(
       <MainPanel classes='container-fluid'>
@@ -61,7 +36,7 @@ export default class UnitsNew extends React.Component{
                 type="text"
                 className="input-lg"
                 hintText=""
-                floatingLabelText="Unit Name"
+                floatingLabelText="Identifier"
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
                 fullWidth={true}/>
@@ -71,10 +46,10 @@ export default class UnitsNew extends React.Component{
         <div className='row'>
           <div className='col-xs-12'>
             <TextArea
-              name="description"
+              name="notes"
               type="text"
               className=""
-              floatingLabelText="Description"
+              floatingLabelText="Notes"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}
               fullWidth={true}
@@ -85,11 +60,12 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
-        <div className={trClasses}>
+        <div className="row">
           <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }}>
             <TextArea
-              name="description"
+              name="movement_note"
               type="text"
+              className=""
               defaultValue="Initial movement"
               floatingLabelText="Movement Note"
               floatingLabelFocusStyle={focusColor}
@@ -113,30 +89,6 @@ export default class UnitsNew extends React.Component{
                 fullWidth={true}/>
           </div>
         </div>
-
-        <div className='row'>
-          <div className='col-xs-12 col-flex'>
-
-            <div className='mtoggle-info'>
-              <div className={totClasses}>
-                Tracking
-              </div>
-
-              <div className='mtoggle-sub'>
-                Track the changes in the unit's amount
-              </div>
-            </div>
-
-            <Toggle
-              defaultToggled={true}
-              className="mtoggle"
-              thumbSwitchedStyle={styles.thumbSwitched}
-              trackSwitchedStyle={styles.trackSwitched}
-              onToggle={this.handleTracking}/>
-
-          </div>
-        </div>
-
 
 
       </MainPanel>
