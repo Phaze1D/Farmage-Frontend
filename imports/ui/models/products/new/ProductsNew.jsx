@@ -118,7 +118,7 @@ export default class ProductsNew extends React.Component{
                 prefixSide="right"/>
           </div>
 
-          <div className='col-xs-4 sm-p-left sm-p-right'>
+          <div className='col-xs-4 sm-p-left'>
             <MTextField
                 name="tprice"
                 type="number"
