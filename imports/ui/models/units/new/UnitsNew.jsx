@@ -84,8 +84,7 @@ export default class UnitsNew extends React.Component{
               name="description"
               type="text"
               className=""
-              defaultValue="Initial movement note"
-              hintText="Movement Note"
+              floatingLabelText="Movement Note"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}
               fullWidth={true}
