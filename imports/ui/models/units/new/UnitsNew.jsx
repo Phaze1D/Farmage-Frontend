@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import LToggler from '../../../structure/ltoggler/LToggler';
 
 
@@ -104,6 +105,13 @@ export default class UnitsNew extends React.Component{
           subTitle="Track the changes in the unit's amount"
           defaultToggled={true}
           onToggle={this.handleTracking}/>
+
+
+        {/*<div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Parent Unit"/>
+          </div>
+        </div>*/}
 
       </MainPanel>
     )
