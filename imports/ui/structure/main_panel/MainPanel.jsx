@@ -12,7 +12,7 @@ export default class MainPanel extends React.Component{
 
   render(){
     return(
-      <div className='main-panel'>
+      <div className={'main-panel ' + this.props.mainClasses}>
         <div className='header'>
 
         </div>

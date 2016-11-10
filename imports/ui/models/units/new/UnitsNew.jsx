@@ -19,24 +19,24 @@ const focusColor = {
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true, tauto: true};
+    this.state = {height: '82px'};
     this.handleTracking = this.handleTracking.bind(this);
   }
 
 
   handleTracking(event, isChecked){
+    const height = (this.colTrack.clientHeight+10) + "px";
     if(isChecked){
-      this.setState({tracking: isChecked});
-      setTimeout(() => {this.setState({tauto: true})}, 400);
+      this.setState({height: height});
+      setTimeout(() => {this.setState({height: 'auto'})}, 400);
     }else{
-      this.setState({tauto: false});
-      setTimeout(() => {this.setState({tracking: isChecked});}, 200);
+      this.setState({height: height});
+      setTimeout(() => {this.setState({height: '0px'});}, 200);
     }
   }
 
   render(){
-    const trClasses = classnames('row row-flex track-row', {'show-track': this.state.tracking}, {'track-auto': this.state.tauto});
-
+    const style = {height: this.state.height}
     return(
       <MainPanel classes='container-fluid'>
         <div className='row'>
@@ -70,8 +70,8 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
-        <div className={trClasses}>
-          <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }}>
+        <div className="row row-flex track-row" style={style}>
+          <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }} ref={(div)=>{this.colTrack = div}}>
             <TextArea
               name="description"
               type="text"

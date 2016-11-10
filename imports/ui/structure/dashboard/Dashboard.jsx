@@ -5,6 +5,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import uuid from 'uuid';
+import classnames from 'classnames';
+
 
 
 
@@ -17,10 +19,9 @@ import MainPanel from '../main_panel/MainPanel';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false};
+    this.state = { lopen: false, ropen: false, docked: true};
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
-
   }
 
   toggleLeft() {
@@ -30,9 +31,7 @@ export default class Dashboard extends React.Component{
   toggleRight() {
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
-
-
-
+  
 
   render() {
     return (
