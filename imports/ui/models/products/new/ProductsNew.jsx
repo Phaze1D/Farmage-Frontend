@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
@@ -10,11 +9,6 @@ import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
 
 
-
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 
 export default class ProductsNew extends React.Component{
@@ -53,8 +47,6 @@ export default class ProductsNew extends React.Component{
                 className="input-lg"
                 hintText=""
                 floatingLabelText="Product Name"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
 
           </div>
@@ -68,8 +60,6 @@ export default class ProductsNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Size"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
 
@@ -80,8 +70,6 @@ export default class ProductsNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="SKU"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -95,8 +83,6 @@ export default class ProductsNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Unit Price"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 mref={(input) => this.unitPriceTF = input}
                 onChange={this.handleTotalPriceChange}
                 fullWidth={true}
@@ -111,8 +97,6 @@ export default class ProductsNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Tax Rate"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 mref={(input) => this.taxRateTF = input}
                 onChange={this.handleTotalPriceChange}
                 fullWidth={true}
@@ -129,8 +113,6 @@ export default class ProductsNew extends React.Component{
                 value={this.state.total_price}
                 disabled={true}
                 floatingLabelText="Total Price"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}
                 prefix="$"
                 prefixSide="left"/>
@@ -144,8 +126,6 @@ export default class ProductsNew extends React.Component{
               type="text"
               className=""
               floatingLabelText="Description"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}

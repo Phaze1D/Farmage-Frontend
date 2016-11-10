@@ -1,16 +1,9 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Divider from 'material-ui/Divider';
 
-
-
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 function TextFieldColumn(props){
   return(
@@ -20,8 +13,6 @@ function TextFieldColumn(props){
           type={props.type}
           className=""
           floatingLabelText={props.floatText}
-          floatingLabelFocusStyle={focusColor}
-          underlineFocusStyle={focusColor}
           fullWidth={true}/>
     </div>
   )
@@ -37,7 +28,6 @@ function AddressForm(props){
               type="text"
               className=""
               hintText="Name"
-              underlineFocusStyle={focusColor}
               fullWidth={true}/>
         </div>
 
@@ -84,7 +74,6 @@ function TelephoneForm(props){
               type="text"
               className=""
               hintText="Name"
-              underlineFocusStyle={focusColor}
               fullWidth={true}/>
         </div>
 

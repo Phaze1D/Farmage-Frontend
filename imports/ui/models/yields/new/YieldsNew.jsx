@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -14,10 +13,6 @@ import TextArea from '../../../structure/textarea/TextArea';
 
 
 
-const focusColor = {
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -40,8 +35,6 @@ export default class YieldsNew extends React.Component{
                 className="input-lg"
                 hintText=""
                 floatingLabelText="Identifier"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -51,8 +44,6 @@ export default class YieldsNew extends React.Component{
             <DatePicker
               name="date_bought"
               floatingLabelText="Created At"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               onChange={ (event, date) => {this.setState({minDate: date}) } }
               defaultDate={new Date()}
@@ -68,8 +59,6 @@ export default class YieldsNew extends React.Component{
               name="expiration_date"
               minDate={this.state.minDate}
               floatingLabelText="Expiration Date"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
@@ -86,8 +75,6 @@ export default class YieldsNew extends React.Component{
               type="text"
               className=""
               floatingLabelText="Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}
@@ -104,8 +91,6 @@ export default class YieldsNew extends React.Component{
               className=""
               defaultValue="Initial amount"
               floatingLabelText="Movement Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}
@@ -120,8 +105,6 @@ export default class YieldsNew extends React.Component{
                 defaultValue="0"
                 hintText=""
                 floatingLabelText="Amount"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>

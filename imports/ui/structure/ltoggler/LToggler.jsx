@@ -1,17 +1,7 @@
 import React from 'react';
-import {orangeA200, orangeA100} from 'material-ui/styles/colors';
 import Toggle from 'material-ui/Toggle';
 import classnames from 'classnames';
 
-
-const styles = {
-  thumbSwitched: {
-    backgroundColor: orangeA200,
-  },
-  trackSwitched: {
-    backgroundColor: orangeA100,
-  },
-}
 
 export default class LToggler extends React.Component{
   constructor(props){
@@ -56,8 +46,6 @@ export default class LToggler extends React.Component{
           <Toggle
             {...toggleProps}
             className="mtoggle"
-            thumbSwitchedStyle={styles.thumbSwitched}
-            trackSwitchedStyle={styles.trackSwitched}
             onToggle={this.handleToggle}/>
 
         </div>

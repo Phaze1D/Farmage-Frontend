@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -9,11 +8,6 @@ import MainPanel from '../../structure/main_panel/MainPanel';
 import ContactInfo from '../contact_info/ContactInfo';
 import TextArea from '../../structure/textarea/TextArea';
 
-
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -39,8 +33,6 @@ export default class PersonForm extends React.Component{
                   className="input-lg"
                   hintText=""
                   floatingLabelText="First Name"
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}/>
 
               <TextField
@@ -48,8 +40,6 @@ export default class PersonForm extends React.Component{
                   type="text"
                   hintText=""
                   floatingLabelText="Last Name"
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}/>
             </div>
           </div>
@@ -63,8 +53,6 @@ export default class PersonForm extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Email"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
 
@@ -73,8 +61,6 @@ export default class PersonForm extends React.Component{
               name="date_of_birth"
               hintText="Birthday"
               floatingLabelText="Birthday"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
@@ -91,8 +77,6 @@ export default class PersonForm extends React.Component{
                 type="text"
                 className=""
                 floatingLabelText="Company"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -104,8 +88,6 @@ export default class PersonForm extends React.Component{
               type="text"
               className=""
               floatingLabelText="Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}

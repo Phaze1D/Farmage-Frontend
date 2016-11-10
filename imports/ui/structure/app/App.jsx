@@ -1,5 +1,9 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Theme from '../Theme.js'
+
+const mtheme = getMuiTheme(Theme);
 
 
 export default class App extends React.Component{
@@ -10,7 +14,7 @@ export default class App extends React.Component{
   render() {
     return (
       <div>
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={mtheme}>
           {this.props.children}
         </MuiThemeProvider>
       </div>

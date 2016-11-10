@@ -31,7 +31,7 @@ export default class Dashboard extends React.Component{
   toggleRight() {
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
-  
+
 
   render() {
     return (
@@ -64,7 +64,7 @@ export default class Dashboard extends React.Component{
           transitionAppearTimeout={400}>
 
             {this.props.right &&
-              <FloatingActionButton key='fab-main' onTouchTap={this.toggleRight} className="fab">
+              <FloatingActionButton key='fab-main'  secondary={true} onTouchTap={this.toggleRight} className="fab">
                 <ContentAdd className="icon"/>
               </FloatingActionButton>
             }

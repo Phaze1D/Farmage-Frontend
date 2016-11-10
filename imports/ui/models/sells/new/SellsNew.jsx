@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -12,10 +11,6 @@ import MTextField from '../../../structure/textfield/MTextField';
 
 
 
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 
 export default class SellsNew extends React.Component{
@@ -47,8 +42,6 @@ export default class SellsNew extends React.Component{
                 type="number"
                 className='input-lg'
                 floatingLabelText="Total Price"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}
                 disabled={true}
                 prefix="$"
@@ -62,8 +55,6 @@ export default class SellsNew extends React.Component{
                 name="sub_total"
                 type="number"
                 floatingLabelText="Sub Total"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}
                 disabled={true}
                 prefix="$"
@@ -76,8 +67,6 @@ export default class SellsNew extends React.Component{
                 name="tax_total"
                 type="number"
                 floatingLabelText="Tax Total"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}
                 disabled={true}
                 prefix="$"
@@ -93,8 +82,6 @@ export default class SellsNew extends React.Component{
                 type="text"
                 hintText=""
                 floatingLabelText="Status"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
 
@@ -104,8 +91,6 @@ export default class SellsNew extends React.Component{
                 type="number"
                 hintText=""
                 floatingLabelText="Discount"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
 
               <RaisedButton label={this.state.discount_type} className='discount-b' onTouchTap={this.handleDiscountToggle}/>
@@ -120,8 +105,6 @@ export default class SellsNew extends React.Component{
               type="text"
               className=""
               floatingLabelText="Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}

@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import classnames from 'classnames';
@@ -12,32 +11,19 @@ import LToggler from '../../../structure/ltoggler/LToggler';
 
 
 
-const focusColor = {
-  color: orangeA200,
-  borderColor: orangeA200
-};
-
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {height: '0px'};
+    this.state = {tracking: true};
     this.handleTracking = this.handleTracking.bind(this);
   }
 
 
   handleTracking(event, isChecked){
-    const height = (this.colTrack.clientHeight+10) + "px";
-    if(isChecked){
-      this.setState({height: height});
-      setTimeout(() => {this.setState({height: 'auto'})}, 400);
-    }else{
-      this.setState({height: height});
-      setTimeout(() => {this.setState({height: '0px'});}, 200);
-    }
+    this.setState({tracking: isChecked})
   }
 
   render(){
-    const style = {height: this.state.height}
     return(
       <MainPanel classes='container-fluid'>
         <div className='row'>
@@ -48,8 +34,6 @@ export default class UnitsNew extends React.Component{
                 className="input-lg"
                 hintText=""
                 floatingLabelText="Unit Name"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -61,8 +45,6 @@ export default class UnitsNew extends React.Component{
               type="text"
               className=""
               floatingLabelText="Description"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}
@@ -74,34 +56,32 @@ export default class UnitsNew extends React.Component{
         <LToggler
           title="Tracking"
           subTitle="Track the changes in the unit's amount"
-          defaultToggled={false}
+          defaultToggled={this.state.tracking}
           onToggle={this.handleTracking}/>
 
-        <div className="row row-flex track-row" style={style}>
-          <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }} ref={(div)=>{this.colTrack = div}}>
+        <div className="row row-flex">
+          <div className='col-xs-8 sm-p-right'>
             <TextArea
               name="description"
               type="text"
               defaultValue="Initial amount"
               floatingLabelText="Movement Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}
               maxCount={512}
+              disabled={!this.state.tracking}
               rows={1} />
           </div>
 
-          <div className='col-xs-4 sm-p-left' style={{marginBottom: '10px' }}>
+          <div className='col-xs-4 sm-p-left'>
             <TextField
                 name="amount"
                 type="number"
                 defaultValue="0"
                 hintText=""
                 floatingLabelText="Amount"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
+                disabled={!this.state.tracking}
                 fullWidth={true}/>
           </div>
         </div>

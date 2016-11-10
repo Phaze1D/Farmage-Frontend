@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
@@ -8,11 +7,6 @@ import MainPanel from '../../../structure/main_panel/MainPanel';
 import LToggler from '../../../structure/ltoggler/LToggler';
 
 
-
-const focusColor = {
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 export default class UnitsNew extends React.Component{
   constructor(props){
@@ -34,8 +28,6 @@ export default class UnitsNew extends React.Component{
                 className="input-lg"
                 hintText=""
                 floatingLabelText="First Name"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -47,8 +39,6 @@ export default class UnitsNew extends React.Component{
                 type="text"
                 hintText=""
                 floatingLabelText="Last Name"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>
@@ -60,8 +50,6 @@ export default class UnitsNew extends React.Component{
                 type="text"
                 hintText=""
                 floatingLabelText="Email"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}/>
           </div>
         </div>

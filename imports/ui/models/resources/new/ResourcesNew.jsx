@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
@@ -8,10 +7,6 @@ import MainPanel from '../../../structure/main_panel/MainPanel';
 import ContactInfo from '../../contact_info/ContactInfo';
 
 
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 
 export default class ResourcesNew extends React.Component{
@@ -36,8 +31,6 @@ export default class ResourcesNew extends React.Component{
                   className="input-lg"
                   hintText=""
                   floatingLabelText="Name"
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}/>
 
               <TextField
@@ -45,8 +38,6 @@ export default class ResourcesNew extends React.Component{
                   type="text"
                   hintText=""
                   floatingLabelText="Measurement Unit"
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}/>
             </div>
           </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
 import ActionReceipt from 'material-ui/svg-icons/action/receipt';
@@ -12,11 +11,6 @@ import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
 
 
-
-const focusColor ={
-  color: orangeA200,
-  borderColor: orangeA200
-};
 
 const dataS = ["Sheep Food", 'Chicken Food', "Dog Food", "Employee Salary", "Gasoline", "LightBulb", "Some Very Long Item To Check Phone Handling"]
 
@@ -64,8 +58,6 @@ export default class ExpensesNew extends React.Component{
                   maxSearchResults={5}
                   hintText=""
                   floatingLabelText="Item Name"
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}
                   dataSource={dataS}/>
 
@@ -76,8 +68,6 @@ export default class ExpensesNew extends React.Component{
                   floatingLabelText="Quantity"
                   ref={(input) => this.quantityTF = input}
                   onChange={this.handleTotalPriceChange}
-                  floatingLabelFocusStyle={focusColor}
-                  underlineFocusStyle={focusColor}
                   fullWidth={true}/>
 
             </div>
@@ -92,8 +82,6 @@ export default class ExpensesNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Unit Price"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 mref={(input) => this.unitPriceTF = input}
                 onChange={this.handleTotalPriceChange}
                 fullWidth={true}
@@ -108,8 +96,6 @@ export default class ExpensesNew extends React.Component{
                 className=""
                 hintText=""
                 floatingLabelText="Tax Rate"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 mref={(input) => this.taxRateTF = input}
                 onChange={this.handleTotalPriceChange}
                 fullWidth={true}
@@ -126,8 +112,6 @@ export default class ExpensesNew extends React.Component{
                 value={this.state.total_price}
                 disabled={true}
                 floatingLabelText="Total Price"
-                floatingLabelFocusStyle={focusColor}
-                underlineFocusStyle={focusColor}
                 fullWidth={true}
                 prefix="$"
                 prefixSide="left"/>
@@ -141,8 +125,6 @@ export default class ExpensesNew extends React.Component{
               type="text"
               className=""
               floatingLabelText="Notes"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               multiLine={true}
               showCount={true}
@@ -155,8 +137,6 @@ export default class ExpensesNew extends React.Component{
               name="date_bought"
               hintText="Bought"
               floatingLabelText="Bought"
-              floatingLabelFocusStyle={focusColor}
-              underlineFocusStyle={focusColor}
               fullWidth={true}
               defaultDate={new Date()}
               formatDate={new DateTimeFormat('en-US', {
