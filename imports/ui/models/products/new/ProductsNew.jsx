@@ -45,6 +45,7 @@ export default class ProductsNew extends React.Component{
               <ImageCameraAlt />
             </IconButton>
 
+            
             <TextField
                 name="name"
                 type="text"
@@ -85,7 +86,7 @@ export default class ProductsNew extends React.Component{
         </div>
 
 
-        <div className='row'>
+        <div className='row row-flex'>
           <div className='col-xs-4 sm-p-right'>
             <MTextField
                 name="unit_price"

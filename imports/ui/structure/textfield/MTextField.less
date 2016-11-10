@@ -12,6 +12,11 @@
     &.right{
       right: 0;
     }
+
+    &.input-lg{
+      height: auto !important;
+      bottom: 8px;
+    }
   }
 }
 
@@ -37,10 +42,33 @@
       top: 40px !important;
     }
   }
+
+  input[disabled]{
+    color: @grey-500 !important;
+  }
+
+  &.input-lg.left{
+    input{
+      padding-left: 15px !important;
+    }
+
+    label{
+      top: 40px !important;
+      left: 15px !important;
+    }
+  }
+
+
 }
 
 .m-transition{
   label{
     transform: scale(.75) translate(-12px, -28px) !important;
+  }
+
+  &.input-lg{
+    label{
+      transform: scale(.75) translate(-20px, -28px) !important;
+    }
   }
 }

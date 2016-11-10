@@ -121,7 +121,7 @@ export default class ExpensesNew extends React.Component{
             <MTextField
                 name="tprice"
                 type="number"
-                className="input-lg"
+                className=""
                 hintText=""
                 value={this.state.total_price}
                 disabled={true}

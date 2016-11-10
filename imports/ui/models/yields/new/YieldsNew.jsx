@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
+import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import Toggle from 'material-ui/Toggle';
 import classnames from 'classnames';
@@ -10,7 +11,6 @@ import classnames from 'classnames';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
-import AmountChanges from '../../amount_changes/AmountChanges';
 
 
 
@@ -19,6 +19,7 @@ const focusColor = {
   borderColor: orangeA200
 };
 
+let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class YieldsNew extends React.Component{
   constructor(props){
@@ -29,8 +30,8 @@ export default class YieldsNew extends React.Component{
 
     return(
       <MainPanel classes='container-fluid'>
-        <div className='row'>
-          <div className='col-xs-12'>
+        <div className='row row-flex'>
+          <div className='col-xs-8 sm-p-right'>
             <TextField
                 name="name"
                 type="text"
@@ -40,6 +41,22 @@ export default class YieldsNew extends React.Component{
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
                 fullWidth={true}/>
+          </div>
+
+          <div className='col-xs-4 sm-p-left'>
+            <DatePicker
+              name="date_bought"
+              floatingLabelText="Created At"
+              floatingLabelFocusStyle={focusColor}
+              underlineFocusStyle={focusColor}
+              fullWidth={true}
+              defaultDate={new Date()}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+              }).format} />
+
           </div>
         </div>
 
@@ -67,7 +84,7 @@ export default class YieldsNew extends React.Component{
               type="text"
               className=""
               defaultValue="Initial movement"
-              floatingLabelText="Movement Note"
+              floatingLabelText="Movement Notes"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}
               fullWidth={true}

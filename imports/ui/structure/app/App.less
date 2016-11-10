@@ -10,6 +10,8 @@
 @import '../textarea/TextArea';
 @import '../textfield/MTextField';
 @import '../../models/amount_changes/AmountChanges';
+@import '../../models/sells/new/SellsNew';
+@import '../ltoggler/LToggler';
 
 
 .fab{
@@ -48,7 +50,11 @@
   font-size: 23px !important;
   font-weight: 400 !important;
   line-height: 31px !important;
-  height: 78px !important;
+  height: 74px !important;
+
+  span{
+    font-size: 23px !important;
+  }
 }
 
 .col-flex{
@@ -131,7 +137,6 @@
 
 .track-row{
   transition-timing-function: @animation-curve-default !important;
-  transition-delay: @animation-delay !important;
   transition-duration: @animation-duration !important;
   transition-property: height !important;
   height: 0;
@@ -149,26 +154,8 @@
 }
 
 
-.mtoggle{
-  width: auto !important;
-  align-self: flex-end;
-}
-
-.mtoggle-info{
-  flex-grow: 1;
-  margin: 25px 0 0;
-}
-
-.mtoggle-title{
-  font-size: 16px;
-  color: @grey-600;
-  &.active{
-    color: @color-accent;
-  }
-}
-
-.mtoggle-sub{
-  font-size: 13px;
-  font-weight: 300;
-  color: @grey-400;
+.title-row{
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 400;
 }

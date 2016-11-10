@@ -1,14 +1,15 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import {orangeA200} from 'material-ui/styles/colors';
+import DatePicker from 'material-ui/DatePicker';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
+import Toggle from 'material-ui/Toggle';
 import classnames from 'classnames';
+
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
-import LToggler from '../../../structure/ltoggler/LToggler';
-
 
 
 const focusColor = {
@@ -16,50 +17,54 @@ const focusColor = {
   borderColor: orangeA200
 };
 
-export default class UnitsNew extends React.Component{
+let DateTimeFormat = global.Intl.DateTimeFormat;
+
+export default class InventoriesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true, tauto: true};
-    this.handleTracking = this.handleTracking.bind(this);
-  }
-
-
-  handleTracking(event, isChecked){
-    if(isChecked){
-      this.setState({tracking: isChecked});
-      setTimeout(() => {this.setState({tauto: true})}, 400);
-    }else{
-      this.setState({tauto: false});
-      setTimeout(() => {this.setState({tracking: isChecked});}, 200);
-    }
   }
 
   render(){
-    const trClasses = classnames('row row-flex track-row', {'show-track': this.state.tracking}, {'track-auto': this.state.tauto});
 
     return(
       <MainPanel classes='container-fluid'>
-        <div className='row'>
-          <div className='col-xs-12'>
+        <div className='row row-flex'>
+          <div className='col-xs-8 sm-p-right'>
             <TextField
                 name="name"
                 type="text"
                 className="input-lg"
                 hintText=""
-                floatingLabelText="Unit Name"
+                floatingLabelText="Identifier"
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
                 fullWidth={true}/>
+          </div>
+
+          <div className='col-xs-4 sm-p-left'>
+            <DatePicker
+              name="date_bought"
+              floatingLabelText="Created At"
+              floatingLabelFocusStyle={focusColor}
+              underlineFocusStyle={focusColor}
+              fullWidth={true}
+              defaultDate={new Date()}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+              }).format} />
+
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12'>
             <TextArea
-              name="description"
+              name="notes"
               type="text"
               className=""
-              floatingLabelText="Description"
+              floatingLabelText="Notes"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}
               fullWidth={true}
@@ -70,11 +75,12 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
-        <div className={trClasses}>
+        <div className="row">
           <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }}>
             <TextArea
-              name="description"
+              name="movement_note"
               type="text"
+              className=""
               defaultValue="Initial movement"
               floatingLabelText="Movement Notes"
               floatingLabelFocusStyle={focusColor}
@@ -98,12 +104,6 @@ export default class UnitsNew extends React.Component{
                 fullWidth={true}/>
           </div>
         </div>
-
-        <LToggler
-          title="Tracking"
-          subTitle="Track the changes in the unit's amount"
-          defaultToggled={true}
-          onToggle={this.handleTracking}/>
 
       </MainPanel>
     )

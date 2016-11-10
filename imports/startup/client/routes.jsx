@@ -18,8 +18,12 @@ import YieldsIndex from '../../ui/models/yields/index/YieldsIndex';
 import YieldsNew from '../../ui/models/yields/new/YieldsNew';
 import ExpensesIndex from '../../ui/models/expenses/index/ExpensesIndex';
 import ExpensesNew from '../../ui/models/expenses/new/ExpensesNew';
-
-
+import InventoriesIndex from '../../ui/models/inventories/index/InventoriesIndex';
+import InventoriesNew from '../../ui/models/inventories/new/InventoriesNew';
+import OUsersIndex from '../../ui/models/ousers/index/OUsersIndex';
+import OUsersNew from '../../ui/models/ousers/new/OUsersNew';
+import SellsIndex from '../../ui/models/sells/index/SellsIndex';
+import SellsNew from '../../ui/models/sells/new/SellsNew';
 
 
 
@@ -37,8 +41,9 @@ export const renderRoutes = () => (
         <Route path='units' components={{main: UnitsIndex, right: UnitsNew}}/>
         <Route path='yields' components={{main: YieldsIndex, right: YieldsNew}}/>
         <Route path='expenses' components={{main: ExpensesIndex, right: ExpensesNew}}/>
-
-
+        <Route path='inventories' components={{main: InventoriesIndex, right: InventoriesNew}}/>
+        <Route path='ousers' components={{main: OUsersIndex, right: OUsersNew}}/>
+        <Route path='sells' components={{main: SellsIndex, right: SellsNew}}/>
 
       </Route>
     </Route>
