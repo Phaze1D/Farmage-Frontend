@@ -83,7 +83,7 @@ export default class YieldsNew extends React.Component{
               name="movement_note"
               type="text"
               className=""
-              defaultValue="Initial movement"
+              defaultValue="Initial amount"
               floatingLabelText="Movement Notes"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}

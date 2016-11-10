@@ -75,7 +75,7 @@ export default class UnitsNew extends React.Component{
             <TextArea
               name="description"
               type="text"
-              defaultValue="Initial movement"
+              defaultValue="Initial amount"
               floatingLabelText="Movement Notes"
               floatingLabelFocusStyle={focusColor}
               underlineFocusStyle={focusColor}
