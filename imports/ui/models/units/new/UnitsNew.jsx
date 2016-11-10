@@ -20,7 +20,7 @@ const focusColor = {
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {height: '82px'};
+    this.state = {height: '0px'};
     this.handleTracking = this.handleTracking.bind(this);
   }
 
@@ -71,6 +71,12 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
+        <LToggler
+          title="Tracking"
+          subTitle="Track the changes in the unit's amount"
+          defaultToggled={false}
+          onToggle={this.handleTracking}/>
+
         <div className="row row-flex track-row" style={style}>
           <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }} ref={(div)=>{this.colTrack = div}}>
             <TextArea
@@ -100,11 +106,6 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
-        <LToggler
-          title="Tracking"
-          subTitle="Track the changes in the unit's amount"
-          defaultToggled={true}
-          onToggle={this.handleTracking}/>
 
 
         {/*<div className='row'>
