@@ -4,6 +4,7 @@ import {orangeA200} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
@@ -45,7 +46,7 @@ export default class ProductsNew extends React.Component{
               <ImageCameraAlt />
             </IconButton>
 
-            
+
             <TextField
                 name="name"
                 type="text"
@@ -153,7 +154,11 @@ export default class ProductsNew extends React.Component{
           </div>
         </div>
 
-
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Resources"/>
+          </div>
+        </div>
 
 
       </MainPanel>

@@ -1,0 +1,70 @@
+.selector-button{
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0 10px;
+  color: @grey-400;
+  background-color: @white;
+  border-bottom: 1px solid @grey-300;
+  cursor: text;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+
+  .title{
+    align-self: flex-end !important;
+    padding-bottom: 1px !important;
+  }
+
+  &.highlight{
+    border: none;
+    color: @black;
+    cursor: default;
+  }
+
+  button{
+    margin: 0 -12px -10px 0 !important
+  }
+
+
+  svg{
+    fill: @green-a700 !important;
+    width: 25px !important;
+    height: 25px !important;
+    margin-right: 0 !important;
+  }
+
+  span{
+    text-transform: none !important;
+    font-size: 16px !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+  }
+
+}
+
+.error-div{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+
+  div{
+    position: absolute;
+    bottom: -20px;
+    color: @red-500;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  hr{
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid @red-500;
+    height: 1px;
+    bottom: -3px;
+
+  }
+}

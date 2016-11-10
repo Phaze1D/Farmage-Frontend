@@ -17,9 +17,24 @@ export default class SelectorButton extends React.Component{
     super(props);
   }
 
+  showError(message){
+    if(message){
+      return(
+        <div className="error-div">
+          <hr></hr>
+          <div>
+            This is and Error
+          </div>
+        </div>
+      )
+    }
+
+    return null;
+  }
+
   render(){
     return(
-      <div className='contact-button highlight' onTouchTap={this.handleContactTouch}>
+      <div className='selector-button' onTouchTap={this.handleContactTouch}>
         <div className='title'>
           {this.props.title}
         </div>
@@ -27,6 +42,9 @@ export default class SelectorButton extends React.Component{
         <IconButton onTouchTap={this.handleAddTouch}>
           <ImageEdit />
         </IconButton>
+
+        {this.showError(null)}
+
       </div>
     );
   }

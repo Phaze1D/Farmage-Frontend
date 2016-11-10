@@ -7,7 +7,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import Toggle from 'material-ui/Toggle';
 import classnames from 'classnames';
 
-
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 
@@ -94,7 +94,7 @@ export default class InventoriesNew extends React.Component{
         </div>
 
         <div className="row">
-          <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }}>
+          <div className='col-xs-8 sm-p-right'  >
             <TextArea
               name="movement_note"
               type="text"
@@ -110,7 +110,7 @@ export default class InventoriesNew extends React.Component{
               rows={1} />
           </div>
 
-          <div className='col-xs-4 sm-p-left' style={{marginBottom: '10px' }}>
+          <div className='col-xs-4 sm-p-left'>
             <TextField
                 name="amount"
                 type="number"
@@ -120,6 +120,19 @@ export default class InventoriesNew extends React.Component{
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
                 fullWidth={true}/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Products"/>
+          </div>
+        </div>
+
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Resource Yields"/>
           </div>
         </div>
 

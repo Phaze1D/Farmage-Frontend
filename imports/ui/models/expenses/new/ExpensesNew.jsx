@@ -6,7 +6,7 @@ import DatePicker from 'material-ui/DatePicker';
 import ActionReceipt from 'material-ui/svg-icons/action/receipt';
 import AutoComplete from 'material-ui/AutoComplete';
 
-
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
@@ -167,8 +167,17 @@ export default class ExpensesNew extends React.Component{
           </div>
         </div>
 
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Provider"/>
+          </div>
+        </div>
 
-
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Unit"/>
+          </div>
+        </div>
 
       </MainPanel>
     )

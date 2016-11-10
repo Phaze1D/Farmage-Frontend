@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
@@ -100,7 +101,7 @@ export default class SellsNew extends React.Component{
           <div className="col-xs-6 sm-p-left">
             <TextField
                 name="discount"
-                type="text"
+                type="number"
                 hintText=""
                 floatingLabelText="Discount"
                 floatingLabelFocusStyle={focusColor}
@@ -126,6 +127,30 @@ export default class SellsNew extends React.Component{
               showCount={true}
               maxCount={512}
               rows={1} />
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Customer"/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Telephone"/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Shipping Address"/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Billing Address"/>
           </div>
         </div>
 

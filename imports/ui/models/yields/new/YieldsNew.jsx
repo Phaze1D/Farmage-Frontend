@@ -8,7 +8,7 @@ import Toggle from 'material-ui/Toggle';
 import classnames from 'classnames';
 
 
-
+import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 
@@ -123,6 +123,18 @@ export default class YieldsNew extends React.Component{
                 floatingLabelFocusStyle={focusColor}
                 underlineFocusStyle={focusColor}
                 fullWidth={true}/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Unit"/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Resource"/>
           </div>
         </div>
 

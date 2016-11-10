@@ -107,12 +107,11 @@ export default class UnitsNew extends React.Component{
         </div>
 
 
-
-        {/*<div className='row'>
+        <div className='row'>
           <div className='col-xs-12'>
             <SelectorButton title="Parent Unit"/>
           </div>
-        </div>*/}
+        </div>
 
       </MainPanel>
     )
