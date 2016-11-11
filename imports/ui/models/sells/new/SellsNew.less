@@ -1,7 +1,7 @@
 .discount-b{
   position: absolute;
   right: 15px;
-  bottom: 15px;
+  bottom: 12px;
   min-width: 30px !important;
 
   span{
@@ -17,5 +17,51 @@
 
   div:nth-child(2){
     height: 30px !important;
+  }
+}
+
+.details-header{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid @grey-500;
+  margin-bottom: 40px;
+
+  .title{
+    flex-grow: 1;
+    font-size: 20px;
+    // font-weight: 500;
+    cursor: default;
+    // color: @color-primary;
+  }
+
+  button{
+    margin: 0 -12px 0 22px !important
+  }
+
+
+  svg{
+    fill: @color-accent !important;
+    margin-right: 0 !important;
+  }
+
+}
+
+.sell-fab{
+  position: fixed;
+  top: 184px;
+  right: 15px;
+  z-index: @z-index-high;
+
+
+  button{
+    // .shadow-3dp() !important;
+    width: 56px !important;
+    height: 56px !important;
+
+  }
+
+  .icon{
+    height: 56px !important;
+
   }
 }

@@ -2,14 +2,16 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import EditorAttachMoney from 'material-ui/svg-icons/editor/attach-money';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
-
-
+import Details from './Details';
 
 
 
@@ -34,6 +36,26 @@ export default class SellsNew extends React.Component{
   render(){
     return(
       <MainPanel classes='container-fluid'>
+
+        <ReactCSSTransitionGroup
+          transitionName={ {
+            enter: 'enter-fab',
+            leave: 'leave-fab',
+            appear: 'appear-fab'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          <FloatingActionButton key='fab-sell' secondary={true} disabled={false} onTouchTap={this.toggleRight} className="sell-fab">
+            <EditorAttachMoney className="icon"/>
+          </FloatingActionButton>
+
+
+        </ReactCSSTransitionGroup>
+
+        <Details/>
 
         <div className="row">
           <div className="col-xs-12">

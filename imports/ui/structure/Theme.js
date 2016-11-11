@@ -1,6 +1,6 @@
 import {
   cyan700, cyan900,
-  orangeA200,
+  greenA400,
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
@@ -13,7 +13,7 @@ export default {
     primary1Color: cyan700,
     primary2Color: cyan900,
     primary3Color: grey400,
-    accent1Color: orangeA200,
+    accent1Color: greenA400,
     accent2Color: grey100,
     accent3Color: grey500,
     textColor: darkBlack,
@@ -31,8 +31,8 @@ export default {
     floatingLabelColor: fade(darkBlack, 0.4)
   },
   toggle: {
-      thumbOnColor: orangeA200,
-      trackOnColor: fade(orangeA200, 0.5),
-      trackRequiredColor: fade(orangeA200, 0.5),
+      thumbOnColor: greenA400,
+      trackOnColor: fade(greenA400, 0.5),
+      trackRequiredColor: fade(greenA400, 0.5),
     },
 };
