@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
+import Divider from 'material-ui/Divider';
+
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import classnames from 'classnames';
 
@@ -53,6 +55,8 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
+        <div className='row row-divider'></div>
+
         <LToggler
           title="Tracking"
           subTitle="Track the changes in the unit's amount"
@@ -85,6 +89,8 @@ export default class UnitsNew extends React.Component{
                 fullWidth={true}/>
           </div>
         </div>
+
+        <div className='row row-divider'></div>
 
 
         <div className='row'>

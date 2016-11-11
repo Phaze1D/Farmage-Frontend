@@ -48,7 +48,7 @@ export default class SellsNew extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={400}>
 
-          <FloatingActionButton key='fab-sell' secondary={true} disabled={false} onTouchTap={this.toggleRight} className="sell-fab">
+          <FloatingActionButton key='fab-sell' secondary={true} disabled={true} onTouchTap={this.toggleRight} className="sell-fab">
             <ActionPayment className="icon"/>
           </FloatingActionButton>
 
