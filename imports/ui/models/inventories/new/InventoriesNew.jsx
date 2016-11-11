@@ -108,7 +108,7 @@ export default class InventoriesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Products"/>
+            <SelectorButton title="Product"/>
           </div>
         </div>
 
