@@ -88,11 +88,11 @@ export default class UnitsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Parent Unit" highlight={false}/>
+            <SelectorButton title="Parent Unit" highlight={true}/>
           </div>
         </div>
 
-      {/*<UnitSelectorItem/>*/}
+      <UnitSelectorItem/>
 
       </MainPanel>
     )

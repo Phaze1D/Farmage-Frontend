@@ -12,7 +12,7 @@ import spacing from 'material-ui/styles/spacing';
 export default {
   palette: {
     primary1Color: cyan700,
-    primary2Color: cyan500,
+    primary2Color: cyan700,
     primary3Color: grey400,
     accent1Color: blueA400,
     accent2Color: grey100,
