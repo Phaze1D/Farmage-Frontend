@@ -20,11 +20,11 @@ export default class Details extends React.Component{
           </div>
 
           <IconButton onTouchTap={this.handleAddTouch}>
-            <ImageCameraAlt />
+            <ImageCameraAlt className='camera-alt'/>
           </IconButton>
 
           <IconButton onTouchTap={this.handleAddTouch}>
-            <ImageEdit />
+            <ImageEdit className='edit'/>
           </IconButton>
 
         </div>

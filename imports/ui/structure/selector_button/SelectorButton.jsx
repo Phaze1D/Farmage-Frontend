@@ -26,8 +26,9 @@ export default class SelectorButton extends React.Component{
   }
 
   render(){
+    sClasses = classnames('selector-button', {'highlight': this.props.highlight})
     return(
-      <div className='selector-button' onTouchTap={this.handleContactTouch}>
+      <div className={sClasses} onTouchTap={this.handleContactTouch}>
         <div className='title'>
           {this.props.title}
         </div>

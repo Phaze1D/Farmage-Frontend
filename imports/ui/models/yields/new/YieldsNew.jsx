@@ -10,6 +10,7 @@ import classnames from 'classnames';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 
 
 
@@ -111,9 +112,11 @@ export default class YieldsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Unit"/>
+            <SelectorButton title="From Unit"/>
           </div>
         </div>
+
+        <UnitSelectorItem/>
 
         <div className='row'>
           <div className='col-xs-12'>

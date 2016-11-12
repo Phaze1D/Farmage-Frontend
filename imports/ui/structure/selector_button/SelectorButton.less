@@ -21,7 +21,7 @@
 
   &.highlight{
     border: none;
-    color: @black;
+    color: @color-primary;
     cursor: default;
   }
 
@@ -66,5 +66,47 @@
     height: 1px;
     bottom: -3px;
 
+  }
+}
+
+
+.selector-item{
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,230,118, .5);
+  background-color: rgba(0,230,118, .1);
+
+  .select-title{
+    display: flex;
+    justify-content: center;
+  }
+
+  h3{
+    flex-grow: 1;
+    font-weight: 400;
+    span{
+      display: block;
+      font-size: 12px;
+      color: @grey-400;
+    }
+  }
+
+  h5{
+    font-weight: 400;
+    padding: 4px 6px 0 0;
+    color: @grey-600;
+  }
+
+  svg{
+    fill: @orange-a400 !important;
+  }
+
+  .extra-info{
+    color: @color-text-secondary;
+    font-size: 14px;
+    font-weight: 300;
+    padding-top: 10px;
   }
 }

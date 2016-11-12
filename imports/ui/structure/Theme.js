@@ -1,5 +1,6 @@
 import {
   cyan700, cyan900,
+  blueA400, cyan500,
   greenA400,
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
@@ -11,9 +12,9 @@ import spacing from 'material-ui/styles/spacing';
 export default {
   palette: {
     primary1Color: cyan700,
-    primary2Color: cyan900,
+    primary2Color: cyan500,
     primary3Color: grey400,
-    accent1Color: greenA400,
+    accent1Color: blueA400,
     accent2Color: grey100,
     accent3Color: grey500,
     textColor: darkBlack,
@@ -31,8 +32,8 @@ export default {
     floatingLabelColor: fade(darkBlack, 0.4)
   },
   toggle: {
-      thumbOnColor: greenA400,
-      trackOnColor: fade(greenA400, 0.5),
-      trackRequiredColor: fade(greenA400, 0.5),
+      thumbOnColor: blueA400,
+      trackOnColor: fade(blueA400, 0.5),
+      trackRequiredColor: fade(blueA400, 0.5),
     },
 };
