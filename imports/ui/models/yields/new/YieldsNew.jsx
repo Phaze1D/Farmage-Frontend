@@ -110,7 +110,7 @@ export default class YieldsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="From Unit"/>
+            <SelectorButton title="From Unit" highlight={false}/>
           </div>
         </div>
 

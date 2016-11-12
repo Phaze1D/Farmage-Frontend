@@ -32,6 +32,7 @@ import SellsNew from '../../ui/models/sells/new/SellsNew';
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path='/' component={App}>
+      <IndexRoute component={Dashboard}/>
       <Route path='dashboard' component={Dashboard}>
         <Route path='organizations' components={{main: OrganizationsIndex, right: OrganizationsNew}}/>
         <Route path='customers' components={{main: CustomersIndex, right: PersonForm}}/>
