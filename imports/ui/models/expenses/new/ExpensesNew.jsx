@@ -9,6 +9,8 @@ import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import MTextField from '../../../structure/textfield/MTextField';
+import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
+
 
 
 
@@ -155,9 +157,11 @@ export default class ExpensesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Unit"/>
+            <SelectorButton title="Unit" highlight={true}/>
           </div>
         </div>
+
+        <UnitSelectorItem/>
 
       </MainPanel>
     )
