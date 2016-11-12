@@ -14,7 +14,7 @@ export default class MainPanel extends React.Component{
     return(
       <div className={'main-panel ' + this.props.mainClasses}>
         <div className='header'>
-
+          {this.props.header}
         </div>
         <div className={'panel '+this.props.classes}>
           {this.props.children}

@@ -2,6 +2,9 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import IconButton from 'material-ui/IconButton';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import uuid from 'uuid';
@@ -38,9 +41,12 @@ export default class Dashboard extends React.Component{
       <div>
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})}/>
 
-        <MainPanel>
+        <MainPanel header={
+            <IconButton className='menu-button' onTouchTap={this.toggleLeft}>
+              <NavigationMenu/>
+            </IconButton>
+          }>
 
-          <RaisedButton label="Left" onTouchTap={this.toggleLeft}/>
 
           {this.props.main}
 

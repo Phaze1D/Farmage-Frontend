@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import classnames from 'classnames';
 
