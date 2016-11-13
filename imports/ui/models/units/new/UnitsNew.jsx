@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
+import IconButton from 'material-ui/IconButton';
+import ContentClear from 'material-ui/svg-icons/content/clear';
 import classnames from 'classnames';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
@@ -16,6 +18,7 @@ export default class UnitsNew extends React.Component{
     super(props);
     this.state = {tracking: true};
     this.handleTracking = this.handleTracking.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this)
   }
 
 
@@ -23,9 +26,18 @@ export default class UnitsNew extends React.Component{
     this.setState({tracking: isChecked})
   }
 
+  handleOnClose(event){
+    this.props.onCloseRight(false);
+  }
+
   render(){
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <IconButton className='menu-button' onTouchTap={this.handleOnClose}>
+            <ContentClear/>
+          </IconButton>
+        }>
+
         <div className='row'>
           <div className='col-xs-12'>
             <TextField

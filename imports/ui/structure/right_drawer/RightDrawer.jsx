@@ -25,7 +25,7 @@ export default class RightDrawer extends React.Component{
         <div className={overlayCls} onTouchTap={this.onOverlayTap}/>
 
         <div className={rightCls}>
-          {this.props.children}
+          {React.cloneElement(this.props.children, { onCloseRight: this.props.onRequestChange })}
         </div>
       </div>
     )
