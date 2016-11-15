@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import LToggler from '../../../structure/ltoggler/LToggler';
 import UnitSelectorItem from '../selector_item/UnitSelectorItem';
@@ -18,7 +19,7 @@ export default class UnitsNew extends React.Component{
     super(props);
     this.state = {tracking: true};
     this.handleTracking = this.handleTracking.bind(this);
-    this.handleOnClose = this.handleOnClose.bind(this)
+    this.handleOnClose = this.handleOnClose.bind(this);
   }
 
 
@@ -33,9 +34,7 @@ export default class UnitsNew extends React.Component{
   render(){
     return(
       <MainPanel classes='container-fluid' header={
-          <IconButton className='menu-button' onTouchTap={this.handleOnClose}>
-            <ContentClear/>
-          </IconButton>
+          <FormActionBar onClear={this.handleOnClose}/>
         }>
 
         <div className='row'>

@@ -6,6 +6,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 
 
@@ -17,6 +18,7 @@ export default class ProductsNew extends React.Component{
 
     this.state = {total_price: ''}
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
   }
 
   handleTotalPriceChange(){
@@ -27,12 +29,18 @@ export default class ProductsNew extends React.Component{
     rv = rv.length > 0 ? rv/100 : 0.00;
     tp = uv * (1 + rv)
     this.setState({total_price: tp.toFixed(2)});
+  }
 
+  handleOnClose(event){
+    this.props.onCloseRight(false);
   }
 
   render(){
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid'header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
+
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>

@@ -1,19 +1,18 @@
 import React from 'react';
-import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
-import ToggleRadioButtonUnChecked from 'material-ui/svg-icons/toggle/radio-button-unchecked';
 
 
-let UnitSelectorItem = (props) => (
+
+let ProductInvItem = (props) => (
   <div className='row'>
     <div className='col-xs-12'>
       <div className='selector-item'>
         <div className='select-title'>
+          <div className='img-div' style={{backgroundImage: 'url(/default_item.jpg)'}}></div>
+
           <h3>
-            Unit Name
-            <span> Amount - 12 </span>
+            Product Name
+            <span>SKU - ADF-12-12 </span>
           </h3>
-          <h5>Tracking</h5>
-          <ToggleRadioButtonChecked/>
         </div>
 
         <div className='extra-info'>
@@ -24,4 +23,4 @@ let UnitSelectorItem = (props) => (
   </div>
 )
 
-export default UnitSelectorItem;
+export default ProductInvItem;

@@ -8,8 +8,10 @@ import classnames from 'classnames';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
-
+import ResourceYieldItem from '../../resources/selector_items/ResourceYieldItem';
+import MTextField from '../../../structure/textfield/MTextField';
 
 
 
@@ -19,13 +21,20 @@ export default class YieldsNew extends React.Component{
   constructor(props){
     super(props);
     this.state = {minDate: new Date()}
+    this.handleOnClose = this.handleOnClose.bind(this);
+  }
 
+  handleOnClose(event){
+    this.props.onCloseRight(false);
   }
 
   render(){
 
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
+
         <div className='row'>
           <div className='col-xs-12'>
             <TextField
@@ -82,8 +91,16 @@ export default class YieldsNew extends React.Component{
           </div>
         </div>
 
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Resource" highlight={true}/>
+          </div>
+        </div>
+
+        <ResourceYieldItem/>
+
         <div className="row">
-          <div className='col-xs-8 sm-p-right' style={{marginBottom: '10px' }}>
+          <div className='col-xs-8 sm-p-right'>
             <TextArea
               name="movement_note"
               type="text"
@@ -94,19 +111,22 @@ export default class YieldsNew extends React.Component{
               multiLine={true}
               showCount={true}
               maxCount={512}
+              disabled={false}
               rows={1} />
           </div>
 
-          <div className='col-xs-4 sm-p-left' style={{marginBottom: '10px' }}>
+          <div className='col-xs-4 sm-p-left'>
             <TextField
                 name="amount"
                 type="number"
                 defaultValue="0"
                 hintText=""
                 floatingLabelText="Amount"
-                fullWidth={true}/>
+                fullWidth={true}
+                disabled={false}/>
           </div>
         </div>
+
 
         <div className='row'>
           <div className='col-xs-12'>
@@ -115,12 +135,6 @@ export default class YieldsNew extends React.Component{
         </div>
 
         <UnitSelectorItem/>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Resource"/>
-          </div>
-        </div>
 
 
       </MainPanel>

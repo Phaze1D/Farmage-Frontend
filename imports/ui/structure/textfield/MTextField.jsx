@@ -35,6 +35,14 @@ export default class MTextField extends React.Component{
       ...textFieldProps
     } = this.props;
 
+    const inputStyle = {};
+    if(prefixSide === 'left'){
+      inputStyle.paddingLeft = (prefix.length * 10) + 'px'
+    }else{
+      inputStyle.paddingRight = (prefix.length * 10) + 'px'
+    }
+
+
     const tfClasses = classnames('m-textfield', prefixSide, textFieldProps.className ,{
       'm-transition': this.state.mTranstion || (this.props.value && this.props.value.length > 0 && prefixSide === 'left')
     })
@@ -42,7 +50,7 @@ export default class MTextField extends React.Component{
     return(
       <div className='m-text-box'>
         <span className={prefixSide + " " + textFieldProps.className}>{prefix}</span>
-        <TextField {...textFieldProps} ref={mref} className={tfClasses} onFocus={this.handleFocus} onBlur={this.handleBlur}/>
+        <TextField {...textFieldProps} ref={mref} className={tfClasses} onFocus={this.handleFocus} onBlur={this.handleBlur} inputStyle={inputStyle}/>
       </div>
     )
   }

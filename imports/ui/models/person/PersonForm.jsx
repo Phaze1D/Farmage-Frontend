@@ -6,6 +6,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
 import MainPanel from '../../structure/main_panel/MainPanel';
 import ContactInfo from '../contact_info/ContactInfo';
+import FormActionBar from '../../structure/form_action_bar/FormActionBar';
 import TextArea from '../../structure/textarea/TextArea';
 
 
@@ -14,11 +15,20 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class PersonForm extends React.Component{
   constructor(props){
     super(props);
+
+    this.handleOnClose = this.handleOnClose.bind(this);
+  }
+
+  handleOnClose(event){
+    this.props.onCloseRight(false);
   }
 
   render(){
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
+
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>

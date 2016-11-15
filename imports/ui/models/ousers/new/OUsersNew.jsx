@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
 import MainPanel from '../../../structure/main_panel/MainPanel';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import LToggler from '../../../structure/ltoggler/LToggler';
 
 
@@ -12,6 +13,11 @@ export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
 
+    this.handleOnClose = this.handleOnClose.bind(this);
+  }
+
+  handleOnClose(event){
+    this.props.onCloseRight(false);
   }
 
 
@@ -19,7 +25,9 @@ export default class UnitsNew extends React.Component{
   render(){
 
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
         <div className='row'>
           <div className='col-xs-12'>
             <TextField

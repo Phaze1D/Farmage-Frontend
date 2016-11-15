@@ -9,6 +9,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import Details from './Details';
 
@@ -20,6 +21,7 @@ export default class SellsNew extends React.Component{
     this.state = {discount_type: "%"}
 
     this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
   }
 
   handleDiscountToggle(){
@@ -30,11 +32,16 @@ export default class SellsNew extends React.Component{
     }
   }
 
+  handleOnClose(event){
+    this.props.onCloseRight(false);
+  }
 
 
   render(){
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
 
         <ReactCSSTransitionGroup
           transitionName={ {

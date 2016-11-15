@@ -8,6 +8,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
+import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 
@@ -24,6 +25,7 @@ export default class ExpensesNew extends React.Component{
 
     this.state = {total_price: ''}
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
   }
 
   handleTotalPriceChange(){
@@ -36,14 +38,19 @@ export default class ExpensesNew extends React.Component{
     qv = qv.length > 0 ? qv : 0;
     tp = uv * (1 + rv)
     tp *= qv;
-
     this.setState({total_price: tp.toFixed(2)});
+  }
 
+  handleOnClose(event){
+    this.props.onCloseRight(false);
   }
 
   render(){
     return(
-      <MainPanel classes='container-fluid'>
+      <MainPanel classes='container-fluid' header={
+          <FormActionBar onClear={this.handleOnClose}/>
+        }>
+
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>
