@@ -8,6 +8,7 @@ import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
+import ResourceProductItem from '../../resources/selector_items/ResourceProductItem'
 
 
 
@@ -144,9 +145,15 @@ export default class ProductsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resources"/>
+            <SelectorButton title="Resources" highlight={true}/>
           </div>
         </div>
+
+        <ResourceProductItem/>
+
+        <ResourceProductItem/>
+
+        <ResourceProductItem/>
 
 
       </MainPanel>
