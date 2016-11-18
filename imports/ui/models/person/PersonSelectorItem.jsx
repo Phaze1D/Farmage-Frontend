@@ -9,7 +9,7 @@ let PersonSelectorItem = (props) => (
     <div className='col-xs-12'>
       <div className='selector-item'>
         <div className='select-title'>
-          <Avatar style={{marginRight: '15px', padding: '2px 0 0 2px'}} size={56}>F</Avatar>
+          <Avatar backgroundColor={props.backgroundColor} style={{marginRight: '15px', padding: '1px 0 0 1px'}} size={56}>R</Avatar>
 
           <h3>
             First Lastname

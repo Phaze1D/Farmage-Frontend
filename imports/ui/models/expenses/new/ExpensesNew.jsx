@@ -12,6 +12,8 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 import PersonSelectorItem from '../../person/PersonSelectorItem';
+import randomImageColor from '../../../structure/app/RandomColor.js';
+
 
 
 
@@ -164,7 +166,7 @@ export default class ExpensesNew extends React.Component{
           </div>
         </div>
 
-        <PersonSelectorItem/>
+        <PersonSelectorItem backgroundColor={randomImageColor()}/>
 
         <div className='row'>
           <div className='col-xs-12'>

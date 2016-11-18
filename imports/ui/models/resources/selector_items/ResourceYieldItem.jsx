@@ -1,4 +1,6 @@
 import React from 'react';
+import Avatar from 'material-ui/Avatar';
+
 
 
 let ResourceYieldItem = (props) => (
@@ -6,7 +8,8 @@ let ResourceYieldItem = (props) => (
     <div className='col-xs-12'>
       <div className='selector-item'>
         <div className='select-title'>
-          <div className='img-div' style={{backgroundImage: 'url(/default_item.jpg)'}}></div>
+          <Avatar backgroundColor={props.backgroundColor} style={{marginRight: '15px', padding: '1px 0 0 1px'}} size={56}>Y</Avatar>
+
 
           <h3>
             Resource Name

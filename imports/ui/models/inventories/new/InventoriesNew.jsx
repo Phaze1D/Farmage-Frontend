@@ -12,6 +12,8 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import TextArea from '../../../structure/textarea/TextArea';
 import ProductInvItem from '../../products/selector_items/ProductInvItem';
 import YieldInvItem from '../../yields/selector_items/YieldInvItem';
+import randomImageColor from '../../../structure/app/RandomColor.js';
+
 
 
 
@@ -24,6 +26,7 @@ export default class InventoriesNew extends React.Component{
     super(props);
     this.state = {minDate: new Date()}
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.productRandomColor = randomImageColor();
   }
 
   handleOnClose(event){
@@ -125,7 +128,7 @@ export default class InventoriesNew extends React.Component{
           </div>
         </div>
 
-        <ProductInvItem/>
+        <ProductInvItem backgroundColor={this.productRandomColor}/>
 
         <div className='row'>
           <div className='col-xs-12'>

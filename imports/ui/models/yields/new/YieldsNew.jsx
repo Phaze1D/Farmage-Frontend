@@ -12,6 +12,8 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 import ResourceYieldItem from '../../resources/selector_items/ResourceYieldItem';
 import MTextField from '../../../structure/textfield/MTextField';
+import randomImageColor from '../../../structure/app/RandomColor.js';
+
 
 
 
@@ -97,7 +99,7 @@ export default class YieldsNew extends React.Component{
           </div>
         </div>
 
-        <ResourceYieldItem/>
+        <ResourceYieldItem backgroundColor={randomImageColor()}/>
 
         <div className="row">
           <div className='col-xs-8 sm-p-right'>
