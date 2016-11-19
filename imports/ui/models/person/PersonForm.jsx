@@ -74,7 +74,7 @@ export default class PersonForm extends React.Component{
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
-                month: 'numeric',
+                month: 'short',
                 year: 'numeric',
               }).format} />
           </div>

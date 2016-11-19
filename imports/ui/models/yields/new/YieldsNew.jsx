@@ -59,7 +59,7 @@ export default class YieldsNew extends React.Component{
               defaultDate={new Date()}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
-                month: 'numeric',
+                month: 'short',
                 year: 'numeric',
               }).format} />
           </div>
@@ -72,7 +72,7 @@ export default class YieldsNew extends React.Component{
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
-                month: 'numeric',
+                month: 'short',
                 year: 'numeric',
               }).format} />
           </div>

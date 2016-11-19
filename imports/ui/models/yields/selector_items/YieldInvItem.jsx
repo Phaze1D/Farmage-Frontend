@@ -55,7 +55,7 @@ export default class YieldInvItem extends React.Component{
                 type="number"
                 className=""
                 hintText=""
-                floatingLabelText="Amount Taken"
+                floatingLabelText="Taken"
                 defaultValue='1'
                 floatingLabelFixed={true}
                 fullWidth={true}

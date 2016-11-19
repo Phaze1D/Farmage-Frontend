@@ -104,10 +104,19 @@
     flex-grow: 1;
     font-weight: 400;
     align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 15px;
+
     span{
       display: block;
       font-size: 12px;
       color: @grey-400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 15px;
     }
   }
 
@@ -117,9 +126,6 @@
     color: @grey-600;
   }
 
-  svg{
-    fill: @light-blue-400 !important;
-  }
 
   .extra-info{
     color: @color-text-secondary;
@@ -134,6 +140,7 @@
     border-radius: 50%;
     margin-right: 15px;
     align-self: center;
+    flex-shrink: 0;
     background-size:     cover;
     background-repeat:   no-repeat;
     background-position: center center;

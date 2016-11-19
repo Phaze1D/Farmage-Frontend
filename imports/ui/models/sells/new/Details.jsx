@@ -1,7 +1,12 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
+// import Barcode from '../../../structure/msvg/Barcode'
 import ImageEdit from 'material-ui/svg-icons/image/edit';
+import ProductSellItem from '../../products/selector_items/ProductSellItem';
+import randomImageColor from '../../../structure/app/RandomColor.js';
+
+
 
 
 
@@ -29,11 +34,17 @@ export default class Details extends React.Component{
 
         </div>
 
-        <div className='row'>
-          <div className='col-xs-12'>
 
-          </div>
-        </div>
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+
 
       </div>
 

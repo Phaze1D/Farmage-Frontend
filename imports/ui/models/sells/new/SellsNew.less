@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid @grey-400;
-  margin: 40px 0 40px;
+  margin: 40px 0 10px;
 
 
   .title{
@@ -48,6 +48,58 @@
   .camera-alt{
     fill: @color-accent !important;
     margin-right: 0 !important;
+  }
+
+}
+
+.sell-quantity{
+  width: 50px !important;
+}
+
+.expand-detail{
+  margin: 4px -10px 0px 15px !important;
+
+  svg{
+    fill: @grey-500 !important;
+  }
+}
+
+.quantity-amount{
+  font-size: 22px;
+  align-self: center;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.expandable-div{
+  margin-top: 20px;
+}
+
+.product-detail{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .product-info{
+    font-size: 16px;
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 100px;
+    align-self: center;
+    padding: 17px 0 0;
+    margin-bottom: 10px;
+    span{
+      font-size: 12px;
+      color: @grey-500;
+      display: block;
+      margin-bottom: 6px;
+    }
+  }
+
+  .quantity-input{
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 100px;
   }
 
 }

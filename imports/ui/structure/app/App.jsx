@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Theme from '../Theme.js'
+import Theme from './Theme.js'
 
 const mtheme = getMuiTheme(Theme);
 
