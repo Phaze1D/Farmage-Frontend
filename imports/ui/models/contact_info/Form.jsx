@@ -5,8 +5,7 @@ import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import Divider from 'material-ui/Divider';
 
 
-function TextFieldColumn(props){
-  return(
+const TextFieldColumn = (props) => (
     <div className={props.columClass}>
       <TextField
           name={props.name}
@@ -15,11 +14,10 @@ function TextFieldColumn(props){
           floatingLabelText={props.floatText}
           fullWidth={true}/>
     </div>
-  )
-}
+)
 
-function AddressForm(props){
-  return(
+
+const AddressForm = (props) => (
     <div>
       <div className='row form-row address-form'>
         <div className='col-xs-4 sm-p-right'>
@@ -61,11 +59,10 @@ function AddressForm(props){
 
       <Divider/>
     </div>
-  )
-}
+)
 
-function TelephoneForm(props){
-  return(
+
+const TelephoneForm = (props) => (
     <div>
       <div className='row form-row low telephone-form'>
         <div className='col-xs-4 sm-p-right'>
@@ -84,8 +81,7 @@ function TelephoneForm(props){
         </IconButton>
       </div>
     </div>
-  )
-}
+)
 
 export default class Form extends React.Component{
   constructor(props){
