@@ -74,18 +74,16 @@ export default class ProductSellItem extends React.Component{
     this.handleExpand = this.handleExpand.bind(this);
     this.state = {
       quantity:  Math.floor(Math.random() * 200) + 1,
-      show: false
+      show: true
     }
   }
 
   componentDidMount(){
-    const height = this.titleRef.clientHeight + 40;
-    this.setState({itemHeight: height + 'px'})
+    this.setState({itemHeight: ''})
   }
 
   handleExpand(event){
     event.stopPropagation();
-    console.log({'evet':'evet'});
     if(this.state.show){
       const mheight = this.titleRef.clientHeight + this.expandRef.clientHeight + 40;
       this.setState({show: false})
