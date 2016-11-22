@@ -39,10 +39,7 @@ export default class Details extends React.Component{
         <ProductSellItem backgroundColor={randomImageColor()}/>
         <ProductSellItem backgroundColor={randomImageColor()}/>
         <ProductSellItem backgroundColor={randomImageColor()}/>
-        <ProductSellItem backgroundColor={randomImageColor()}/>
         
-
-
       </div>
 
     )

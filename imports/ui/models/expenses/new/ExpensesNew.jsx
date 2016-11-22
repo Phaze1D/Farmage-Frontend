@@ -16,9 +16,6 @@ import randomImageColor from '../../../structure/app/RandomColor.js';
 
 
 
-
-
-
 const dataS = ["Sheep Food", 'Chicken Food', "Dog Food", "Employee Salary", "Gasoline", "LightBulb", "Some Very Long Item To Check Phone Handling"]
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -26,8 +23,8 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class ExpensesNew extends React.Component{
   constructor(props){
     super(props);
-
-    this.state = {total_price: ''}
+    this.backgroundColor = randomImageColor();
+    this.state = {total_price: ''};
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
   }
@@ -166,7 +163,7 @@ export default class ExpensesNew extends React.Component{
           </div>
         </div>
 
-        <PersonSelectorItem backgroundColor={randomImageColor()}/>
+        <PersonSelectorItem backgroundColor={this.backgroundColor}/>
 
         <div className='row'>
           <div className='col-xs-12'>

@@ -18,7 +18,7 @@ import randomImageColor from '../../../structure/app/RandomColor.js';
 export default class ProductsNew extends React.Component{
   constructor(props){
     super(props);
-
+    this.backgroundColor = randomImageColor()
     this.state = {total_price: ''}
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
@@ -151,11 +151,11 @@ export default class ProductsNew extends React.Component{
           </div>
         </div>
 
-        <ResourceProductItem backgroundColor={randomImageColor()}/>
+        <ResourceProductItem backgroundColor={this.backgroundColor}/>
 
-        <ResourceProductItem backgroundColor={randomImageColor()}/>
+        <ResourceProductItem backgroundColor={this.backgroundColor}/>
 
-        <ResourceProductItem backgroundColor={randomImageColor()}/>
+        <ResourceProductItem backgroundColor={this.backgroundColor}/>
 
 
       </MainPanel>
