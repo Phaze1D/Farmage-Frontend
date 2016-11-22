@@ -58,7 +58,7 @@
 
 .expand-button{
   margin: 4px -10px 0px 5px !important;
-  // transition: none !important;
+  transition: none !important;
 
   svg{
     fill: @grey-500 !important;
@@ -69,6 +69,13 @@
   }
 }
 
+.product-item{
+  transition-timing-function: @animation-curve-default;
+  transition-delay: @animation-delay;
+  transition-duration: @animation-duration;
+  transition-property: height;
+}
+
 .quantity-amount{
   font-size: 22px;
   align-self: center;
@@ -77,15 +84,7 @@
 
 .expandable-div{
   overflow: hidden;
-  height: 0;
-  display: none;
-  padding-top: 0;
-
-  &.show{
-    height: auto;
-    display: block;
-    padding-top: 20px;
-  }
+  padding-top: 20px;
 }
 
 .product-detail{

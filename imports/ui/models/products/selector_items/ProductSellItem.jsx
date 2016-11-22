@@ -74,28 +74,45 @@ export default class ProductSellItem extends React.Component{
     this.handleExpand = this.handleExpand.bind(this);
     this.state = {
       quantity:  Math.floor(Math.random() * 200) + 1,
-      show: true
+      show: false
     }
   }
 
+  componentDidMount(){
+    const height = this.titleRef.clientHeight + 40;
+    this.setState({itemHeight: height + 'px'})
+  }
 
   handleExpand(event){
+    event.stopPropagation();
+    console.log({'evet':'evet'});
     if(this.state.show){
+      const mheight = this.titleRef.clientHeight + this.expandRef.clientHeight + 40;
       this.setState({show: false})
+      this.setState({itemHeight: mheight + 'px'})
+
+      setTimeout( () => {
+        const height = this.titleRef.clientHeight + 40;
+        this.setState({itemHeight: height + 'px'})
+      }, 100)
+
     }else{
+      const height = this.titleRef.clientHeight + this.expandRef.clientHeight + 40;
       this.setState({show: true})
+      this.setState({itemHeight: height + 'px'})
+      setTimeout( () => { this.setState({itemHeight: ''}) }, 350)
     }
   }
 
   render(){
-    const expClass = classnames('expandable-div', {'show': this.state.show})
-    const butClass = classnames('expand-button', {'rotate': this.state.show})
+    const butClass = classnames('expand-button', {'rotate': this.state.show});
+    const styleH = {height: this.state.itemHeight};
 
     return (
       <div className='row'>
         <div className='col-xs-12'>
-          <div className='selector-item'>
-            <div className='select-title clickable' onTouchTap={this.handleExpand}>
+          <div className='selector-item product-item' style={styleH}>
+            <div className='select-title clickable' onTouchTap={this.handleExpand} ref={(target) => {this.titleRef = target}}>
               <Avatar
                 className="img-div"
                 backgroundColor={this.props.backgroundColor}
@@ -118,16 +135,16 @@ export default class ProductSellItem extends React.Component{
               </IconButton>
             </div>
 
-            <div className={expClass}>
+            <div className='expandable-div' ref={(target) => {this.expandRef = target}}>
+
               <ProductDetail quantity={this.state.quantity}/>
-
               <SelectorButton title="Inventories" highlight={true}/>
+              <InventoryItem quantity='1'/>
+              <div className='row-divider'></div>
+              <InventoryItem quantity='1'/>
+              <div className='row-divider'></div>
+              <InventoryItem quantity='1'/>
 
-              <InventoryItem quantity='1'/>
-              <div className='row-divider'></div>
-              <InventoryItem quantity='1'/>
-              <div className='row-divider'></div>
-              <InventoryItem quantity='1'/>
             </div>
           </div>
         </div>
