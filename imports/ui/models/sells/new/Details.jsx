@@ -31,19 +31,16 @@ export default class Details extends React.Component{
           <IconButton onTouchTap={this.handleAddTouch}>
             <ImageEdit className='edit'/>
           </IconButton>
-
         </div>
 
 
         <ProductSellItem backgroundColor={randomImageColor()}/>
-
         <ProductSellItem backgroundColor={randomImageColor()}/>
-
         <ProductSellItem backgroundColor={randomImageColor()}/>
-
         <ProductSellItem backgroundColor={randomImageColor()}/>
-
         <ProductSellItem backgroundColor={randomImageColor()}/>
+        <ProductSellItem backgroundColor={randomImageColor()}/>
+        
 
 
       </div>

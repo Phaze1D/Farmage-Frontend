@@ -8,64 +8,7 @@ import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import classnames from 'classnames';
 
 
-
-const InventoryItem = (props) => (
-  <div className='product-detail'>
-
-    <div className='product-info'>
-      <span>Identifier</span>
-      DFSF-123-SDF
-    </div>
-
-    <div className='product-info'>
-      <span>Available</span>
-      16
-    </div>
-
-    <div className='product-info'>
-      <span>Expiration Date</span>
-      Nov 16, 2019
-    </div>
-
-    <TextField
-        name="amount_taken"
-        type="number"
-        hintText=""
-        className="quantity-input"
-        floatingLabelText="Taken"
-        defaultValue={props.quantity}
-        fullWidth={false}/>
-  </div>
-)
-
-const ProductDetail = (props) => (
-  <div className='product-detail'>
-
-    <div className='product-info'>
-      <span>Unit Price</span>
-      $4.89
-    </div>
-
-    <div className='product-info'>
-      <span>Tax Rate</span>
-      16%
-    </div>
-
-    <div className='product-info' >
-      <span>Sub Total</span>
-      $12.12
-    </div>
-
-    <TextField
-        name="quantity"
-        type="number"
-        hintText=""
-        className="quantity-input"
-        floatingLabelText="Quantity"
-        defaultValue={props.quantity}
-        fullWidth={false}/>
-  </div>
-)
+const PADDING_BORDER = 42;
 
 export default class ProductSellItem extends React.Component{
 
@@ -85,20 +28,20 @@ export default class ProductSellItem extends React.Component{
   handleExpand(event){
     event.stopPropagation();
     if(this.state.show){
-      const mheight = this.titleRef.clientHeight + this.expandRef.clientHeight + 40;
+      const mheight = this.titleRef.clientHeight + this.expandRef.clientHeight + PADDING_BORDER;
       this.setState({show: false})
       this.setState({itemHeight: mheight + 'px'})
 
       setTimeout( () => {
-        const height = this.titleRef.clientHeight + 40;
+        const height = this.titleRef.clientHeight + PADDING_BORDER;
         this.setState({itemHeight: height + 'px'})
       }, 100)
 
     }else{
-      const height = this.titleRef.clientHeight + this.expandRef.clientHeight + 40;
+      const height = this.titleRef.clientHeight + this.expandRef.clientHeight + PADDING_BORDER;
       this.setState({show: true})
       this.setState({itemHeight: height + 'px'})
-      setTimeout( () => { this.setState({itemHeight: ''}) }, 350)
+      setTimeout( () => { this.setState({itemHeight: ''}) }, 500)
     }
   }
 
@@ -137,11 +80,13 @@ export default class ProductSellItem extends React.Component{
 
               <ProductDetail quantity={this.state.quantity}/>
               <SelectorButton title="Inventories" highlight={true}/>
+
               <InventoryItem quantity='1'/>
-              <div className='row-divider'></div>
+
               <InventoryItem quantity='1'/>
-              <div className='row-divider'></div>
+
               <InventoryItem quantity='1'/>
+
 
             </div>
           </div>
@@ -150,3 +95,69 @@ export default class ProductSellItem extends React.Component{
     )
   }
 }
+
+
+const ProductDetail = (props) => (
+  <div className='pi-detail'>
+
+    <div className='pi-info'>
+      <span>Unit Price</span>
+      $4.89
+    </div>
+
+    <div className='pi-info'>
+      <span>Tax Rate</span>
+      16%
+    </div>
+
+    <div className='pi-info' >
+      <span>Sub Total</span>
+      $12.12
+    </div>
+
+    <TextField
+        name="quantity"
+        type="number"
+        hintText=""
+        className="quantity-input"
+        floatingLabelText="Quantity"
+        defaultValue={props.quantity}
+        fullWidth={false}/>
+  </div>
+)
+
+const InventoryItem = (props) => (
+  <div className='yield-section'>
+    <div className='yield-info'>
+      <span>Identifier</span>
+      EG-333
+    </div>
+
+    <div className='yield-info'>
+      <span>Amount</span>
+      113
+    </div>
+
+    <div className='yield-info'>
+      <span>Created At</span>
+      11/12/2016
+    </div>
+
+    <div className='yield-info'>
+      <span>Expires At</span>
+      11/12/2016
+    </div>
+
+    <TextField
+        name="amount_taken"
+        type="number"
+        className='input-row'
+        hintText=""
+        floatingLabelText="Taken"
+        defaultValue='1'
+        floatingLabelFixed={true}
+        fullWidth={true}/>
+  </div>
+
+
+)

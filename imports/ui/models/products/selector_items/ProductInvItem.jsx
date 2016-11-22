@@ -13,7 +13,7 @@ let ProductInvItem = (props) => (
 
           <h3>
             Product Name
-            <span>SKU - ADF-12-12 </span>
+            <span>ADF-12-12 </span>
           </h3>
         </div>
 

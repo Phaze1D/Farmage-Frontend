@@ -71,6 +71,7 @@ export default class SellsNew extends React.Component{
                 fullWidth={true}
                 disabled={true}
                 prefix="$"
+                prefixClass="input-lg"
                 prefixSide="left"/>
           </div>
         </div>

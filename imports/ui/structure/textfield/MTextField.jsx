@@ -31,7 +31,9 @@ export default class MTextField extends React.Component{
     const {
       prefixSide,
       prefix,
+      prefixClass,
       mref,
+      boxClass,
       ...textFieldProps
     } = this.props;
 
@@ -47,9 +49,12 @@ export default class MTextField extends React.Component{
       'm-transition': this.state.mTranstion || (this.props.value && this.props.value.length > 0 && prefixSide === 'left')
     })
 
+    const preClasses = classnames(prefixSide, prefixClass);
+    const boxClasses = classnames('m-text-box', boxClass);
+
     return(
-      <div className='m-text-box'>
-        <span className={prefixSide + " " + textFieldProps.className}>{prefix}</span>
+      <div className={boxClasses}>
+        <span className={preClasses}>{prefix}</span>
         <TextField {...textFieldProps} ref={mref} className={tfClasses} onFocus={this.handleFocus} onBlur={this.handleBlur} inputStyle={inputStyle}/>
       </div>
     )

@@ -1,0 +1,67 @@
+.sell-quantity{
+  width: 50px !important;
+}
+
+.expand-button{
+  margin: 4px -10px 0px 5px !important;
+  transition: none !important;
+
+  svg{
+    fill: @grey-500 !important;
+  }
+
+  &.rotate{
+    transform: rotate(180deg) !important;
+  }
+}
+
+.product-item{
+  transition-timing-function: @animation-curve-default;
+  transition-delay: @animation-delay;
+  transition-duration: .45s;
+  transition-property: height;
+}
+
+.quantity-amount{
+  font-size: 22px;
+  align-self: center;
+  font-weight: 500;
+}
+
+.expandable-div{
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.pi-detail{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .pi-info{
+    font-size: 16px;
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 100px;
+    align-self: center;
+    padding: 17px 0 0;
+    margin: 0 5px 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span{
+      font-size: 12px;
+      color: @grey-500;
+      display: block;
+      margin-bottom: 6px;
+    }
+  }
+
+  .quantity-input{
+    flex-grow: 1;
+    flex-basis: 100px;
+    min-width: 100px;
+  }
+
+}
