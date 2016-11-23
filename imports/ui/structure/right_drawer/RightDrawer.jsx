@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling'
 
 
 
@@ -23,6 +24,7 @@ export default class RightDrawer extends React.Component{
     return (
       <div>
         <div className={overlayCls} onTouchTap={this.onOverlayTap}/>
+        <AutoLockScrolling lock={this.props.open} />
 
         <div className={rightCls}>
           {React.cloneElement(this.props.children, { onCloseRight: this.props.onRequestChange })}

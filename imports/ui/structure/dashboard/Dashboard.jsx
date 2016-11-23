@@ -41,7 +41,10 @@ export default class Dashboard extends React.Component{
       <div>
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})}/>
 
-        <MainPanel header={
+        <MainPanel
+          classes='container-fluid'
+          style={{overflow: 'hidden'}}
+          header={
             <IconButton className='menu-button' onTouchTap={this.toggleLeft}>
               <NavigationMenu/>
             </IconButton>
