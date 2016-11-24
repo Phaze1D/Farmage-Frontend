@@ -21,7 +21,7 @@ export default class CustomersIndex extends React.Component{
   render(){
     var numbers = [];
 
-    for(var i = 0; i < 100; i++){
+    for(var i = 0; i < 25; i++){
         numbers.push(faker.name.firstName() + " " + faker.name.lastName());
     }
 
