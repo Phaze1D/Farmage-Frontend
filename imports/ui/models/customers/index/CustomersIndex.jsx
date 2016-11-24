@@ -1,14 +1,9 @@
 import React from 'react';
 import PersonCard from '../../person/PersonCard'
-import faker from 'faker'
+import {factoryPerson} from '../../person/faker/fakePerson.js'
 
 
-function testCompanyName(){
-  if(Math.round(Math.random()) === 0){
-    return faker.company.companyName()
-  }
-  return '';
-}
+
 
 
 export default class CustomersIndex extends React.Component{
@@ -19,17 +14,19 @@ export default class CustomersIndex extends React.Component{
 
 
   render(){
-    var numbers = [];
+    var customers = [];
 
     for(var i = 0; i < 25; i++){
-        numbers.push(faker.name.firstName() + " " + faker.name.lastName());
+        customers.push(factoryPerson());
     }
 
-    numbers.sort()
+    customers.sort((a, b) => {
+      return a.firstName.localeCompare(b.firstName)
+    });
 
-    const listItems = numbers.map((number) =>
-      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={number}>
-        <PersonCard title={number} company={testCompanyName()}/>
+    const listItems = customers.map((person) =>
+      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={person._id}>
+        <PersonCard {...person} actionLabel='Sells' />
       </div>
     );
 
