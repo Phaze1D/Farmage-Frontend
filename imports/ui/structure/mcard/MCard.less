@@ -8,6 +8,7 @@
   border-radius: 3px;
   z-index: 1;
   flex-grow: 1;
+  margin: 0 -5px;
 
 }
 
@@ -24,7 +25,7 @@
 }
 
 .card-title{
-  padding: 0 15px 0 0 !important;
+  padding: 0 40px 0 0 !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -53,5 +54,16 @@
   color: @color-accent !important;
   span{
     font-weight: 500 !important;
+  }
+}
+
+.card-options{
+  position: absolute !important;
+  right: 16px;
+  top: 3px;
+  z-index: @z-index-high;
+
+  svg{
+    fill: @grey-600 !important;
   }
 }

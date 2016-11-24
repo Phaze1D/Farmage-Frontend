@@ -1,7 +1,9 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
+import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
@@ -64,6 +66,11 @@ export default class PersonCard extends React.Component{
 
     return(
       <MCard>
+
+        <IconButton className='card-options'>
+          <NavigationMoreVert/>
+        </IconButton>
+
         <div className='card-top'>
           <Avatar className='card-avatar'
             backgroundColor={alphaImageColor(char)}
