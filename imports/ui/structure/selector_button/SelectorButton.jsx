@@ -4,7 +4,7 @@ import ImageEdit from 'material-ui/svg-icons/image/edit';
 import classnames from 'classnames';
 import Avatar from 'material-ui/Avatar';
 
-import randomImageColor from '../app/RandomColor.js';
+import {randomImageColor} from '../app/RandomColor.js';
 
 
 

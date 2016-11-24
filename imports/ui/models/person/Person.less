@@ -1,0 +1,78 @@
+.scrollable-info{
+  flex-grow: 1;
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+}
+
+.sicon{
+  fill: @color-primary !important;
+  margin-right: 15px;
+  flex-shrink: 0;
+  align-self: flex-start;
+
+  &.empty{
+    fill: @grey-500 !important;
+  }
+}
+
+.sinfo{
+  font-size: 14px;
+  flex-grow: 1;
+  flex-basis: 100px;
+  min-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.ib{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.empty{
+    margin-top: 5px;
+    color: @grey-400;
+    font-weight: 300 !important;
+  }
+
+  span{
+    font-size: 12px;
+    color: @grey-500;
+    display: block;
+    font-weight: 400 !important;
+  }
+
+  div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.slist{
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+
+  .swrapper{
+    width: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+    transition-timing-function: @animation-curve-default !important;
+    transition-delay: @animation-delay !important;
+    transition-duration: @animation-duration !important;
+    transition-property: transform !important;
+  }
+
+}
+
+.snav{
+  margin: 0 0 0 5px;
+  cursor: pointer;
+
+  &.disabled{
+    fill: @grey-300 !important;
+  }
+}

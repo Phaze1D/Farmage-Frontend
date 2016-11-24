@@ -10,9 +10,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import uuid from 'uuid';
 import classnames from 'classnames';
 
-
-
-
 import RaisedButton from 'material-ui/RaisedButton';
 import LeftDrawer from '../left_drawer/LeftDrawer';
 import RightDrawer from '../right_drawer/RightDrawer'
@@ -42,8 +39,7 @@ export default class Dashboard extends React.Component{
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})}/>
 
         <MainPanel
-          classes='container-fluid'
-          style={{overflow: 'hidden'}}
+          classes='container-fluid index-panel'
           header={
             <IconButton className='menu-button' onTouchTap={this.toggleLeft}>
               <NavigationMenu/>

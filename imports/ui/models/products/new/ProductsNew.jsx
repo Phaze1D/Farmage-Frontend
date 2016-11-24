@@ -9,7 +9,7 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import ResourceProductItem from '../../resources/selector_items/ResourceProductItem'
-import randomImageColor from '../../../structure/app/RandomColor.js';
+import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
 

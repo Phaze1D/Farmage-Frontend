@@ -12,7 +12,7 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 import PersonSelectorItem from '../../person/PersonSelectorItem';
-import randomImageColor from '../../../structure/app/RandomColor.js';
+import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
 

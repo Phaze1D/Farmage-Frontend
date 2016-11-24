@@ -12,7 +12,7 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import TextArea from '../../../structure/textarea/TextArea';
 import ProductInvItem from '../../products/selector_items/ProductInvItem';
 import YieldInvItem from '../../yields/selector_items/YieldInvItem';
-import randomImageColor from '../../../structure/app/RandomColor.js';
+import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
 

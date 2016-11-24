@@ -16,7 +16,8 @@
 @import '../ltoggler/LToggler';
 @import "../selector_button/SelectorButton";
 @import '../form_action_bar/FormActionBar';
-
+@import '../../models/person/Person';
+@import "../mcard/MCard";
 
 .fab{
   position: fixed;
@@ -178,6 +179,33 @@
   cursor: pointer;
 }
 
-.mcard{
-  margin: 15px 0;
+
+.index-panel{
+  background-color: @grey-200;
+}
+
+.row.is-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -15px !important;
+}
+.row.is-flex > [class*='col-'] {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 15px -1px;
+  float: none;
+
 }

@@ -4,7 +4,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 // import Barcode from '../../../structure/msvg/Barcode'
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import ProductSellItem from '../../products/selector_items/ProductSellItem';
-import randomImageColor from '../../../structure/app/RandomColor.js';
+import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
 
