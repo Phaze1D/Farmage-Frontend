@@ -32,8 +32,11 @@ export default {
     floatingLabelColor: fade(darkBlack, 0.4)
   },
   toggle: {
-      thumbOnColor: blueA400,
-      trackOnColor: fade(blueA400, 0.5),
-      trackRequiredColor: fade(blueA400, 0.5),
-    },
+    thumbOnColor: blueA400,
+    trackOnColor: fade(blueA400, 0.5),
+    trackRequiredColor: fade(blueA400, 0.5),
+  },
+  paper: {
+    zDepth: 3
+  }
 };

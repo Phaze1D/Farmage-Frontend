@@ -111,6 +111,44 @@
 }
 
 
+.appear-index{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.appear-index.appear-index-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: .35s !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
+}
+
+.enter-index{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.enter-index.enter-index-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
+}
+
+.leave-index {
+  opacity: 1 !important;
+}
+
+.leave-index.leave-index-active {
+  opacity: 0 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
+}
+
 .appear-fab{
   transform: scale(0,0) rotate(90deg) !important;
   transition: none !important;

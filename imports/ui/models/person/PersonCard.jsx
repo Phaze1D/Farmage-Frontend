@@ -46,6 +46,10 @@ export default class PersonCard extends React.Component{
 
         <EmailSection email={email} />
 
+        <TelephonesSection telephones={telephones} />
+
+        <AddressesSection addresses={addresses} />
+
 
         <CardActions className='card-actions'>
           <FlatButton className='action' label={actionLabel} />
@@ -57,6 +61,12 @@ export default class PersonCard extends React.Component{
 }
 
 
+
+/*
+  @params: {
+      email: String
+    }
+*/
 const EmailSection = (props) => {
   const hasEmail = (props.email && props.email.length > 0)
   const eClasses = classnames('sinfo', {'empty': !hasEmail} )
@@ -64,7 +74,7 @@ const EmailSection = (props) => {
 
   const ai = []
   if(hasEmail){
-    ai.push({name: props.name, email: props.email})
+    ai.push({email: props.email})
   }
 
   return(
@@ -79,20 +89,96 @@ const EmailSection = (props) => {
   )
 }
 
+/*
+  @params: {
+      {
+        name: String
+        number: String
+      }
+    }
+*/
 const TelephonesSection = (props) => {
   const hasTelephones = (props.telephones.length > 0)
-  const tClasses = classnames('sinfo', {'empty': !hasTelephones} )
+  const eClasses = classnames('sinfo', {'empty': !hasTelephones} )
   const iconClasses = classnames('sicon', {'empty': !hasTelephones})
 
-  const tels = props.telephones.map((to) => (
+  if(!hasTelephones){
+    props.telephones.push({})
+  }
 
-  ))
+  let key = 'a'
+  const tels = props.telephones.map((telephone) => {
+    key+='b'
+    return(
+      <div className={eClasses} key={key}>
+        <span>
+          {telephone.name ? telephone.name : 'Telephone'}
+        </span>
+        {telephone.number}
+      </div>
+    )
+  })
 
+  return (
+    <ScrollableInfo arrayInfo={props.telephones} icon={<CommunicationCall className={iconClasses}/>}>
+      {tels}
+    </ScrollableInfo>
+  )
 }
 
+/*
+  @params: {
+      {
+        name: String
+        street1: String
+        street2: String
+        city: String
+        state: String
+        zip_code: String
+        country: String
+
+      }
+    }
+*/
 const AddressesSection = (props) => {
+  const hasAddresses = (props.addresses.length > 0)
+  const eClasses = classnames('sinfo', {'empty': !hasAddresses} )
+  const iconClasses = classnames('sicon', {'empty': !hasAddresses})
 
+  if(!hasAddresses){
+    props.addresses.push({})
+  }
+
+  let key = 'a'
+  const adds = props.addresses.map((address) => {
+    key+= 'b'
+    return(
+      <div className={eClasses} key={key}>
+        <span>
+          {address.name ? address.name : 'Address'}
+        </span>
+        {address.street1}
+        <div> {address.street2} </div>
+        <div>
+          {address.city}
+          {address.state && address.city &&
+             <i>, </i>
+          }
+          {address.state}
+        </div>
+        <div> {address.zip_code} </div>
+        <div> {address.country} </div>
+      </div>
+    )
+  });
+
+  return (
+    <ScrollableInfo arrayInfo={props.addresses} icon={<MapsPlace className={iconClasses}/>}>
+      {adds}
+    </ScrollableInfo>
+  )
 }
+
 
 
 class ScrollableInfo extends React.Component{
@@ -146,162 +232,3 @@ class ScrollableInfo extends React.Component{
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class ScrollableInfo extends React.Component{
-//   constructor(props){
-//     super(props)
-//     this.state = {current: 0};
-//
-//     this.handleRight = this.handleRight.bind(this);
-//     this.handleLeft = this.handleLeft.bind(this);
-//   }
-//
-//   handleRight(event){
-//     c = this.state.current;
-//     if(c < this.props.arrayInfo.length - 1){
-//       this.setState({current: c+1})
-//     }
-//   }
-//
-//   handleLeft(event){
-//     c = this.state.current;
-//     if(c > 0){
-//       this.setState({current: c-1})
-//     }
-//   }
-//
-//   infoSection(){
-//     if(this.props.arrayInfo.length > 1){
-//
-//       const listItems = this.props.arrayInfo.map((obj) => {
-//         if(this.props.type === 0){
-//           return(<EmailSection email={obj} defaultTitle={this.props.defaultTitle} key={obj.email}/>)
-//         }
-//
-//         if(this.props.type === 1){
-//           return(<TelephoneSection telephone={obj} defaultTitle={this.props.defaultTitle} key={obj.number}/>)
-//         }
-//
-//         if(this.props.type === 2){
-//           return(<AddressSection address={obj} defaultTitle={this.props.defaultTitle} key={obj.street1}/>)
-//         }
-//       });
-//
-//       const traStyle = {transform: `translate(-${100 * this.state.current}%, 0)`}
-//       return (
-//         <div className='slist'>
-//           <div className='swrapper' style={traStyle}>
-//             {listItems}
-//           </div>
-//         </div>
-//       )
-//
-//     }else if(this.props.arrayInfo.length == 1){
-//       let obj = this.props.arrayInfo[0]
-//       if(this.props.type === 0){
-//         return(<EmailSection email={obj} defaultTitle={this.props.defaultTitle}/>)
-//       }
-//
-//       if(this.props.type === 1){
-//         return(<TelephoneSection telephone={obj} defaultTitle={this.props.defaultTitle}/>)
-//       }
-//
-//       if(this.props.type === 2){
-//         return(<AddressSection address={obj} defaultTitle={this.props.defaultTitle}/>)
-//       }
-//
-//     }else{
-//       return(
-//         <div className='sinfo empty'>
-//           <span>
-//             {this.props.defaultTitle}
-//           </span>
-//
-//         </div>
-//       )
-//     }
-//   }
-//
-//   render(){
-//     const iconClasses = classnames('sicon', {'empty': this.props.arrayInfo.length == 0});
-//     const arClasses = classnames('snav', {'disabled': this.state.current === this.props.arrayInfo.length - 1});
-//     const alClasses = classnames('snav', {'disabled': this.state.current === 0});
-//
-//     return(
-//       <div className='scrollable-info'>
-//         {React.cloneElement(this.props.icon, { className: iconClasses })}
-//         {this.infoSection()}
-//
-//         {this.props.arrayInfo.length > 1 &&
-//           <div className='snav'>
-//             <HardwareKeyboardArrowLeft className={alClasses} onTouchTap={this.handleLeft}/>
-//             <HardwareKeyboardArrowRight className={arClasses} onTouchTap={this.handleRight}/>
-//           </div>
-//         }
-//       </div>
-//     )
-//   }
-// }
-//
-//
-// const EmailSection = (props) => (
-//   <div className='sinfo ib'>
-//     <span>
-//       {props.email.name ? props.email.name : props.defaultTitle}
-//     </span>
-//     {props.email.email}
-//   </div>
-// )
-//
-// const TelephoneSection = (props) => (
-//   <div className='sinfo ib'>
-//     <span>
-//       {props.telephone.name ? props.telephone.name : props.defaultTitle}
-//     </span>
-//     {props.telephone.number}
-//   </div>
-// )
-//
-// const AddressSection = (props) => (
-//   <div className='sinfo ib'>
-//     <span>
-//       {props.address.name ? props.address.name : props.defaultTitle}
-//     </span>
-//
-//     {props.address.street1}
-//
-//     {props.address.street2 &&
-//       <div> {props.address.street2} </div>
-//     }
-//
-//     <div>
-//       {props.address.city}
-//       {props.address.state && props.address.city &&
-//          <i>, </i>
-//       }
-//       {props.address.state}
-//     </div>
-//
-//     {props.address.zip_code &&
-//       <div> {props.address.zip_code} </div>
-//     }
-//
-//     {props.address.country &&
-//       <div> {props.address.country} </div>
-//     }
-//
-//   </div>
-// )

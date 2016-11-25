@@ -1,5 +1,6 @@
 import React from 'react';
 import PersonCard from '../../person/PersonCard'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {factoryPerson} from '../../person/faker/fakePerson.js'
 
 
@@ -16,7 +17,7 @@ export default class CustomersIndex extends React.Component{
   render(){
     var customers = [];
 
-    for(var i = 0; i < 25; i++){
+    for(var i = 0; i < 20; i++){
         customers.push(factoryPerson());
     }
 
@@ -31,9 +32,23 @@ export default class CustomersIndex extends React.Component{
     );
 
     return (
-      <div className='row is-flex'>
-        {listItems}
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName={ {
+          enter: 'enter-index',
+          leave: 'leave-index',
+          appear: 'appear-index'
+        } }
+        transitionEnterTimeout={800}
+        transitionLeaveTimeout={800}
+        transitionAppear={true}
+        transitionAppearTimeout={800}>
+
+        <div className='row is-flex'>
+          {listItems}
+        </div>
+
+      </ReactCSSTransitionGroup>
+
     );
   }
 }
