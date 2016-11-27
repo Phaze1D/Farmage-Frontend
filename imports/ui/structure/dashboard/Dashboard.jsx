@@ -4,6 +4,10 @@ import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import ActionSearch from 'material-ui/svg-icons/action/search';
+import ImageTune from 'material-ui/svg-icons/image/tune';
+
+
 
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -41,9 +45,19 @@ export default class Dashboard extends React.Component{
         <MainPanel
           classes='container-fluid index-panel'
           header={
-            <IconButton className='menu-button' onTouchTap={this.toggleLeft}>
-              <NavigationMenu/>
-            </IconButton>
+            <div className='toolbar'>
+              <IconButton className='menu-button' onTouchTap={this.toggleLeft}>
+                <NavigationMenu/>
+              </IconButton>
+
+              <IconButton className='search-button'>
+                <ActionSearch/>
+              </IconButton>
+
+              <IconButton className='filter-button'>
+                <ImageTune/>
+              </IconButton>
+            </div>
           }>
 
 

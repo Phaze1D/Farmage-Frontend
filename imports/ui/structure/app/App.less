@@ -50,7 +50,40 @@
   }
 }
 
+.toolbar{
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .menu-button{
+  width: 58px !important;
+  height: 58px !important;
+  margin: 5px !important;
+
+
+  svg{
+    fill: @white !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+.search-button{
+  width: 58px !important;
+  height: 58px !important;
+  margin: 5px 0 5px auto !important;
+
+
+  svg{
+    fill: @white !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+.filter-button{
   width: 58px !important;
   height: 58px !important;
   margin: 5px !important;
@@ -220,6 +253,7 @@
 
 .index-panel{
   background-color: @grey-200;
+  min-height: ~"calc(100vh - 212px)";
 }
 
 .row.is-flex {
