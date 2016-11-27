@@ -134,11 +134,6 @@ const InventoryItem = (props) => (
     </div>
 
     <div className='yield-info'>
-      <span>Amount</span>
-      113
-    </div>
-
-    <div className='yield-info'>
       <span>Created At</span>
       11/12/2016
     </div>
@@ -146,6 +141,11 @@ const InventoryItem = (props) => (
     <div className='yield-info'>
       <span>Expires At</span>
       11/12/2016
+    </div>
+
+    <div className='yield-info'>
+      <span>Available</span>
+      113
     </div>
 
     <TextField
