@@ -51,9 +51,6 @@ export default class MCard extends React.Component{
 
 
 
-
-
-
 function getStyles(props, context, state) {
   const {targetOrigin} = props;
   const {open} = state;
@@ -63,7 +60,7 @@ function getStyles(props, context, state) {
   return {
     root: {
       opacity: open ? 1 : 0,
-      transform: open ? 'translate(-10px, 10px) scale(1, 1)' : 'translate(-10px, 10px) scale(0, 0)',
+      transform: open ? 'translate(-5px, 5px) scale(1, 1)' : 'translate(-5px, 5px) scale(0, 0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
       zIndex: muiTheme.zIndex.popover,
