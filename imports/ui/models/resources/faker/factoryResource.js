@@ -6,12 +6,12 @@ const testName = () => {
 }
 
 const testMeasurementUnit = () => {
-  return faker.random.word();
+  return faker.lorem.word();
 }
 
 const testImageUrl = () => {
   if(Math.round(Math.random()) === 0){
-    // return faker.random.image();
+    return faker.random.image();
   }
   return ;
 }

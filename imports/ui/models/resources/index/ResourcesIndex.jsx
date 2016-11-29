@@ -22,7 +22,7 @@ export default class ResourcesIndex extends React.Component{
     });
 
     const listItems = resources.map((resource) =>
-      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={resource._id}>
+      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4' key={resource._id}>
         <ResourceCard {...resource} />
       </div>
     );

@@ -1,12 +1,15 @@
 import React from 'react';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Subheader from 'material-ui/Subheader';
 
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
-
 import classnames from 'classnames';
 
+
+
+let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class YieldCard extends React.Component{
   constructor(props){
@@ -44,8 +47,35 @@ export default class YieldCard extends React.Component{
           <CardTitle className='card-title-sm' title={resource.name} subtitle=''/>
         </div>
 
-        <div className='cyield-info'>
-          
+        <div className='cyield-info sm'>
+          <span>Identifer</span>
+          {title}
+        </div>
+
+        <div className='cyield-info sm'>
+          <span>Created Date</span>
+          {new DateTimeFormat('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }).format(createdAt)}
+        </div>
+
+        <div className='cyield-info sm'>
+          <span>Expiration Date</span>
+          {new DateTimeFormat('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }).format(expiresAt)}
+        </div>
+
+        <div className='cyield-info lg'>
+          <span>Amount</span>
+          {amount}
+          <div className='dspn'>
+            {resource.measurementUnit}
+          </div>
         </div>
 
 

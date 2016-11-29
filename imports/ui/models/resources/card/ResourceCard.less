@@ -11,28 +11,52 @@
   .total{
     flex-grow: 1;
     font-weight: 400;
-    font-size: 34px;
+    font-size: 26px;
     min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
     span{
       font-weight: 400;
-      font-size: 18px;
+      font-size: 16px;
       padding-left: 5px;
     }
   }
 
   .ins{
-    font-weight: 300;
+    font-weight: 400;
     flex-shrink: 0;
     margin-left: 15px;
-    line-height: 34px;
+    line-height: 30px;
     color: @grey-500;
-    font-size: 14px
+    font-size: 13px
   }
 }
 
 .resource-top{
   background-color: @backColor;
+}
+
+.testr{
+  display: flex;
+  height: 100%;
+}
+
+.testir{
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  width: 30%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  color: white;
+}
+
+.testin{
+  flex-shrink: 1;
+  width: 70%;
 }
