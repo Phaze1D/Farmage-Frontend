@@ -47,17 +47,17 @@ export default class ResourceCard extends React.Component{
           <div className='testin'>
 
             <div className='card-top resource-top' style={{border: 'none'}}>
-              <CardTitle className='card-title' title={title} subtitle={measurementUnit}/>
+              <CardTitle className='card-title' title={title} subtitle={`${measurementUnit}`}/>
             </div>
 
             <div className='cresource-info'>
               <div className='total'>
                 {totalAmount}
-                <span>{measurementUnit}</span>
+                <span></span>
               </div>
 
               <div className='ins'>
-                Stock
+                In Stock
               </div>
             </div>
 

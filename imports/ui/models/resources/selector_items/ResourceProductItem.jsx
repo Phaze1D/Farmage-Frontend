@@ -25,7 +25,7 @@ let ResourceProductItem = (props) => (
             hintText=""
             floatingLabelText="Amount Pre Product"
             fullWidth={true}
-            prefix="eggs"
+            prefix=""
             prefixSide="right"/>
       </div>
     </div>
