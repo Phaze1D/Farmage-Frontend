@@ -10,8 +10,32 @@
   flex-grow: 1;
   margin: 0 -5px;
   overflow: hidden;
+  position: relative;
 
+  &.card-row-flex{
+    flex-direction: row;
+    height: 100%;
+  }
 }
+
+.image-col{
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  width: 30%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  color: white;
+}
+
+.info-col{
+  flex-shrink: 1;
+  width: 70%;
+}
+
 
 .card-top{
   display: flex;
@@ -83,8 +107,11 @@
 
 .action{
   color: @color-accent !important;
+  min-width: 70px !important;
+
   span{
     font-weight: 500 !important;
+    padding: 0 8px !important;
   }
 }
 
@@ -97,4 +124,10 @@
   svg{
     fill: @grey-600 !important;
   }
+}
+
+.card-option-root{
+  position: absolute !important;
+  height: 0;
+  width: 100%;
 }

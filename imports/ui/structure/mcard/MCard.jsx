@@ -23,11 +23,12 @@ export default class MCard extends React.Component{
   }
 
   render(){
-    const classes = classnames('mcard')
+    const classes = classnames('mcard', this.props.className)
     return(
       <div className={classes}>
         <IconMenu
           open={true}
+          className='card-option-root'
           animation={MPopoverAnimation}
           onRequestChange={(open) => this.setState({optionsShown: open})}
           iconButtonElement={<IconButton className='card-options'><MoreVertIcon /></IconButton>}

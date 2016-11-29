@@ -9,7 +9,7 @@ import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomCo
 
 import classnames from 'classnames';
 
-export default class ResourceCard extends React.Component{
+export default class ProductCard extends React.Component{
   constructor(props){
     super(props);
   }
@@ -17,13 +17,16 @@ export default class ResourceCard extends React.Component{
   render(){
     const {
       name,
-      measurementUnit,
+      sku,
+      unitPrice,
+      taxRate,
       imageUrl,
-      totalAmount,
+      stock,
       ...others
     } = this.props;
 
     const title = `${name}`;
+    const totalPrice = (unitPrice * (1 + (taxRate/100))).toFixed(2)
     let char = '';
 
     if(!imageUrl){
@@ -43,20 +46,22 @@ export default class ResourceCard extends React.Component{
 
           <div className='info-col'>
             <div className='card-top resource-top' style={{border: 'none'}}>
-              <CardTitle className='card-title' title={title} subtitle={`${measurementUnit}`}/>
+              <CardTitle className='card-title' title={title} subtitle={`${sku}`}/>
             </div>
-            <div className='cresource-info'>
-              <div className='total'>
-                {totalAmount}
-                <span></span>
+            <div className='product-csection'>
+              <div className='product-cinfo'>
+                <span>In Stock</span>
+                {stock}
               </div>
-              <div className='ins'>
-                In Stock
+              <div className='product-cinfo'>
+                <span>Price</span>
+                ${totalPrice}
               </div>
             </div>
             <CardActions className='card-actions'>
-              <FlatButton className='action' label='Yields' />
-              <FlatButton className='action' label='Products' />
+              <FlatButton className='action' label='Inventories' />
+              <FlatButton className='action' label='Sells' />
+              {/*<FlatButton className='action' label='Resources' />*/}
             </CardActions>
           </div>
       </MCard>
