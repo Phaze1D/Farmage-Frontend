@@ -5,14 +5,14 @@ const testEmail = () => {
   if(Math.round(Math.random()) === 0){
     return faker.internet.email()
   }
-  return '';
+  return ;
 }
 
 const testCompanyName = () => {
   if(Math.round(Math.random()) === 0){
     return faker.company.companyName()
   }
-  return '';
+  return ;
 }
 
 const testFirstName = () => {
@@ -23,7 +23,7 @@ const testLastName = () => {
   if(Math.round(Math.random()) === 0){
     return faker.name.lastName()
   }
-  return '';
+  return ;
 }
 
 const testTelephones = () =>{
@@ -58,7 +58,7 @@ const testAvatar = () => {
   if(Math.round(Math.random()) === 0){
     return faker.image.avatar();
   }
-  return '';
+  return ;
 }
 
 const testNotes = () => {

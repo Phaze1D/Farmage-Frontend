@@ -9,18 +9,20 @@
   z-index: 1;
   flex-grow: 1;
   margin: 0 -5px;
+  overflow: hidden;
 
 }
 
 .card-top{
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 15px;
   border-bottom: 1px solid @color-divider;
+  cursor: pointer;
 }
 
 .card-avatar{
-  margin: 0 15px !important;
+  margin: 0 15px 0 0 !important;
   flex-shrink: 0;
 }
 
@@ -30,7 +32,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   flex-grow: 1;
-  cursor: pointer;
 
   span:nth-child(1){
     font-size: 18px !important;
@@ -40,13 +41,38 @@
   span:nth-child(2){
     font-size: 12px !important;
   }
-
   span{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 }
+
+.card-title-sm{
+  padding: 0 40px 0 0 !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+
+  span:nth-child(1){
+    // font-weight: 500;
+    font-size: 14px !important;
+    line-height: 22px !important;
+  }
+
+  span:nth-child(2){
+    font-size: 12px !important;
+  }
+  span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+
+
 .card-actions{
   border-top: 1px solid @color-divider;
 }

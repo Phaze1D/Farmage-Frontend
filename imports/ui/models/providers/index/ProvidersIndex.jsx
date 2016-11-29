@@ -1,7 +1,7 @@
 import React from 'react';
 import PersonCard from '../../person/PersonCard'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {factoryPerson} from '../../person/faker/fakePerson.js'
+import {factoryPerson} from '../../person/faker/factoryPerson.js'
 
 
 
@@ -12,9 +12,9 @@ export default class ProvidersIndex extends React.Component{
 
 
   render(){
-    var providers = [];
+    let providers = [];
 
-    for(var i = 0; i < 20; i++){
+    for(let i = 0; i < 20; i++){
         providers.push(factoryPerson());
     }
 

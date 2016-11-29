@@ -10,8 +10,8 @@ import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-a
 
 import classnames from 'classnames';
 
-import {alphaImageColor} from '../../structure/app/RandomColor.js';
 import MCard from '../../structure/mcard/MCard'
+
 
 export default class PersonCard extends React.Component{
   constructor(props){

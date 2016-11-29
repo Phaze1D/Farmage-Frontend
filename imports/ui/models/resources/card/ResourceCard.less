@@ -1,0 +1,38 @@
+
+@backColor: @white;
+
+.cresource-info{
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 15px 15px;
+  background-color: @backColor;
+  cursor: default;
+
+  .total{
+    flex-grow: 1;
+    font-weight: 400;
+    font-size: 34px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    span{
+      font-weight: 400;
+      font-size: 18px;
+      padding-left: 5px;
+    }
+  }
+
+  .ins{
+    font-weight: 300;
+    flex-shrink: 0;
+    margin-left: 15px;
+    line-height: 34px;
+    color: @grey-500;
+    font-size: 14px
+  }
+}
+
+.resource-top{
+  background-color: @backColor;
+}
