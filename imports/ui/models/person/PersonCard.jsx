@@ -19,7 +19,7 @@ export default class PersonCard extends React.Component{
   }
 
   render(){
-    const {
+    let {
       firstName,
       lastName,
       company,
@@ -31,6 +31,7 @@ export default class PersonCard extends React.Component{
       ...others
     } = this.props
 
+    if(lastName === undefined) lastName = '';
     const title = `${firstName} ${lastName}`
     const char = title.toUpperCase().charAt(0)
 
