@@ -40,19 +40,20 @@ export default class YieldCard extends React.Component{
     return(
       <MCard>
 
-        <div className='card-top resource-top'>
-          <MAvatar className='card-avatar'
-            style={{marginRight: '15px', padding: '0px 0 0 0px'}}
-            size={28} cha={char} src={resource.imageUrl}/>
-          <CardTitle className='card-title-sm' title={resource.name} subtitle=''/>
+        <div className='card-top'>
+          <CardTitle className='card-title' title={title} subtitle='Yield Identifer'/>
         </div>
 
-        <div className='cyield-info sm'>
-          <span>Identifer</span>
-          {title}
+        <div className='cyield-info-flex'>
+          <span>Resource</span>
+          <MAvatar className='cyield-img'
+            style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+            size={32} cha={char} src={resource.imageUrl}/>
+
+          {resource.name}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -61,7 +62,7 @@ export default class YieldCard extends React.Component{
           }).format(createdAt)}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Expiration Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -70,7 +71,7 @@ export default class YieldCard extends React.Component{
           }).format(expiresAt)}
         </div>
 
-        <div className='cyield-info lg'>
+        <div className='cyield-info'>
           <span>Amount</span>
           {amount}
           <div className='dspn'>

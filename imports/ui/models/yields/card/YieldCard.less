@@ -1,8 +1,9 @@
 .cyield-info{
-  font-size: 18px;
+  font-size: 16px;
   padding: 15px;
   overflow: hidden;
   white-space: nowrap;
+  font-weight: 400;
   text-overflow: ellipsis;
 
   &.sm{
@@ -10,21 +11,51 @@
   }
 
   &.lg{
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   span{
+    font-weight: 400;
     display: block;
     font-size: 12px;
-    color: @grey-400;
+    color: @grey-500;
   }
 
   .dspn{
     display: inline-block;
     font-size: 14px;
+    font-weight: 400;
     padding-left: 5px;
     color: @grey-700;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+}
+
+.cyield-info-flex{
+  font-size: 16px;
+  padding: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: -5px;
+
+  span{
+    flex-basis: 100%;
+    flex-grow: 1;
+    font-weight: 400;
+    display: block;
+    font-size: 12px;
+    color: @grey-500;
+  }
+
+  .cyield-img{
+    margin: 5px 15px 5px 0 !important;
   }
 }
