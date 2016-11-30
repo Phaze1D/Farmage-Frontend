@@ -39,7 +39,7 @@ export default class MTable extends React.Component{
         <tr className='hoverable' key={_yield._id}>
           <td className='bright'>{_yield._id}</td>
 
-          <td>
+          <td className='clickable'>
             <div>
               <MAvatar className=''
                 style={{marginRight: '15px', padding: '1px 0 0 0px'}}
@@ -51,7 +51,7 @@ export default class MTable extends React.Component{
           <td>{_yield.amount} <span>{_yield.resource.measurementUnit}</span></td>
           <td>{new DateTimeFormat('en-US', { day: 'numeric', month: 'short', year: 'numeric'}).format(_yield.createdAt)}</td>
           <td>{new DateTimeFormat('en-US', { day: 'numeric', month: 'short', year: 'numeric'}).format(_yield.expiresAt)}</td>
-          <td>{_yield.unit.name}</td>
+          <td className='clickable' >{_yield.unit.name}</td>
           <td style={{textAlign: 'right'}}>
             <IconMenu
               className=''
