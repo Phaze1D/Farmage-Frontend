@@ -1,8 +1,7 @@
 import faker from 'faker'
 import { Random } from 'meteor/random'
 
-import {factoryResource} from '../../resources/faker/factoryResource.js'
-import {factoryUnit} from '../../units/faker/factoryUnit.js'
+import {factoryProduct} from '../../products/faker/factoryProduct.js'
 
 
 const testIdentifer = () => {
@@ -23,17 +22,16 @@ const testExpires = () => {
   return ;
 }
 
-const factoryYield = () => {
-  let _yield = {
+const factoryInventory = () => {
+  let inventory = {
     _id: Random.id(),
     identifer: testIdentifer(),
-    amount: (Math.random() * 400).toPrecision(12),
+    amount: (Math.random() * 400).toFixed(0),
     createdAt: testCreated(),
     expiresAt: testExpires(),
-    resource: factoryResource(),
-    unit: factoryUnit()
+    product: factoryProduct()
   }
-  return _yield;
+  return inventory;
 }
 
-exports.factoryYield = factoryYield;
+exports.factoryInventory = factoryInventory;

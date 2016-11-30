@@ -1,0 +1,68 @@
+.mtable{
+  width: ~"calc(100% + 30px)";
+  background-color: @white;
+  margin: -10px 0px 0 -15px;
+
+
+
+  tr{
+    padding: 0px 15px;
+  }
+
+  th{
+    -webkit-font-smoothing: antialiased;
+    text-align: left;
+    min-width: 0;
+    padding: 15px 15px 15px 15px;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    user-select: none;
+    color:  @grey-500;
+    font-size: 13px;
+    cursor: pointer;
+
+    &.activec{
+      color: @black;
+    }
+
+    div{
+      display: flex;
+      align-items: center;
+
+      svg{
+        margin-left: 5px !important;
+        margin-bottom: 2px !important;
+      }
+    }
+
+  }
+
+  tr td, tr th {
+    border-bottom: 1px solid @grey-300;
+  }
+
+  td{
+    cursor: default;
+    font-size: 14px;
+    text-align: left;
+    min-width: 0;
+    padding: 8px 15px 8px 15px;
+
+    span{
+      font-size: 12px;
+      color: @grey-700
+    }
+  }
+
+  .hoverable{
+    &:hover{
+      background-color: @grey-200;
+    }
+  }
+}
+
+
+.bright{
+  border-right: 1px solid @grey-300;
+}

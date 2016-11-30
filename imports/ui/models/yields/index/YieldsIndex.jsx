@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {factoryYield} from '../faker/factoryYield.js'
-import YieldCard from '../card/YieldCard'
+import {factoryYield} from '../faker/factoryYield.js';
+import YieldCard from '../card/YieldCard';
+import MTable from '../../../structure/mtable/MTable';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -40,9 +41,13 @@ export default class YieldsIndex extends React.Component{
         transitionAppear={true}
         transitionAppearTimeout={800}>
 
-        <div className='row is-flex'>
+        {/*<div className='row is-flex'>
           {listItems}
-        </div>
+        </div>*/}
+
+        <MTable/>
+
+
 
       </ReactCSSTransitionGroup>
 
