@@ -70,7 +70,7 @@ export default class PersonForm extends React.Component{
             <DatePicker
               name="date_of_birth"
               hintText="Birthday"
-              floatingLabelText="Birthday"
+              floatingLabelText="Date of Birth"
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',

@@ -1,25 +1,31 @@
 .cyield-info{
   font-size: 16px;
-  padding: 15px;
+  padding: 10px 15px;
   overflow: hidden;
   white-space: nowrap;
   font-weight: 400;
   text-overflow: ellipsis;
+
 
   &.sm{
     font-size: 14px;
   }
 
   &.lg{
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
   }
 
-  span{
+  .csub-info, span{
     font-weight: 400;
     display: block;
     font-size: 12px;
     color: @grey-500;
+  }
+
+  .csub-info{
+    display: flex;
+    align-items: center;
   }
 
   .dspn{
@@ -36,7 +42,7 @@
 
 .cyield-info-flex{
   font-size: 16px;
-  padding: 15px;
+  padding: 10px 15px;
   overflow: hidden;
   white-space: nowrap;
   font-weight: 400;
@@ -45,6 +51,12 @@
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: -5px;
+  position: relative;
+
+  &.lg{
+    font-size: 18px;
+    font-weight: 400;
+  }
 
   span{
     flex-basis: 100%;
@@ -57,5 +69,15 @@
 
   .cyield-img{
     margin: 5px 15px 5px 0 !important;
+  }
+
+  .icon-b{
+    position: absolute !important;
+    right: 0;
+    top: 0;
+
+    svg{
+      fill: @color-accent !important;
+    }
   }
 }

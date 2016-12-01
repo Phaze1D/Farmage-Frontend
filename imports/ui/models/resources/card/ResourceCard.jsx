@@ -1,7 +1,7 @@
 import React from 'react';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
+import { browserHistory } from 'react-router'
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
@@ -55,8 +55,10 @@ export default class ResourceCard extends React.Component{
               </div>
             </div>
             <CardActions className='card-actions'>
-              <FlatButton className='action' label='Yields' />
-              <FlatButton className='action' label='Products' />
+              <FlatButton className='action' label='Yields' secondary={true}
+                onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
+              <FlatButton className='action' label='Products' secondary={true}
+                onTouchTap={() => {browserHistory.push('/dashboard/products')} }/>
             </CardActions>
           </div>
       </MCard>

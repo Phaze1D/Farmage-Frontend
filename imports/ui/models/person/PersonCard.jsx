@@ -7,6 +7,7 @@ import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
 import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+import { browserHistory } from 'react-router'
 
 import classnames from 'classnames';
 
@@ -53,7 +54,8 @@ export default class PersonCard extends React.Component{
 
 
         <CardActions className='card-actions'>
-          <FlatButton className='action' label={actionLabel} />
+          <FlatButton className='action' label={actionLabel} secondary={true}
+            onTouchTap={() => {browserHistory.push('/dashboard/' + actionLabel)} }/>
         </CardActions>
 
       </MCard>

@@ -11,7 +11,7 @@ const testMeasurementUnit = () => {
 
 const testImageUrl = () => {
   if(Math.round(Math.random()) === 0){
-    return faker.random.image();
+    // return faker.random.image();
   }
   return ;
 }

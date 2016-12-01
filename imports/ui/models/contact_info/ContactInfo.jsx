@@ -72,8 +72,6 @@ export default class ContactInfo extends React.Component{
           {forms}
         </ReactCSSTransitionGroup>
 
-
-
       </div>
     )
   }

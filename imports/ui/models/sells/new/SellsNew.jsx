@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ActionPayment from 'material-ui/svg-icons/action/payment';
+import PayIcon from 'material-ui/svg-icons/maps/local-atm';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
@@ -55,7 +55,7 @@ export default class SellsNew extends React.Component{
           transitionAppearTimeout={400}>
 
           <FloatingActionButton key='fab-sell' secondary={true} disabled={false} onTouchTap={this.toggleRight} className="sell-fab">
-            <ActionPayment className="icon"/>
+            <PayIcon className="icon"/>
           </FloatingActionButton>
         </ReactCSSTransitionGroup>
 

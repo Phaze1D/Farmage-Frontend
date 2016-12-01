@@ -27,7 +27,7 @@ const factoryYield = () => {
   let _yield = {
     _id: Random.id(),
     identifer: testIdentifer(),
-    amount: (Math.random() * 400).toPrecision(12),
+    amount: (Math.random() * 400).toFixed(8),
     createdAt: testCreated(),
     expiresAt: testExpires(),
     resource: factoryResource(),

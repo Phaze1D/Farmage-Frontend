@@ -15,7 +15,7 @@ export default class YieldsIndex extends React.Component{
   render(){
     let _yields = [];
 
-    for(let i = 0; i < 40; i++){
+    for(let i = 0; i < 20; i++){
         _yields.push(factoryYield());
     }
 
@@ -36,17 +36,14 @@ export default class YieldsIndex extends React.Component{
           leave: 'leave-index',
           appear: 'appear-index'
         } }
-        transitionEnterTimeout={800}
-        transitionLeaveTimeout={800}
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
         transitionAppear={true}
-        transitionAppearTimeout={800}>
+        transitionAppearTimeout={400}>
 
-        {/*<div className='row is-flex'>
+        <div className='row is-flex'>
           {listItems}
-        </div>*/}
-
-        <MTable/>
-
+        </div>
 
 
       </ReactCSSTransitionGroup>

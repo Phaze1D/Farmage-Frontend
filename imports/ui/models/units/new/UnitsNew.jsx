@@ -65,7 +65,7 @@ export default class UnitsNew extends React.Component{
         </div>
 
         <LToggler
-          title="Tracking"
+          title="Trackable"
           subTitle="Track the changes in the unit's amount"
           defaultToggled={this.state.tracking}
           onToggle={this.handleTracking}/>
@@ -89,7 +89,7 @@ export default class UnitsNew extends React.Component{
             <TextField
                 name="amount"
                 type="number"
-                defaultValue="0"
+                defaultValue="1"
                 hintText=""
                 floatingLabelText="Amount"
                 disabled={!this.state.tracking}

@@ -2,7 +2,11 @@ import React from 'react';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
+import IconButton from 'material-ui/IconButton';
+import Edit from 'material-ui/svg-icons/image/edit';
 import { browserHistory } from 'react-router'
+
+
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 import classnames from 'classnames';
@@ -11,7 +15,7 @@ import classnames from 'classnames';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class YieldCard extends React.Component{
+export default class InventoryCard extends React.Component{
   constructor(props){
     super(props);
   }
@@ -23,8 +27,7 @@ export default class YieldCard extends React.Component{
       amount,
       createdAt,
       expiresAt,
-      resource,
-      unit,
+      product,
       ...others
     } = this.props;
 
@@ -36,35 +39,29 @@ export default class YieldCard extends React.Component{
       title = _id;
     }
 
-    const char = resource.name.toUpperCase().charAt(0);
+    const char = product.name.toUpperCase().charAt(0);
 
     return(
       <MCard>
 
         <div className='card-top' style={{marginBottom: '8px'}}>
-          <CardTitle className='card-title' title={title} subtitle='Yield Identifer'/>
+          <CardTitle className='card-title' title={title} subtitle='Inventory Identifer'/>
         </div>
 
         <div className='cyield-info-flex'>
-          <span>Resource</span>
+          <span>Product</span>
           <MAvatar className='cyield-img'
             style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-            size={32} cha={char} src={resource.imageUrl}/>
+            size={32} cha={char} src={product.imageUrl}/>
 
-          {resource.name}
+          {product.name}
         </div>
 
         <div className='cyield-info'>
-          <span>Amount</span>
+          <span>
+            Amount
+          </span>
           {amount}
-          <div className='dspn'>
-            {resource.measurementUnit}
-          </div>
-        </div>
-
-        <div className='cyield-info sm'>
-          <span>Unit</span>
-          {unit.name}
         </div>
 
         <div className='cyield-info sm'>
@@ -89,8 +86,10 @@ export default class YieldCard extends React.Component{
         <CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Movements' secondary={true}
             onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>
-          <FlatButton className='action' label='Inventories' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/inventories')} }/>
+          <FlatButton className='action' label='Yields' secondary={true}
+            onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
+          <FlatButton className='action' label='Sells' secondary={true}
+            onTouchTap={() => {browserHistory.push('/dashboard/sells')} }/>
         </CardActions>
 
       </MCard>

@@ -24,7 +24,7 @@ export default class ProvidersIndex extends React.Component{
 
     const listItems = providers.map((person) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={person._id}>
-        <PersonCard {...person} actionLabel='Expenses' />
+        <PersonCard {...person} actionLabel='expenses' />
       </div>
     );
 
@@ -35,10 +35,10 @@ export default class ProvidersIndex extends React.Component{
           leave: 'leave-index',
           appear: 'appear-index'
         } }
-        transitionEnterTimeout={800}
-        transitionLeaveTimeout={800}
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
         transitionAppear={true}
-        transitionAppearTimeout={800}>
+        transitionAppearTimeout={400}>
 
         <div className='row is-flex'>
           {listItems}

@@ -13,7 +13,7 @@ export default class ResourcesIndex extends React.Component{
   render(){
     let resources = [];
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 20; i++){
         resources.push(factoryResource());
     }
 
@@ -34,10 +34,10 @@ export default class ResourcesIndex extends React.Component{
           leave: 'leave-index',
           appear: 'appear-index'
         } }
-        transitionEnterTimeout={800}
-        transitionLeaveTimeout={800}
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
         transitionAppear={true}
-        transitionAppearTimeout={800}>
+        transitionAppearTimeout={400}>
 
         <div className='row is-flex'>
           {listItems}

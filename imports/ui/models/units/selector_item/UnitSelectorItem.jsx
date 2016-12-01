@@ -1,6 +1,7 @@
 import React from 'react';
-import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
-import ToggleRadioButtonUnChecked from 'material-ui/svg-icons/toggle/radio-button-unchecked';
+import TrackOn from 'material-ui/svg-icons/image/lens';
+import TrackOff from 'material-ui/svg-icons/image/panorama-fish-eye';
+
 
 
 let UnitSelectorItem = (props) => (
@@ -12,8 +13,8 @@ let UnitSelectorItem = (props) => (
             Unit Name
             <span> Amount - 12 </span>
           </h3>
-          <h5>Tracking</h5>
-          <ToggleRadioButtonChecked/>
+          <h5>Trackable</h5>
+          <TrackOn style={{fill: 'rgb(101,31,255)'}}/>
         </div>
 
         <div className='extra-info'>
