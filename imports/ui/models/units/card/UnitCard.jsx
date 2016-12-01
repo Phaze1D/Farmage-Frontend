@@ -60,9 +60,9 @@ export default class UnitCard extends React.Component{
         </div>
 
         <CardActions className='card-actions'>
-          {movementAction}
           <FlatButton className='action' label='Yields' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
           <FlatButton className='action' label='Expenses' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/expenses')} }/>
+          {movementAction}
         </CardActions>
       </MCard>
     )
