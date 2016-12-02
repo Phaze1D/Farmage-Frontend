@@ -43,9 +43,9 @@ export default class ContactInfo extends React.Component{
   render(){
     const contactBClasses = classnames('contact-button', {'highlight':this.state.forms.length > 0});
 
-    const forms = this.state.forms.map(function(key, i){
-      return( <Form key={key} type={this.props.type} onRemoveCall={() => this.handleRemoveTouch(i)} />)
-    }, this);
+    const forms = this.state.forms.map((key, i) => (
+      <Form key={key} type={this.props.type} onRemoveCall={() => this.handleRemoveTouch(i)} />
+    ));
 
     const formClass = classnames({ 'address': this.props.type}, {'telephone': !this.props.type});
 

@@ -65,7 +65,7 @@ export default class YieldCard extends React.Component{
           {resource.name}
         </div>
 
-        <div className='cyield-info lg'>
+        <div className='cyield-info'>
           <span>Amount</span>
           {amount}
           <div className='dspn'>
@@ -73,12 +73,12 @@ export default class YieldCard extends React.Component{
           </div>
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info sm'>
           <span>Unit</span>
           {unit.name}
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info sm'>
           <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -87,7 +87,7 @@ export default class YieldCard extends React.Component{
           }).format(createdAt)}
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info sm'>
           <span>Expiration Date</span>
           {expireDateString}
         </div>

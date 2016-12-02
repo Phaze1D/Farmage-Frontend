@@ -68,14 +68,14 @@ export default class InventoryCard extends React.Component{
           {product.name}
         </div>
 
-        <div className='cyield-info lg'>
+        <div className='cyield-info'>
           <span>
             Amount
           </span>
           {amount}
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info sm'>
           <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -84,7 +84,7 @@ export default class InventoryCard extends React.Component{
           }).format(createdAt)}
         </div>
 
-        <div className='cyield-info' style={{flexGrow: '1'}}>
+        <div className='cyield-info sm' style={{flexGrow: '1'}}>
           <span>Expiration Date</span>
           {expireDateString}
         </div>
