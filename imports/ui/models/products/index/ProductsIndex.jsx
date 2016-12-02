@@ -22,7 +22,7 @@ export default class ProductsIndex extends React.Component{
     });
 
     const listItems = products.map((product) =>
-      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4' key={product._id}>
+      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={product._id}>
         <ProductCard {...product} />
       </div>
     );

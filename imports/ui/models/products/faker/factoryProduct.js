@@ -12,7 +12,7 @@ const testSKU = () => {
 
 const testImageUrl = () => {
   if(Math.round(Math.random()) === 0){
-    // return faker.image.image();
+    return faker.image.image();
   }
   return ;
 }

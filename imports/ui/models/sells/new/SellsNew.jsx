@@ -125,6 +125,17 @@ export default class SellsNew extends React.Component{
           </div>
         </div>
 
+        <div className='row'>
+          <div className="col-xs-12">
+            <TextField
+              name="reference"
+              type="text"
+              hintText=""
+              floatingLabelText="Custom Reference ID"
+              fullWidth={true}/>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col-xs-12">
             <TextArea
