@@ -11,17 +11,29 @@ const testTracking = () => {
 }
 
 const testActive = () => {
+  const rand = Math.round(Math.random() * 100);
+  if( rand < 30){
+    return 1;
+  }else if(rand < 50 && rand > 30){
+    return 0
+  }
   return Math.round(Math.random() * 400);
 }
 
 
 const factoryUnit = () => {
+  let mparentUnit = {}
+  if(faker.random.boolean()){
+    mparentUnit.name = testName();
+  }
+
   let unit = {
     _id: Random.id(),
     name: testName(),
-    tracking: testTracking(),
     active: testActive(),
-    parentUnit: {name: testName()}
+    activeSub: testActive(),
+    trackable: testTracking(),
+    parentUnit: mparentUnit
   }
   return unit;
 }

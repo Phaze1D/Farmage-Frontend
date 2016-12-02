@@ -17,14 +17,25 @@ import UnitSelectorItem from '../selector_item/UnitSelectorItem';
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true};
+    this.state = {tracking: true, height: 'auto'};
     this.handleTracking = this.handleTracking.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+  }
+
+  componentDidMount(){
+    const elem = document.getElementById("new-track-wrapper");
+    this.trackHeight = elem.clientHeight + 10;
+    this.setState({height: this.trackHeight + 'px'});
   }
 
 
   handleTracking(event, isChecked){
     this.setState({tracking: isChecked})
+    if(isChecked){
+      this.setState({height: this.trackHeight + 'px'});
+    }else{
+      this.setState({height: 0});
+    }
   }
 
   handleOnClose(event){
@@ -32,6 +43,9 @@ export default class UnitsNew extends React.Component{
   }
 
   render(){
+    const tStyle = {height: this.state.height}
+
+
     return(
       <MainPanel classes='container-fluid' header={
           <FormActionBar onClear={this.handleOnClose}/>
@@ -64,38 +78,42 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
+
         <LToggler
           title="Trackable"
           subTitle="Track the changes in the unit's amount"
           defaultToggled={this.state.tracking}
           onToggle={this.handleTracking}/>
 
-        <div className="row row-flex">
-          <div className='col-xs-8 sm-p-right'>
-            <TextArea
-              name="description"
-              type="text"
-              defaultValue="Initial amount"
-              floatingLabelText="Movement Notes"
-              fullWidth={true}
-              multiLine={true}
-              showCount={true}
-              maxCount={512}
-              disabled={!this.state.tracking}
-              rows={1} />
-          </div>
-
-          <div className='col-xs-4 sm-p-left'>
-            <TextField
-                name="amount"
-                type="number"
-                defaultValue="1"
-                hintText=""
-                floatingLabelText="Amount"
+        <div id="new-track-wrapper" className='track-wrapper' style={tStyle}>
+          <div className="row row-flex">
+            <div className='col-xs-8 sm-p-right'>
+              <TextArea
+                name="description"
+                type="text"
+                defaultValue="Initial amount"
+                floatingLabelText="Movement Notes"
+                fullWidth={true}
+                multiLine={true}
+                showCount={true}
+                maxCount={512}
                 disabled={!this.state.tracking}
-                fullWidth={true}/>
+                rows={1} />
+            </div>
+
+            <div className='col-xs-4 sm-p-left'>
+              <TextField
+                  name="amount"
+                  type="number"
+                  defaultValue="1"
+                  hintText=""
+                  floatingLabelText="Active"
+                  disabled={!this.state.tracking}
+                  fullWidth={true}/>
+            </div>
           </div>
         </div>
+
 
         <div className='row'>
           <div className='col-xs-12'>

@@ -1,0 +1,13 @@
+.track-wrapper{
+  height: auto;
+  overflow: hidden;
+  margin: 0 0 -10px;
+  transition-timing-function: @animation-curve-default;
+  transition-delay: @animation-delay;
+  transition-duration: @animation-duration;
+  transition-property: height;
+
+  &.hidden{
+    height: 0;
+  }
+}

@@ -38,6 +38,17 @@ export default class YieldCard extends React.Component{
 
     const char = resource.name.toUpperCase().charAt(0);
 
+    let expireDateString = null;
+    if(expiresAt){
+      expireDateString = new DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }).format(expiresAt);
+    }else{
+      expireDateString = 'Never'
+    }
+
     return(
       <MCard>
 
@@ -54,7 +65,7 @@ export default class YieldCard extends React.Component{
           {resource.name}
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info lg'>
           <span>Amount</span>
           {amount}
           <div className='dspn'>
@@ -62,12 +73,12 @@ export default class YieldCard extends React.Component{
           </div>
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Unit</span>
           {unit.name}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -76,13 +87,9 @@ export default class YieldCard extends React.Component{
           }).format(createdAt)}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Expiration Date</span>
-          {new DateTimeFormat('en-US', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-          }).format(expiresAt)}
+          {expireDateString}
         </div>
 
 

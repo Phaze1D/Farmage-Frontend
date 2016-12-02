@@ -39,6 +39,17 @@ export default class InventoryCard extends React.Component{
       title = _id;
     }
 
+    let expireDateString = null;
+    if(expiresAt){
+      expireDateString = new DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }).format(expiresAt);
+    }else{
+      expireDateString = 'Never'
+    }
+
     const char = product.name.toUpperCase().charAt(0);
 
     return(
@@ -57,14 +68,14 @@ export default class InventoryCard extends React.Component{
           {product.name}
         </div>
 
-        <div className='cyield-info'>
+        <div className='cyield-info lg'>
           <span>
             Amount
           </span>
           {amount}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info'>
           <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -73,13 +84,9 @@ export default class InventoryCard extends React.Component{
           }).format(createdAt)}
         </div>
 
-        <div className='cyield-info sm'>
+        <div className='cyield-info' style={{flexGrow: '1'}}>
           <span>Expiration Date</span>
-          {new DateTimeFormat('en-US', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-          }).format(expiresAt)}
+          {expireDateString}
         </div>
 
 
