@@ -45,14 +45,8 @@ export default class ExpenseCard extends React.Component{
 
         <div className='cresource-info ceboarder' style={{alignItems: 'center'}}>
           <div className='total' style={{fontSize: '30px'}}>
-            ${totalPrice}
+            -${totalPrice}
             <span></span>
-          </div>
-          <div className='cexpense-info'>
-            <span>Unit Price</span>
-            ${unitPrice}
-            <span>Quantity</span>
-            {quantity}
           </div>
         </div>
 
@@ -75,10 +69,15 @@ export default class ExpenseCard extends React.Component{
           </div>
         }
 
-        <div className='cyield-info' style={{marginBottom: '8px'}}>
-          <span>Unit</span>
+        <div className='cyield-info' style={{flexGrow: '1'}}>
+          <span>For Unit</span>
           {unit.name}
         </div>
+
+        <CardActions className='card-actions' style={{marginTop: '8px'}}>
+          <FlatButton className='action' label='Receipt' secondary={true}
+            onTouchTap={() => {browserHistory.push('')} }/>
+        </CardActions>
 
       </MCard>
     )

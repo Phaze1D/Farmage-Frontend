@@ -91,7 +91,7 @@ export default class ExpensesNew extends React.Component{
                 type="number"
                 className=""
                 hintText=""
-                floatingLabelText="Unit Price"
+                floatingLabelText="Unit Cost"
                 mref={(input) => this.unitPriceTF = input}
                 onChange={this.handleTotalPriceChange}
                 fullWidth={true}
@@ -121,7 +121,7 @@ export default class ExpensesNew extends React.Component{
                 hintText=""
                 value={this.state.total_price}
                 disabled={true}
-                floatingLabelText="Total Price"
+                floatingLabelText="Total Cost"
                 fullWidth={true}
                 prefix="$"
                 prefixSide="left"/>

@@ -84,18 +84,21 @@ export default class SellCard extends React.Component{
         </div>
 
         {paid ?
-          <div className='cyield-info' style={{marginBottom: '8px'}}>
+          <div className='cyield-info' style={{flexGrow: '1'}}>
             <span>Paid At</span>
             {paidS}
           </div>
           :
-          <div className='cyield-info' style={{marginBottom: '8px'}}>
+          <div className='cyield-info' style={{flexGrow: '1'}}>
             <span>Paid At</span>
             <span style={{fontSize: '14px', fontWeight: '300'}}>Not Paid</span>
           </div>
         }
 
-
+        <CardActions className='card-actions' style={{marginTop: '8px'}}>
+          <FlatButton className='action' label='Products' secondary={true}
+            onTouchTap={() => {browserHistory.push('/dashboard/products')} }/>
+        </CardActions>
       </MCard>
     )
   }
