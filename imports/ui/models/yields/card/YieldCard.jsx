@@ -2,6 +2,7 @@ import React from 'react';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
+import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import { browserHistory } from 'react-router'
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
@@ -56,14 +57,18 @@ export default class YieldCard extends React.Component{
           <CardTitle className='card-title' title={title} subtitle='Yield Identifer'/>
         </div>
 
-        <div className='cyield-info-flex'>
-          <span>Resource</span>
-          <MAvatar className='cyield-img'
-            style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-            size={32} cha={char} src={resource.imageUrl}/>
+        <EnhancedButton style={{textAlign: 'left'}}>
 
-          {resource.name}
-        </div>
+          <div className='cyield-info-flex clickable-info'>
+            <span>Resource</span>
+            <MAvatar className='cyield-img'
+              style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+              size={32} cha={char} src={resource.imageUrl}/>
+
+            {resource.name}
+          </div>
+
+        </EnhancedButton>
 
         <div className='cyield-info'>
           <span>Amount</span>
@@ -73,10 +78,13 @@ export default class YieldCard extends React.Component{
           </div>
         </div>
 
-        <div className='cyield-info sm'>
-          <span>Unit</span>
-          {unit.name}
-        </div>
+        <EnhancedButton style={{textAlign: 'left'}}>
+          <div className='cyield-info sm clickable-info'>
+            <span>From Unit</span>
+            {unit.name}
+          </div>
+        </EnhancedButton>
+
 
         <div className='cyield-info sm'>
           <span>Created Date</span>

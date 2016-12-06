@@ -1,7 +1,8 @@
 import React from 'react'
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 
@@ -60,17 +61,19 @@ export default class SellCard extends React.Component{
         </div>
 
         {customer ?
-          <div className='cyield-info-flex'>
-            <span>Customer</span>
-            <MAvatar className='cyield-img'
-              style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-              size={32} cha={char} src={customer.avatarURL}/>
+          <EnhancedButton style={{textAlign: 'left'}}>
+            <div className='cyield-info-flex clickable-info'>
+              <span>Customer</span>
+              <MAvatar className='cyield-img'
+                style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+                size={32} cha={char} src={customer.avatarURL}/>
 
-            <div>
-              {`${customer.firstName} ${lastName}`}
-              <span style={{flexGrow: '0'}}>{customer.company}</span>
+              <div>
+                {`${customer.firstName} ${lastName}`}
+                <div className='div-span'>{customer.company}</div>
+              </div>
             </div>
-          </div>
+          </EnhancedButton>
         :
           <div className='cyield-info-flex'>
             <span>Customer</span>
@@ -78,18 +81,18 @@ export default class SellCard extends React.Component{
           </div>
         }
 
-        <div className='cyield-info' style={{textTransform: 'capitalize'}}>
+        <div className='cyield-info sm' style={{textTransform: 'capitalize'}}>
           <span>Status</span>
           {status}
         </div>
 
         {paid ?
-          <div className='cyield-info' style={{flexGrow: '1'}}>
+          <div className='cyield-info sm' style={{flexGrow: '1'}}>
             <span>Paid At</span>
             {paidS}
           </div>
           :
-          <div className='cyield-info' style={{flexGrow: '1'}}>
+          <div className='cyield-info sm' style={{flexGrow: '1'}}>
             <span>Paid At</span>
             <span style={{fontSize: '14px', fontWeight: '300'}}>Not Paid</span>
           </div>
@@ -98,6 +101,8 @@ export default class SellCard extends React.Component{
         <CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Products' secondary={true}
             onTouchTap={() => {browserHistory.push('/dashboard/products')} }/>
+          <FlatButton className='action' label='Inventories' secondary={true}
+            onTouchTap={() => {browserHistory.push('/dashboard/inventories')} }/>
         </CardActions>
       </MCard>
     )

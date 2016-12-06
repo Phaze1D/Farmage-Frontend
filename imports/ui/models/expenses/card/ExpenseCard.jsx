@@ -2,6 +2,7 @@ import React from 'react'
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { browserHistory } from 'react-router'
+import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 
@@ -51,17 +52,19 @@ export default class ExpenseCard extends React.Component{
         </div>
 
         {provider ?
-          <div className='cyield-info-flex'>
-            <span>Provider</span>
-            <MAvatar className='cyield-img'
-              style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-              size={32} cha={char} src={provider.avatarURL}/>
+          <EnhancedButton style={{textAlign: 'left'}}>
+            <div className='cyield-info-flex clickable-info'>
+              <span>Provider</span>
+              <MAvatar className='cyield-img'
+                style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+                size={32} cha={char} src={provider.avatarURL}/>
 
-            <div>
-              {`${provider.firstName} ${lastName}`}
-              <span style={{flexGrow: '0'}}>{provider.company}</span>
+              <div>
+                {`${provider.firstName} ${lastName}`}
+                <div className='div-span'>{provider.company}</div>
+              </div>
             </div>
-          </div>
+          </EnhancedButton>
         :
           <div className='cyield-info-flex'>
             <span>Provider</span>
@@ -69,10 +72,12 @@ export default class ExpenseCard extends React.Component{
           </div>
         }
 
-        <div className='cyield-info' style={{flexGrow: '1'}}>
-          <span>For Unit</span>
-          {unit.name}
-        </div>
+        <EnhancedButton style={{textAlign: 'left', flexGrow: '1'}}>
+          <div className='cyield-info sm clickable-info'>
+            <span>For Unit</span>
+            {unit.name}
+          </div>
+        </EnhancedButton>
 
         <CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Receipt' secondary={true}

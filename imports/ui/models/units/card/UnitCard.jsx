@@ -34,9 +34,9 @@ export default class UnitCard extends React.Component{
 
     if(trackable){
       movementAction = <FlatButton className='action' label='Movements' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>;
-      toggleB = <TrackOn/>;
+      toggleB = null;
     }else{
-      toggleB = <TrackOff/>;
+      toggleB = null;
     }
 
     return(

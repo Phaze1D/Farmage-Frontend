@@ -3,6 +3,7 @@ import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
+import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import Edit from 'material-ui/svg-icons/image/edit';
 import { browserHistory } from 'react-router'
 
@@ -59,14 +60,16 @@ export default class InventoryCard extends React.Component{
           <CardTitle className='card-title' title={title} subtitle='Inventory Identifer'/>
         </div>
 
-        <div className='cyield-info-flex'>
-          <span>Product</span>
-          <MAvatar className='cyield-img'
-            style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-            size={32} cha={char} src={product.imageUrl}/>
+        <EnhancedButton style={{textAlign: 'left'}}>
+          <div className='cyield-info-flex clickable-info'>
+            <span>Product</span>
+            <MAvatar className='cyield-img'
+              style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+              size={32} cha={char} src={product.imageUrl}/>
 
-          {product.name}
-        </div>
+            {product.name}
+          </div>
+        </EnhancedButton>
 
         <div className='cyield-info'>
           <span>

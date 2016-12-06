@@ -1,29 +1,29 @@
 import React from 'react';
-import OUserCard from '../card/OUserCard'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {factoryOUser} from '../faker/factoryOUser.js'
+import { factoryMovement } from '../faker/factoryMovement.js';
+import MovementCard from '../card/MovementCard';
 
 
 
-export default class OUsersIndex extends React.Component{
+export default class MovementsIndex extends React.Component{
   constructor(props){
     super(props);
   }
 
   render(){
-    let ousers = [];
+    let movements = [];
 
-    for(let i = 0; i < 10; i++){
-        ousers.push(factoryOUser());
+    for(let i = 0; i < 20; i++){
+        movements.push(factoryMovement());
     }
 
-    ousers.sort((a, b) => {
-      return a.firstName.localeCompare(b.firstName)
+    movements.sort((a, b) => {
+      return a.createdAt - b.createdAt;
     });
 
-    const listItems = ousers.map((person) =>
-      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={person._id}>
-        <OUserCard {...person} actionLabel='sells' />
+    const listItems = movements.map((movement) =>
+      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={movement._id}>
+        <MovementCard {...movement} />
       </div>
     );
 
@@ -42,6 +42,7 @@ export default class OUsersIndex extends React.Component{
         <div className='row is-flex'>
           {listItems}
         </div>
+
 
       </ReactCSSTransitionGroup>
 

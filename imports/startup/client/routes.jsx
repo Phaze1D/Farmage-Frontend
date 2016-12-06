@@ -24,6 +24,7 @@ import OUsersIndex from '../../ui/models/ousers/index/OUsersIndex';
 import OUsersNew from '../../ui/models/ousers/new/OUsersNew';
 import SellsIndex from '../../ui/models/sells/index/SellsIndex';
 import SellsNew from '../../ui/models/sells/new/SellsNew';
+import MovementsIndex from '../../ui/models/movements/index/MovementsIndex';
 
 
 
@@ -45,6 +46,7 @@ export const renderRoutes = () => (
         <Route path='inventories' components={{main: InventoriesIndex, right: InventoriesNew}}/>
         <Route path='ousers' components={{main: OUsersIndex, right: OUsersNew}}/>
         <Route path='sells' components={{main: SellsIndex, right: SellsNew}}/>
+        <Route path='movements' components={{main: MovementsIndex}}/>
 
       </Route>
     </Route>
