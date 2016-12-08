@@ -13,7 +13,7 @@ import classnames from 'classnames';
 export default class UnitsIndex extends React.Component{
   constructor(props){
     super(props);
-    this.state = {showGrid: false}
+    this.state = {showGrid: true}
     this.testRootUnits = factoryUnitsTree(null, 0);
     this.toggleUFAB = this.toggleUFAB.bind(this);
   }
@@ -74,7 +74,7 @@ export default class UnitsIndex extends React.Component{
           transitionEnterTimeout={400}
           transitionLeaveTimeout={400}
           transitionAppear={true}
-          transitionAppearTimeout={100}>
+          transitionAppearTimeout={400}>
 
           {this.state.showGrid ?
             <div key='units-grid' className='row is-flex'>

@@ -255,16 +255,15 @@
   flex-direction: column;
   margin: 10px -1px;
   float: none;
+  opacity: 1;
 
   transition-timing-function: @animation-curve-default ;
   transition-delay: 0 ;
   transition-duration: @animation-duration;
   transition-property: all ;
 
-  &.with-duration{
-    top: 0 !important;
-    left: 0 !important;
-    z-index: @z-index-high;
+  &.mhide{
+    opacity: 0;
   }
 
 }

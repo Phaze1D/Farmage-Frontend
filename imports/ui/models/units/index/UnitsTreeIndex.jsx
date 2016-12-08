@@ -19,28 +19,7 @@ export default class UnitsTreeIndex extends React.Component{
     this.rootUnit = {subUnits: this.props.rootUnits}
   }
 
-  row(units){
-    return units.map((unit) =>
-      <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id}>
-        <UnitCard {...unit} showSubAction={true} onShowSubs={() => {}}/>
-      </div>
-    )
-  }
-
   render(){
-
-    // const listItems = this.props.unitsTree.map((unitT) =>
-    //     <div className='row is-flex divider' key={unitT.parentID}>
-    //       <Subheader className='unit-tree-header'>
-    //         Parent Sub Units
-    //         <IconButton>
-    //           <ActionClear/>
-    //         </IconButton>
-    //       </Subheader>
-    //       {this.row(unitT.units)}
-    //     </div>
-    //   )
-
     return(
       <TreeRow isRoot={true} unit={this.rootUnit}/>
     )
@@ -53,9 +32,7 @@ class TreeRow extends React.Component {
     super(props);
     this.state = {
       showSubs: false,
-      selectedLeft: 0,
-      selectedTop: 0,
-      reset: false
+      tranDone: false,
     }
 
     this.onClearSubs = this.onClearSubs.bind(this);
@@ -63,28 +40,52 @@ class TreeRow extends React.Component {
 
   onCellSelected(unit, event){
     const ele = event.target.closest('.col-xs-12');
-    this.setState({selectedLeft: ele.offsetLeft, selectedTop: ele.offsetTop - 10, showSubs: true, reset: true});
-    setTimeout(() => {this.setState({reset: false})}, 10);
+    this.setState({showSubs: true});
+    setTimeout(()=>{this.setState({tranDone: true})}, 450)
+    this.eleProp = {top: ele.offsetTop - 10, left: ele.offsetLeft, minHeight: ele.offsetHeight}
     this.selectedUnit = unit;
-    this.minHeight = ele.offsetHeight + 45;
   }
 
   onClearSubs(event){
-    this.setState({showSubs: false, reset: true});
     this.selectedUnit = null;
+    this.setState({showSubs: false, tranDone: false});
   }
 
   cells(units){
-    if(this.selectedUnit){
-      const traStyle = {left: `${this.state.selectedLeft}px`, top: `${this.state.selectedTop}px`}
-      const traClasses = classnames('col-xs-12 col-sm-6 col-md-4 col-lg-3', {'with-duration': !this.state.reset})
-      traStyle.position = 'absolute';
 
-      return(
-        <div className={traClasses} key={this.selectedUnit._id} style={traStyle}>
-          <UnitCard {...this.selectedUnit} showSubAction={true} />
-        </div>
-      )
+    if(this.selectedUnit){
+      const traStyle = {
+        transform: `translate(${this.eleProp.left * -1}px, ${this.eleProp.top * -1}px)`,
+        minHeight: `${this.eleProp.minHeight}px`
+      }
+
+      if(this.state.tranDone){
+        return(
+          <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' style={{minHeight: `${this.eleProp.minHeight}px`}}>
+            <UnitCard {...this.selectedUnit} showSubAction={true}/>
+          </div>
+        )
+
+      }else{
+
+        return units.map((unit) => {
+          if(this.selectedUnit._id === unit._id){
+            return(
+              <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id} style={traStyle}>
+                <UnitCard {...unit} showSubAction={true}/>
+              </div>
+            )
+          }else{
+            return(
+              <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3 mhide' key={unit._id}>
+                <UnitCard {...unit} showSubAction={true}/>
+              </div>
+            )
+          }
+        })
+
+      }
+
 
     }else{
       return units.map((unit) =>
@@ -112,7 +113,12 @@ class TreeRow extends React.Component {
 
         </Subheader>
 
-        <ReactCSSTransitionGroup component='div' className='row is-flex divider' style={{minHeight: `${this.minHeight}px`}}
+        <div className='row is-flex divider'>
+          {this.cells(this.props.unit.subUnits)}
+        </div>
+
+
+        <ReactCSSTransitionGroup
           transitionName={ {
             enter: 'enter-index',
             leave: 'leave-index',
@@ -121,15 +127,13 @@ class TreeRow extends React.Component {
           transitionEnterTimeout={400}
           transitionLeaveTimeout={400}
           transitionAppear={true}
-          transitionAppearTimeout={100}>
+          transitionAppearTimeout={400}>
 
-          {this.cells(this.props.unit.subUnits)}
+          {this.state.showSubs &&
+            <TreeRow unit={this.selectedUnit} onClearSelf={this.onClearSubs} key='subUnits'/>
+          }
 
         </ReactCSSTransitionGroup>
-
-        {this.state.showSubs &&
-          <TreeRow unit={this.selectedUnit} onClearSelf={this.onClearSubs}/>
-        }
 
       </div>
 
