@@ -38,4 +38,36 @@ const factoryUnit = () => {
   return unit;
 }
 
+
+const factoryUnitsTree = (parentU, count) => {
+  let subUnits = [];
+  if(count < 5){
+    count = count + 1;
+    let subC = Math.round(Math.random() * 10);
+
+    for(let i = 0; i < subC; i++){
+      let unit = {
+        _id: Random.id(),
+        name: testName(),
+        active: testActive(),
+        activeSub: testActive(),
+        trackable: testTracking(),
+        parentUnit: parentU
+      }
+
+      if(!unit.trackable){
+        unit.subUnits = factoryUnitsTree(unit, count)
+      }
+
+      subUnits.push(unit);
+
+    }
+
+  }
+
+  return subUnits;
+}
+
+
+exports.factoryUnitsTree = factoryUnitsTree;
 exports.factoryUnit = factoryUnit;

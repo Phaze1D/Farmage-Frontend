@@ -1,33 +1,48 @@
 import React from 'react';
+import { Random } from 'meteor/random';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {factoryUnit} from '../faker/factoryUnit.js';
+import {factoryUnit, factoryUnitsTree} from '../faker/factoryUnit.js';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import TreeIcon from '../../../structure/msvg/Barcode';
+import TreeIcon from '../../../structure/msvg/TreeIcon';
+import GridOn from 'material-ui/svg-icons/image/grid-on';
 import UnitCard from '../card/UnitCard';
+import UnitsTreeIndex from './UnitsTreeIndex';
+import classnames from 'classnames';
 
 
 export default class UnitsIndex extends React.Component{
   constructor(props){
     super(props);
+    this.state = {showGrid: false}
+    this.testRootUnits = factoryUnitsTree(null, 0);
+    this.toggleUFAB = this.toggleUFAB.bind(this);
   }
 
+  toggleUFAB(event){
+    this.setState({showGrid: !this.state.showGrid});
+  }
 
-  render(){
+  unitsArray(){
     let units = [];
-
     for(let i = 0; i < 20; i++){
         units.push(factoryUnit());
     }
-
     units.sort((a, b) => {
       return a.name.localeCompare(b.name)
     });
 
-    const listItems = units.map((unit) =>
+    return units.map((unit) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id}>
         <UnitCard {...unit} />
       </div>
     );
+  }
+
+
+  render(){
+
+
+    const ufabClasses = classnames('fab-unit-toggle', {'flip-fab': this.state.showGrid})
 
     return (
       <div>
@@ -42,11 +57,13 @@ export default class UnitsIndex extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={100}>
 
-            <FloatingActionButton key='unit-toggle' className="fab-unit-toggle">
-              <TreeIcon className="icon"/>
+            <FloatingActionButton key='unit-toggle' onTouchTap={this.toggleUFAB} className={ufabClasses}>
+              {this.state.showGrid ? <TreeIcon className='icon'/> : <GridOn className="icon-g"/>}
             </FloatingActionButton>
 
         </ReactCSSTransitionGroup>
+
+
 
         <ReactCSSTransitionGroup
           transitionName={ {
@@ -59,9 +76,13 @@ export default class UnitsIndex extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={100}>
 
-          <div className='row is-flex'>
-            {listItems}
-          </div>
+          {this.state.showGrid ?
+            <div key='units-grid' className='row is-flex'>
+              {this.unitsArray()}
+            </div>
+            :
+            <UnitsTreeIndex key='unit-tree' rootUnits={this.testRootUnits}/>
+          }
 
         </ReactCSSTransitionGroup>
       </div>

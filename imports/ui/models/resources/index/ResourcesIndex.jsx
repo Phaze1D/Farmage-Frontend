@@ -39,7 +39,7 @@ export default class ResourcesIndex extends React.Component{
         transitionAppear={true}
         transitionAppearTimeout={400}>
 
-        <div className='row is-flex'>
+        <div key='resources-index' className='row is-flex'>
           {listItems}
         </div>
 

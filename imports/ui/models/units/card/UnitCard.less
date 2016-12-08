@@ -14,8 +14,6 @@
 
   &.on{
     color: @grey-900;
-    border-bottom: 2px solid @deep-purple-a400;
-    padding-bottom: 5px;
     font-weight: 500;
     svg{
       fill: @deep-purple-a400 !important;
@@ -28,6 +26,7 @@
   font-size: 14px !important;
   font-weight: 300 !important;
 }
+
 
 .fab-unit-toggle{
   position: fixed;
@@ -68,6 +67,47 @@
       g{
         transform: scale(.25,.25);
       }
+    }
+  }
+
+  .icon-g{
+    fill: @color-accent !important;
+    height: 48px !important;
+    margin: 1px 0 0 0px;
+
+    g{
+      transform: scale(.21,.21);
+    }
+
+
+    @media(min-width:  @layout-breakpoint-sm){
+      margin: 0;
+
+      height: 54px !important;
+      g{
+        transform: scale(.25,.25);
+      }
+    }
+  }
+}
+
+.flip-fab{
+  transition-duration: @animation-duration !important;
+  transform: rotate3d(0,1,0, 180deg);
+}
+
+.sub-action{
+  position: absolute !important;
+  top: 2px;
+  right: 0;
+
+  svg{
+    fill: @color-accent !important;
+    height: 24px !important;
+    // margin: 1px 0 0 4px;
+
+    g{
+      transform: scale(.25,.25);
     }
   }
 }

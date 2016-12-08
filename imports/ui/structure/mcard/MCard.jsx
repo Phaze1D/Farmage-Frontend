@@ -27,7 +27,7 @@ export default class MCard extends React.Component{
     return(
       <div className={classes}>
         <IconMenu
-          open={true}
+          open={this.state.optionsShown}
           className='card-option-root'
           animation={MPopoverAnimation}
           onRequestChange={(open) => this.setState({optionsShown: open})}

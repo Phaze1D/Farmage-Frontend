@@ -39,7 +39,7 @@ export default class MovementCard extends React.Component{
     let char = userTitle.charAt(0);
 
     const traClasses = classnames('unit-tr', {'on': manuel});
-    let manuelB = null ;
+    let manuelB = manuel ? <ManuelOn/> : <ManuelOff/> ;
 
 
     return(

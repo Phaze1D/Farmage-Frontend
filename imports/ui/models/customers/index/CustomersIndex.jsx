@@ -43,7 +43,7 @@ export default class CustomersIndex extends React.Component{
         transitionAppear={true}
         transitionAppearTimeout={400}>
 
-        <div className='row is-flex'>
+        <div key='customers-index' className='row is-flex'>
           {listItems}
         </div>
 

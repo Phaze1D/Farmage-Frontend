@@ -2,6 +2,8 @@ import React from 'react';
 import MCard from '../../../structure/mcard/MCard';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import TreeIcon from '../../../structure/msvg/TreeIcon';
 import classnames from 'classnames';
 import {deepPurpleA400} from 'material-ui/styles/colors';
 import TrackOn from 'material-ui/svg-icons/image/lens';
@@ -13,6 +15,8 @@ import { browserHistory } from 'react-router'
 export default class UnitCard extends React.Component{
   constructor(props){
     super(props);
+
+    this.testYields = (Math.round(Math.random()) === 0)
   }
 
 
@@ -23,6 +27,8 @@ export default class UnitCard extends React.Component{
       active,
       activeSub,
       parentUnit,
+      showSubAction,
+      onShowSubs,
       ...others
     } = this.props;
 
@@ -34,9 +40,9 @@ export default class UnitCard extends React.Component{
 
     if(trackable){
       movementAction = <FlatButton className='action' label='Movements' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>;
-      toggleB = null;
+      toggleB = <TrackOn/>;
     }else{
-      toggleB = null;
+      toggleB = <TrackOff/>;
     }
 
     return(
@@ -63,15 +69,22 @@ export default class UnitCard extends React.Component{
 
         <div className='cyield-info sm' style={{flexGrow: '1'}}>
           <span>Parent</span>
-          {parentUnit.name ? parentUnit.name : 'Granja Granada'}
+          {(parentUnit && parentUnit.name) ? parentUnit.name : 'Granja Granada'}
         </div>
 
         <CardActions className='card-actions'>
-          {Math.round(Math.random()) === 0 &&
+          {this.testYields &&
             <FlatButton className='action' label='Yields' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
           }
           <FlatButton className='action' label='Expenses' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/expenses')} }/>
           {movementAction}
+
+          {showSubAction && !trackable &&
+            <IconButton className='sub-action' onTouchTap={onShowSubs}>
+              <TreeIcon/>
+            </IconButton>
+          }
+
         </CardActions>
       </MCard>
     )
