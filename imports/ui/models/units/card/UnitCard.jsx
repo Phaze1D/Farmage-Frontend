@@ -57,7 +57,7 @@ export default class UnitCard extends React.Component{
 
         {trackable ?
           <div className='cyield-info'>
-            <span style={{color: blueA100, fontWeight: '500'}} >Active</span>
+            <span>Active</span>
             {active}
           </div>:
           <div className='cyield-info sm'>
