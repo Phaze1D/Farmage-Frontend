@@ -1,7 +1,56 @@
 .unit-tree-header{
   display: flex;
   justify-content: space-between;
-  padding-right: 10px;
+}
 
 
+.tree{
+  min-height: 356px
+}
+
+.tree-row{
+  margin: 0 -15px;
+
+  .row.is-flex{
+    margin: 0 0;
+  }
+}
+
+
+.appear-tree{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.appear-tree.appear-tree-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
+}
+
+.enter-tree{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.enter-tree.enter-tree-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: @animation-delay !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
+}
+
+.leave-tree {
+  opacity: 1 !important;
+}
+
+.leave-tree.leave-tree-active {
+  opacity: 0 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
 }

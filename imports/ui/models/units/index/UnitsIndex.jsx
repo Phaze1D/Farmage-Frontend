@@ -8,18 +8,21 @@ import GridOn from 'material-ui/svg-icons/image/grid-on';
 import UnitCard from '../card/UnitCard';
 import UnitsTreeIndex from './UnitsTreeIndex';
 import classnames from 'classnames';
+import Scroll from 'react-scroll';
+
 
 
 export default class UnitsIndex extends React.Component{
   constructor(props){
     super(props);
-    this.state = {showGrid: true}
+    this.state = {showGrid: false}
     this.testRootUnits = factoryUnitsTree(null, 0);
     this.toggleUFAB = this.toggleUFAB.bind(this);
   }
 
   toggleUFAB(event){
     this.setState({showGrid: !this.state.showGrid});
+
   }
 
   unitsArray(){

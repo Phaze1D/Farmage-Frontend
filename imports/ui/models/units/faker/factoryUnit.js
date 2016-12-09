@@ -52,6 +52,7 @@ const factoryUnitsTree = (parentU, count) => {
         active: testActive(),
         activeSub: testActive(),
         trackable: testTracking(),
+        hasYields: faker.random.boolean(),
         parentUnit: parentU
       }
 

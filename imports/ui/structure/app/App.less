@@ -150,10 +150,16 @@
 }
 
 .leave-index {
+  position: absolute !important;
+  top: 10px !important;
+  width: 100%;
   opacity: 1 !important;
 }
 
 .leave-index.leave-index-active {
+  position: absolute !important;
+  top: 10px !important;
+  width: 100%;
   opacity: 0 !important;
   transition-timing-function: @animation-curve-default !important;
   transition-delay: 0 !important;
@@ -233,6 +239,7 @@
 
 
 .index-panel{
+  position: relative;
   background-color: @grey-100;
   min-height: ~"calc(100vh - 212px)";
 }
@@ -244,7 +251,7 @@
   margin: 0 -15px;
 
   &.divider{
-    border-bottom: 1px solid @grey-300;
+    // border-bottom: 1px solid @grey-300;
     padding-bottom: 25px;
     margin-bottom: 10px;
   }
@@ -266,4 +273,43 @@
     opacity: 0;
   }
 
+}
+
+
+.appear-spin{
+  transform: scale(0,0) rotate(360deg)!important;
+  transition: none !important;
+}
+
+.appear-spin.appear-spin-active {
+  transform: scale(1,1) rotate(0deg)!important;
+  transform-origin: center;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.enter-spin{
+  transform: rotate(360deg)!important;
+  transition: none !important;
+}
+
+.enter-spin.enter-spin-active {
+  transform: rotate(0deg)!important;
+  transform-origin: center;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.leave-spin {
+  position: absolute !important;
+  visibility: hidden !important;
+}
+
+.leave-spin.leave-spin-active {
+  position: absolute !important;
+  visibility: hidden !important;
 }
