@@ -47,11 +47,14 @@ class TreeRow extends React.Component {
     const ele = event.target.closest('.col-xs-12');
     const treOffset = event.target.closest('.tree').offsetTop
     this.setState({showSubs: false});
+    Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
 
     setTimeout(()=>{
-      Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
+      // Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
       this.setState({tranDone: true, showSubs: true})
     }, 450)
+
+
     this.eleProp = {top: ele.offsetTop - 10, left: ele.offsetLeft, minHeight: ele.offsetHeight}
     this.selectedUnit = unit;
     this.selectedUnit.open = true;
@@ -89,7 +92,7 @@ class TreeRow extends React.Component {
           <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' style={{minHeight: `${this.eleProp.minHeight}px`}}>
             <UnitCard {...this.selectedUnit}
               showSubAction={true}
-              subActionButton={<ActionClear/>}
+              subActionButton={<ActionClear className='clear-action'/>}
               onShowSubs={this.onClearSubs}/>
           </div>
         )
@@ -101,7 +104,7 @@ class TreeRow extends React.Component {
               <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id} style={traStyle}>
                 <UnitCard {...unit}
                   showSubAction={true}
-                  subActionButton={<ActionClear/>}/>
+                  subActionButton={<ActionClear className='clear-action'/>}/>
               </div>
             )
           }else{

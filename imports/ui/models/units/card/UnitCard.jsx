@@ -7,7 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 import classnames from 'classnames';
-import {blueA100} from 'material-ui/styles/colors';
+import {deepPurple500} from 'material-ui/styles/colors';
 import TrackOn from 'material-ui/svg-icons/image/lens';
 import TrackOff from 'material-ui/svg-icons/image/panorama-fish-eye';
 import { browserHistory } from 'react-router'
@@ -56,7 +56,7 @@ export default class UnitCard extends React.Component{
         </div>
 
         {trackable ?
-          <div className='cyield-info'>
+          <div className='cyield-info' style={{color: deepPurple500}}>
             <span>Active</span>
             {active}
           </div>:
