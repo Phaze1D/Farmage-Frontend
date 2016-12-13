@@ -9,7 +9,7 @@ import MenuItem from 'material-ui/MenuItem';
 export default class MSelectSort extends React.Component{
   constructor(props){
     super(props);
-    this.state = {ikey: {index: 0, type: true}};
+    this.state = {ikey: {index: this.props.initIndex, type: true}};
 
     this.sortHandleChange = this.sortHandleChange.bind(this);
   }
@@ -30,6 +30,7 @@ export default class MSelectSort extends React.Component{
       itemsArray,
       onChange,
       onSelected,
+      initIndex,
       ...selectProps
     } = this.props
 

@@ -40,6 +40,7 @@ export default class PersonFilter extends React.Component{
         floatingLabelText="Sort By"
         fullWidth={false}
         autoWidth={false}
+        initIndex={0}
         itemsArray={itemsArray}/>
 
         <Subheader className='filter-header'>Created Date</Subheader>
