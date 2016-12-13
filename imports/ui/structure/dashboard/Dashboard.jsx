@@ -100,7 +100,7 @@ export default class Dashboard extends React.Component{
           modal={false}
           contentClassName='filter-dialog'
           bodyClassName='body-d'
-          autoScrollBodyContent={false}
+          autoScrollBodyContent={true}
           open={this.state.dfopen}
           onRequestClose={this.toggleFilter}
         >

@@ -9,11 +9,6 @@ import ReactDOM from 'react-dom';
 
 
 
-
-const menuStyle = {
-  backgroundColor: 'red'
-}
-
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class PersonFilter extends React.Component{
@@ -27,13 +22,6 @@ export default class PersonFilter extends React.Component{
     this.sortHandleChange = this.sortHandleChange.bind(this);
     this.sitems = this.sitems.bind(this);
   }
-
-  componentDidMount() {
-    const mfilterContent = ReactDOM.findDOMNode(this.refs.mfilterContent);
-    console.log(mfilterContent.parentNode.style.maxHeight);
-    mfilterContent.style.height = mfilterContent.parentNode.style.maxHeight;
-  }
-
 
   sortHandleChange(event, index, value){
     if(this.state.ikey.index === index){
@@ -53,7 +41,11 @@ export default class PersonFilter extends React.Component{
       <MenuItem key={2} value={3} primaryText="Email"
         rightIcon={(this.state.ikey.index === 2 && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>}/>,
       <MenuItem key={3} value={4} primaryText="Company"
-        rightIcon={(this.state.ikey.index === 3 && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>}/>
+        rightIcon={(this.state.ikey.index === 3 && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>}/>,
+      <MenuItem key={4} value={4} primaryText="Created"
+        rightIcon={(this.state.ikey.index === 4 && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>}/>,
+      <MenuItem key={5} value={4} primaryText="Updated"
+        rightIcon={(this.state.ikey.index === 5 && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>}/>
     ]
   }
 
@@ -68,7 +60,7 @@ export default class PersonFilter extends React.Component{
             value={this.state.svalue}
             onChange={this.sortHandleChange}
             floatingLabelText="Sort By"
-            fullWidth={true}
+            fullWidth={false}
             autoWidth={false}
           >
             {this.sitems()}
@@ -86,7 +78,7 @@ export default class PersonFilter extends React.Component{
           className='mselect-field'
           name="created_from"
           hintText="From"
-          fullWidth={true}
+          fullWidth={false}
           onChange={ (event, date) => {this.setState({cmin: date}) } }
           formatDate={new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -98,7 +90,7 @@ export default class PersonFilter extends React.Component{
           className='mselect-field'
           name="created_to"
           hintText="To"
-          fullWidth={true}
+          fullWidth={false}
           minDate={this.state.cmin}
           disabled={this.state.cmin === null}
           formatDate={new DateTimeFormat('en-US', {
@@ -112,7 +104,7 @@ export default class PersonFilter extends React.Component{
           className='mselect-field'
           name="created_from"
           hintText="From"
-          fullWidth={true}
+          fullWidth={false}
           onChange={ (event, date) => {this.setState({umin: date}) } }
           formatDate={new DateTimeFormat('en-US', {
             day: 'numeric',
@@ -124,7 +116,7 @@ export default class PersonFilter extends React.Component{
           className='mselect-field'
           name="created_to"
           hintText="To"
-          fullWidth={true}
+          fullWidth={false}
           minDate={this.state.umin}
           disabled={this.state.umin === null}
           formatDate={new DateTimeFormat('en-US', {
