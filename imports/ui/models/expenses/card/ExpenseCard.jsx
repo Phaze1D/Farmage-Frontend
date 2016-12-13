@@ -79,10 +79,10 @@ export default class ExpenseCard extends React.Component{
           </div>
         </EnhancedButton>
 
-        <CardActions className='card-actions' style={{marginTop: '8px'}}>
+        {/*<CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Receipt' secondary={true}
             onTouchTap={() => {browserHistory.push('')} }/>
-        </CardActions>
+        </CardActions>*/}
 
       </MCard>
     )

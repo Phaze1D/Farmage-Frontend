@@ -6,6 +6,8 @@ import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import ImageTune from 'material-ui/svg-icons/image/tune';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -21,9 +23,10 @@ import MainPanel from '../main_panel/MainPanel';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false, docked: true};
+    this.state = { lopen: false, ropen: false, docked: true, dfopen: false};
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
   }
 
   toggleLeft() {
@@ -34,15 +37,35 @@ export default class Dashboard extends React.Component{
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
 
+  toggleFilter() {
+    this.setState( (prevState, props) => ({dfopen: !prevState.dfopen}) );
+  }
+
 
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        keyboardFocused={false}
+        onTouchTap={this.toggleFilter}
+      />,
+      <FlatButton
+        label="Apply"
+        secondary={true}
+        keyboardFocused={false}
+        onTouchTap={this.toggleFilter}
+      />
+    ];
+
+
     return (
       <div>
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})}/>
 
         <MainPanel
           classes='container-fluid index-panel'
-          header={<IndexToolBar toggleLeft={this.toggleLeft}/>}>
+          header={<IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter}/>}>
 
           {this.props.main}
 
@@ -70,6 +93,20 @@ export default class Dashboard extends React.Component{
               </FloatingActionButton>
             }
         </ReactCSSTransitionGroup>
+
+        <Dialog
+          title="Filters"
+          actions={actions}
+          modal={false}
+          contentClassName='filter-dialog'
+          bodyClassName='body-d'
+          autoScrollBodyContent={false}
+          open={this.state.dfopen}
+          onRequestClose={this.toggleFilter}
+        >
+          {this.props.filter}
+        </Dialog>
+
       </div>
     )
   }
@@ -85,7 +122,7 @@ const IndexToolBar = (props) => (
       <ActionSearch/>
     </IconButton>
 
-    <IconButton className='filter-button'>
+    <IconButton className='filter-button' onTouchTap={props.toggleFilter}>
       <ImageTune/>
     </IconButton>
   </div>
