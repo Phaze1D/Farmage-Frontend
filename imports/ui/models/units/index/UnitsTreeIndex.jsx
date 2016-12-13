@@ -50,7 +50,7 @@ class TreeRow extends React.Component {
     Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
 
     setTimeout(()=>{
-      // Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
+      Scroll.animateScroll.scrollTo(treOffset, {duration: 400, smooth: true});
       this.setState({tranDone: true, showSubs: true})
     }, 450)
 
