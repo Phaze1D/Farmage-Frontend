@@ -55,7 +55,7 @@ export default class InventoriesNew extends React.Component{
           <div className='col-xs-6 sm-p-right'>
             <DatePicker
               name="date_bought"
-              floatingLabelText="Created At"
+              floatingLabelText="Created Date"
               fullWidth={true}
               onChange={ (event, date) => {this.setState({minDate: date}) } }
               defaultDate={new Date()}

@@ -14,13 +14,16 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class SellsFilter extends React.Component{
   constructor(props){
     super(props);
-    this.state = {svalue: 4, stvalue: 0, pvalue: 0}
+    this.state = {
+      svalue: 4, stvalue: 0, pvalue: 0,
+      cmin: null, umin: null, pmin: null
+    }
 
     this.sortHandleChange = this.sortHandleChange.bind(this)
     this.statusHandleChange = this.statusHandleChange.bind(this);
     this.paidHandleChange = this.paidHandleChange.bind(this);
 
-    this.testStatus = ['All Status']
+    this.testStatus = ['All']
     for (var i = 0; i < 5; i++) {
       this.testStatus.push(faker.random.word())
     }
@@ -40,17 +43,17 @@ export default class SellsFilter extends React.Component{
 
   render(){
 
-    let statusArray = this.testStatus.map((status, index) =>
+    const statusArray = this.testStatus.map((status, index) =>
       <MenuItem key={index} value={index} primaryText={status} />
     )
 
     const itemsArray = [
       {primaryText: "Reference ID", value: 0},
-      {primaryText: "Total", value: 1},
+      {primaryText: "Total Price", value: 1},
       {primaryText: "Paid At", value: 2},
       {primaryText: "Customer", value: 3},
-      {primaryText: "Created At", value: 4},
-      {primaryText: "Updated At", value: 5}
+      {primaryText: "Created Date", value: 4},
+      {primaryText: "Updated Date", value: 5}
     ]
 
     return(
@@ -61,7 +64,7 @@ export default class SellsFilter extends React.Component{
         onSelected={this.sortHandleChange}
         floatingLabelText="Sort By"
         fullWidth={false}
-        autoWidth={false}
+        autoWidth={true}
         initIndex={4}
         itemsArray={itemsArray}/>
 
@@ -71,7 +74,7 @@ export default class SellsFilter extends React.Component{
           onChange={this.statusHandleChange}
           floatingLabelText="By Status"
           fullWidth={false}
-          autoWidth={false}>
+          autoWidth={true}>
 
             {statusArray}
 
@@ -84,7 +87,7 @@ export default class SellsFilter extends React.Component{
           onChange={this.paidHandleChange}
           floatingLabelText="Is Paid"
           fullWidth={false}
-          autoWidth={false}>
+          autoWidth={true}>
 
             <MenuItem key={0} value={0} primaryText='All' />
             <MenuItem key={1} value={1} primaryText='Yes' />
@@ -99,7 +102,7 @@ export default class SellsFilter extends React.Component{
           name="created_from"
           hintText="From"
           fullWidth={false}
-          onChange={ (event, date) => {this.setState({cmin: date}) } }
+          onChange={ (event, date) => {this.setState({pmin: date}) } }
           formatDate={new DateTimeFormat('en-US', {
             day: 'numeric',
             month: 'short',
@@ -111,8 +114,8 @@ export default class SellsFilter extends React.Component{
           name="created_to"
           hintText="To"
           fullWidth={false}
-          minDate={this.state.cmin}
-          disabled={this.state.cmin === null}
+          minDate={this.state.pmin}
+          disabled={this.state.pmin === null}
           formatDate={new DateTimeFormat('en-US', {
             day: 'numeric',
             month: 'short',

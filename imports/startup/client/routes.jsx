@@ -72,7 +72,7 @@ export const renderRoutes = () => (
         <Route path='resources' components={{main: ResourcesIndex, right: ResourcesNew, filter: ResourcesFilter}}/>
         <Route path='products' components={{main: ProductsIndex, right: ProductsNew, filter: ProductsFilter}}/>
         <Route path='units' components={{main: UnitsIndex, right: UnitsNew, filter: UnitsFilter}}/>
-        <Route path='yields' components={{main: YieldsIndex, right: YieldsNew, YieldsFilter}}/>
+        <Route path='yields' components={{main: YieldsIndex, right: YieldsNew, filter: YieldsFilter}}/>
         <Route path='expenses' components={{main: ExpensesIndex, right: ExpensesNew, filter: ExpensesFilter}}/>
         <Route path='inventories' components={{main: InventoriesIndex, right: InventoriesNew, filter: InventoriesFilter}}/>
         <Route path='ousers' components={{main: OUsersIndex, right: OUsersNew, filter: OUsersFilter}}/>

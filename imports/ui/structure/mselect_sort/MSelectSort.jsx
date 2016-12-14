@@ -3,6 +3,7 @@ import SelectField from 'material-ui/SelectField';
 import ArrowUp from 'material-ui/svg-icons/action/trending-up';
 import ArrowDown from 'material-ui/svg-icons/action/trending-down';
 import MenuItem from 'material-ui/MenuItem';
+import {cyan500, teal500} from 'material-ui/styles/colors';
 
 
 
@@ -36,7 +37,13 @@ export default class MSelectSort extends React.Component{
 
     const items = itemsArray.map((item, index) =>
       <MenuItem key={index} value={item.value} primaryText={item.primaryText}
-        rightIcon={(this.state.ikey.index === index && this.state.ikey.type) ? <ArrowUp /> : <ArrowDown/>} />
+        rightIcon={
+          (this.state.ikey.index === index && this.state.ikey.type) ?
+          <ArrowUp/> :
+          <ArrowDown/>
+          }
+      />
+
     );
 
     return(
@@ -46,9 +53,9 @@ export default class MSelectSort extends React.Component{
         </SelectField>
 
         {!this.state.ikey.type ?
-          <ArrowUp className='current-icon'/>
+          <ArrowUp className='current-icon' style={{fill: cyan500}}/>
           :
-          <ArrowDown className='current-icon'/>
+          <ArrowDown className='current-icon' style={{fill: teal500}}/>
         }
       </div>
     )

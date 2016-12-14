@@ -77,7 +77,7 @@ export default class MovementCard extends React.Component{
         </EnhancedButton>
 
         <div className='cyield-info sm'>
-          <span>Created At</span>
+          <span>Created Date</span>
           {new DateTimeFormat('en-US', {
             day: 'numeric',
             month: 'short',

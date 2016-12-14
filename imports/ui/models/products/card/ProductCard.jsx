@@ -54,7 +54,7 @@ export default class ProductCard extends React.Component{
                 {stock}
               </div>
               <div className='product-cinfo'>
-                <span>Price</span>
+                <span>Total Price</span>
                 ${totalPrice}
               </div>
             </div>

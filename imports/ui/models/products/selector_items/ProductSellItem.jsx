@@ -134,7 +134,7 @@ const InventoryItem = (props) => (
     </div>
 
     <div className='yield-info'>
-      <span>Created At</span>
+      <span>Created Date</span>
       11/12/2016
     </div>
 

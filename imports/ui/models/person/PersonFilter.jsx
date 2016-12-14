@@ -28,8 +28,8 @@ export default class PersonFilter extends React.Component{
       {primaryText: "Last Name", value: 1},
       {primaryText: "Email", value: 2},
       {primaryText: "Company", value: 3},
-      {primaryText: "Created At", value: 4},
-      {primaryText: "Updated At", value: 5}
+      {primaryText: "Created Date", value: 4},
+      {primaryText: "Updated Date", value: 5}
     ]
 
     return(
@@ -39,7 +39,7 @@ export default class PersonFilter extends React.Component{
         onSelected={this.sortHandleChange}
         floatingLabelText="Sort By"
         fullWidth={false}
-        autoWidth={false}
+        autoWidth={true}
         initIndex={0}
         itemsArray={itemsArray}/>
 

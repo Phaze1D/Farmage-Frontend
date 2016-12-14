@@ -25,7 +25,7 @@ export default class ExpenseCard extends React.Component{
       ...others
     } = this.props;
 
-    const title = itemName;
+    const title = `${quantity} ${itemName}`;
     let lastName = (provider && provider.lastName) ? provider.lastName : '';
     let char = provider ? char = provider.firstName.toUpperCase().charAt(0) : '';
 
