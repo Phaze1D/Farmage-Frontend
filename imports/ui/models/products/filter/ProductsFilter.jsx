@@ -28,10 +28,11 @@ export default class ProductsFilter extends React.Component{
 
     const itemsArray = [
       {primaryText: "Product Name", value: 0},
-      {primaryText: "Total Price", value: 1},
-      {primaryText: "Stock", value: 2},
-      {primaryText: "Created Date", value: 3},
-      {primaryText: "Updated Date", value: 4}
+      {primaryText: "SKU", value: 1},
+      {primaryText: "Total Price", value: 2},
+      {primaryText: "Stock", value: 3},
+      {primaryText: "Created Date", value: 4},
+      {primaryText: "Updated Date", value: 5}
     ]
 
     return(
