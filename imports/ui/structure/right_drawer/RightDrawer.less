@@ -8,10 +8,6 @@
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  transition-delay: 0s;
-  transition-timing-function: @animation-curve-default;
-  transition-duration: @animation-duration;
-  transition-property: transform;
   transform-style: preserve-3d;
   will-change: transform;
   z-index: 1302;
@@ -19,15 +15,6 @@
 
   @media(min-width: @layout-breakpoint-sm){
     width: 45%
-  }
-
-  &.open{
-    transform: translate(0, 0);
-  }
-
-  &:not(.open){
-    box-shadow: none;
-    transform: translate(100%, 0);
   }
 }
 
@@ -40,21 +27,103 @@
   background-color: rgba(0, 0, 0, 0.541176);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   will-change: opacity;
-  transition-delay: 0s;
-  transition-timing-function: @animation-curve-default;
-  transition-duration: @animation-duration;
-  transition-property: opacity;
   z-index: 1301;
   pointer-events: auto;
+}
 
-  .open{
-    opacity: 1;
-    transform: translate(0, 0);
-  }
 
-  &:not(.open){
-    transition: transform 0ms @animation-curve-default @animation-duration, opacity @animation-duration @animation-curve-default 0ms;
+.appear-right{
+  .overlay{
     opacity: 0;
-    transform: translate(-100%, 0);
+    transition: none;
   }
+
+  .right-drawer{
+    transform: translate(100%, 0);
+    transition: none;
+  }
+}
+
+.appear-right.appear-right-active {
+
+  .overlay{
+    opacity: 1;
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: opacity;
+  }
+
+  .right-drawer{
+    transform: translate(0, 0);
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: transform;
+  }
+
+}
+
+.enter-right{
+  .overlay{
+    opacity: 0;
+    transition: none;
+  }
+
+  .right-drawer{
+    transform: translate(100%, 0);
+    transition: none;
+  }
+}
+
+.enter-right.enter-right-active {
+
+  .overlay{
+    opacity: 1;
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: opacity;
+  }
+
+  .right-drawer{
+    transform: translate(0, 0);
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: transform;
+  }
+
+}
+
+.leave-right{
+  .overlay{
+    opacity: 1;
+    transition: none;
+  }
+
+  .right-drawer{
+    transform: translate(0, 0);
+    transition: none;
+  }
+}
+
+.leave-right.leave-right-active {
+
+  .overlay{
+    opacity: 0;
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: opacity;
+  }
+
+  .right-drawer{
+    transform: translate(100%, 0);
+    transition-timing-function: @animation-curve-default;
+    transition-delay: 0;
+    transition-duration: @animation-duration;
+    transition-property: transform;
+  }
+
 }

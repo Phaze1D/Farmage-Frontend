@@ -32,7 +32,6 @@ export default class YieldsNew extends React.Component{
   }
 
   handleOnClose(event){
-    this.setState({selectorOpen: false});
     this.props.onCloseRight(false);
   }
 
@@ -45,8 +44,8 @@ export default class YieldsNew extends React.Component{
 
     return(
       <MainPanel classes='container-fluid' header={
-          <FormActionBar onClear={this.handleOnClose}/>
-        }>
+        <FormActionBar onClear={this.handleOnClose}/>
+      }>
 
         <div className='row'>
           <div className='col-xs-12'>

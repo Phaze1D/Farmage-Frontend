@@ -64,22 +64,18 @@ import MovementsFilter from '../../ui/models/movements/filter/MovementsFilter';
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={Dashboard}/>
-      <Route path='dashboard' component={Dashboard}>
-        <Route path='organizations' components={{main: OrganizationsIndex, right: OrganizationsNew, filter: OrganizationsFilter}}/>
-        <Route path='customers' components={{main: CustomersIndex, right: PersonForm, filter: PersonFilter}}/>
-        <Route path='providers' components={{main: ProvidersIndex, right: PersonForm, filter: PersonFilter}}/>
-        <Route path='resources' components={{main: ResourcesIndex, right: ResourcesNew, filter: ResourcesFilter}}/>
-        <Route path='products' components={{main: ProductsIndex, right: ProductsNew, filter: ProductsFilter}}/>
-        <Route path='units' components={{main: UnitsIndex, right: UnitsNew, filter: UnitsFilter}}/>
-        <Route path='yields' components={{main: YieldsIndex, right: YieldsNew, filter: YieldsFilter}}/>
-        <Route path='expenses' components={{main: ExpensesIndex, right: ExpensesNew, filter: ExpensesFilter}}/>
-        <Route path='inventories' components={{main: InventoriesIndex, right: InventoriesNew, filter: InventoriesFilter}}/>
-        <Route path='ousers' components={{main: OUsersIndex, right: OUsersNew, filter: OUsersFilter}}/>
-        <Route path='sells' components={{main: SellsIndex, right: SellsNew, filter: SellsFilter}}/>
-        <Route path='movements' components={{main: MovementsIndex, filter: MovementsFilter}}/>
-
-      </Route>
+      <Route path='organizations' component={OrganizationsIndex}/>
+      <Route path='customers' component={CustomersIndex}/>
+      <Route path='providers' component={ProvidersIndex}/>
+      <Route path='resources' component={ResourcesIndex}/>
+      <Route path='products' component={ProductsIndex}/>
+      <Route path='units' component={UnitsIndex}/>
+      <Route path='yields' component={YieldsIndex}/>
+      <Route path='expenses' component={ExpensesIndex}/>
+      <Route path='inventories' component={InventoriesIndex}/>
+      <Route path='ousers' component={OUsersIndex}/>
+      <Route path='sells' component={SellsIndex}/>
+      <Route path='movements' component={MovementsIndex}/>
     </Route>
   </Router>
 );
