@@ -34,7 +34,10 @@ export default class SelectorButton extends React.Component{
 
   handleTitleTouch(event){
     event.stopPropagation();
-    this.props.toggleSelector(event);
+    if(!this.props.highlight){
+      this.props.toggleSelector(event);
+    }
+
   }
 
   handleIconTouch(event){
