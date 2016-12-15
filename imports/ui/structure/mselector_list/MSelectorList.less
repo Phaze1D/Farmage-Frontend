@@ -1,0 +1,94 @@
+.mselector-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media(min-width: @layout-breakpoint-sm){
+    width: 55%
+  }
+}
+
+.appear-selector-list{
+  .mselector-list{
+    @media(min-width: @layout-breakpoint-sm){
+      transform: translate(0, -50px);
+    }
+    opacity: 0 ;
+  }
+}
+
+.appear-selector-list.appear-selector-list-active {
+  .mselector-list{
+    opacity: 1 ;
+    transform: translate(0, 0);
+    transition-timing-function: @animation-curve-default ;
+    transition-delay: @animation-delay ;
+    transition-duration: @animation-duration ;
+    transition-property: opacity transform ;
+  }
+}
+
+.enter-selector-list{
+  .mselector-list{
+    @media(min-width: @layout-breakpoint-sm){
+      transform: translate(0, -50px);
+    }
+
+    opacity: 0 ;
+  }
+}
+
+.enter-selector-list.enter-selector-list-active {
+  .mselector-list{
+    transform: translate(0, 0);
+    opacity: 1 ;
+    transition-timing-function: @animation-curve-default ;
+    transition-delay: @animation-delay ;
+    transition-duration: @animation-duration ;
+    transition-property: opacity transform ;
+  }
+}
+
+.leave-selector-list {
+  .mselector-list{
+    opacity: 1 ;
+    transform: translate(0, 0px);
+  }
+}
+
+.leave-selector-list.leave-selector-list-active {
+  .mselector-list{
+    opacity: 0 ;
+    @media(min-width: @layout-breakpoint-sm){
+      transform: translate(0, -50px);
+    }
+    transition-timing-function: @animation-curve-default ;
+    transition-delay: @animation-delay ;
+    transition-duration: @animation-duration ;
+    transition-property: opacity transform ;
+  }
+}
+
+
+
+.mselector-list{
+  .shadow-3dp();
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+
+  @media(min-width: @layout-breakpoint-sm){
+    width: 90%;
+    height: 80%;
+  }
+}

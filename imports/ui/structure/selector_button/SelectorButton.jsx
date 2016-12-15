@@ -13,6 +13,9 @@ export default class SelectorButton extends React.Component{
   constructor(props){
     super(props);
     this.randomColor = randomImageColor();
+
+    this.handleTitleTouch = this.handleTitleTouch.bind(this);
+    this.handleIconTouch = this.handleIconTouch.bind(this);
   }
 
   showError(message){
@@ -26,9 +29,20 @@ export default class SelectorButton extends React.Component{
         </div>
       )
     }
-
     return null;
   }
+
+  handleTitleTouch(event){
+    event.stopPropagation();
+    this.props.toggleSelector(event);
+  }
+
+  handleIconTouch(event){
+    event.stopPropagation();
+    this.props.toggleSelector(event);
+  }
+
+
 
   render(){
     sClasses = classnames('selector-button', {'highlight': this.props.highlight})
@@ -36,7 +50,7 @@ export default class SelectorButton extends React.Component{
 
 
     return(
-      <div className={sClasses} onTouchTap={this.handleContactTouch}>
+      <div className={sClasses} onTouchTap={this.handleTitleTouch}>
         {this.props.showImage &&
           <Avatar backgroundColor={this.randomColor} style={{marginRight: '15px', padding: '1px 0 0 0px', fontSize: '16px'}} size={35}>R</Avatar>
         }
@@ -45,7 +59,7 @@ export default class SelectorButton extends React.Component{
           {this.props.title}
         </div>
 
-        <IconButton onTouchTap={this.handleAddTouch}>
+        <IconButton onTouchTap={this.handleIconTouch}>
           <ImageEdit />
         </IconButton>
 
