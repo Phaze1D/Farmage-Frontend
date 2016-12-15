@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import ImageTune from 'material-ui/svg-icons/image/tune';
+import Dialog from 'material-ui/Dialog';
 
 
 import LeftDrawer from '../left_drawer/LeftDrawer';
@@ -53,6 +54,10 @@ export default class Dashboard extends React.Component{
           {React.cloneElement(this.props.right, { onCloseRight: this.toggleRight })}
         </RightDrawer>
 
+        <FilterDialog open={this.state.fopen} onRequestClose={this.toggleFilter}>
+          {this.props.filter}
+        </FilterDialog>
+
       </MainPanel>
     )
   }
@@ -73,3 +78,25 @@ const IndexToolBar = (props) => (
     </IconButton>
   </div>
 )
+
+const FilterDialog = (props) => {
+
+  const actions = [
+    
+  ]
+
+  return(
+    <Dialog
+    title="Filters"
+    actions={actions}
+    modal={false}
+    contentClassName='filter-dialog'
+    bodyClassName='body-d'
+    autoScrollBodyContent={true}
+    open={props.open}
+    onRequestClose={props.onRequestClose}>
+
+      {props.children}
+    </Dialog>
+  )
+}
