@@ -35,10 +35,13 @@ export default class Dashboard extends React.Component{
   }
 
   render(){
+
+    const header = <IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter}/>;
+
     return(
       <MainPanel
         classes='container-fluid index-panel'
-        header={<IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter}/>}>
+        header={header}>
 
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})} />
 
@@ -47,7 +50,7 @@ export default class Dashboard extends React.Component{
         <MFAB show={this.props.showMFAB} onClicked={this.toggleRight}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
-          {this.props.right}
+          {React.cloneElement(this.props.right, { onCloseRight: this.toggleRight })}
         </RightDrawer>
 
       </MainPanel>
