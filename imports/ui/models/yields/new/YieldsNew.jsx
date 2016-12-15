@@ -32,6 +32,7 @@ export default class YieldsNew extends React.Component{
   }
 
   handleOnClose(event){
+    this.setState({selectorOpen: false});
     this.props.onCloseRight(false);
   }
 
