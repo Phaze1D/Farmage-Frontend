@@ -5,8 +5,11 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import ImageTune from 'material-ui/svg-icons/image/tune';
 
+
 import LeftDrawer from '../left_drawer/LeftDrawer';
+import RightDrawer from '../right_drawer/RightDrawer';
 import MainPanel from '../main_panel/MainPanel';
+import MFAB from './MFAB';
 
 
 
@@ -15,10 +18,20 @@ export default class Dashboard extends React.Component{
     super(props);
     this.state = { lopen: false, ropen: false, fopen: false};
     this.toggleLeft = this.toggleLeft.bind(this);
+    this.toggleRight = this.toggleRight.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
   }
 
   toggleLeft() {
     this.setState( (prevState, props) => ({lopen: !prevState.lopen}) );
+  }
+
+  toggleRight() {
+    this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
+  }
+
+  toggleFilter() {
+    this.setState( (prevState, props) => ({fopen: !prevState.fopen}) );
   }
 
   render(){
@@ -30,6 +43,12 @@ export default class Dashboard extends React.Component{
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})} />
 
         {this.props.children}
+
+        <MFAB show={this.props.showMFAB} onClicked={this.toggleRight}/>
+
+        <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
+          {this.props.right}
+        </RightDrawer>
 
       </MainPanel>
     )
