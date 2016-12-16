@@ -11,6 +11,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LeftDrawer from '../left_drawer/LeftDrawer';
 import RightDrawer from '../right_drawer/RightDrawer';
 import MainPanel from '../main_panel/MainPanel';
+import MDialog from '../mdialog/MDialog';
 import MFAB from './MFAB';
 
 
@@ -85,31 +86,29 @@ const FilterDialog = (props) => {
 
   const actions = [
     <FlatButton
+      key='cancel'
       label="Cancel"
       secondary={true}
       keyboardFocused={false}
-      onTouchTap={this.toggleFilter}
+      onTouchTap={props.onRequestClose}
     />,
     <FlatButton
+      key='apply'
       label="Apply"
       secondary={true}
       keyboardFocused={false}
-      onTouchTap={this.toggleFilter}
+      onTouchTap={props.onRequestClose}
     />
   ];
 
   return(
-    <Dialog
+    <MDialog
     title="Filters"
     actions={actions}
-    modal={false}
-    contentClassName='filter-dialog'
-    bodyClassName='body-d'
-    autoScrollBodyContent={true}
     open={props.open}
     onRequestClose={props.onRequestClose}>
 
       {props.children}
-    </Dialog>
+    </MDialog>
   )
 }
