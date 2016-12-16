@@ -29,11 +29,14 @@
 .mdialog{
   .shadow-3dp();
   width: 301px;
-  height: 70%;
   max-height: 70%;
+  height: 70%;
   overflow: hidden;
-  padding: 0 0 52px;
   border-radius: 3px;
+
+  display: flex;
+  flex-direction: column;
+
   background-color: @white;
   transition-timing-function: @animation-curve-default;
   transition-delay: 0;
@@ -63,19 +66,22 @@
     max-height: ~"calc(100% - 77px)";
     height: ~"calc(100% - 77px)";
     overflow-y: auto;
+    flex-grow: 1;
   }
 
   .actions{
-    position: absolute;
     bottom: 0;
     right: 0;
     height: 52px;
+    flex-shrink: 0;
     padding: 8px;
     width: 100%;
     background-color: @white;
     border-top: 1px solid @color-divider;
+
     display: flex;
     justify-content: flex-end;
+
   }
 
 }
