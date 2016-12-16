@@ -1,7 +1,10 @@
 import React from 'react';
-import OUserCard from '../card/OUserCard'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {factoryOUser} from '../faker/factoryOUser.js'
+import OUserCard from '../card/OUserCard'
+import OUsersNew from '../new/OUsersNew'
+import OUsersFilter from '../filter/OUsersFilter'
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
 
 
 
@@ -27,23 +30,17 @@ export default class OUsersIndex extends React.Component{
       </div>
     );
 
+    const right = <OUsersNew/>;
+    const filter = <OUsersFilter/>;
+
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'enter-index',
-          leave: 'leave-index',
-          appear: 'appear-index'
-        } }
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-        transitionAppear={true}
-        transitionAppearTimeout={400}>
+      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
 
-        <div key='ousers-index' className='row is-flex'>
+        <MVirtualGrid>
           {listItems}
-        </div>
+        </MVirtualGrid>
 
-      </ReactCSSTransitionGroup>
+      </Dashboard>
 
     );
   }

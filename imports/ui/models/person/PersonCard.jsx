@@ -55,7 +55,7 @@ export default class PersonCard extends React.Component{
 
         <CardActions className='card-actions'>
           <FlatButton className='action' label={actionLabel} secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/' + actionLabel)} }/>
+            onTouchTap={() => {browserHistory.push('/' + actionLabel)} }/>
         </CardActions>
 
       </MCard>

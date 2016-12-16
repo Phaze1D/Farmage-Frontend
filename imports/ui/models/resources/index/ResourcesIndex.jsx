@@ -1,7 +1,11 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {factoryResource} from '../faker/factoryResource.js'
 import ResourceCard from '../card/ResourceCard';
+import ResourcesNew from '../new/ResourcesNew';
+import ResourcesFilter from '../filter/ResourcesFilter';
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
+
 
 
 export default class ResourcesIndex extends React.Component{
@@ -27,23 +31,17 @@ export default class ResourcesIndex extends React.Component{
       </div>
     );
 
+    const right = <ResourcesNew/>;
+    const filter = <ResourcesFilter/>;
+
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'enter-index',
-          leave: 'leave-index',
-          appear: 'appear-index'
-        } }
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-        transitionAppear={true}
-        transitionAppearTimeout={400}>
+      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
 
-        <div key='resources-index' className='row is-flex'>
+        <MVirtualGrid>
           {listItems}
-        </div>
+        </MVirtualGrid>
 
-      </ReactCSSTransitionGroup>
+      </Dashboard>
 
     );
   }

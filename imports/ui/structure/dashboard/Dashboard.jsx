@@ -5,6 +5,7 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import ImageTune from 'material-ui/svg-icons/image/tune';
 import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 
 import LeftDrawer from '../left_drawer/LeftDrawer';
@@ -41,6 +42,7 @@ export default class Dashboard extends React.Component{
 
     return(
       <MainPanel
+        key='dashboard-main-panel'
         classes='container-fluid index-panel'
         header={header}>
 
@@ -82,8 +84,19 @@ const IndexToolBar = (props) => (
 const FilterDialog = (props) => {
 
   const actions = [
-    
-  ]
+    <FlatButton
+      label="Cancel"
+      secondary={true}
+      keyboardFocused={false}
+      onTouchTap={this.toggleFilter}
+    />,
+    <FlatButton
+      label="Apply"
+      secondary={true}
+      keyboardFocused={false}
+      onTouchTap={this.toggleFilter}
+    />
+  ];
 
   return(
     <Dialog

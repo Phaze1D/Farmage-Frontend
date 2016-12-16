@@ -12,6 +12,7 @@ export default class MVirtualGrid extends React.Component{
   render(){
     return(
       <ReactCSSTransitionGroup
+        component='div'
         transitionName={ {
           enter: 'enter-index',
           leave: 'leave-index',

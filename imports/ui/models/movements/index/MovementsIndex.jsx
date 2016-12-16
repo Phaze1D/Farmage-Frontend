@@ -1,7 +1,10 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { factoryMovement } from '../faker/factoryMovement.js';
 import MovementCard from '../card/MovementCard';
+import MovementsFilter from '../filter/MovementsFilter';
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
+
 
 
 
@@ -27,24 +30,17 @@ export default class MovementsIndex extends React.Component{
       </div>
     );
 
+    const filter = <MovementsFilter/>;
+    const right = <div></div>
+
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'enter-index',
-          leave: 'leave-index',
-          appear: 'appear-index'
-        } }
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-        transitionAppear={true}
-        transitionAppearTimeout={400}>
+      <Dashboard showMFAB={false} filter={filter} right={right} key='main-dash'>
 
-        <div key='movements-index' className='row is-flex'>
+        <MVirtualGrid>
           {listItems}
-        </div>
+        </MVirtualGrid>
 
-
-      </ReactCSSTransitionGroup>
+      </Dashboard>
 
     );
   }

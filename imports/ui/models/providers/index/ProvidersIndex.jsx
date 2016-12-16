@@ -1,7 +1,10 @@
 import React from 'react';
-import PersonCard from '../../person/PersonCard'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {factoryPerson} from '../../person/faker/factoryPerson.js'
+import PersonCard from '../../person/PersonCard';
+import PersonForm from '../../person/PersonForm';
+import PersonFilter from '../../person/PersonFilter';
+import {factoryPerson} from '../../person/faker/factoryPerson.js';
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
 
 
 
@@ -28,23 +31,18 @@ export default class ProvidersIndex extends React.Component{
       </div>
     );
 
+    const right = <PersonForm/>;
+    const filter = <PersonFilter/>;
+
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'enter-index',
-          leave: 'leave-index',
-          appear: 'appear-index'
-        } }
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-        transitionAppear={true}
-        transitionAppearTimeout={400}>
+      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
 
-        <div key='providers-index' className='row is-flex'>
+        <MVirtualGrid>
           {listItems}
-        </div>
+        </MVirtualGrid>
 
-      </ReactCSSTransitionGroup>
+      </Dashboard>
+
     );
   }
 }

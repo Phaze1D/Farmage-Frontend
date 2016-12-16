@@ -38,7 +38,7 @@ export default class UnitCard extends React.Component{
     let activeDiv = null;
 
     if(trackable){
-      movementAction = <FlatButton className='action' label='Movements' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>;
+      movementAction = <FlatButton className='action' label='Movements' secondary={true} onTouchTap={() => {browserHistory.push('/movements')} }/>;
       toggleB = <TrackOn/>;
     }else{
       toggleB = <TrackOff/>;
@@ -73,9 +73,9 @@ export default class UnitCard extends React.Component{
 
         <CardActions className='card-actions'>
           {this.props.hasYields &&
-            <FlatButton className='action' label='Yields' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
+            <FlatButton className='action' label='Yields' secondary={true} onTouchTap={() => {browserHistory.push('/yields')} }/>
           }
-          <FlatButton className='action' label='Expenses' secondary={true} onTouchTap={() => {browserHistory.push('/dashboard/expenses')} }/>
+          <FlatButton className='action' label='Expenses' secondary={true} onTouchTap={() => {browserHistory.push('/expenses')} }/>
           {movementAction}
 
           {showSubAction && !trackable &&

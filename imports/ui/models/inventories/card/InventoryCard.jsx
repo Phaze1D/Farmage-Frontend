@@ -95,11 +95,11 @@ export default class InventoryCard extends React.Component{
 
         <CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Movements' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>
+            onTouchTap={() => {browserHistory.push('/movements')} }/>
           <FlatButton className='action' label='Yields' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
+            onTouchTap={() => {browserHistory.push('/yields')} }/>
           <FlatButton className='action' label='Sells' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/sells')} }/>
+            onTouchTap={() => {browserHistory.push('/sells')} }/>
         </CardActions>
 
       </MCard>

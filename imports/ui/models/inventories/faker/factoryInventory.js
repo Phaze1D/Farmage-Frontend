@@ -16,7 +16,6 @@ const testCreated = () => {
 }
 
 const testExpires = () => {
-  console.log(faker.random.boolean());
   if(faker.random.boolean()){
     return faker.date.future();
   }

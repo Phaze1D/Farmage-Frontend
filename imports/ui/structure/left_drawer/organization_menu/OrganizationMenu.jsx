@@ -16,67 +16,67 @@ export default class OrganizationMenu extends React.Component{
           <Subheader className='sub-title'>{this.props.title}</Subheader>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/customers" className='menu-link'>
+            <Link to="/customers" className='menu-link'>
               Customers
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/providers" className='menu-link'>
+            <Link to="/providers" className='menu-link'>
               Providers
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/sells" className='menu-link'>
+            <Link to="/sells" className='menu-link'>
               Sells
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/expenses" className='menu-link'>
+            <Link to="/expenses" className='menu-link'>
               Expenses
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/products" className='menu-link'>
+            <Link to="/products" className='menu-link'>
               Products
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/inventories" className='menu-link'>
+            <Link to="/inventories" className='menu-link'>
               Inventories
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/resources" className='menu-link'>
+            <Link to="/resources" className='menu-link'>
               Resources
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/yields" className='menu-link'>
+            <Link to="/yields" className='menu-link'>
               Yields
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/units" className='menu-link'>
+            <Link to="/units" className='menu-link'>
               Units
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/movements" className='menu-link'>
+            <Link to="/movements" className='menu-link'>
               Movements
             </Link>
           </MenuItem>
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
-            <Link to="/dashboard/ousers" className='menu-link'>
+            <Link to="/ousers" className='menu-link'>
               Users
             </Link>
           </MenuItem>

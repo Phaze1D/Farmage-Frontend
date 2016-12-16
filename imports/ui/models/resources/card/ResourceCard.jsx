@@ -56,9 +56,9 @@ export default class ResourceCard extends React.Component{
             </div>
             <CardActions className='card-actions'>
               <FlatButton className='action' label='Yields' secondary={true}
-                onTouchTap={() => {browserHistory.push('/dashboard/yields')} }/>
+                onTouchTap={() => {browserHistory.push('/yields')} }/>
               <FlatButton className='action' label='Products' secondary={true}
-                onTouchTap={() => {browserHistory.push('/dashboard/products')} }/>
+                onTouchTap={() => {browserHistory.push('/products')} }/>
             </CardActions>
           </div>
       </MCard>

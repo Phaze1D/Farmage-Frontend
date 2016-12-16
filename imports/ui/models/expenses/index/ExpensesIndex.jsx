@@ -1,7 +1,11 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {factoryExpense} from '../faker/factoryExpense.js';
 import ExpenseCard from '../card/ExpenseCard';
+import ExpensesNew from '../new/ExpensesNew';
+import ExpensesFilter from '../filter/ExpensesFilter';
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
+
 
 
 export default class ExpensesIndex extends React.Component{
@@ -27,23 +31,17 @@ export default class ExpensesIndex extends React.Component{
       </div>
     );
 
+    const right = <ExpensesNew/>;
+    const filter = <ExpensesFilter/>;
+
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'enter-index',
-          leave: 'leave-index',
-          appear: 'appear-index'
-        } }
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-        transitionAppear={true}
-        transitionAppearTimeout={400}>
+      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
 
-        <div key='expenses-index' className='row is-flex'>
+        <MVirtualGrid>
           {listItems}
-        </div>
+        </MVirtualGrid>
 
-      </ReactCSSTransitionGroup>
+      </Dashboard>
 
     );
   }

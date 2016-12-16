@@ -76,7 +76,7 @@ export default class OUserCard extends React.Component{
 
         <CardActions className='card-actions'>
           <FlatButton className='action' label='Movements' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/movements')} }/>
+            onTouchTap={() => {browserHistory.push('/movements')} }/>
         </CardActions>
       </MCard>
     )

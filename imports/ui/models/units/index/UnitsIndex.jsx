@@ -6,10 +6,12 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import TreeIcon from '../../../structure/msvg/TreeIcon';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import UnitCard from '../card/UnitCard';
+import UnitsNew from '../new/UnitsNew';
+import UnitsFilter from '../filter/UnitsFilter';
 import UnitsTreeIndex from './UnitsTreeIndex';
 import classnames from 'classnames';
-import Scroll from 'react-scroll';
-
+import Dashboard from '../../../structure/dashboard/Dashboard';
+import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
 
 
 export default class UnitsIndex extends React.Component{
@@ -44,11 +46,12 @@ export default class UnitsIndex extends React.Component{
 
   render(){
 
-
     const ufabClasses = classnames('fab-unit-toggle', {'flip-fab': this.state.showGrid})
+    const right = <UnitsNew/>;
+    const filter = <UnitsFilter/>;
 
     return (
-      <div>
+      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
         <ReactCSSTransitionGroup
           transitionName={ {
             enter: 'enter-fab',
@@ -68,27 +71,27 @@ export default class UnitsIndex extends React.Component{
 
 
 
-        <ReactCSSTransitionGroup
-          transitionName={ {
-            enter: 'enter-index',
-            leave: 'leave-index',
-            appear: 'appear-index'
-          } }
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
-          transitionAppear={true}
-          transitionAppearTimeout={400}>
+        {this.state.showGrid ?
+          <MVirtualGrid >
+            {this.unitsArray()}
+          </MVirtualGrid>
+          :
+          <ReactCSSTransitionGroup
+            transitionName={ {
+              enter: 'enter-index',
+              leave: 'leave-index',
+              appear: 'appear-index'
+            } }
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={4000}
+            transitionAppear={true}
+            transitionAppearTimeout={400}>
+          <UnitsTreeIndex key='unit-tree' rootUnits={this.testRootUnits}/>
+          </ReactCSSTransitionGroup>
+        }
 
-          {this.state.showGrid ?
-            <div key='units-grid' className='row is-flex'>
-              {this.unitsArray()}
-            </div>
-            :
-            <UnitsTreeIndex key='unit-tree' rootUnits={this.testRootUnits}/>
-          }
 
-        </ReactCSSTransitionGroup>
-      </div>
+      </Dashboard>
 
     );
   }

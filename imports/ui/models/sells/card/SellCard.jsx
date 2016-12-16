@@ -100,9 +100,9 @@ export default class SellCard extends React.Component{
 
         {/*<CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Products' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/products')} }/>
+            onTouchTap={() => {browserHistory.push('/products')} }/>
           <FlatButton className='action' label='Inventories' secondary={true}
-            onTouchTap={() => {browserHistory.push('/dashboard/inventories')} }/>
+            onTouchTap={() => {browserHistory.push('/inventories')} }/>
         </CardActions>*/}
       </MCard>
     )
