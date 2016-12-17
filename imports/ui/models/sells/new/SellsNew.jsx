@@ -45,14 +45,14 @@ export default class SellsNew extends React.Component{
 
         <ReactCSSTransitionGroup
           transitionName={ {
-            enter: 'enter-fab',
-            leave: 'leave-fab',
-            appear: 'appear-fab'
+            enter: 'enter-sell-fab',
+            leave: 'leave-sell-fab',
+            appear: 'appear-sell-fab'
           } }
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
+          transitionEnterTimeout={700}
+          transitionLeaveTimeout={700}
           transitionAppear={true}
-          transitionAppearTimeout={400}>
+          transitionAppearTimeout={700}>
 
           <FloatingActionButton key='fab-sell' secondary={true} disabled={false} onTouchTap={this.toggleRight} className="sell-fab">
             <PayIcon className="icon"/>

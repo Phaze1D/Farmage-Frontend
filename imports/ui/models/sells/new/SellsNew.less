@@ -72,3 +72,44 @@
     width: 28px !important;
   }
 }
+
+.appear-sell-fab{
+  transform: scale(0,0) rotate(90deg) !important;
+  transition: none !important;
+}
+
+.appear-sell-fab.appear-sell-fab-active {
+  transform: scale(1,1) rotate(0deg)!important;
+  transform-origin: center;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 350ms !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.enter-sell-fab{
+  transform: scale(0,0) rotate(90deg)!important;
+  transition: none !important;
+}
+
+.enter-sell-fab.enter-sell-fab-active {
+  transform: scale(1,1) rotate(0deg)!important;
+  transform-origin: center;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 350ms !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
+
+.leave-sell-fab {
+  transform: scale(1,1) rotate(0deg) !important;
+}
+
+.leave-sell-fab.leave-sell-fab-active {
+  transform: scale(0,0) rotate(90deg) !important;
+  transform-origin: center;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: transform !important;
+}
