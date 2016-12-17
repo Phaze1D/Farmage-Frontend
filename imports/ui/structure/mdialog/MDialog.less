@@ -21,7 +21,7 @@
 
   &:not(.open){
     opacity: 0;
-    transition: transform 0ms @animation-curve-default @animation-duration, opacity @animation-duration @animation-curve-default 0ms;
+    transition: transform 0ms @animation-curve-default 500ms, opacity @animation-duration @animation-curve-default 0ms;
     transform: translate(-100%, 0);
   }
 }
@@ -30,7 +30,7 @@
   .shadow-3dp();
   width: 301px;
   max-height: 70%;
-  // height: 70%;
+  height: 70%;
   overflow: hidden;
   border-radius: 3px;
 

@@ -12,6 +12,7 @@ import LeftDrawer from '../left_drawer/LeftDrawer';
 import RightDrawer from '../right_drawer/RightDrawer';
 import MainPanel from '../main_panel/MainPanel';
 import MDialog from '../mdialog/MDialog';
+import MSearch from '../msearch/MSearch';
 import MFAB from './MFAB';
 
 
@@ -19,10 +20,11 @@ import MFAB from './MFAB';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false, fopen: false};
+    this.state = { lopen: false, ropen: false, fopen: false, sopen: false};
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
   }
 
   toggleLeft() {
@@ -37,15 +39,21 @@ export default class Dashboard extends React.Component{
     this.setState( (prevState, props) => ({fopen: !prevState.fopen}) );
   }
 
+  toggleSearch() {
+    this.setState( (prevState, props) => ({sopen: !prevState.sopen}) );
+  }
+
   render(){
 
-    const header = <IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter}/>;
+    const header = <IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter} toggleSearch={this.toggleSearch}/>;
 
     return(
       <MainPanel
         key='dashboard-main-panel'
         classes='container-fluid index-panel'
         header={header}>
+
+        <MSearch open={this.state.sopen} onRequestChange={this.toggleSearch}/>
 
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})} />
 
@@ -72,7 +80,7 @@ const IndexToolBar = (props) => (
       <NavigationMenu/>
     </IconButton>
 
-    <IconButton className='search-button'>
+    <IconButton className='search-button' onTouchTap={props.toggleSearch}>
       <ActionSearch/>
     </IconButton>
 
