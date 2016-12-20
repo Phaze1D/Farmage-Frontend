@@ -1,6 +1,6 @@
 .msearch-bar{
   .shadow-3dp();
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,7 +19,12 @@
 }
 
 .appear-search{
-  clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  clip-path: circle(2px at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  }
+
 }
 
 .appear-search.appear-search-active {
@@ -27,11 +32,23 @@
   transition-delay: 0;
   transition-duration: @animation-duration;
   transition-property: clip-path;
-  clip-path: circle(137% at ~"calc(100% - 96px)" center);
+
+  clip-path: circle(137% at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(137% at ~"calc(100% - 96px)" center);
+  }
+
+
 }
 
 .enter-search{
-  clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  clip-path: circle(2px at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  }
+
 }
 
 .enter-search.enter-search-active {
@@ -39,11 +56,21 @@
   transition-delay: 0;
   transition-duration: @animation-duration;
   transition-property: clip-path;
-  clip-path: circle(137% at ~"calc(100% - 96px)" center);
+
+  clip-path: circle(137% at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(137% at ~"calc(100% - 96px)" center);
+  }
+
 }
 
 .leave-search {
-  clip-path: circle(137% at ~"calc(100% - 96px)" center);
+  clip-path: circle(137% at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(137% at ~"calc(100% - 96px)" center);
+  }
 }
 
 .leave-search.leave-search-active {
@@ -51,7 +78,11 @@
   transition-delay: 0;
   transition-duration: @animation-duration;
   transition-property: clip-path;
-  clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  clip-path: circle(2px at ~"calc(100% - 80px)" center);
+
+  @media(min-width: @layout-breakpoint-sm){
+    clip-path: circle(2px at ~"calc(100% - 96px)" center);
+  }
 }
 
 .msearch-back{
@@ -66,9 +97,12 @@
   }
 
   svg{
-    fill: @color-primary-dark !important;
-    width: 27px !important;
-    height: 27px !important;
+    fill: @color-primary !important;
+
+    @media(min-width: @layout-breakpoint-sm){
+      width: 28px !important;
+      height: 28px !important;
+    }
   }
 }
 

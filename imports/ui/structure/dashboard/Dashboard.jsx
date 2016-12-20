@@ -1,4 +1,5 @@
 import React from 'react';
+import Portal from 'react-portal';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -53,7 +54,13 @@ export default class Dashboard extends React.Component{
         classes='container-fluid index-panel'
         header={header}>
 
-        <MSearch open={this.state.sopen} onRequestChange={this.toggleSearch}/>
+        <Portal isOpened={true}>
+          <MSearch
+            showOverlay={true}
+            open={this.state.sopen}
+            onRequestChange={this.toggleSearch}/>
+        </Portal>
+
 
         <LeftDrawer open={this.state.lopen} onRequestChange={(open) => this.setState({lopen: open})} />
 

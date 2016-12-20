@@ -13,8 +13,9 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
 import ResourceYieldItem from '../../resources/selector_items/ResourceYieldItem';
+import ResourceItem from '../../resources/selector_items/ResourceItem';
 import MTextField from '../../../structure/textfield/MTextField';
-import MSelectorList from '../../../structure/mselector_list/MSelectorList';
+import ResourcesSelector from '../../resources/selector_items/ResourcesSelector';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
@@ -162,10 +163,7 @@ export default class YieldsNew extends React.Component{
           transitionAppearTimeout={400}>
 
           {this.state.selectorOpen ?
-            <MSelectorList>
-
-            </MSelectorList>
-
+            <ResourcesSelector onRequestChange={this.toggleSelector}/>
             :null
           }
 

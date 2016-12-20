@@ -15,13 +15,18 @@ export default class MSearch extends React.Component{
   }
 
   render(){
+
+    const backIcon = this.props.backIcon ? this.props.backIcon : <ArrowBack/> ;
+
     return(
-      <Portal isOpened={true}>
         <div>
-          <Overlay
-            show={this.props.open}
-            className='msearch-overlay'
-            onTouchTap={this.props.onRequestChange}/>
+          {this.props.showOverlay &&
+            <Overlay
+              show={this.props.open}
+              className='msearch-overlay'
+              onTouchTap={this.props.onRequestChange}/>
+          }
+
 
           <ReactCSSTransitionGroup
           transitionName={ {
@@ -34,9 +39,9 @@ export default class MSearch extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={400}>
             {this.props.open &&
-              <div className='msearch-bar'>
+              <div className='msearch-bar' style={this.props.barStyle}>
                 <IconButton className='msearch-back' onTouchTap={this.props.onRequestChange} disableTouchRipple={true}>
-                  <ArrowBack/>
+                  {backIcon}
                 </IconButton>
                 <TextField
                   type="search"
@@ -50,7 +55,6 @@ export default class MSearch extends React.Component{
           </ReactCSSTransitionGroup>
 
         </div>
-      </Portal>
     )
   }
 }
