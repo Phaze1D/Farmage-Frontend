@@ -11,7 +11,7 @@ let UnitSelectorItem = (props) => (
         <div className='select-title'>
           <h3>
             Unit Name
-            <span> Amount - 12 </span>
+            <span> Active Amount - 12 </span>
           </h3>
           <h5>Trackable</h5>
           <TrackOn style={{fill: 'rgb(101,31,255)'}}/>

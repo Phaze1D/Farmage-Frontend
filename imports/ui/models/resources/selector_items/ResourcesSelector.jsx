@@ -1,4 +1,5 @@
 import React from 'react';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import ResourceItem from './ResourceItem';
 import SelectorHeader from '../../../structure/mselector_list/SelectorHeader';
 import MVirtualList from '../../../structure/mvirtual_list/MVirtualList';
@@ -27,7 +28,9 @@ export default class ResourcesSelector extends React.Component{
       <div className='mselector-wrapper'>
         <div className='mselector-list'>
 
-          <SelectorHeader backTouched={this.props.onRequestChange}/>
+          <SelectorHeader
+            title='Resources'
+            backTouched={this.props.onRequestChange}/>
 
           <MVirtualList>
             {items}

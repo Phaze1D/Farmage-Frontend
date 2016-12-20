@@ -1,4 +1,5 @@
 import faker from 'faker'
+import {Random} from 'meteor/random'
 
 
 const testName = () => {
@@ -18,7 +19,7 @@ const testImageUrl = () => {
 
 const factoryResource = () => {
   return {
-    _id: faker.random.uuid(),
+    _id: Random.id(),
     name: testName(),
     totalAmount: (Math.random() * 4000).toFixed(2),
     measurementUnit: testMeasurementUnit(),

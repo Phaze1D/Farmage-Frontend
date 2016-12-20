@@ -9,7 +9,7 @@ export default class MVirtualList extends React.Component{
   render(){
 
     return(
-      <div className='mvirtual-list'>
+      <div id='mvirtual-list' className='mvirtual-list'>
         {this.props.children}
       </div>
     )
