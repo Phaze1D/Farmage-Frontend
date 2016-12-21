@@ -1,5 +1,5 @@
 .mselector-wrapper{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1400;
@@ -89,7 +89,7 @@
   padding-top: 58px;
 
   @media(min-width: @layout-breakpoint-sm){
-    width: 90%;
+    width: 75%;
     height: 80%;
     padding-top: 64px;
   }
@@ -101,6 +101,7 @@
   top: 0;
   width: 100%;
   height: 58px;
+  z-index: @z-index-high;
   display: flex;
   align-items: center;
   padding: 0 5px;
@@ -145,22 +146,83 @@
   padding: 0 16px;
   align-items: center;
   cursor: pointer;
+  overflow: hidden;
   // border-bottom: 1px solid @color-divider;
 }
 
 .schecker{
   flex-shrink: 0;
   max-width: 24px !important;
-  margin: 0 16px 0 5px;
+  margin: 0 5px 0 5px;
 }
 
 .slinfo{
   flex-grow: 1;
+  flex-basis: 0;
   font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 25px;
 
   span{
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     color: @grey-500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
+}
+
+.slinfo-resp{
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+
+  div{
+    flex-grow: 1;
+    flex-basis: 0;
+    overflow: hidden;
+    min-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 25px;
+  }
+
+  span{
+    display: block;
+    font-size: 13px;
+    color: @grey-500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.slhigh{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 16px;
+  align-items: center;
+  font-size: 13px;
+  color: @grey-500;
+
+  &.on{
+    color: @deep-purple-500;
+
+    svg{
+      fill: @deep-purple-500 !important;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  svg{
+    margin: 0 0 0px 2px;
+    fill: @grey-500 !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+
 }

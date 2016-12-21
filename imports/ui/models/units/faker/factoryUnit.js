@@ -20,6 +20,12 @@ const testActive = () => {
   return Math.round(Math.random() * 400);
 }
 
+const testDescription = () => {
+  if(faker.random.boolean()){
+    return faker.lorem.paragraph();
+  }
+}
+
 
 const factoryUnit = () => {
   let mparentUnit = {}
@@ -33,6 +39,7 @@ const factoryUnit = () => {
     active: testActive(),
     activeSub: testActive(),
     trackable: testTracking(),
+    description: testDescription(),
     parentUnit: mparentUnit
   }
   return unit;

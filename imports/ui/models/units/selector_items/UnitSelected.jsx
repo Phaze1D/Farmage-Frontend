@@ -1,10 +1,12 @@
 import React from 'react';
 import TrackOn from 'material-ui/svg-icons/image/lens';
 import TrackOff from 'material-ui/svg-icons/image/panorama-fish-eye';
+import {deepPurple500} from 'material-ui/styles/colors';
 
 
 
-let UnitSelectorItem = (props) => (
+
+let UnitSelected = (props) => (
   <div className='row'>
     <div className='col-xs-12'>
       <div className='selector-item'>
@@ -14,7 +16,7 @@ let UnitSelectorItem = (props) => (
             <span> Active Amount - 12 </span>
           </h3>
           <h5>Trackable</h5>
-          <TrackOn style={{fill: 'rgb(101,31,255)'}}/>
+          <TrackOn style={{fill: deepPurple500}}/>
         </div>
 
         <div className='extra-info'>
@@ -25,4 +27,4 @@ let UnitSelectorItem = (props) => (
   </div>
 )
 
-export default UnitSelectorItem;
+export default UnitSelected;

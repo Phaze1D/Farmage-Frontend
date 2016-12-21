@@ -10,7 +10,7 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import LToggler from '../../../structure/ltoggler/LToggler';
-import UnitSelectorItem from '../selector_item/UnitSelectorItem';
+import UnitSelected from '../selector_items/UnitSelected';
 
 
 
@@ -121,7 +121,7 @@ export default class UnitsNew extends React.Component{
           </div>
         </div>
 
-      <UnitSelectorItem/>
+      <UnitSelected/>
 
       </MainPanel>
     )

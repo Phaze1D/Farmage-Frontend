@@ -46,11 +46,16 @@ export default class SelectorHeader extends React.Component{
     if(!this.state.showShadow || this.state.sopen){
       style.boxShadow = 'none'
     }
+
+    const sortByItems = this.props.sortBy.map((primaryText) =>
+      <MenuItem key={primaryText} primaryText={primaryText} rightIcon={<ArrowUp />}/>
+    )
+
     return(
       <div className='list-header' style={style}>
 
         <EventListener
-          target="mvirtual-list"
+          target={this.props.vID}
           onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}
         />
 
@@ -79,8 +84,7 @@ export default class SelectorHeader extends React.Component{
           <MenuItem primaryText="Scan Code" leftIcon={<Camera />}/>
           <Divider/>
           <Subheader>Sort By</Subheader>
-          <MenuItem primaryText="Name" rightIcon={<ArrowUp />}/>
-          <MenuItem primaryText="Measurement Unit" rightIcon={<ArrowUp />}/>
+          {sortByItems}
 
         </IconMenu>
 

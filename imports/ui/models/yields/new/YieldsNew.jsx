@@ -11,12 +11,13 @@ import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
-import UnitSelectorItem from '../../units/selector_item/UnitSelectorItem';
+import UnitSelected from '../../units/selector_items/UnitSelected';
 import ResourceYieldItem from '../../resources/selector_items/ResourceYieldItem';
-import ResourceItem from '../../resources/selector_items/ResourceItem';
 import MTextField from '../../../structure/textfield/MTextField';
-import ResourcesSelector from '../../resources/selector_items/ResourcesSelector';
-import {randomImageColor} from '../../../structure/app/RandomColor.js';
+import ResourcesSelectorList from '../../resources/selector_items/ResourcesSelectorList';
+import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
+
+import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
 
 
 
@@ -26,19 +27,25 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class YieldsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {minDate: new Date(), selectorOpen: false}
+    this.state = {minDate: new Date(), usopen: false, rsopen: false}
 
     this.handleOnClose = this.handleOnClose.bind(this);
-    this.toggleSelector = this.toggleSelector.bind(this);
+    this.toggleUnitSelector = this.toggleUnitSelector.bind(this);
+    this.toggleResourceSelector = this.toggleResourceSelector.bind(this);
   }
 
   handleOnClose(event){
-    this.setState({selectorOpen: false});
+    this.setState({usopen: false, rsopen: false});
     this.props.onCloseRight(false);
   }
 
-  toggleSelector(event){
-    this.setState({selectorOpen: !this.state.selectorOpen});
+  toggleUnitSelector(event){
+
+    this.setState({usopen: !this.state.usopen, rsopen: false});
+  }
+
+  toggleResourceSelector(event){
+    this.setState({rsopen: !this.state.rsopen, usopen: false});
   }
 
 
@@ -107,11 +114,11 @@ export default class YieldsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resource" highlight={true} toggleSelector={this.toggleSelector}/>
+            <SelectorButton title="Resource" highlight={true} toggleSelector={this.toggleResourceSelector}/>
           </div>
         </div>
 
-        <ResourceYieldItem backgroundColor={randomImageColor()}/>
+        <ResourceYieldItem backgroundColor={alphaImageColor('Y')}/>
 
         <div className="row">
           <div className='col-xs-8 sm-p-right'>
@@ -144,11 +151,11 @@ export default class YieldsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="From Unit" highlight={true} toggleSelector={this.toggleSelector}/>
+            <SelectorButton title="From Unit" highlight={true} toggleSelector={this.toggleUnitSelector}/>
           </div>
         </div>
 
-        <UnitSelectorItem/>
+        <UnitSelected/>
 
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}
@@ -162,11 +169,28 @@ export default class YieldsNew extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={400}>
 
-          {this.state.selectorOpen ?
-            <ResourcesSelector onRequestChange={this.toggleSelector}/>
-            :null
+          {this.state.usopen &&
+            <UnitSelectorList key='us' onRequestChange={this.toggleUnitSelector} onlyOne={true}/>
           }
 
+          </ReactCSSTransitionGroup>
+        </Portal>
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.rsopen &&
+            <ResourcesSelectorList key='rs' onRequestChange={this.toggleResourceSelector} onlyOne={true}/>
+          }
 
           </ReactCSSTransitionGroup>
         </Portal>
