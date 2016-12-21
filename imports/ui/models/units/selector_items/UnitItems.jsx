@@ -88,7 +88,7 @@ export class UnitRadioItem extends React.Component{
 
     return(
       <div className='sitem' onTouchTap={this.handleRadioClick}>
-        <RadioButton onTouchTap={this.handleRadioClick} checked={this.props.checked} className='schecker'/>
+        <RadioButton onTouchTap={this.handleRadioClick} checked={this.props.checked} className='schecker' secondary={true}/>
 
         <div className='slinfo'>
           {name}

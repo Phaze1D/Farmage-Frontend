@@ -2,7 +2,7 @@ import {
   orangeA400, cyan900,
   blueA400, cyan500,
   greenA400, orange500, orange700,
-  grey100, grey300, grey400, grey500,
+  grey100, grey300, grey400, grey500, grey700,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 
@@ -38,5 +38,15 @@ export default {
   },
   paper: {
     zDepth: 3
-  }
+  },
+  checkbox: {
+    boxColor: grey700,
+    checkedColor: blueA400,
+    requiredColor: blueA400,
+  },
+  radioButton: {
+    borderColor: grey700,
+    checkedColor: blueA400,
+    requiredColor: blueA400,
+  },
 };
