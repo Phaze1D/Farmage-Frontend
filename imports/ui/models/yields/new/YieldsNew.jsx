@@ -40,7 +40,6 @@ export default class YieldsNew extends React.Component{
   }
 
   toggleUnitSelector(event){
-
     this.setState({usopen: !this.state.usopen, rsopen: false});
   }
 

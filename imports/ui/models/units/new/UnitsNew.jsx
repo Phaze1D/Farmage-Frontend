@@ -1,4 +1,6 @@
 import React from 'react';
+import Portal from 'react-portal';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
@@ -11,15 +13,19 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import LToggler from '../../../structure/ltoggler/LToggler';
 import UnitSelected from '../selector_items/UnitSelected';
+import UnitSelectorList from '../selector_items/UnitSelectorList';
+
+
 
 
 
 export default class UnitsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tracking: true, height: 'auto'};
+    this.state = {tracking: true, height: 'auto', usopen: false};
     this.handleTracking = this.handleTracking.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.toggleUnitSelector = this.toggleUnitSelector.bind(this);
   }
 
   componentDidMount(){
@@ -28,6 +34,9 @@ export default class UnitsNew extends React.Component{
     this.setState({height: this.trackHeight + 'px'});
   }
 
+  toggleUnitSelector(event){
+    this.setState({usopen: !this.state.usopen});
+  }
 
   handleTracking(event, isChecked){
     this.setState({tracking: isChecked})
@@ -40,6 +49,7 @@ export default class UnitsNew extends React.Component{
 
   handleOnClose(event){
     this.props.onCloseRight(false);
+    this.setState({usopen: false});
   }
 
   render(){
@@ -117,13 +127,37 @@ export default class UnitsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Parent Unit" highlight={true}/>
+            <SelectorButton title="Parent Unit" highlight={true} toggleSelector={this.toggleUnitSelector}/>
           </div>
         </div>
 
       <UnitSelected/>
 
+      <Portal isOpened={true}>
+        <ReactCSSTransitionGroup component={FirstChild}
+        transitionName={ {
+          enter: 'enter-selector-list',
+          leave: 'leave-selector-list',
+          appear: 'appear-selector-list'
+        } }
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
+        transitionAppear={true}
+        transitionAppearTimeout={400}>
+
+        {this.state.usopen &&
+          <UnitSelectorList key='us' onRequestChange={this.toggleUnitSelector} onlyOne={true}/>
+        }
+
+        </ReactCSSTransitionGroup>
+      </Portal>
+
       </MainPanel>
     )
   }
+}
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
 }

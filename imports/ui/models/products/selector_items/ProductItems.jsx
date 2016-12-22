@@ -1,13 +1,9 @@
 import React from 'react';
-import TrackOn from 'material-ui/svg-icons/image/lens';
-import TrackOff from 'material-ui/svg-icons/image/panorama-fish-eye';
 import Checkbox from 'material-ui/Checkbox';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import MAvatar from '../../../structure/mavatar/MAvatar';
-import {deepPurple500, grey700} from 'material-ui/styles/colors';
-import classnames from 'classnames'
 
-export class UnitCheckBoxItem extends React.Component{
+export class ProductCheckBoxItem extends React.Component{
   constructor(props){
     super(props)
     this.state = {checked: false}
@@ -28,35 +24,34 @@ export class UnitCheckBoxItem extends React.Component{
   render(){
     const {
       name,
-      trackable,
-      active,
-      activeSub,
-      parentUnit,
-      showSubAction,
-      onShowSubs,
+      sku,
+      imageUrl,
       ...others
     } = this.props;
 
+    const title = `${name}`;
+    const char = title.toUpperCase().charAt(0);
+
     return(
       <div className='sitem' onTouchTap={this.toggleChecked}>
+        <Checkbox onTouchTap={this.toggleChecked} checked={this.state.checked} className='schecker'/>
 
-        <div className='select-title'>
-          <h3>
-            Unit Name
-            <span> Active Amount - 12 </span>
-          </h3>
-          <h5>Trackable</h5>
-          <TrackOn style={{fill: 'rgb(101,31,255)'}}/>
+        <div className='slinfo'>
+          {title}
+          <span>{sku}</span>
         </div>
 
-        <Checkbox onTouchTap={this.toggleChecked} checked={this.state.checked} className='schecker'/>
+        <MAvatar className=''
+          style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+          size={38} cha={char} src={imageUrl}/>
+
       </div>
     )
   }
 }
 
 
-export class UnitRadioItem extends React.Component{
+export class ProductRadioItem extends React.Component{
   constructor(props){
     super(props)
 
@@ -74,32 +69,27 @@ export class UnitRadioItem extends React.Component{
   render(){
     const {
       name,
-      trackable,
-      active,
-      activeSub,
-      parentUnit,
-      onShowSubs,
-      description,
+      sku,
+      imageUrl,
       ...others
     } = this.props;
 
-    const traClasses = classnames('slhigh', {'on': trackable})
-    const toggleB = trackable ? <TrackOn/> : <TrackOff/>;
+    const title = `${name}`;
+    const char = title.toUpperCase().charAt(0);
+
 
     return(
       <div className='sitem' onTouchTap={this.handleRadioClick}>
         <RadioButton onTouchTap={this.handleRadioClick} checked={this.props.checked} className='schecker'/>
 
         <div className='slinfo'>
-          {name}
-          {trackable ?
-            <span style={{color: grey700}}>Active - {active}</span>
-              :
-            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
-          }
+          {title}
+          <span>{sku}</span>
         </div>
 
-        <div className={traClasses}>Trackable {toggleB}</div>
+        <MAvatar className=''
+          style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+          size={38} cha={char} src={imageUrl}/>
 
       </div>
     )

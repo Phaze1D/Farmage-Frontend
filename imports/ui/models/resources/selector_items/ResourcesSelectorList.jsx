@@ -1,7 +1,7 @@
 import React from 'react';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import {RadioButton} from 'material-ui/RadioButton';
 import {ResourceCheckBoxItem, ResourceRadioItem} from './ResourceItems';
-import SelectorHeader from '../../../structure/mselector_list/SelectorHeader';
+import SelectorHeader, {handleRadioGroup} from '../../../structure/mselector_list/SelectorHeader';
 import MVirtualList from '../../../structure/mvirtual_list/MVirtualList';
 import {factoryResource} from '../faker/factoryResource.js'
 
@@ -12,18 +12,10 @@ export default class ResourcesSelectorList extends React.Component{
     super(props);
     this.state = {count: 10, keyChecked: null};
 
-    this.handleRadioGroup = this.handleRadioGroup.bind(this);
-
     this.resources = []
     for (let i = 0; i < this.state.count; i++) {
       this.resources.push(factoryResource())
     }
-  }
-
-  handleRadioGroup(event, key){
-    event.stopPropagation();
-    key = this.state.keyChecked === key ? null : key;
-    this.setState({keyChecked: key});
   }
 
 
@@ -35,7 +27,7 @@ export default class ResourcesSelectorList extends React.Component{
           {...resource}
           key={resource._id}
           checked={resource._id === this.state.keyChecked}
-          onRadioClick={this.handleRadioGroup}/>
+          onRadioClick={handleRadioGroup.bind(this)}/>
       :
         <ResourceCheckBoxItem {...resource} key={resource._id}/>
     })

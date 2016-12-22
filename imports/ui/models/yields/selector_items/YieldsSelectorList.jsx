@@ -1,48 +1,50 @@
 import React from 'react';
 import {RadioButton} from 'material-ui/RadioButton';
-import {UnitCheckboxItem, UnitRadioItem} from './UnitItems';
+import {YieldCheckBoxItem, YieldRadioItem} from './YieldItems';
 import SelectorHeader, {handleRadioGroup} from '../../../structure/mselector_list/SelectorHeader';
 import MVirtualList from '../../../structure/mvirtual_list/MVirtualList';
-import {factoryUnit} from '../faker/factoryUnit.js'
+import {factoryYield} from '../faker/factoryYield.js'
 
 
 
-export default class UnitSelectorList extends React.Component{
+export default class YieldsSelectorList extends React.Component{
   constructor(props){
     super(props);
     this.state = {count: 10, keyChecked: null};
 
-    this.resources = []
+    this.yields = []
     for (let i = 0; i < this.state.count; i++) {
-      this.resources.push(factoryUnit())
+      this.yields.push(factoryYield())
     }
   }
 
+
   render(){
 
-    const items = this.resources.map((resource) => {
+    const items = this.yields.map((_yield) => {
       return this.props.onlyOne ?
-        <UnitRadioItem
-          {...resource}
-          key={resource._id}
-          checked={resource._id === this.state.keyChecked}
+        <YieldRadioItem
+          {..._yield}
+          key={_yield._id}
+          checked={_yield._id === this.state.keyChecked}
           onRadioClick={handleRadioGroup.bind(this)}/>
       :
-        <UnitCheckboxItem {...resource} key={resource._id}/>
+        <YieldCheckBoxItem {..._yield} key={_yield._id}/>
     })
 
-    const sortBy = ['Identifier', 'Trackable', 'Active', 'Active Sub Units']
+    const sortBy = ['Identifier', 'Created Date', 'Expiration Date', 'Amount'];
+
     return(
         <div className='mselector-wrapper'>
           <div className='mselector-list'>
 
             <SelectorHeader
-              vID='unit-list'
-              title='Units'
+              vID='_yield-list'
+              title={this.props.title}
               sortBy={sortBy}
               backTouched={this.props.onRequestChange}/>
 
-            <MVirtualList id='unit-list'>
+            <MVirtualList id='_yield-list'>
               {items}
             </MVirtualList>
 

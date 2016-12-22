@@ -1,4 +1,6 @@
 import React from 'react';
+import Portal from 'react-portal';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -11,7 +13,9 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import UnitSelected from '../../units/selector_items/UnitSelected';
-import PersonSelectorItem from '../../person/PersonSelectorItem';
+import PersonSelected from '../../person/PersonSelected';
+import PersonsSelectorList from '../../person/PersonsSelectorList';
+import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
@@ -24,9 +28,20 @@ export default class ExpensesNew extends React.Component{
   constructor(props){
     super(props);
     this.backgroundColor = randomImageColor();
-    this.state = {total_price: ''};
+    this.state = {total_price: '', usopen: false, psopen: false};
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.toggleUnitSelector = this.toggleUnitSelector.bind(this);
+    this.togglePersonSelector = this.togglePersonSelector.bind(this);
+
+  }
+
+  toggleUnitSelector(event){
+    this.setState({usopen: !this.state.usopen, psopen: false});
+  }
+
+  togglePersonSelector(event){
+    this.setState({psopen: !this.state.psopen, usopen: false});
   }
 
   handleTotalPriceChange(){
@@ -43,6 +58,7 @@ export default class ExpensesNew extends React.Component{
   }
 
   handleOnClose(event){
+    this.setState({usopen: false, psopen: false});
     this.props.onCloseRight(false);
   }
 
@@ -159,21 +175,65 @@ export default class ExpensesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Provider" highlight={true}/>
+            <SelectorButton title="Provider" highlight={true} toggleSelector={this.togglePersonSelector}/>
           </div>
         </div>
 
-        <PersonSelectorItem backgroundColor={this.backgroundColor}/>
+        <PersonSelected backgroundColor={this.backgroundColor}/>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Unit" highlight={true}/>
+            <SelectorButton title="Unit" highlight={true} toggleSelector={this.toggleUnitSelector}/>
           </div>
         </div>
 
         <UnitSelected/>
 
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.usopen &&
+            <UnitSelectorList key='us' onRequestChange={this.toggleUnitSelector} onlyOne={true}/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.psopen &&
+            <PersonsSelectorList key='ps' onRequestChange={this.togglePersonSelector} onlyOne={true} title='Providers'/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
+
       </MainPanel>
     )
   }
+}
+
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
 }

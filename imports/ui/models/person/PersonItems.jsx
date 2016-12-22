@@ -1,9 +1,9 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import MAvatar from '../../../structure/mavatar/MAvatar';
+import {RadioButton} from 'material-ui/RadioButton';
+import MAvatar from '../../structure/mavatar/MAvatar';
 
-export class ResourceCheckBoxItem extends React.Component{
+export class PersonCheckBoxItem extends React.Component{
   constructor(props){
     super(props)
     this.state = {checked: false}
@@ -22,16 +22,18 @@ export class ResourceCheckBoxItem extends React.Component{
   }
 
   render(){
-    const {
-      name,
-      measurementUnit,
-      imageUrl,
-      totalAmount,
+    let {
+      firstName,
+      lastName,
+      company,
+      email,
+      avatarURL,
       ...others
-    } = this.props;
+    } = this.props
 
-    const title = `${name}`;
-    const char = title.toUpperCase().charAt(0);
+    if(lastName === undefined) lastName = '';
+    const title = `${firstName} ${lastName}`
+    const char = title.toUpperCase().charAt(0)
 
     return(
       <div className='sitem' onTouchTap={this.toggleChecked}>
@@ -39,20 +41,20 @@ export class ResourceCheckBoxItem extends React.Component{
 
         <div className='slinfo'>
           {title}
-          <span>{measurementUnit}</span>
+          <span>{company}</span>
+          <span>{email}</span>
         </div>
 
         <MAvatar className=''
           style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-          size={38} cha={char} src={imageUrl}/>
-
+          size={38} cha={char} src={avatarURL}/>
       </div>
     )
   }
 }
 
 
-export class ResourceRadioItem extends React.Component{
+export class PersonRadioItem extends React.Component{
   constructor(props){
     super(props)
 
@@ -68,16 +70,18 @@ export class ResourceRadioItem extends React.Component{
   }
 
   render(){
-    const {
-      name,
-      measurementUnit,
-      imageUrl,
-      totalAmount,
+    let {
+      firstName,
+      lastName,
+      company,
+      email,
+      avatarURL,
       ...others
-    } = this.props;
+    } = this.props
 
-    const title = `${name}`;
-    const char = title.toUpperCase().charAt(0);
+    if(lastName === undefined) lastName = '';
+    const title = `${firstName} ${lastName}`
+    const char = title.toUpperCase().charAt(0)
 
     return(
       <div className='sitem' onTouchTap={this.handleRadioClick}>
@@ -85,13 +89,13 @@ export class ResourceRadioItem extends React.Component{
 
         <div className='slinfo'>
           {title}
-          <span>{measurementUnit}</span>
+          <span>{company}</span>
+          <span>{email}</span>
         </div>
 
         <MAvatar className=''
           style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-          size={38} cha={char} src={imageUrl}/>
-
+          size={38} cha={char} src={avatarURL}/>
       </div>
     )
   }

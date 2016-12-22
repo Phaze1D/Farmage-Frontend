@@ -119,6 +119,10 @@
   font-size: 20px;
   font-weight: 400;
   padding: 0 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 25px;
 }
 
 .lheader-b{
@@ -158,7 +162,7 @@
 
 .slinfo{
   flex-grow: 1;
-  flex-basis: 0;
+  // flex-basis: 0;
   font-size: 16px;
   overflow: hidden;
   white-space: nowrap;
@@ -173,6 +177,15 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+}
+
+.slinfo-2{
+  font-size: 14px;
+  color: @grey-700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 25px;
 }
 
 .slinfo-resp{

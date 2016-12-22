@@ -1,4 +1,6 @@
 import React from 'react';
+import Portal from 'react-portal';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -11,11 +13,9 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import TextArea from '../../../structure/textarea/TextArea';
 import ProductInvItem from '../../products/selector_items/ProductInvItem';
 import YieldInvItem from '../../yields/selector_items/YieldInvItem';
+import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
+import YieldsSelectorList from '../../yields/selector_items/YieldsSelectorList';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
-
-
-
-
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -23,13 +23,26 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class InventoriesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {minDate: new Date()}
+    this.state = {minDate: new Date(), psopen: false, ysopen: false}
     this.handleOnClose = this.handleOnClose.bind(this);
     this.productRandomColor = randomImageColor();
+
+    this.toggleProductSelector = this.toggleProductSelector.bind(this);
+    this.toggleYieldSelector = this.toggleYieldSelector.bind(this);
+
   }
 
   handleOnClose(event){
+    this.setState({psopen: false, ysopen: false});
     this.props.onCloseRight(false);
+  }
+
+  toggleYieldSelector(event){
+    this.setState({ysopen: !this.state.ysopen, psopen: false});
+  }
+
+  toggleProductSelector(event){
+    this.setState({psopen: !this.state.psopen, ysopen: false});
   }
 
   render(){
@@ -123,7 +136,7 @@ export default class InventoriesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Product" highlight={true}/>
+            <SelectorButton title="Product" highlight={true} toggleSelector={this.toggleProductSelector}/>
           </div>
         </div>
 
@@ -131,7 +144,7 @@ export default class InventoriesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true}/>
+            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
           </div>
         </div>
 
@@ -139,7 +152,7 @@ export default class InventoriesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true}/>
+            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
           </div>
         </div>
 
@@ -147,13 +160,56 @@ export default class InventoriesNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true}/>
+            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
           </div>
         </div>
 
         <YieldInvItem/>
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.psopen &&
+            <ProductsSelectorList key='ps' onRequestChange={this.toggleProductSelector} onlyOne={true}/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.ysopen &&
+            <YieldsSelectorList key='ys' onRequestChange={this.toggleYieldSelector} title='Resource Yields' onlyOne={false}/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
 
       </MainPanel>
     )
   }
+}
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
 }

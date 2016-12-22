@@ -1,4 +1,6 @@
 import React from 'react';
+import Portal from 'react-portal';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
@@ -9,6 +11,7 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import ResourceProductItem from '../../resources/selector_items/ResourceProductItem'
+import ResourcesSelectorList from '../../resources/selector_items/ResourcesSelectorList';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
@@ -19,9 +22,10 @@ export default class ProductsNew extends React.Component{
   constructor(props){
     super(props);
     this.backgroundColor = randomImageColor()
-    this.state = {total_price: ''}
+    this.state = {total_price: '', rsopen: false}
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.toggleResourceSelector = this.toggleResourceSelector.bind(this);
   }
 
   handleTotalPriceChange(){
@@ -36,6 +40,11 @@ export default class ProductsNew extends React.Component{
 
   handleOnClose(event){
     this.props.onCloseRight(false);
+    this.setState({rsopen: false});
+  }
+
+  toggleResourceSelector(event){
+    this.setState({rsopen: !this.state.rsopen});
   }
 
   render(){
@@ -147,9 +156,28 @@ export default class ProductsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resources" highlight={true}/>
+            <SelectorButton title="Resources" highlight={true} toggleSelector={this.toggleResourceSelector}/>
           </div>
         </div>
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.rsopen &&
+            <ResourcesSelectorList key='rs' onRequestChange={this.toggleResourceSelector} onlyOne={false}/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
 
         <ResourceProductItem backgroundColor={this.backgroundColor}/>
 
@@ -161,4 +189,9 @@ export default class ProductsNew extends React.Component{
       </MainPanel>
     )
   }
+}
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
 }

@@ -4,7 +4,7 @@ import Avatar from 'material-ui/Avatar';
 
 
 
-let PersonSelectorItem = (props) => (
+let PersonSelected = (props) => (
   <div className='row'>
     <div className='col-xs-12'>
       <div className='selector-item'>
@@ -21,4 +21,4 @@ let PersonSelectorItem = (props) => (
   </div>
 )
 
-export default PersonSelectorItem;
+export default PersonSelected;

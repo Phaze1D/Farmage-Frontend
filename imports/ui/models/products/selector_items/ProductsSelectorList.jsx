@@ -1,48 +1,50 @@
 import React from 'react';
 import {RadioButton} from 'material-ui/RadioButton';
-import {UnitCheckboxItem, UnitRadioItem} from './UnitItems';
+import {ProductCheckBoxItem, ProductRadioItem} from './ProductItems';
 import SelectorHeader, {handleRadioGroup} from '../../../structure/mselector_list/SelectorHeader';
 import MVirtualList from '../../../structure/mvirtual_list/MVirtualList';
-import {factoryUnit} from '../faker/factoryUnit.js'
+import {factoryProduct} from '../faker/factoryProduct.js'
 
 
 
-export default class UnitSelectorList extends React.Component{
+export default class ProductsSelectorList extends React.Component{
   constructor(props){
     super(props);
     this.state = {count: 10, keyChecked: null};
 
-    this.resources = []
+    this.products = []
     for (let i = 0; i < this.state.count; i++) {
-      this.resources.push(factoryUnit())
+      this.products.push(factoryProduct())
     }
   }
 
+
   render(){
 
-    const items = this.resources.map((resource) => {
+    const items = this.products.map((product) => {
       return this.props.onlyOne ?
-        <UnitRadioItem
-          {...resource}
-          key={resource._id}
-          checked={resource._id === this.state.keyChecked}
+        <ProductRadioItem
+          {...product}
+          key={product._id}
+          checked={product._id === this.state.keyChecked}
           onRadioClick={handleRadioGroup.bind(this)}/>
       :
-        <UnitCheckboxItem {...resource} key={resource._id}/>
+        <ProductCheckBoxItem {...product} key={product._id}/>
     })
 
-    const sortBy = ['Identifier', 'Trackable', 'Active', 'Active Sub Units']
+    const sortBy = ['Name', 'SKU'];
+
     return(
         <div className='mselector-wrapper'>
           <div className='mselector-list'>
 
             <SelectorHeader
-              vID='unit-list'
-              title='Units'
+              vID='product-list'
+              title='Products'
               sortBy={sortBy}
               backTouched={this.props.onRequestChange}/>
 
-            <MVirtualList id='unit-list'>
+            <MVirtualList id='product-list'>
               {items}
             </MVirtualList>
 

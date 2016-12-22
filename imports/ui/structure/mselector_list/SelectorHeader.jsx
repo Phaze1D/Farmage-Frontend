@@ -98,3 +98,11 @@ export default class SelectorHeader extends React.Component{
     )
   }
 }
+
+const handleRadioGroup = function(event, key){
+  event.stopPropagation();
+  key = this.state.keyChecked === key ? null : key;
+  this.setState({keyChecked: key});
+}
+
+exports.handleRadioGroup = handleRadioGroup;

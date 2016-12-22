@@ -30,13 +30,7 @@ export default class YieldCard extends React.Component{
     } = this.props;
 
 
-    let title = '';
-    if(identifer && identifer.length > 0){
-      title = identifer;
-    }else{
-      title = _id;
-    }
-
+    let title = identifer && identifer.length > 0 ? identifer : _id;
     const char = resource.name.toUpperCase().charAt(0);
 
     let expireDateString = null;
