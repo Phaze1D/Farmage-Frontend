@@ -111,14 +111,6 @@ export default class YieldsNew extends React.Component{
           </div>
         </div>
 
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Resource" highlight={true} toggleSelector={this.toggleResourceSelector}/>
-          </div>
-        </div>
-
-        <ResourceYieldItem backgroundColor={alphaImageColor('Y')}/>
-
         <div className="row">
           <div className='col-xs-8 sm-p-right'>
             <TextArea
@@ -146,6 +138,14 @@ export default class YieldsNew extends React.Component{
                 disabled={false}/>
           </div>
         </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Resource" highlight={true} toggleSelector={this.toggleResourceSelector}/>
+          </div>
+        </div>
+
+        <ResourceYieldItem backgroundColor={alphaImageColor('Y')}/>
 
 
         <div className='row'>

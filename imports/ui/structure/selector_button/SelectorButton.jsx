@@ -6,9 +6,6 @@ import Avatar from 'material-ui/Avatar';
 
 import {randomImageColor} from '../app/RandomColor.js';
 
-
-
-
 export default class SelectorButton extends React.Component{
   constructor(props){
     super(props);
