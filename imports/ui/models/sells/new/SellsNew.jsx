@@ -7,7 +7,6 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PayIcon from 'material-ui/svg-icons/maps/local-atm';
 
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
-import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
@@ -19,16 +18,10 @@ import Details from './Details';
 export default class SellsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {discount_type: "%", psopen: false}
+    this.state = {discount_type: "%"}
 
     this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
-    this.toggleProductSelector = this.toggleProductSelector.bind(this);
-
-  }
-
-  toggleProductSelector(event){
-    this.setState({psopen: !this.state.psopen, isopen: false});
   }
 
   handleDiscountToggle(){
@@ -41,7 +34,7 @@ export default class SellsNew extends React.Component{
 
   handleOnClose(event){
     this.props.onCloseRight(false);
-    this.setState({psopen: false, isopen: false});
+    this.refs['details'].closeSelectorLists();
   }
 
 
@@ -67,7 +60,7 @@ export default class SellsNew extends React.Component{
           </FloatingActionButton>
         </ReactCSSTransitionGroup>
 
-        <Details onEditTouch={this.toggleProductSelector}/>
+        <Details ref='details'/>
 
         <div className="row">
           <div className="col-xs-12">
@@ -183,31 +176,8 @@ export default class SellsNew extends React.Component{
           </div>
         </div>
 
-        <Portal isOpened={true}>
-          <ReactCSSTransitionGroup component={FirstChild}
-          transitionName={ {
-            enter: 'enter-selector-list',
-            leave: 'leave-selector-list',
-            appear: 'appear-selector-list'
-          } }
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
-          transitionAppear={true}
-          transitionAppearTimeout={400}>
-
-          {this.state.psopen &&
-            <ProductsSelectorList key='ys' onRequestChange={this.toggleProductSelector} onlyOne={false}/>
-          }
-
-          </ReactCSSTransitionGroup>
-        </Portal>
 
       </MainPanel>
     )
   }
-}
-
-function FirstChild(props) {
-  const childrenArray = React.Children.toArray(props.children);
-  return childrenArray[0] || null;
 }

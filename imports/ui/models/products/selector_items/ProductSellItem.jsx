@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
+import InventorySelected from '../../inventories/selector_items/InventorySelected';
 import classnames from 'classnames';
 
 
@@ -79,14 +80,11 @@ export default class ProductSellItem extends React.Component{
             <div className='expandable-div' ref={(target) => {this.expandRef = target}}>
 
               <ProductDetail quantity={this.state.quantity}/>
-              <SelectorButton title="Inventories" highlight={true}/>
+              <SelectorButton title="Inventories" highlight={true} toggleSelector={this.props.toggleInventorySelector}/>
 
-              <InventoryItem quantity='1'/>
-
-              <InventoryItem quantity='1'/>
-
-              <InventoryItem quantity='1'/>
-
+              <InventorySelected quantity='1'/>
+              <InventorySelected quantity='1'/>
+              <InventorySelected quantity='1'/>
 
             </div>
           </div>
@@ -124,40 +122,4 @@ const ProductDetail = (props) => (
         defaultValue={props.quantity}
         fullWidth={false}/>
   </div>
-)
-
-const InventoryItem = (props) => (
-  <div className='yield-section'>
-    <div className='yield-info'>
-      <span>Identifier</span>
-      EG-333
-    </div>
-
-    <div className='yield-info'>
-      <span>Created Date</span>
-      11/12/2016
-    </div>
-
-    <div className='yield-info'>
-      <span>Expires At</span>
-      11/12/2016
-    </div>
-
-    <div className='yield-info'>
-      <span>Available</span>
-      113
-    </div>
-
-    <TextField
-        name="amount_taken"
-        type="number"
-        className='input-row'
-        hintText=""
-        floatingLabelText="Taken"
-        defaultValue='1'
-        floatingLabelFixed={true}
-        fullWidth={true}/>
-  </div>
-
-
 )
