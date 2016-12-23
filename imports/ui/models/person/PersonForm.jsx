@@ -25,7 +25,7 @@ export default class PersonForm extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' header={
+      <MainPanel classes='container-fluid' title={this.props.headerTitle} header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

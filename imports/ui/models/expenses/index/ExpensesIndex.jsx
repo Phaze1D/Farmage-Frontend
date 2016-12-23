@@ -35,7 +35,12 @@ export default class ExpensesIndex extends React.Component{
     const filter = <ExpensesFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Expenses'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

@@ -34,11 +34,16 @@ export default class CustomersIndex extends React.Component{
       </div>
     );
 
-    const right = <PersonForm/>;
+    const right = <PersonForm headerTitle='New Customer'/>;
     const filter = <PersonFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Customers'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

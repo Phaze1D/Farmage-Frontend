@@ -35,7 +35,12 @@ export default class ResourcesIndex extends React.Component{
     const filter = <ResourcesFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Resources'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

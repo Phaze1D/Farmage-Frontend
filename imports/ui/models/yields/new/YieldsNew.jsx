@@ -51,7 +51,7 @@ export default class YieldsNew extends React.Component{
   render(){
 
     return(
-      <MainPanel classes='container-fluid' header={
+      <MainPanel classes='container-fluid' title='New Yield' header={
         <FormActionBar onClear={this.handleOnClose}/>
       }>
 

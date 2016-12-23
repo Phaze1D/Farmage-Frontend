@@ -35,7 +35,12 @@ export default class ProductsIndex extends React.Component{
     const filter = <ProductsFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Products'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

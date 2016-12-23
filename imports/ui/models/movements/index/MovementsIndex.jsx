@@ -34,7 +34,12 @@ export default class MovementsIndex extends React.Component{
     const right = <div></div>
 
     return (
-      <Dashboard showMFAB={false} filter={filter} right={right} key='main-dash'>
+      <Dashboard
+        headerTitle='Movements'
+        showMFAB={false}
+        filter={filter}
+        right={right}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

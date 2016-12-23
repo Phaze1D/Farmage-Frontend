@@ -31,11 +31,16 @@ export default class ProvidersIndex extends React.Component{
       </div>
     );
 
-    const right = <PersonForm/>;
+    const right = <PersonForm headerTitle='New Provider'/>;
     const filter = <PersonFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Providers'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
 
         <MVirtualGrid>
           {listItems}

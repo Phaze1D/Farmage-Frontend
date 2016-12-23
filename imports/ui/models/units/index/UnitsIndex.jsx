@@ -51,7 +51,13 @@ export default class UnitsIndex extends React.Component{
     const filter = <UnitsFilter/>;
 
     return (
-      <Dashboard showMFAB={true} right={right} filter={filter} key='main-dash'>
+      <Dashboard
+        headerTitle='Units'
+        showMFAB={true}
+        right={right}
+        filter={filter}
+        key='main-dash'>
+
         <ReactCSSTransitionGroup
           transitionName={ {
             enter: 'enter-fab',

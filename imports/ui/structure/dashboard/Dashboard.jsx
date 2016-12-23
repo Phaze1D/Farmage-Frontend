@@ -52,7 +52,8 @@ export default class Dashboard extends React.Component{
       <MainPanel
         key='dashboard-main-panel'
         classes='container-fluid index-panel'
-        header={header}>
+        header={header}
+        title={this.props.headerTitle}>
 
         <Portal isOpened={true}>
           <MSearch

@@ -22,7 +22,7 @@ export default class ResourcesNew extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' header={
+      <MainPanel classes='container-fluid' title='New Resource' header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

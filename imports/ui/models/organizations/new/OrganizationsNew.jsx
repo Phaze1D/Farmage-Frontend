@@ -22,7 +22,7 @@ export default class OrganizationsNew extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' header={
+      <MainPanel classes='container-fluid' title='New Organization' header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

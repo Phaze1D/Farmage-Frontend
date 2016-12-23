@@ -25,3 +25,21 @@
     padding-left: 256px;
   }
 }
+
+.mheader-title{
+  font-size: 38px;
+  color: @white;
+  padding: 0 15px 0 50px;
+  transform: translate(0, 60px);
+  transition-timing-function: @animation-curve-default;
+  transition-delay: 0;
+  transition-duration: @animation-duration;
+  transition-property: transform ;
+
+
+  &.large{
+    padding: 0 15px 0 64px;
+    font-size: 46px;
+    transform: translate(50px, 50px);
+  }
+}
