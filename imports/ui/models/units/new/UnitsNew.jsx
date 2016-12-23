@@ -90,8 +90,8 @@ export default class UnitsNew extends React.Component{
 
 
         <LToggler
-          title="Trackable"
-          subTitle="Track the changes in the unit's amount"
+          title="Track the unit's amount"
+          subTitle="Trackable Units cannot have sub-units"
           defaultToggled={this.state.tracking}
           onToggle={this.handleTracking}/>
 

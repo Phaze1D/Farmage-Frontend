@@ -14,7 +14,9 @@ export default class UnitSelectorList extends React.Component{
 
     this.resources = []
     for (let i = 0; i < this.state.count; i++) {
-      this.resources.push(factoryUnit())
+      const r = factoryUnit();
+      r.trackable = false;
+      this.resources.push(r)
     }
   }
 
@@ -31,7 +33,7 @@ export default class UnitSelectorList extends React.Component{
         <UnitCheckboxItem {...resource} key={resource._id}/>
     })
 
-    const sortBy = ['Identifier', 'Trackable', 'Active', 'Active Sub Units']
+    const sortBy = ['Identifier', 'Active', 'Active Sub Units']
     return(
         <div className='mselector-wrapper'>
           <div className='mselector-list'>

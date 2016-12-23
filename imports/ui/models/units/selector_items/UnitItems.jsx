@@ -32,24 +32,29 @@ export class UnitCheckBoxItem extends React.Component{
       active,
       activeSub,
       parentUnit,
-      showSubAction,
       onShowSubs,
+      description,
       ...others
     } = this.props;
 
+    const traClasses = classnames('slhigh', {'on': trackable})
+    const toggleB = trackable ? <TrackOn/> : <TrackOff/>;
+
     return(
       <div className='sitem' onTouchTap={this.toggleChecked}>
+        <Checkbox onTouchTap={this.toggleChecked} checked={this.state.checked} className='schecker'/>
 
-        <div className='select-title'>
-          <h3>
-            Unit Name
-            <span> Active Amount - 12 </span>
-          </h3>
-          <h5>Trackable</h5>
-          <TrackOn style={{fill: 'rgb(101,31,255)'}}/>
+        <div className='slinfo'>
+          {name}
+          {trackable ?
+            <span style={{color: grey700}}>Active - {active}</span>
+              :
+            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
+          }
         </div>
 
-        <Checkbox onTouchTap={this.toggleChecked} checked={this.state.checked} className='schecker'/>
+        <div className={traClasses}>Trackable {toggleB}</div>
+
       </div>
     )
   }
@@ -92,14 +97,14 @@ export class UnitRadioItem extends React.Component{
 
         <div className='slinfo'>
           {name}
-          {trackable ?
-            <span style={{color: grey700}}>Active - {active}</span>
-              :
-            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
-          }
+          <div className={traClasses}>
+            Trackable {toggleB}
+          </div>
         </div>
 
-        <div className={traClasses}>Trackable {toggleB}</div>
+        <div className={traClasses}>
+          Active Sub Units - {activeSub}
+        </div>
 
       </div>
     )
