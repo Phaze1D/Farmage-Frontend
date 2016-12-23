@@ -26,9 +26,12 @@ export default class MainPanel extends React.Component{
     }
   }
 
+  handleScroll(event){
+    console.log(event);
+  }
+
 
   render(){
-    console.log('adfasfa');
     const heaClasses = classnames('mheader-title', {'large': this.state.large})
 
     return(
@@ -36,6 +39,11 @@ export default class MainPanel extends React.Component{
         <EventListener
           target={window}
           onResize={this.handleWidth}
+        />
+
+        <EventListener
+          target={this.props.targetScroll}
+          onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}
         />
       <div className='header' ref='header'>
           {this.props.header}

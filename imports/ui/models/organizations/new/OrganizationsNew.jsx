@@ -22,7 +22,11 @@ export default class OrganizationsNew extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' title='New Organization' header={
+      <MainPanel
+        classes='container-fluid'
+        title='New Organization'
+        targetScroll='right-drawer' 
+        header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

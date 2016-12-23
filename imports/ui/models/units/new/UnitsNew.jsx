@@ -57,7 +57,11 @@ export default class UnitsNew extends React.Component{
 
 
     return(
-      <MainPanel classes='container-fluid' title='New Unit' header={
+      <MainPanel
+        classes='container-fluid'
+        title='New Unit'
+        targetScroll='right-drawer'
+        header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

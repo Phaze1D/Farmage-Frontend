@@ -51,7 +51,11 @@ export default class YieldsNew extends React.Component{
   render(){
 
     return(
-      <MainPanel classes='container-fluid' title='New Yield' header={
+      <MainPanel
+        classes='container-fluid'
+        title='New Yield'
+        targetScroll='right-drawer' 
+        header={
         <FormActionBar onClear={this.handleOnClose}/>
       }>
 

@@ -40,7 +40,11 @@ export default class SellsNew extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' title='New Sell' header={
+      <MainPanel
+        classes='container-fluid'
+        title='New Sell'
+        targetScroll='right-drawer' 
+        header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

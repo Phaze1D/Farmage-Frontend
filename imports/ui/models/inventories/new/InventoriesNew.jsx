@@ -48,7 +48,11 @@ export default class InventoriesNew extends React.Component{
   render(){
 
     return(
-      <MainPanel classes='container-fluid' title='New Inventory' header={
+      <MainPanel
+        classes='container-fluid'
+        targetScroll='right-drawer'
+        title='New Inventory'
+        header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 

@@ -64,7 +64,11 @@ export default class ExpensesNew extends React.Component{
 
   render(){
     return(
-      <MainPanel classes='container-fluid' title='New Expense' header={
+      <MainPanel
+        classes='container-fluid'
+        title='New Expense'
+        targetScroll='right-drawer'
+        header={
           <FormActionBar onClear={this.handleOnClose}/>
         }>
 
