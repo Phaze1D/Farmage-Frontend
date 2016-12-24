@@ -10,7 +10,11 @@ export default class MainPanel extends React.Component{
     super(props);
     this.state = {large: false}
     this.handleWidth = this.handleWidth.bind(this)
-    this.handleScroll = this.handleScroll.bind(this);
+    this.update = this.update.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+    this.requestTick = this.requestTick.bind(this);
+    this.latestKnownScrollY = 0,
+  	this.ticking = false;
   }
 
   componentDidMount() {
@@ -27,11 +31,25 @@ export default class MainPanel extends React.Component{
     }
   }
 
-  handleScroll(event){
-    let doc = event.target;
-    let top = (doc.scrollTop !== undefined) ? doc.scrollTop : window.pageYOffset;
+  update(){
+    this.ticking = false;
+    this.refs.header.style.transform = `translate3d(0px, -${this.latestKnownScrollY}px, 0px)`
+    this.refs.header.children[0].style.transform = `translate3d(0px, ${this.latestKnownScrollY}px, 0px)`
+  }
 
-    // this.refs.header.children[0].style.transform = `translate3d(0px, ${top}px, 0px)`
+
+  onScroll(event) {
+    let doc = event.target
+  	this.latestKnownScrollY = (doc.scrollTop !== undefined) ? doc.scrollTop : window.scrollY;
+    this.update()
+  	// this.requestTick();
+  }
+
+  requestTick() {
+  	if(!this.ticking) {
+  		requestAnimationFrame(this.update);
+  	}
+  	this.ticking = true;
   }
 
 
@@ -45,9 +63,14 @@ export default class MainPanel extends React.Component{
           onResize={this.handleWidth}
         />
 
+        <EventListener
+          target={this.props.targetScroll}
+          onScroll={this.onScroll}
+        />
+
       <div className='header' ref='header'>
           {this.props.header}
-          <div className={heaClasses}>
+          <div className={heaClasses} ref='title'>
             {this.props.title}
           </div>
         </div>

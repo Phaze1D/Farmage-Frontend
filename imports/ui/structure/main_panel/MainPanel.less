@@ -3,9 +3,13 @@
   position: absolute;
   width: 100%;
   min-height: 100%;
+  padding-top: 212px;
   // background-color: @grey-200;
 
   .header{
+    position: absolute;
+    z-index: @z-index-high;
+    top: 0;
     height: 212px;
     width: 100%;
     background-color: @color-primary;
@@ -31,10 +35,10 @@
   color: @white;
   padding: 0 0px 0 50px;
   transform: translate(0, 60px);
-  transition-timing-function: @animation-curve-default;
-  transition-delay: 0;
-  transition-duration: @animation-duration;
-  transition-property: transform ;
+  // transition-timing-function: @animation-curve-default;
+  // transition-delay: 0;
+  // transition-duration: @animation-duration;
+  // transition-property: transform ;
 
 
   &.large{
@@ -47,8 +51,7 @@
 
 
 .toolbar{
-  width: 100%;
-  position: relative;
+  position: relative;;
   display: flex;
   justify-content: flex-start;
 }
