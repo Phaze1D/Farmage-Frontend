@@ -64,7 +64,7 @@ export default class MainPanel extends React.Component{
         />
 
         <EventListener
-          target='panel'
+          target={'panel' + this.props.targetScroll}
           onScroll={this.onScroll}
         />
 
@@ -74,7 +74,7 @@ export default class MainPanel extends React.Component{
             {this.props.title}
           </div>
         </div>
-        <div id='panel' className={'panel '+this.props.classes}>
+        <div id={'panel' + this.props.targetScroll} className={'panel '+this.props.classes}>
           {this.props.children}
         </div>
       </div>
