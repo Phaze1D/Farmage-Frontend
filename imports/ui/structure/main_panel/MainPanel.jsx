@@ -10,6 +10,7 @@ export default class MainPanel extends React.Component{
     super(props);
     this.state = {large: false}
     this.handleWidth = this.handleWidth.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +28,10 @@ export default class MainPanel extends React.Component{
   }
 
   handleScroll(event){
-    console.log(event);
+    let doc = event.target;
+    let top = (doc.scrollTop !== undefined) ? doc.scrollTop : window.pageYOffset;
+
+    // this.refs.header.children[0].style.transform = `translate3d(0px, ${top}px, 0px)`
   }
 
 
@@ -41,10 +45,6 @@ export default class MainPanel extends React.Component{
           onResize={this.handleWidth}
         />
 
-        <EventListener
-          target={this.props.targetScroll}
-          onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}
-        />
       <div className='header' ref='header'>
           {this.props.header}
           <div className={heaClasses}>

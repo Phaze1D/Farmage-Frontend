@@ -7,7 +7,7 @@ import ActionDone from 'material-ui/svg-icons/action/done';
 
 
 let FormActionBar = (props) => (
-  <div style={{width: '100%'}}>
+  <div className='toolbar'>
     <IconButton className='form-clear-b' onTouchTap={props.onClear}>
       <ContentClear/>
     </IconButton>

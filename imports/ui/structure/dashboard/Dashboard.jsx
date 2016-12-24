@@ -50,7 +50,7 @@ export default class Dashboard extends React.Component{
 
     return(
       <MainPanel
-        targetScroll={window}
+        targetScroll={'window'}
         key='dashboard-main-panel'
         classes='container-fluid index-panel'
         header={header}
