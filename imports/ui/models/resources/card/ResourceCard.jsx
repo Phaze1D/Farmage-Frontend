@@ -19,7 +19,7 @@ export default class ResourceCard extends React.Component{
       name,
       measurementUnit,
       imageUrl,
-      totalAmount,
+      stock,
       ...others
     } = this.props;
 
@@ -43,15 +43,13 @@ export default class ResourceCard extends React.Component{
 
           <div className='info-col'>
             <div className='card-top resource-top' style={{border: 'none'}}>
-              <CardTitle className='card-title' title={title} subtitle={`${measurementUnit}`}/>
+              <CardTitle className='card-title' title={title} subtitle=''/>
             </div>
-            <div className='cresource-info'>
-              <div className='total'>
-                {totalAmount}
-                <span></span>
-              </div>
-              <div className='ins'>
-                In Stock
+            <div className='product-csection'>
+              <div className='product-cinfo'>
+                <span>In Stock</span>
+                {stock}
+                <span style={{display: 'inline-block', marginLeft: '5px'}}>{measurementUnit}</span>
               </div>
             </div>
             <CardActions className='card-actions'>

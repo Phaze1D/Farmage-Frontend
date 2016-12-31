@@ -21,7 +21,7 @@ const factoryResource = () => {
   return {
     _id: Random.id(),
     name: testName(),
-    totalAmount: (Math.random() * 4000).toFixed(2),
+    stock: (Math.random() * 4000).toFixed(6),
     measurementUnit: testMeasurementUnit(),
     imageUrl: testImageUrl()
   }
