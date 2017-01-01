@@ -38,7 +38,7 @@ export default class RightDrawer extends React.Component{
               <div className='overlay' onTouchTap={this.onOverlayTap}/>
               <AutoLockScrolling lock={this.props.open} />
 
-              <div id='right-drawer' className='right-drawer'>
+              <div className='right-drawer'>
                 {this.props.children}
               </div>
             </div>

@@ -24,10 +24,9 @@ export default class OrganizationsNew extends React.Component{
     return(
       <MainPanel
         classes='container-fluid'
-        title='New Organization'
-        targetScroll='right-drawer' 
-        header={
-          <FormActionBar onClear={this.handleOnClose}/>
+        panelID='right-drawer'
+        toolbar={
+          <FormActionBar onClear={this.handleOnClose} title='New Organization'/>
         }>
 
         <div className='row'>

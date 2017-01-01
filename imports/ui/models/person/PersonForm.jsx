@@ -27,10 +27,9 @@ export default class PersonForm extends React.Component{
     return(
       <MainPanel
         classes='container-fluid'
-        targetScroll='right-drawer'
-        title={this.props.headerTitle}
-        header={
-          <FormActionBar onClear={this.handleOnClose}/>
+        panelID='right-drawer'
+        toolbar={
+          <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
         <div className='row'>

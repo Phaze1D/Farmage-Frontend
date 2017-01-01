@@ -27,10 +27,9 @@ export default class UnitsNew extends React.Component{
     return(
       <MainPanel
         classes='container-fluid'
-        title='Invite User'
-        targetScroll='right-drawer'
-        header={
-          <FormActionBar onClear={this.handleOnClose}/>
+        panelID='right-drawer'
+        toolbar={
+          <FormActionBar onClear={this.handleOnClose} title='Invite User'/>
         }>
         <div className='row'>
           <div className='col-xs-12'>

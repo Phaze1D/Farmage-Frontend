@@ -8,78 +8,62 @@ export default class MainPanel extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {large: false}
-    this.handleWidth = this.handleWidth.bind(this)
-    this.update = this.update.bind(this);
-    this.onScroll = this.onScroll.bind(this);
-    this.requestTick = this.requestTick.bind(this);
-    this.latestKnownScrollY = 0,
-  	this.ticking = false;
+    this.bigHeaderHidden = false;
+
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  componentDidMount() {
-    this.handleWidth();
-  }
+  handleScroll(event){
+    let scrollTop = event.currentTarget.scrollTop;
+    let title = document.getElementById(`${this.props.panelID}-ttbar`);
+    let toolbar = title.closest('.toolbar');
+    let f = 212 - toolbar.clientHeight;
 
-  handleWidth(event){
-    if(ReactDOM.findDOMNode(this.refs.header).clientWidth > 700 && !this.state.large){
-      this.setState({large: true})
+    if(scrollTop < f ){
+
+      if(this.bigHeaderHidden){
+        toolbar.style.boxShadow = ``
+      }
+      let scale = - (scrollTop / f ) + 2;
+      let y = 54 * (1 - scrollTop / f);
+      let a = toolbar.clientWidth > 840 ? 40 : 15;
+      let x = a * (1 - scrollTop / f);
+      title.style.transform = `scale(${scale}) translate(${x}%, ${y}px)`
+
+      this.bigHeaderHidden = false;
+    }else{
+
+      if(!this.bigHeaderHidden){
+        title.style.transform = 'scale(1) translate(0,0)';
+        toolbar.style.boxShadow = `
+        0 3px 4px 0 rgba(0, 0, 0, .14),
+        0 3px 3px -2px rgba(0, 0, 0, .2),
+        0 1px 8px 0 rgba(0, 0, 0, .12)`
+      }
+
+      this.bigHeaderHidden = true
+
     }
 
-    if(ReactDOM.findDOMNode(this.refs.header).clientWidth < 700 && this.state.large){
-      this.setState({large: false})
-    }
   }
-
-  update(){
-    this.ticking = false;
-    this.refs.header.style.transform = `translate3d(0px, -${this.latestKnownScrollY}px, 0px)`
-    this.refs.header.children[0].style.transform = `translate3d(0px, ${this.latestKnownScrollY}px, 0px)`
-  }
-
-
-  onScroll(event) {
-    let doc = event.target
-  	this.latestKnownScrollY = (doc.scrollTop !== undefined) ? doc.scrollTop : window.scrollY;
-    this.update()
-  	// this.requestTick();
-  }
-
-  requestTick() {
-  	if(!this.ticking) {
-  		requestAnimationFrame(this.update);
-  	}
-  	this.ticking = true;
-  }
-
 
   render(){
-    const heaClasses = classnames('mheader-title', {'large': this.state.large})
+    const mainClasses = classnames('main-panel', this.props.mainClasses)
+    const panClasses = classnames('panel', this.props.classes)
 
     return(
-      <div className={'main-panel ' + this.props.mainClasses}>
+      <div className={mainClasses}>
         <EventListener
-          target={window}
-          onResize={this.handleWidth}
-        />
+          target={this.props.panelID}
+          onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}/>
 
-        <EventListener
-          target={'panel' + this.props.targetScroll}
-          onScroll={this.onScroll}
-        />
+        {React.cloneElement(this.props.toolbar, { titleID: `${this.props.panelID}-ttbar` })}
 
-      <div className='header' ref='header'>
-          {this.props.header}
-          <div className={heaClasses} ref='title'>
-            {this.props.title}
-          </div>
-        </div>
-        <div id={'panel' + this.props.targetScroll} className={'panel '+this.props.classes}>
+        <div id={this.props.panelID} className={panClasses}>
+          <div className='big-header'></div>
           {this.props.children}
         </div>
       </div>
     )
-
   }
-
 }

@@ -12,6 +12,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LeftDrawer from '../left_drawer/LeftDrawer';
 import RightDrawer from '../right_drawer/RightDrawer';
 import MainPanel from '../main_panel/MainPanel';
+import ToolbarTitle from '../main_panel/ToolbarTitle';
 import MDialog from '../mdialog/MDialog';
 import MSearch from '../msearch/MSearch';
 import MFAB from './MFAB';
@@ -46,15 +47,18 @@ export default class Dashboard extends React.Component{
 
   render(){
 
-    const header = <IndexToolBar toggleLeft={this.toggleLeft} toggleFilter={this.toggleFilter} toggleSearch={this.toggleSearch}/>;
+    const toolbar = <IndexToolBar
+      title={this.props.headerTitle}
+      toggleLeft={this.toggleLeft}
+      toggleFilter={this.toggleFilter}
+      toggleSearch={this.toggleSearch}/>;
 
     return(
       <MainPanel
-        targetScroll={'window'}
+        panelID='dashboard'
         key='dashboard-main-panel'
         classes='container-fluid index-panel'
-        header={header}
-        title={this.props.headerTitle}>
+        toolbar={toolbar}>
 
         <Portal isOpened={true}>
           <MSearch
@@ -88,6 +92,8 @@ const IndexToolBar = (props) => (
     <IconButton className='menu-button' onTouchTap={props.toggleLeft}>
       <NavigationMenu/>
     </IconButton>
+
+    <ToolbarTitle titleID={props.titleID}>{props.title}</ToolbarTitle>
 
     <IconButton className='search-button' onTouchTap={props.toggleSearch}>
       <ActionSearch/>

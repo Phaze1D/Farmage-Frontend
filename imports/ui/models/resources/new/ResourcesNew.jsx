@@ -24,10 +24,9 @@ export default class ResourcesNew extends React.Component{
     return(
       <MainPanel
         classes='container-fluid'
-        title='New Resource'
-        targetScroll='right-drawer' 
-        header={
-          <FormActionBar onClear={this.handleOnClose}/>
+        panelID='right-drawer'
+        toolbar={
+          <FormActionBar onClear={this.handleOnClose} title='New Resource'/>
         }>
 
         <div className='row'>
