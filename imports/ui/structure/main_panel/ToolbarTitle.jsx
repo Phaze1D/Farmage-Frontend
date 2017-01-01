@@ -17,11 +17,11 @@ export default class ToolbarTitle extends React.Component {
 
   handleWidth(event){
     const toolBarRef = this.refs.title.closest('.toolbar')
-    if(toolBarRef.clientWidth > 700 && !this.state.large){
+    if(toolBarRef.clientWidth > 840 && !this.state.large){
       this.setState({large: true})
     }
 
-    if(toolBarRef.clientWidth < 700 && this.state.large){
+    if(toolBarRef.clientWidth < 840 && this.state.large){
       this.setState({large: false})
     }
   }
