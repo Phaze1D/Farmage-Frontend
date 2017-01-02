@@ -68,6 +68,7 @@ export default class MainPanel extends React.Component{
       this.title.style.transform = 'scale(1) translate(0,0)';
 
       if(!this.firstStage){
+        if(this.props.onRequestHide) this.props.onRequestHide();
         this.toolbar.style.transform = `translate(0, -100%)`;
         this.firstStage = true;
       }
@@ -88,19 +89,21 @@ export default class MainPanel extends React.Component{
   }
 
   hideToolBar(duration){
+    if(this.props.onRequestHide) this.props.onRequestHide();
     this.toolbar.style.transition = `transform ${duration}ms`
     this.toolbar.style.transform = `translate(0, -100%)`;
     this.toolbar.style.boxShadow = ``
-
   }
 
   showToolBar(duration){
+    if(this.props.onRequestShow) this.props.onRequestShow();
     this.toolbar.style.transition = `transform ${duration}ms`
     this.toolbar.style.transform = `translate(0, 0)`;
     this.toolbar.style.boxShadow = `
         0 3px 4px 0 rgba(0, 0, 0, .14),
         0 3px 3px -2px rgba(0, 0, 0, .2),
         0 1px 8px 0 rgba(0, 0, 0, .12)`
+
   }
 
 
@@ -114,7 +117,7 @@ export default class MainPanel extends React.Component{
           target={this.props.panelID}
           onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}/>
 
-        {React.cloneElement(this.props.toolbar, { titleID: `${this.props.panelID}-ttbar` })}
+        {this.props.toolbar}
 
         <div id={this.props.panelID} className={panClasses}>
           <div className='big-header'></div>

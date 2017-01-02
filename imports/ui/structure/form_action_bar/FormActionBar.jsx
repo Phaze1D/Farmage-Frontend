@@ -13,7 +13,7 @@ let FormActionBar = (props) => (
       <ContentClear/>
     </IconButton>
 
-    <ToolbarTitle titleID={props.titleID}>{props.title}</ToolbarTitle>
+    <ToolbarTitle titleID='right-drawer-ttbar'>{props.title}</ToolbarTitle>
 
     <IconButton className='form-done-b' onTouchTap={props.onDone}>
       <ActionDone/>

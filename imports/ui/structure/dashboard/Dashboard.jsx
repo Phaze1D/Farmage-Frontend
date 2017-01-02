@@ -22,11 +22,13 @@ import MFAB from './MFAB';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false, fopen: false, sopen: false};
+    this.state = { lopen: false, ropen: false, fopen: false, sopen: false, showMFAB: this.props.showMFAB};
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
+    this.hideFAB = this.hideFAB.bind(this);
+    this.showFAB = this.showFAB.bind(this);
   }
 
   toggleLeft() {
@@ -45,6 +47,20 @@ export default class Dashboard extends React.Component{
     this.setState( (prevState, props) => ({sopen: !prevState.sopen}) );
   }
 
+  hideFAB(){
+    let mfab = document.getElementsByClassName('fab')[0]
+    let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
+    if(mfabUnit) mfabUnit.className = 'fab-unit-toggle leave-fab leave-fab-active'
+    mfab.className = 'fab leave-fab leave-fab-active'
+  }
+
+  showFAB(){
+    let mfab = document.getElementsByClassName('fab')[0]
+    let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
+    if(mfabUnit) mfabUnit.className = 'fab-unit-toggle enter-fab enter-fab-active'
+    mfab.className = 'fab enter-fab enter-fab-active'
+  }
+
   render(){
 
     const toolbar = <IndexToolBar
@@ -58,7 +74,9 @@ export default class Dashboard extends React.Component{
         panelID='dashboard'
         key='dashboard-main-panel'
         classes='container-fluid index-panel'
-        toolbar={toolbar}>
+        toolbar={toolbar}
+        onRequestHide={this.hideFAB}
+        onRequestShow={this.showFAB}>
 
         <Portal isOpened={true}>
           <MSearch
@@ -72,7 +90,7 @@ export default class Dashboard extends React.Component{
 
         {this.props.children}
 
-        <MFAB show={this.props.showMFAB} onClicked={this.toggleRight}/>
+        <MFAB show={this.state.showMFAB} onClicked={this.toggleRight}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           {React.cloneElement(this.props.right, { onCloseRight: this.toggleRight })}
@@ -93,7 +111,7 @@ const IndexToolBar = (props) => (
       <NavigationMenu/>
     </IconButton>
 
-    <ToolbarTitle titleID={props.titleID}>{props.title}</ToolbarTitle>
+    <ToolbarTitle titleID='dashboard-ttbar'>{props.title}</ToolbarTitle>
 
     <IconButton className='search-button' onTouchTap={props.toggleSearch}>
       <ActionSearch/>

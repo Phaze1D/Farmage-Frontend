@@ -16,7 +16,7 @@ let MFAB = (props) => (
     transitionAppearTimeout={400}>
 
       {props.show &&
-        <FloatingActionButton key='fab-main' secondary={true} onTouchTap={props.onClicked} className="fab">
+        <FloatingActionButton id='index-fab' key='fab-main' secondary={true} onTouchTap={props.onClicked} className="fab">
           <ContentAdd className="icon"/>
         </FloatingActionButton>
       }

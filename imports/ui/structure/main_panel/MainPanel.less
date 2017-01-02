@@ -9,6 +9,7 @@
 }
 
 .panel{
+  position: relative;
   height: 100vh;
   overflow: scroll;
   padding-bottom: 10px;
@@ -48,12 +49,15 @@
 
 .toolbar{
   position: absolute;
+  transform: translateZ(0px);
   display: flex;
   justify-content: flex-start;
   width: 100%;
   z-index: @z-index-higher;
   background-color: @color-primary;
+
 }
+
 
 .big-header{
   background-color: @color-primary;
