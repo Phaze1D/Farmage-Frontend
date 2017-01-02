@@ -8,10 +8,14 @@ export default class MainPanel extends React.Component{
 
   constructor(props){
     super(props);
-    this.bigHeaderHidden = false;
+    this.firstStage = false;
+    this.toolBarShown = false;
+    this.previousScrollTop = 0;
     this.ticking = false;
 
     this.handleScroll = this.handleScroll.bind(this);
+    this.hideToolBar = this.hideToolBar.bind(this);
+    this.showToolBar = this.showToolBar.bind(this);
     this.update = this.update.bind(this);
   }
 
@@ -21,45 +25,84 @@ export default class MainPanel extends React.Component{
   }
 
   handleScroll(event){
-    let last_known_scroll_position = event.currentTarget.scrollTop;
-    this.update(last_known_scroll_position);
-    // if (!this.ticking) {
-    //   requestAnimationFrame(() => {
-    //     this.update(last_known_scroll_position);
-    //     this.ticking = false;
-    //   });
-    // }
-    // this.ticking = true;
+    let currentScrollTop = event.currentTarget.scrollTop
+    // this.update(event.currentTarget.scrollTop);
+    if (!this.ticking) {
+      window.requestAnimationFrame(() => {
+        this.update(currentScrollTop);
+        this.ticking = false;
+      });
+    }
+    this.ticking = true;
   }
 
-  update(lastScrollY){
+  update(currentScrollTop){
     let f = 212 - this.toolbar.clientHeight;
 
-    if(lastScrollY < f ){
+    if(currentScrollTop < f ){
 
-      if(this.bigHeaderHidden){
+      let scale = - (currentScrollTop / f ) + 2;
+      let y = 54 * (1 - currentScrollTop / f);
+      let a = this.toolbar.clientWidth > 840 ? 40 : 15;
+      let x = a * (1 - currentScrollTop / f);
+      this.title.style.transform = `scale(${scale}) translate(${x}%, ${y}px)`
+      this.toolbar.style.transition = ``
+      this.toolbar.style.transform = `translate(0, 0)`;
+      this.toolbar.style.boxShadow = ``
+      this.firstStage = false;
+      this.toolBarShown = false;
+
+    }else if (currentScrollTop < f + this.toolbar.clientHeight) {
+
+      this.title.style.transform = 'scale(1) translate(0,0)';
+
+      if(!this.toolBarShown || !this.firstStage){
+        this.toolbar.style.transition = ``
+        let y = 100 * (212 - this.toolbar.clientHeight - currentScrollTop) / this.toolbar.clientHeight
+        this.toolbar.style.transform = `translate(0, ${y}%)`;
         this.toolbar.style.boxShadow = ``
       }
-      let scale = - (lastScrollY / f ) + 2;
-      let y = 54 * (1 - lastScrollY / f);
-      let a = this.toolbar.clientWidth > 840 ? 40 : 15;
-      let x = a * (1 - lastScrollY / f);
-      this.title.style.transform = `scale(${scale}) translate(${x}%, ${y}px)`
 
-      this.bigHeaderHidden = false;
+
     }else{
+      this.title.style.transform = 'scale(1) translate(0,0)';
 
-      if(!this.bigHeaderHidden){
-        this.title.style.transform = 'scale(1) translate(0,0)';
-        // this.toolbar.style.boxShadow = `
-        // 0 3px 4px 0 rgba(0, 0, 0, .14),
-        // 0 3px 3px -2px rgba(0, 0, 0, .2),
-        // 0 1px 8px 0 rgba(0, 0, 0, .12)`
+      if(!this.firstStage){
+        this.toolbar.style.transform = `translate(0, -100%)`;
+        this.firstStage = true;
       }
 
-      this.bigHeaderHidden = true
+      if(currentScrollTop > this.previousScrollTop && this.toolBarShown){
+        this.hideToolBar(350);
+        this.toolBarShown = false;
+      }
+
+      if(currentScrollTop < this.previousScrollTop && !this.toolBarShown){
+        this.showToolBar(350);
+        this.toolBarShown = true;
+      }
+
     }
+
+    this.previousScrollTop = currentScrollTop
   }
+
+  hideToolBar(duration){
+    this.toolbar.style.transition = `transform ${duration}ms`
+    this.toolbar.style.transform = `translate(0, -100%)`;
+    this.toolbar.style.boxShadow = ``
+
+  }
+
+  showToolBar(duration){
+    this.toolbar.style.transition = `transform ${duration}ms`
+    this.toolbar.style.transform = `translate(0, 0)`;
+    this.toolbar.style.boxShadow = `
+        0 3px 4px 0 rgba(0, 0, 0, .14),
+        0 3px 3px -2px rgba(0, 0, 0, .2),
+        0 1px 8px 0 rgba(0, 0, 0, .12)`
+  }
+
 
   render(){
     const mainClasses = classnames('main-panel', this.props.mainClasses)
@@ -69,7 +112,7 @@ export default class MainPanel extends React.Component{
       <div className={mainClasses}>
         <EventListener
           target={this.props.panelID}
-          onScroll={this.handleScroll}/>
+          onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}/>
 
         {React.cloneElement(this.props.toolbar, { titleID: `${this.props.panelID}-ttbar` })}
 
