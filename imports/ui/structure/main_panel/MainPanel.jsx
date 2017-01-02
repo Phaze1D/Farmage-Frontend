@@ -22,13 +22,14 @@ export default class MainPanel extends React.Component{
 
   handleScroll(event){
     let last_known_scroll_position = event.currentTarget.scrollTop;
-    if (!this.ticking) {
-        requestAnimationFrame(() => {
-          this.update(last_known_scroll_position);
-          this.ticking = false;
-        });
-      }
-      this.ticking = true;
+    this.update(last_known_scroll_position);
+    // if (!this.ticking) {
+    //   requestAnimationFrame(() => {
+    //     this.update(last_known_scroll_position);
+    //     this.ticking = false;
+    //   });
+    // }
+    // this.ticking = true;
   }
 
   update(lastScrollY){
