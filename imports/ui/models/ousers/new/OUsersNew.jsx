@@ -87,7 +87,7 @@ export default class UnitsNew extends React.Component{
           defaultToggled={false}/>
 
         <LToggler
-          title="Sells Manager"
+          title="Sales Manager"
           subTitle="View and edit sells and clients"
           defaultToggled={false}/>
 

@@ -17,6 +17,14 @@ import MCard from '../../structure/mcard/MCard'
 export default class PersonCard extends React.Component{
   constructor(props){
     super(props);
+
+    this.handleUpdate = this.handleUpdate.bind(this)
+  }
+
+  // PASS THE ID OF INSE
+  handleUpdate(){
+    this.props._id
+    this.props.onRequestUpdate(this.props._id)
   }
 
   render(){
@@ -37,7 +45,7 @@ export default class PersonCard extends React.Component{
     const char = title.toUpperCase().charAt(0)
 
     return(
-      <MCard>
+      <MCard handleUpdate={this.handleUpdate}>
 
         <div className='card-top'>
           <MAvatar className='card-avatar'
@@ -65,11 +73,7 @@ export default class PersonCard extends React.Component{
 
 
 
-/*
-  @params: {
-      email: String
-    }
-*/
+
 const EmailSection = (props) => {
   const hasEmail = (props.email && props.email.length > 0)
   const eClasses = classnames('sinfo', {'empty': !hasEmail} )
@@ -92,14 +96,7 @@ const EmailSection = (props) => {
   )
 }
 
-/*
-  @params: {
-      {
-        name: String
-        number: String
-      }
-    }
-*/
+
 const TelephonesSection = (props) => {
   const hasTelephones = (props.telephones.length > 0)
   const eClasses = classnames('sinfo', {'empty': !hasTelephones} )
@@ -129,20 +126,7 @@ const TelephonesSection = (props) => {
   )
 }
 
-/*
-  @params: {
-      {
-        name: String
-        street1: String
-        street2: String
-        city: String
-        state: String
-        zip_code: String
-        country: String
 
-      }
-    }
-*/
 const AddressesSection = (props) => {
   const hasAddresses = (props.addresses.length > 0)
   const eClasses = classnames('sinfo', {'empty': !hasAddresses} )

@@ -98,7 +98,7 @@ export default class InventoryCard extends React.Component{
             onTouchTap={() => {browserHistory.push('/movements')} }/>
           <FlatButton className='action' label='Yields' secondary={true}
             onTouchTap={() => {browserHistory.push('/yields')} }/>
-          <FlatButton className='action' label='Sells' secondary={true}
+          <FlatButton className='action' label='Sales' secondary={true}
             onTouchTap={() => {browserHistory.push('/sells')} }/>
         </CardActions>
 

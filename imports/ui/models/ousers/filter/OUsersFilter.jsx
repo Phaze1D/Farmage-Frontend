@@ -64,7 +64,7 @@ export default class OUsersFilter extends React.Component{
             <MenuItem value={0} primaryText='All' />
             <MenuItem value={1} primaryText='Owner' />
             <MenuItem value={2} primaryText='Viewer' />
-            <MenuItem value={3} primaryText='Sells Manager' />
+            <MenuItem value={3} primaryText='Sales Manager' />
             <MenuItem value={4} primaryText='Units Manager' />
             <MenuItem value={5} primaryText='Expenses Manager' />
             <MenuItem value={6} primaryText='Inventories Manager' />

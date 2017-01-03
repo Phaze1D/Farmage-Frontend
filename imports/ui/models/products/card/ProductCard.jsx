@@ -61,7 +61,7 @@ export default class ProductCard extends React.Component{
             <CardActions className='card-actions'>
               <FlatButton className='action' label='Inventories' secondary={true}
                 onTouchTap={() => {browserHistory.push('/inventories')} }/>
-              <FlatButton className='action' label='Sells' secondary={true}
+              <FlatButton className='action' label='Sales' secondary={true}
                 onTouchTap={() => {browserHistory.push('/sells')} }/>
               {/*<FlatButton className='action' label='Resources' secondary={true}/>*/}
             </CardActions>

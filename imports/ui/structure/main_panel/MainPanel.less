@@ -31,10 +31,11 @@
   display: flex;
   align-items: center;
   padding: 0 5px;
-  // transition-delay: 0;
-  // transition-duration: 100ms;
-  // transition-property: transform;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   transform: scale(2) translate(15%, 54px);
+  will-change: transform;
 
   @media(min-width: @layout-breakpoint-sm){
     font-size: 22px;
@@ -53,6 +54,7 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  will-change: transform;
   z-index: @z-index-higher;
   background-color: @color-primary;
 

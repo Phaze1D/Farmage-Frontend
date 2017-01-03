@@ -12,6 +12,8 @@ import TextArea from '../../structure/textarea/TextArea';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
+import {factoryPerson} from './faker/factoryPerson'
+
 export default class PersonForm extends React.Component{
   constructor(props){
     super(props);
@@ -24,6 +26,18 @@ export default class PersonForm extends React.Component{
   }
 
   render(){
+    let person = {}
+    let avatarBStyle = {}
+    if(this.props.objectID){
+      person = factoryPerson();
+
+      if(person.avatarURL){
+        avatarBStyle = {
+          background: `url(${person.avatarURL})`
+        }
+      }
+    }
+
     return(
       <MainPanel
         classes='container-fluid'
@@ -35,7 +49,7 @@ export default class PersonForm extends React.Component{
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>
-            <IconButton className='avatar-button'>
+            <IconButton className='avatar-button' style={avatarBStyle}>
               <ImageCameraAlt />
             </IconButton>
 
@@ -43,6 +57,7 @@ export default class PersonForm extends React.Component{
               <TextField
                   name="first_name"
                   type="text"
+                  defaultValue={person.firstName}
                   className="input-lg"
                   hintText=""
                   floatingLabelText="First Name"
@@ -51,6 +66,7 @@ export default class PersonForm extends React.Component{
               <TextField
                   name="last_name"
                   type="text"
+                  defaultValue={person.lastName}
                   hintText=""
                   floatingLabelText="Last Name"
                   fullWidth={true}/>
@@ -63,6 +79,7 @@ export default class PersonForm extends React.Component{
             <TextField
                 name="email"
                 type="text"
+                defaultValue={person.email}
                 className=""
                 hintText=""
                 floatingLabelText="Email"
@@ -73,6 +90,7 @@ export default class PersonForm extends React.Component{
             <DatePicker
               name="date_of_birth"
               floatingLabelText="Date of Birth"
+              defaultDate={person.dateOfBirth}
               fullWidth={true}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
@@ -87,6 +105,7 @@ export default class PersonForm extends React.Component{
             <TextField
                 name="company"
                 type="text"
+                defaultValue={person.company}
                 className=""
                 floatingLabelText="Company"
                 fullWidth={true}/>
@@ -98,6 +117,7 @@ export default class PersonForm extends React.Component{
             <TextArea
               name="notes"
               type="text"
+              defaultValue={person.notes}
               className=""
               floatingLabelText="Notes"
               fullWidth={true}
@@ -110,13 +130,13 @@ export default class PersonForm extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Telephones" type={false}/>
+            <ContactInfo title="Telephones" type={false} forms={person.telephones}/>
           </div>
         </div>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <ContactInfo title="Addresses" type={true}/>
+            <ContactInfo title="Addresses" type={true} forms={person.addresses}/>
           </div>
         </div>
 

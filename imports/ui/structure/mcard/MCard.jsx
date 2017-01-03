@@ -35,7 +35,7 @@ export default class MCard extends React.Component{
 
 
           <MenuItem primaryText="Expand" leftIcon={<FullScreen />} />
-          <MenuItem primaryText="Edit" leftIcon={<ImageEdit />} />
+          <MenuItem primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.props.handleUpdate}/>
           <Divider />
           <MenuItem primaryText="Delete" leftIcon={<ActionDelete />} />
         </IconMenu>

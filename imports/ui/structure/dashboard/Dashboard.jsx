@@ -22,7 +22,12 @@ import MFAB from './MFAB';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
-    this.state = { lopen: false, ropen: false, fopen: false, sopen: false, showMFAB: this.props.showMFAB};
+    this.state = {
+      lopen: false, ropen: false, fopen: false, sopen: false,
+      showMFAB: this.props.showMFAB,
+      rightTitle: this.props.defaultRightTitle, rightObjectID: null
+    };
+
     this.toggleLeft = this.toggleLeft.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
@@ -35,7 +40,12 @@ export default class Dashboard extends React.Component{
     this.setState( (prevState, props) => ({lopen: !prevState.lopen}) );
   }
 
-  toggleRight() {
+  toggleRight(rightObjectID, rightTitle) {
+    if(rightTitle){
+      this.setState({rightTitle: rightTitle, rightObjectID: rightObjectID})
+    }else{
+      this.setState({rightTitle: this.props.defaultRightTitle, rightObjectID: null })
+    }
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
 
@@ -72,7 +82,6 @@ export default class Dashboard extends React.Component{
     return(
       <MainPanel
         panelID='dashboard'
-        key='dashboard-main-panel'
         classes='container-fluid index-panel'
         toolbar={toolbar}
         onRequestHide={this.hideFAB}
@@ -93,7 +102,9 @@ export default class Dashboard extends React.Component{
         <MFAB show={this.state.showMFAB} onClicked={this.toggleRight}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
-          {React.cloneElement(this.props.right, { onCloseRight: this.toggleRight })}
+          {React.cloneElement(this.props.right, {
+            onCloseRight: this.toggleRight, headerTitle: this.state.rightTitle, objectID: this.state.rightObjectID
+          })}
         </RightDrawer>
 
         <FilterDialog open={this.state.fopen} onRequestClose={this.toggleFilter}>

@@ -16,12 +16,16 @@ export default class ContactInfo extends React.Component{
     super(props);
     this.handleAddTouch = this.handleAddTouch.bind(this);
     this.handleContactTouch = this.handleContactTouch.bind(this);
-    this.state = {forms: []};
+    let forms = []
+    if(this.props.forms){
+      forms = this.props.forms
+    }
+    this.state = {forms: forms};
   }
 
   handleContactTouch(){
     if(this.state.forms.length === 0){
-      const newForms = this.state.forms.concat([uuid.v1()]);
+      const newForms = this.state.forms.concat([{_id: uuid.v1()}]);
       this.setState({forms: newForms});
     }
   }
@@ -29,7 +33,7 @@ export default class ContactInfo extends React.Component{
   handleAddTouch(event){
     event.stopPropagation();
     if(this.state.forms.length < 5){
-      const newForms = this.state.forms.concat([uuid.v1()]);
+      const newForms = this.state.forms.concat([{_id: uuid.v1()}]);
       this.setState({forms: newForms});
     }
   }
@@ -43,8 +47,8 @@ export default class ContactInfo extends React.Component{
   render(){
     const contactBClasses = classnames('contact-button', {'highlight':this.state.forms.length > 0});
 
-    const forms = this.state.forms.map((key, i) => (
-      <Form key={key} type={this.props.type} onRemoveCall={() => this.handleRemoveTouch(i)} />
+    const forms = this.state.forms.map((object, i) => (
+      <Form key={object._id} info={object} type={this.props.type} onRemoveCall={() => this.handleRemoveTouch(i)} />
     ));
 
     const formClass = classnames({ 'address': this.props.type}, {'telephone': !this.props.type});

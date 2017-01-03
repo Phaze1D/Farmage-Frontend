@@ -29,7 +29,7 @@ export default class OrganizationMenu extends React.Component{
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
             <Link to="/sells" className='menu-link'>
-              Sells
+              Sales
             </Link>
           </MenuItem>
 

@@ -50,7 +50,7 @@ export default class OUserCard extends React.Component{
         </div>
 
         <div className={classnames('ouser-permission', {'on': permissions.sellsManager})}>
-          Sells Manager
+          Sales Manager
           <span>View and edit sells and clients</span>
         </div>
 

@@ -13,9 +13,12 @@ import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
 export default class CustomersIndex extends React.Component{
   constructor(props){
     super(props);
+    this.onCardUpdate = this.onCardUpdate.bind(this);
   }
 
-
+  onCardUpdate(customer_id){
+    this.refs.dashboard.toggleRight(customer_id, 'Update Customer');
+  }
 
   render(){
     let customers = [];
@@ -30,19 +33,21 @@ export default class CustomersIndex extends React.Component{
 
     const listItems = customers.map((person) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={person._id}>
-        <PersonCard {...person} actionLabel='sells' />
+        <PersonCard {...person} actionLabel='sells' onRequestUpdate={this.onCardUpdate}/>
       </div>
     );
 
-    const right = <PersonForm headerTitle='New Customer'/>;
+    const right = <PersonForm />;
     const filter = <PersonFilter/>;
 
     return (
       <Dashboard
+        defaultRightTitle='New Customer'
         headerTitle='Customers'
         showMFAB={true}
         right={right}
         filter={filter}
+        ref='dashboard'
         key='main-dash'>
 
         <MVirtualGrid>

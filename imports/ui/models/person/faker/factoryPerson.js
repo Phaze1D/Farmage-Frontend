@@ -29,7 +29,7 @@ const testLastName = () => {
 const testTelephones = () =>{
   var result = []
   for(i = 0; i < Math.round(Math.random()*6); i++){
-    let telephone = {}
+    let telephone = {_id: faker.random.uuid()}
     if(Math.round(Math.random()) === 1) telephone.name = faker.random.word();
     telephone.number = faker.phone.phoneNumber()
     result.push(telephone)
@@ -40,7 +40,7 @@ const testTelephones = () =>{
 const testAddresses = () => {
   var result = []
   for(i = 0; i < Math.round(Math.random()*5); i++){
-    let address = {}
+    let address = {_id: faker.random.uuid()}
     if(Math.round(Math.random()) === 1) address.name = faker.random.word();
     address.street1 = faker.address.streetAddress()
     if(Math.round(Math.random()) === 1) address.street2 = faker.address.secondaryAddress();
@@ -65,7 +65,14 @@ const testNotes = () => {
   if(Math.round(Math.random()) === 0){
     return faker.lorem.sentences();
   }
-  return ;
+  return faker.lorem.sentences();
+}
+
+const testDateOfBirth = () => {
+  if(Math.round(Math.random()) === 0){
+    return faker.date.past();
+  }
+  return faker.date.past();
 }
 
 const factoryPerson = () => {
@@ -75,6 +82,7 @@ const factoryPerson = () => {
     lastName: testLastName(),
     email: testEmail(),
     company: testCompanyName(),
+    dateOfBirth: testDateOfBirth(),
     telephones: testTelephones(),
     addresses: testAddresses(),
     notes: testNotes(),

@@ -35,7 +35,7 @@ export default class SellsIndex extends React.Component{
 
     return (
       <Dashboard
-        headerTitle='Sells'
+        headerTitle='Sales'
         showMFAB={true}
         right={right}
         filter={filter}
