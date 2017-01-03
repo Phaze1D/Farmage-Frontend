@@ -26,14 +26,14 @@ export default class MainPanel extends React.Component{
 
   handleScroll(event){
     let currentScrollTop = event.currentTarget.scrollTop
-    this.update(event.currentTarget.scrollTop);
-    // if (!this.ticking) {
-    //   window.requestAnimationFrame(() => {
-    //     this.update(currentScrollTop);
-    //     this.ticking = false;
-    //   });
-    // }
-    // this.ticking = true;
+    // this.update(event.currentTarget.scrollTop);
+    if (!this.ticking) {
+      requestAnimationFrame(() => {
+        this.update(currentScrollTop);
+        this.ticking = false;
+      });
+    }
+    this.ticking = true;
   }
 
   update(currentScrollTop){
