@@ -12,7 +12,8 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import ResourceProductItem from '../../resources/selector_items/ResourceProductItem'
 import ResourcesSelectorList from '../../resources/selector_items/ResourcesSelectorList';
-import {randomImageColor} from '../../../structure/app/RandomColor.js';
+import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
+import {factoryProduct} from '../faker/factoryProduct'
 
 
 
@@ -21,21 +22,13 @@ import {randomImageColor} from '../../../structure/app/RandomColor.js';
 export default class ProductsNew extends React.Component{
   constructor(props){
     super(props);
-    this.backgroundColor = randomImageColor()
-    this.state = {total_price: '', rsopen: false}
-    this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+    this.state = {rsopen: false, showFields: false}
     this.handleOnClose = this.handleOnClose.bind(this);
     this.toggleResourceSelector = this.toggleResourceSelector.bind(this);
   }
 
-  handleTotalPriceChange(){
-    uv = this.unitPriceTF.input.value;
-    rv = this.taxRateTF.input.value;
-
-    uv = uv.length > 0 ? uv : 0.00;
-    rv = rv.length > 0 ? rv/100 : 0.00;
-    tp = uv * (1 + rv)
-    this.setState({total_price: tp.toFixed(2)});
+  componentDidMount() {
+    setTimeout(() => {this.setState({showFields: true})}, 500)
   }
 
   handleOnClose(event){
@@ -48,24 +41,118 @@ export default class ProductsNew extends React.Component{
   }
 
   render(){
+
+    let product = {}
+    let imageBStyle = {}
+    if(this.props.objectID){
+      product = factoryProduct();
+
+      if(product.imageUrl){
+        imageBStyle = {
+          background: `url(${product.imageUrl})`
+        }
+      }
+    }
+
+
     return(
       <MainPanel
         classes='container-fluid'
         panelID='right-drawer'
         toolbar={
-          <FormActionBar onClear={this.handleOnClose} title='New Product'/>
+          <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
+        <ReactCSSTransitionGroup component={FirstChild}
+        transitionName={ {
+          enter: 'enter-fade',
+          leave: 'leave-fade',
+          appear: 'appear-fade'
+        } }
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppear={true}
+        transitionAppearTimeout={500}>
+          {this.state.showFields &&
+            <FormFields
+              product={product}
+              imageBStyle={imageBStyle}
+              onRequestChange={this.toggleResourceSelector}/>
+          }
+        </ReactCSSTransitionGroup>
+
+
+
+
+        <Portal isOpened={true}>
+          <ReactCSSTransitionGroup component={FirstChild}
+          transitionName={ {
+            enter: 'enter-selector-list',
+            leave: 'leave-selector-list',
+            appear: 'appear-selector-list'
+          } }
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+          transitionAppear={true}
+          transitionAppearTimeout={400}>
+
+          {this.state.rsopen &&
+            <ResourcesSelectorList
+              key='rs'
+              onRequestChange={this.toggleResourceSelector}
+              onlyOne={false}/>
+          }
+
+          </ReactCSSTransitionGroup>
+        </Portal>
+
+      </MainPanel>
+    )
+  }
+}
+
+class FormFields extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {total_price: ''}
+    this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.handleTotalPriceChange();
+  }
+
+  handleTotalPriceChange(){
+    uv = this.unitPriceTF.input.value;
+    rv = this.taxRateTF.input.value;
+
+    uv = uv.length > 0 ? uv : 0.00;
+    rv = rv.length > 0 ? rv/100 : 0.00;
+    tp = uv * (1 + rv)
+    this.setState({total_price: tp.toFixed(2)});
+  }
+
+  render(){
+    const product = this.props.product
+    if(!product.resources) product.resources = []
+
+    const resourcesList = product.resources.map((resource) =>
+      <ResourceProductItem key={resource._id} resource={resource}/>
+    )
+
+    return(
+      <div>
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>
-            <IconButton className='avatar-button'>
+            <IconButton className='avatar-button' style={this.props.imageBStyle}>
               <ImageCameraAlt />
             </IconButton>
 
 
             <TextField
                 name="name"
+                defaultValue={product.name}
                 type="text"
                 className="input-lg"
                 hintText=""
@@ -79,6 +166,7 @@ export default class ProductsNew extends React.Component{
           <div className='col-xs-7 sm-p-right'>
             <TextField
                 name="size"
+                defaultValue={product.size}
                 type="text"
                 className=""
                 hintText=""
@@ -89,6 +177,7 @@ export default class ProductsNew extends React.Component{
           <div className='col-xs-5 sm-p-left'>
             <TextField
                 name="sku"
+                defaultValue={product.sku}
                 type="text"
                 className=""
                 hintText=""
@@ -103,6 +192,7 @@ export default class ProductsNew extends React.Component{
             <MTextField
                 name="unit_price"
                 type="number"
+                defaultValue={product.unitPrice}
                 className=""
                 hintText=""
                 floatingLabelText="Unit Price"
@@ -118,6 +208,7 @@ export default class ProductsNew extends React.Component{
                 name="tax_rate"
                 type="number"
                 className=""
+                defaultValue={product.taxRate}
                 hintText=""
                 floatingLabelText="Tax Rate"
                 mref={(input) => this.taxRateTF = input}
@@ -131,6 +222,7 @@ export default class ProductsNew extends React.Component{
             <MTextField
                 name="tprice"
                 type="number"
+                defaultValue={product.totalPrice}
                 className=""
                 hintText=""
                 value={this.state.total_price}
@@ -146,6 +238,7 @@ export default class ProductsNew extends React.Component{
           <div className='col-xs-12'>
             <TextArea
               name="description"
+              defaultValue={product.description}
               type="text"
               className=""
               floatingLabelText="Description"
@@ -159,40 +252,16 @@ export default class ProductsNew extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Resources" highlight={true} toggleSelector={this.toggleResourceSelector}/>
+            <SelectorButton title="Resources" highlight={resourcesList.length > 0} toggleSelector={this.props.onRequestChange}/>
           </div>
         </div>
 
-        <Portal isOpened={true}>
-          <ReactCSSTransitionGroup component={FirstChild}
-          transitionName={ {
-            enter: 'enter-selector-list',
-            leave: 'leave-selector-list',
-            appear: 'appear-selector-list'
-          } }
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
-          transitionAppear={true}
-          transitionAppearTimeout={400}>
-
-          {this.state.rsopen &&
-            <ResourcesSelectorList key='rs' onRequestChange={this.toggleResourceSelector} onlyOne={false}/>
-          }
-
-          </ReactCSSTransitionGroup>
-        </Portal>
-
-        <ResourceProductItem backgroundColor={this.backgroundColor}/>
-
-        <ResourceProductItem backgroundColor={this.backgroundColor}/>
-
-        <ResourceProductItem backgroundColor={this.backgroundColor}/>
-
-
-      </MainPanel>
+        {resourcesList}
+      </div>
     )
   }
 }
+
 
 function FirstChild(props) {
   const childrenArray = React.Children.toArray(props.children);

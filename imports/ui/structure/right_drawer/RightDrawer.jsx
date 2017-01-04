@@ -28,10 +28,10 @@ export default class RightDrawer extends React.Component{
           leave: 'leave-right',
           appear: 'appear-right'
         } }
-        transitionEnterTimeout={600}
-        transitionLeaveTimeout={600}
+        transitionEnterTimeout={550}
+        transitionLeaveTimeout={550}
         transitionAppear={true}
-        transitionAppearTimeout={600}>
+        transitionAppearTimeout={550}>
 
           {this.props.open ?
             <div>

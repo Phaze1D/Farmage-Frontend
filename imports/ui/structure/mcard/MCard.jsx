@@ -34,10 +34,7 @@ export default class MCard extends React.Component{
           targetOrigin={{horizontal: 'right', vertical: 'top'}}>
 
 
-          <MenuItem primaryText="Expand" leftIcon={<FullScreen />} />
-          <MenuItem primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.props.handleUpdate}/>
-          <Divider />
-          <MenuItem primaryText="Delete" leftIcon={<ActionDelete />} />
+          {this.props.options}
         </IconMenu>
 
         <AutoLockScrolling lock={this.state.optionsShown}/>

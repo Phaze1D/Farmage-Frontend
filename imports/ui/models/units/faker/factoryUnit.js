@@ -28,9 +28,16 @@ const testDescription = () => {
 
 
 const factoryUnit = () => {
-  let mparentUnit = {}
+  let mparentUnit = null
   if(faker.random.boolean()){
-    mparentUnit.name = testName();
+    mparentUnit = {
+      _id: Random.id(),
+      name: testName(),
+      active: testActive(),
+      activeSub: testActive(),
+      trackable: true,
+      description: testDescription()
+    }
   }
 
   let unit = {

@@ -7,6 +7,11 @@ import { browserHistory } from 'react-router'
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 import classnames from 'classnames';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ImageEdit from 'material-ui/svg-icons/image/edit';
+import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 
 
 
@@ -14,7 +19,22 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class YieldCard extends React.Component{
   constructor(props){
-    super(props);
+    super(props)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.cardOptions = this.cardOptions.bind(this)
+  }
+
+  handleUpdate(){
+    this.props.onRequestUpdate(this.props._id)
+  }
+
+  cardOptions(){
+    return [
+      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
+      <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
+      <Divider key='divider'/>,
+      <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
+    ]
   }
 
   render(){
@@ -45,7 +65,7 @@ export default class YieldCard extends React.Component{
     }
 
     return(
-      <MCard>
+      <MCard options={this.cardOptions()}>
 
         <div className='card-top' style={{marginBottom: '8px'}}>
           <CardTitle className='card-title' title={title} subtitle='Yield Identifer'/>

@@ -25,7 +25,7 @@ export default class UnitsTreeIndex extends React.Component{
 
   render(){
     return(
-      <TreeRow isRoot={true} unit={this.rootUnit}/>
+      <TreeRow isRoot={true} unit={this.rootUnit} onCardUpdate={this.props.onCardUpdate}/>
     )
   }
 }
@@ -91,6 +91,7 @@ class TreeRow extends React.Component {
         return(
           <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' style={{minHeight: `${this.eleProp.minHeight}px`}}>
             <UnitCard {...this.selectedUnit}
+              onRequestUpdate={this.props.onCardUpdate}
               showSubAction={true}
               subActionButton={<ActionClear className='clear-action'/>}
               onShowSubs={this.onClearSubs}/>
@@ -103,6 +104,7 @@ class TreeRow extends React.Component {
             return(
               <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id} style={traStyle}>
                 <UnitCard {...unit}
+                  onRequestUpdate={this.props.onCardUpdate}
                   showSubAction={true}
                   subActionButton={<ActionClear className='clear-action'/>}/>
               </div>
@@ -111,6 +113,7 @@ class TreeRow extends React.Component {
             return(
               <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3 mhide' key={unit._id}>
                 <UnitCard {...unit}
+                  onRequestUpdate={this.props.onCardUpdate}
                   showSubAction={true}
                   subActionButton={<TreeIcon/>}/>
               </div>
@@ -136,6 +139,7 @@ class TreeRow extends React.Component {
             return(
               <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id} style={traStyle}>
                 <UnitCard {...unit}
+                  onRequestUpdate={this.props.onCardUpdate}
                   showSubAction={true}
                   subActionButton={<TreeIcon/>}
                   onShowSubs={this.onCellSelected.bind(this, unit)}/>
@@ -145,6 +149,7 @@ class TreeRow extends React.Component {
             return(
               <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3 mhide' key={unit._id}>
                 <UnitCard {...unit}
+                  onRequestUpdate={this.props.onCardUpdate}
                   showSubAction={true}
                   subActionButton={<TreeIcon/>}
                   onShowSubs={this.onCellSelected.bind(this, unit)}/>
@@ -157,6 +162,7 @@ class TreeRow extends React.Component {
         return units.map((unit) =>
           <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id}>
             <UnitCard {...unit}
+              onRequestUpdate={this.props.onCardUpdate}
               showSubAction={true}
               subActionButton={<TreeIcon/>}
               onShowSubs={this.onCellSelected.bind(this, unit)}/>
@@ -196,7 +202,7 @@ class TreeRow extends React.Component {
           transitionAppearTimeout={400}>
 
           {this.state.showSubs &&
-            <TreeRow unit={this.selectedUnit} key='subUnits'/>
+            <TreeRow unit={this.selectedUnit} key='subUnits' onCardUpdate={this.props.onCardUpdate}/>
           }
 
         </ReactCSSTransitionGroup>

@@ -18,13 +18,17 @@ export default class UnitsIndex extends React.Component{
   constructor(props){
     super(props);
     this.state = {showGrid: false}
+    this.onCardUpdate = this.onCardUpdate.bind(this);
     this.testRootUnits = factoryUnitsTree(null, 0);
     this.toggleUFAB = this.toggleUFAB.bind(this);
   }
 
+  onCardUpdate(unit_id){
+    this.refs.dashboard.toggleRight(unit_id, 'Update Unit');
+  }
+
   toggleUFAB(event){
     this.setState({showGrid: !this.state.showGrid});
-
   }
 
   unitsArray(){
@@ -38,7 +42,7 @@ export default class UnitsIndex extends React.Component{
 
     return units.map((unit) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={unit._id}>
-        <UnitCard {...unit} />
+        <UnitCard {...unit} onRequestUpdate={this.onCardUpdate}/>
       </div>
     );
   }
@@ -52,10 +56,12 @@ export default class UnitsIndex extends React.Component{
 
     return (
       <Dashboard
+        defaultRightTitle='New Unit'
         headerTitle='Units'
         showMFAB={true}
         right={right}
         filter={filter}
+        ref='dashboard'
         key='main-dash'>
 
         <ReactCSSTransitionGroup
@@ -92,7 +98,7 @@ export default class UnitsIndex extends React.Component{
             transitionLeaveTimeout={4000}
             transitionAppear={true}
             transitionAppearTimeout={400}>
-          <UnitsTreeIndex key='unit-tree' rootUnits={this.testRootUnits}/>
+          <UnitsTreeIndex key='unit-tree' rootUnits={this.testRootUnits} onCardUpdate={this.onCardUpdate}/>
           </ReactCSSTransitionGroup>
         }
 

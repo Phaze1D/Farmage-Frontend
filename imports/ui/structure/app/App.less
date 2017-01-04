@@ -282,40 +282,42 @@
 }
 
 
-.appear-spin{
-  transform: scale(0,0) rotate(360deg)!important;
+
+.appear-fade{
+  opacity: 0 !important;
   transition: none !important;
 }
 
-.appear-spin.appear-spin-active {
-  transform: scale(1,1) rotate(0deg)!important;
-  transform-origin: center;
+.appear-fade.appear-fade-active {
+  opacity: 1 !important;
   transition-timing-function: @animation-curve-default !important;
   transition-delay: 0 !important;
   transition-duration: @animation-duration !important;
-  transition-property: transform !important;
+  transition-property: opacity !important;
 }
 
-.enter-spin{
-  transform: rotate(360deg)!important;
+.enter-fade{
+  opacity: 0 !important;
   transition: none !important;
 }
 
-.enter-spin.enter-spin-active {
-  transform: rotate(0deg)!important;
-  transform-origin: center;
+.enter-fade.enter-fade-active {
+  opacity: 1 !important;
   transition-timing-function: @animation-curve-default !important;
   transition-delay: 0 !important;
   transition-duration: @animation-duration !important;
-  transition-property: transform !important;
+  transition-property: opacity !important;
 }
 
-.leave-spin {
-  position: absolute !important;
-  visibility: hidden !important;
+.leave-fade {
+  width: 100%;
+  opacity: 1 !important;
 }
 
-.leave-spin.leave-spin-active {
-  position: absolute !important;
-  visibility: hidden !important;
+.leave-fade.leave-fade-active {
+  opacity: 0 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration !important;
+  transition-property: opacity !important;
 }

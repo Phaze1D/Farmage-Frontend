@@ -65,7 +65,7 @@ const testNotes = () => {
   if(Math.round(Math.random()) === 0){
     return faker.lorem.sentences();
   }
-  return faker.lorem.sentences();
+  return;
 }
 
 const testDateOfBirth = () => {

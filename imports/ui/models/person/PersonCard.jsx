@@ -1,6 +1,11 @@
 import React from 'react';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ImageEdit from 'material-ui/svg-icons/image/edit';
+import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 import MAvatar from '../../structure/mavatar/MAvatar';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import CommunicationCall from 'material-ui/svg-icons/communication/call';
@@ -19,12 +24,21 @@ export default class PersonCard extends React.Component{
     super(props);
 
     this.handleUpdate = this.handleUpdate.bind(this)
+    this.cardOptions = this.cardOptions.bind(this)
   }
 
-  // PASS THE ID OF INSE
   handleUpdate(){
-    this.props._id
     this.props.onRequestUpdate(this.props._id)
+  }
+
+
+  cardOptions(){
+    return [
+      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
+      <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
+      <Divider key='divider'/>,
+      <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
+    ]
   }
 
   render(){
@@ -44,8 +58,9 @@ export default class PersonCard extends React.Component{
     const title = `${firstName} ${lastName}`
     const char = title.toUpperCase().charAt(0)
 
+
     return(
-      <MCard handleUpdate={this.handleUpdate}>
+      <MCard options={this.cardOptions()}>
 
         <div className='card-top'>
           <MAvatar className='card-avatar'
@@ -70,8 +85,6 @@ export default class PersonCard extends React.Component{
     )
   }
 }
-
-
 
 
 const EmailSection = (props) => {

@@ -7,7 +7,7 @@ import {factoryUnit} from '../../units/faker/factoryUnit.js'
 
 const testIdentifer = () => {
   if(faker.random.boolean()){
-    // return faker.random.word();
+    return faker.random.word();
   }
   return ;
 }
@@ -23,6 +23,12 @@ const testExpires = () => {
   return ;
 }
 
+const testNotes = () => {
+  if(faker.random.boolean()){
+    return faker.lorem.paragraph();
+  }
+}
+
 const factoryYield = () => {
   let _yield = {
     _id: Random.id(),
@@ -30,6 +36,7 @@ const factoryYield = () => {
     amount: (Math.random() * 400).toFixed(8),
     createdAt: testCreated(),
     expiresAt: testExpires(),
+    notes: testNotes(),
     resource: factoryResource(),
     unit: factoryUnit()
   }

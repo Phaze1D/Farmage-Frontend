@@ -13,6 +13,16 @@ export default class YieldsIndex extends React.Component{
   constructor(props){
     super(props);
 
+    this.onCardUpdate = this.onCardUpdate.bind(this);
+  }
+
+  onCardUpdate(yield_id){
+    this.refs.dashboard.toggleRight(yield_id, 'Update Yield');
+  }
+
+
+  render(){
+
     this.yields = [];
     for(let i = 0; i < 20; i++){
         this.yields.push(factoryYield());
@@ -20,26 +30,24 @@ export default class YieldsIndex extends React.Component{
     this.yields.sort((a, b) => {
       return a.createdAt - b.createdAt;
     });
-  }
-
-
-  render(){
 
     const right = <YieldsNew/>;
     const filter = <YieldsFilter/>;
 
     const listItems = this.yields.map((_yield) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={_yield._id}>
-        <YieldCard {..._yield} />
+        <YieldCard {..._yield} onRequestUpdate={this.onCardUpdate}/>
       </div>
     );
 
     return (
       <Dashboard
+        defaultRightTitle='New Yield'
         headerTitle='Yields'
         showMFAB={true}
         right={right}
         filter={filter}
+        ref='dashboard'
         key='main-dash'>
 
         <MVirtualGrid>
