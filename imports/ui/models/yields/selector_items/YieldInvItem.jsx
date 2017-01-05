@@ -18,7 +18,7 @@ export default class YieldInvItem extends React.Component{
     this.handleOnYieldChanged = this.handleOnYieldChanged.bind(this);
 
     this.yields = []
-    for(let i = 0; i < Math.round(Math.random() * 2); i++){
+    for(let i = 0; i < Math.round(Math.random() * 10); i++){
       this.yields.push(factoryYield())
     }
   }
