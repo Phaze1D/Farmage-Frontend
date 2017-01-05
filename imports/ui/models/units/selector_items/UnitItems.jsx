@@ -97,14 +97,14 @@ export class UnitRadioItem extends React.Component{
 
         <div className='slinfo'>
           {name}
-          <div className={traClasses}>
-            Trackable {toggleB}
-          </div>
+          {trackable ?
+            <span style={{color: grey700}}>Active - {active}</span>
+              :
+            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
+          }
         </div>
 
-        <div className={traClasses}>
-          Active Sub Units - {activeSub}
-        </div>
+        <div className={traClasses}>Trackable {toggleB}</div>
 
       </div>
     )

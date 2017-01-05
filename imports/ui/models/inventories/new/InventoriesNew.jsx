@@ -16,6 +16,7 @@ import YieldInvItem from '../../yields/selector_items/YieldInvItem';
 import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
 import YieldsSelectorList from '../../yields/selector_items/YieldsSelectorList';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
+import {factoryInventory} from '../faker/factoryInventory';
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -23,13 +24,20 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class InventoriesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {minDate: new Date(), psopen: false, ysopen: false}
+    this.state = {psopen: false, ysopen: false, showFields: false}
     this.handleOnClose = this.handleOnClose.bind(this);
-    this.productRandomColor = randomImageColor();
 
     this.toggleProductSelector = this.toggleProductSelector.bind(this);
     this.toggleYieldSelector = this.toggleYieldSelector.bind(this);
 
+    this.inventory = {}
+    if(this.props.objectID){
+      this.inventory = factoryInventory();
+    }
+  }
+
+  componentDidMount(){
+    setTimeout(() => {this.setState({showFields: true})}, 500)
   }
 
   handleOnClose(event){
@@ -52,122 +60,28 @@ export default class InventoriesNew extends React.Component{
         classes='container-fluid'
         panelID='right-drawer'
         toolbar={
-          <FormActionBar onClear={this.handleOnClose} title='New Inventory'/>
+          <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <div className='row'>
-          <div className='col-xs-12'>
-            <TextField
-                name="name"
-                type="text"
-                className="input-lg"
-                hintText=""
-                floatingLabelText="Identifier"
-                fullWidth={true}/>
-          </div>
-        </div>
+        <ReactCSSTransitionGroup component={FirstChild}
+        transitionName={ {
+          enter: 'enter-fade',
+          leave: 'leave-fade',
+          appear: 'appear-fade'
+        } }
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppear={true}
+        transitionAppearTimeout={500}>
+          {this.state.showFields &&
+            <FormFields
+              inventory={this.inventory}
+              toggleYieldSelector={this.toggleYieldSelector}
+              toggleProductSelector={this.toggleProductSelector}/>
+          }
+        </ReactCSSTransitionGroup>
 
-        <div className='row'>
-          <div className='col-xs-6 sm-p-right'>
-            <DatePicker
-              name="date_bought"
-              floatingLabelText="Created Date"
-              fullWidth={true}
-              onChange={ (event, date) => {this.setState({minDate: date}) } }
-              defaultDate={new Date()}
-              formatDate={new DateTimeFormat('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-              }).format} />
-          </div>
 
-          <div className='col-xs-6 sm-p-left'>
-            <DatePicker
-              name="expiration_date"
-              minDate={this.state.minDate}
-              floatingLabelText="Expiration Date"
-              fullWidth={true}
-              formatDate={new DateTimeFormat('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-              }).format} />
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <TextArea
-              name="notes"
-              type="text"
-              className=""
-              floatingLabelText="Notes"
-              fullWidth={true}
-              multiLine={true}
-              showCount={true}
-              maxCount={512}
-              rows={1} />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className='col-xs-8 sm-p-right'  >
-            <TextArea
-              name="movement_note"
-              type="text"
-              className=""
-              defaultValue="Initial amount"
-              floatingLabelText="Movement Notes"
-              fullWidth={true}
-              multiLine={true}
-              showCount={true}
-              maxCount={512}
-              rows={1} />
-          </div>
-
-          <div className='col-xs-4 sm-p-left'>
-            <TextField
-                name="amount"
-                type="number"
-                defaultValue="0"
-                hintText=""
-                floatingLabelText="Amount"
-                fullWidth={true}/>
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Product" highlight={true} toggleSelector={this.toggleProductSelector}/>
-          </div>
-        </div>
-
-        <ProductInvItem backgroundColor={this.productRandomColor}/>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
-          </div>
-        </div>
-
-        <YieldInvItem/>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
-          </div>
-        </div>
-
-        <YieldInvItem/>
-
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Resource Yields" showImage={true} highlight={true} toggleSelector={this.toggleYieldSelector}/>
-          </div>
-        </div>
-
-        <YieldInvItem/>
 
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}
@@ -208,6 +122,132 @@ export default class InventoriesNew extends React.Component{
         </Portal>
 
       </MainPanel>
+    )
+  }
+}
+
+class FormFields extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {minDate: this.props.inventory.createdAt ? this.props.inventory.createdAt : new Date()}
+
+  }
+
+  render(){
+    const identifer = this.props.inventory.identifer ? this.props.inventory.identifer : this.props.inventory._id;
+
+
+    let resourceList = []
+
+    if(this.props.inventory && this.props.inventory.product){
+      resourceList = this.props.inventory.product.resources.map((resource) =>
+        <YieldInvItem
+          key={resource._id}
+          resource={resource}
+          toggleYieldSelector={this.props.toggleYieldSelector}/>
+      )
+    }
+
+
+    return(
+      <div>
+        <div className='row'>
+          <div className='col-xs-12'>
+            <TextField
+                name="name"
+                type="text"
+                className="input-lg"
+                hintText=""
+                defaultValue={identifer}
+                floatingLabelText="Identifier"
+                fullWidth={true}/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-6 sm-p-right'>
+            <DatePicker
+              name="createdAt"
+              floatingLabelText="Created Date"
+              fullWidth={true}
+              onChange={ (event, date) => {this.setState({minDate: date}) } }
+              defaultDate={this.props.inventory.createdAt ? this.props.inventory.createdAt : new Date()}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              }).format} />
+          </div>
+
+          <div className='col-xs-6 sm-p-left'>
+            <DatePicker
+              name="expiration_date"
+              minDate={this.state.minDate}
+              floatingLabelText="Expiration Date"
+              fullWidth={true}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              }).format} />
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <TextArea
+              name="notes"
+              type="text"
+              defaultValue={this.props.inventory.notes}
+              className=""
+              floatingLabelText="Notes"
+              fullWidth={true}
+              multiLine={true}
+              showCount={true}
+              maxCount={512}
+              rows={1} />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className='col-xs-8 sm-p-right'  >
+            <TextArea
+              name="movement_note"
+              type="text"
+              className=""
+              defaultValue="Initial amount"
+              floatingLabelText="Movement Notes"
+              fullWidth={true}
+              multiLine={true}
+              showCount={true}
+              maxCount={512}
+              rows={1} />
+          </div>
+
+          <div className='col-xs-4 sm-p-left'>
+            <TextField
+                name="amount"
+                type="number"
+                defaultValue="0"
+                hintText=""
+                floatingLabelText="Amount"
+                fullWidth={true}/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <SelectorButton title="Product" highlight={this.props.inventory.product} toggleSelector={this.props.toggleProductSelector}/>
+          </div>
+        </div>
+
+        {this.props.inventory.product &&
+          <ProductInvItem product={this.props.inventory.product}/>
+        }
+
+        {resourceList}
+
+      </div>
     )
   }
 }

@@ -35,12 +35,24 @@ const testProvider = () => {
   return ;
 }
 
+const testTaxRate = () => {
+  return Math.round(Math.random() * 100)
+}
+
+const testNotes = () => {
+  if(faker.random.boolean()){
+    return faker.lorem.paragraph();
+  }
+}
+
 const factoryExpense = () => {
   return {
     _id: faker.random.uuid(),
     itemName: testItemName(),
     quantity: testQuantity(),
     unitPrice: testUnitPrice(),
+    taxRate: testTaxRate(),
+    notes: testNotes(),
     createdAt: testCreatedAt(),
     receiptUrl: testRecipt(),
     provider: testProvider(),

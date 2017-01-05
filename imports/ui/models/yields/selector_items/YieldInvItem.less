@@ -1,16 +1,21 @@
 .ytitle-info{
-  margin-bottom: 50px;
   font-size: 14px;
   position: relative;
-  color: @grey-600;
-  border-bottom: 1px solid @grey-400;
+  color: @grey-800;
 
-  span{
-    position: absolute;
-    bottom: -20px;
-    font-size: 12px;
-    color: @grey-500;
+  &.error{
+
+    span{
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      font-size: 12px;
+      color: @red-500;
+    }
   }
+
+
+
 }
 
 .yield-section{
@@ -26,7 +31,7 @@
     flex-basis: 100px;
     min-width: 100px;
     align-self: center;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

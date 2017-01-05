@@ -11,6 +11,11 @@ import MVirtualGrid from '../../../structure/mvirtual_grid/MVirtualGrid';
 export default class ExpensesIndex extends React.Component{
   constructor(props){
     super(props);
+    this.onCardUpdate = this.onCardUpdate.bind(this);
+  }
+
+  onCardUpdate(expense_id){
+    this.refs.dashboard.toggleRight(expense_id, 'Update Expense');
   }
 
 
@@ -27,7 +32,7 @@ export default class ExpensesIndex extends React.Component{
 
     const listItems = expenses.map((expense) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={expense._id}>
-        <ExpenseCard {...expense} />
+        <ExpenseCard {...expense} onRequestUpdate={this.onCardUpdate}/>
       </div>
     );
 
@@ -36,10 +41,12 @@ export default class ExpensesIndex extends React.Component{
 
     return (
       <Dashboard
+        defaultRightTitle='New Expense'
         headerTitle='Expenses'
         showMFAB={true}
         right={right}
         filter={filter}
+        ref='dashboard'
         key='main-dash'>
 
         <MVirtualGrid>

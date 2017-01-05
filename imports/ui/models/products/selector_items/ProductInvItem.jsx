@@ -1,28 +1,36 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
+import MAvatar from '../../../structure/mavatar/MAvatar';
 
 
 
 
-let ProductInvItem = (props) => (
-  <div className='row'>
-    <div className='col-xs-12'>
-      <div className='selector-item'>
-        <div className='select-title'>
-          <Avatar backgroundColor={props.backgroundColor} style={{marginRight: '15px', padding: '1px 0 0 1px'}} size={56}>P</Avatar>
+let ProductInvItem = (props) => {
+  const char = props.product.name.toUpperCase().charAt(0);
+  return (
+    <div className='row'>
+      <div className='col-xs-12'>
+        <div className='selector-item'>
+          <div className='select-title'>
+            <MAvatar className='card-avatar'
+              style={{marginRight: '15px', padding: '1px 0 0 1px'}}
+              size={56} cha={char} src={props.product.imageUrl}/>
 
-          <h3>
-            Product Name
-            <span>ADF-12-12 </span>
-          </h3>
-        </div>
+            <h3>
+              {props.product.name}
+              <span>{props.product.sku}</span>
+            </h3>
+          </div>
 
-        <div className='extra-info'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquisi ut alm id est laborum.
+          {props.product.description &&
+            <div className='extra-info'>
+              {props.product.description}
+            </div>
+          }
+
         </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default ProductInvItem;

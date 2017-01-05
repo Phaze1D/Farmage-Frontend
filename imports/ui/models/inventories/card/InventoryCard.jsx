@@ -6,6 +6,10 @@ import IconButton from 'material-ui/IconButton';
 import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import Edit from 'material-ui/svg-icons/image/edit';
 import { browserHistory } from 'react-router'
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 
 
 import MAvatar from '../../../structure/mavatar/MAvatar';
@@ -19,6 +23,21 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class InventoryCard extends React.Component{
   constructor(props){
     super(props);
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.cardOptions = this.cardOptions.bind(this)
+  }
+
+  handleUpdate(){
+    this.props.onRequestUpdate(this.props._id)
+  }
+
+  cardOptions(){
+    return [
+      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
+      <MenuItem key='edit' primaryText="Edit" leftIcon={<Edit />} onTouchTap={this.handleUpdate}/>,
+      <Divider key='divider'/>,
+      <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
+    ]
   }
 
   render(){
@@ -54,7 +73,7 @@ export default class InventoryCard extends React.Component{
     const char = product.name.toUpperCase().charAt(0);
 
     return(
-      <MCard>
+      <MCard options={this.cardOptions()}>
 
         <div className='card-top' style={{marginBottom: '8px'}}>
           <CardTitle className='card-title' title={title} subtitle='Inventory Identifer'/>

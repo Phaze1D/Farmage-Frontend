@@ -15,7 +15,6 @@ export default class UnitSelectorList extends React.Component{
     this.resources = []
     for (let i = 0; i < this.state.count; i++) {
       const r = factoryUnit();
-      r.trackable = false;
       this.resources.push(r)
     }
   }

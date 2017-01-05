@@ -39,9 +39,9 @@ export default class MTextField extends React.Component{
 
     const inputStyle = {};
     if(prefixSide === 'left'){
-      inputStyle.paddingLeft = (prefix.length * 10) + 'px'
+      inputStyle.paddingLeft = (prefix.length * 9.8) + 'px'
     }else{
-      inputStyle.paddingRight = (prefix.length * 10) + 'px'
+      inputStyle.paddingRight = (prefix.length * 9.8) + 'px'
     }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import MTextField from '../../../structure/textfield/MTextField';
 import MAvatar from '../../../structure/mavatar/MAvatar';
-import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
 
 
 let ResourceProductItem = (props) => {
