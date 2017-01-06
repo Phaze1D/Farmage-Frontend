@@ -29,7 +29,7 @@ export default class MDialog extends React.Component{
         <div className={oveClasses} onTouchTap={this.handleClose}>
           <AutoLockScrolling lock={this.props.open}/>
           <div className={diClasses}>
-            <h3>
+            <h3 className={this.props.headerClasses}>
               {this.props.title}
             </h3>
 

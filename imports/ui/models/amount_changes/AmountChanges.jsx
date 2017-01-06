@@ -76,7 +76,8 @@ export default class AmountChanges extends React.Component{
           overlayClasses='movement-overlay'
           dialogClasses='movement-dialog'
           actionClasses='am-actions'
-          title={`New Movement`}
+          headerClasses='am-header'
+          title={`New ${this.props.type} Movement`}
           actions={actions}
           popen={this.props.isUpdate}
           open={this.state.showUpdate}>
