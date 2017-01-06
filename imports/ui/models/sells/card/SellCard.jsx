@@ -5,6 +5,11 @@ import { browserHistory } from 'react-router';
 import EnhancedButton from 'material-ui/internal/EnhancedButton';
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import ImageEdit from 'material-ui/svg-icons/image/edit';
+import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -63,7 +68,7 @@ export default class SellCard extends React.Component{
 
 
     return(
-      <MCard options={cardOptions()}>
+      <MCard options={this.cardOptions()}>
         <div className='card-top' style={{border: 'none'}}>
           <CardTitle className='card-title' title={title} subtitle={createdS}/>
         </div>

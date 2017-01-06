@@ -12,29 +12,29 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import Details from './Details';
-
+import {factorySell} from '../faker/factorySell';
 
 
 export default class SellsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {discount_type: "%"}
+    this.state = {showFields: false}
 
-    this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+
+    this.sell = {}
+    if(this.props.objectID){
+      this.sell = factorySell();
+    }
   }
 
-  handleDiscountToggle(){
-    if(this.state.discount_type === '%'){
-      this.setState({discount_type: "$"})
-    }else{
-      this.setState({discount_type: "%"})
-    }
+  componentDidMount(){
+    setTimeout(() => {this.setState({showFields: true})}, 500)
   }
 
   handleOnClose(event){
     this.props.onCloseRight(false);
-    this.refs['details'].closeSelectorLists();
+    this.refs.formFields.handleOnClose();
   }
 
 
@@ -44,7 +44,7 @@ export default class SellsNew extends React.Component{
         classes='container-fluid'
         panelID='right-drawer'
         toolbar={
-          <FormActionBar onClear={this.handleOnClose} title='New Sell'/>
+          <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
         <ReactCSSTransitionGroup
@@ -62,6 +62,60 @@ export default class SellsNew extends React.Component{
             <PayIcon className="icon"/>
           </FloatingActionButton>
         </ReactCSSTransitionGroup>
+
+        <ReactCSSTransitionGroup component={FirstChild}
+        transitionName={ {
+          enter: 'enter-fade',
+          leave: 'leave-fade',
+          appear: 'appear-fade'
+        } }
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppear={true}
+        transitionAppearTimeout={500}>
+          {this.state.showFields &&
+            <FormFields
+              ref='formFields'
+              isUpdate={this.props.isUpdate}
+              sell={this.sell}/>
+          }
+        </ReactCSSTransitionGroup>
+
+
+
+
+      </MainPanel>
+    )
+  }
+}
+
+
+class FormFields extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {discount_type: "%"}
+
+    this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
+  }
+
+  handleOnClose(event){
+    this.refs.details.closeSelectorLists();
+  }
+
+
+  handleDiscountToggle(){
+    if(this.state.discount_type === '%'){
+      this.setState({discount_type: "$"})
+    }else{
+      this.setState({discount_type: "%"})
+    }
+  }
+
+  render(){
+
+    return(
+      <div>
 
         <Details ref='details'/>
 
@@ -179,8 +233,12 @@ export default class SellsNew extends React.Component{
           </div>
         </div>
 
-
-      </MainPanel>
+      </div>
     )
   }
+}
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
 }
