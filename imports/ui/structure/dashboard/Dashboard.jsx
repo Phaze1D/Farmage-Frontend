@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component{
     super(props);
     this.state = {
       lopen: false, ropen: false, fopen: false, sopen: false,
-      showMFAB: this.props.showMFAB,
+      showMFAB: this.props.showMFAB, isUpdate: false,
       rightTitle: this.props.defaultRightTitle, rightObjectID: null
     };
 
@@ -42,9 +42,9 @@ export default class Dashboard extends React.Component{
 
   toggleRight(rightObjectID, rightTitle) {
     if(rightTitle){
-      this.setState({rightTitle: rightTitle, rightObjectID: rightObjectID})
+      this.setState({rightTitle: rightTitle, rightObjectID: rightObjectID, isUpdate: true})
     }else{
-      this.setState({rightTitle: this.props.defaultRightTitle, rightObjectID: null })
+      this.setState({rightTitle: this.props.defaultRightTitle, rightObjectID: null, isUpdate: false })
     }
     this.setState( (prevState, props) => ({ropen: !prevState.ropen}) );
   }
@@ -84,11 +84,13 @@ export default class Dashboard extends React.Component{
         panelID='dashboard'
         classes='container-fluid index-panel'
         toolbar={toolbar}
+        isWindow={true}
         onRequestHide={this.hideFAB}
         onRequestShow={this.showFAB}>
 
         <Portal isOpened={true}>
           <MSearch
+            isWindow={true}
             showOverlay={true}
             open={this.state.sopen}
             onRequestChange={this.toggleSearch}/>
@@ -103,7 +105,10 @@ export default class Dashboard extends React.Component{
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           {React.cloneElement(this.props.right, {
-            onCloseRight: this.toggleRight, headerTitle: this.state.rightTitle, objectID: this.state.rightObjectID
+            onCloseRight: this.toggleRight,
+            headerTitle: this.state.rightTitle,
+            objectID: this.state.rightObjectID,
+            isUpdate: this.state.isUpdate
           })}
         </RightDrawer>
 
@@ -117,7 +122,7 @@ export default class Dashboard extends React.Component{
 }
 
 const IndexToolBar = (props) => (
-  <div className='toolbar'>
+  <div className='toolbar window'>
     <IconButton className='menu-button' onTouchTap={props.toggleLeft}>
       <NavigationMenu/>
     </IconButton>
@@ -157,6 +162,7 @@ const FilterDialog = (props) => {
     <MDialog
     title="Filters"
     actions={actions}
+    popen={true}
     open={props.open}
     onRequestClose={props.onRequestClose}>
 

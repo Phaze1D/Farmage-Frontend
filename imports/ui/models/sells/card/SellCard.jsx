@@ -11,6 +11,21 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class SellCard extends React.Component{
   constructor(props){
     super(props);
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.cardOptions = this.cardOptions.bind(this)
+  }
+
+  handleUpdate(){
+    this.props.onRequestUpdate(this.props._id)
+  }
+
+  cardOptions(){
+    return [
+      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
+      <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
+      <Divider key='divider'/>,
+      <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
+    ]
   }
 
   render(){
@@ -48,7 +63,7 @@ export default class SellCard extends React.Component{
 
 
     return(
-      <MCard>
+      <MCard options={cardOptions()}>
         <div className='card-top' style={{border: 'none'}}>
           <CardTitle className='card-title' title={title} subtitle={createdS}/>
         </div>

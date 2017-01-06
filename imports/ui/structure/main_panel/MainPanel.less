@@ -6,6 +6,11 @@
   max-height: 100%;
   overflow: hidden;
   // background-color: @grey-200;
+
+  &.window{
+    overflow: auto;
+    position: relative;
+  }
 }
 
 .panel{
@@ -13,6 +18,12 @@
   height: 100vh;
   overflow: scroll;
   padding-bottom: 50px;
+
+  &.window{
+    height: auto;
+    min-height: 100vh;
+    overflow: inherit;
+  }
 }
 
 
@@ -57,6 +68,10 @@
   will-change: transform;
   z-index: @z-index-higher;
   background-color: @color-primary;
+
+  &.window{
+    position: fixed;
+  }
 
 }
 

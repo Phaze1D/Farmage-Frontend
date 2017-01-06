@@ -14,6 +14,7 @@ import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import LToggler from '../../../structure/ltoggler/LToggler';
 import UnitSelected from '../selector_items/UnitSelected';
 import UnitSelectorList from '../selector_items/UnitSelectorList';
+import AmountChanges from '../../amount_changes/AmountChanges';
 import { factoryUnit } from '../faker/factoryUnit';
 
 
@@ -68,7 +69,10 @@ export default class UnitsNew extends React.Component{
         transitionAppear={true}
         transitionAppearTimeout={500}>
           {this.state.showFields &&
-            <FormFields unit={this.unit} toggleUnitSelector={this.toggleUnitSelector}/>
+            <FormFields
+              unit={this.unit}
+              isUpdate={this.props.isUpdate}
+              toggleUnitSelector={this.toggleUnitSelector}/>
           }
         </ReactCSSTransitionGroup>
 
@@ -164,22 +168,22 @@ class FormFields extends React.Component{
           </div>
         </div>
 
-
         <LToggler
           title="Track the unit's amount"
           subTitle="Trackable Units cannot have sub-units"
           defaultToggled={trackable}
           onToggle={this.handleTracking}/>
 
-        {this.props.isUpdate ?
-          <div id="new-track-wrapper" className='track-wrapper' ref='trackWrapper'>
-            <UpdateEventAmount/>
-          </div>
-          :
-          <div id="new-track-wrapper" className='track-wrapper' ref='trackWrapper'>
-            <NewEventAmount/>
-          </div>
-        }
+        <div id="new-track-wrapper" className='track-wrapper' ref='trackWrapper'>
+          <AmountChanges
+            type='Unit'
+            identifer={this.props.unit.name}
+            isUpdate={this.props.isUpdate}
+            defaultValue={this.props.unit.active}
+            amountLabel='Active'/>
+        </div>
+
+
 
         <div className='row'>
           <div className='col-xs-12'>
@@ -195,40 +199,6 @@ class FormFields extends React.Component{
   }
 }
 
-let UpdateEventAmount = (props) => (
-  <div>
-
-  </div>
-)
-
-let NewEventAmount = (props) => (
-  <div>
-    <div className="row row-flex">
-      <div className='col-xs-8 sm-p-right'>
-        <TextArea
-          name="description"
-          type="text"
-          defaultValue="Initial amount"
-          floatingLabelText="Movement Notes"
-          fullWidth={true}
-          multiLine={true}
-          showCount={true}
-          maxCount={512}
-          rows={1} />
-      </div>
-
-      <div className='col-xs-4 sm-p-left'>
-        <TextField
-            name="amount"
-            type="number"
-            defaultValue="1"
-            hintText=""
-            floatingLabelText="Active"
-            fullWidth={true}/>
-      </div>
-    </div>
-  </div>
-)
 
 let FirstChild = (props) => {
   const childrenArray = React.Children.toArray(props.children);

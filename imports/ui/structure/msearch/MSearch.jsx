@@ -5,6 +5,7 @@ import Overlay from 'material-ui/internal/Overlay';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import TextField from 'material-ui/TextField';
+import classnames from 'classnames'
 
 
 
@@ -15,7 +16,7 @@ export default class MSearch extends React.Component{
   }
 
   render(){
-
+    const seaClasses = classnames('msearch-bar', {'window': this.props.isWindow})
     const backIcon = this.props.backIcon ? this.props.backIcon : <ArrowBack/> ;
 
     return(
@@ -39,7 +40,7 @@ export default class MSearch extends React.Component{
           transitionAppear={true}
           transitionAppearTimeout={400}>
             {this.props.open &&
-              <div className='msearch-bar' style={this.props.barStyle}>
+              <div className={seaClasses} style={this.props.barStyle}>
                 <IconButton className='msearch-back' onTouchTap={this.props.onRequestChange} disableTouchRipple={true}>
                   {backIcon}
                 </IconButton>

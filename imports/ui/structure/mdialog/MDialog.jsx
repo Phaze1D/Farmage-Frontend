@@ -21,11 +21,11 @@ export default class MDialog extends React.Component{
   }
 
   render(){
-    const oveClasses = classnames('mdialog-overlay', {'open': this.props.open});
-    const diClasses = classnames('mdialog', {'open': this.props.open});
+    const oveClasses = classnames('mdialog-overlay', this.props.overlayClasses, {'open': this.props.open});
+    const diClasses = classnames('mdialog', this.props.dialogClasses, {'open': this.props.open});
 
     return(
-      <Portal isOpened={true}>
+      <Portal isOpened={this.props.popen}>
         <div className={oveClasses} onTouchTap={this.handleClose}>
           <AutoLockScrolling lock={this.props.open}/>
           <div className={diClasses}>
@@ -37,7 +37,7 @@ export default class MDialog extends React.Component{
               {this.props.children}
             </div>
 
-            <div className='actions'>
+            <div className={`actions ${this.props.actionClasses}`}>
               {this.props.actions}
             </div>
 

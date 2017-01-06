@@ -25,7 +25,9 @@ export default class MainPanel extends React.Component{
   }
 
   handleScroll(event){
-    let currentScrollTop = event.currentTarget.scrollTop
+    let currentScrollTop =
+      this.props.isWindow ? event.currentTarget.scrollY: event.currentTarget.scrollTop;
+
     // this.update(event.currentTarget.scrollTop);
     if (!this.ticking) {
       requestAnimationFrame(() => {
@@ -108,13 +110,14 @@ export default class MainPanel extends React.Component{
 
 
   render(){
-    const mainClasses = classnames('main-panel', this.props.mainClasses)
-    const panClasses = classnames('panel', this.props.classes)
+    const mainClasses = classnames('main-panel', this.props.mainClasses, {'window': this.props.isWindow})
+    const panClasses = classnames('panel', this.props.classes, {'window': this.props.isWindow})
+    const target = this.props.isWindow ? window : this.props.panelID;
 
     return(
       <div className={mainClasses}>
         <EventListener
-          target={this.props.panelID}
+          target={target}
           onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}/>
 
         {this.props.toolbar}

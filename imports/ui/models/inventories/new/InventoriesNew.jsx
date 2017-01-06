@@ -15,7 +15,7 @@ import ProductInvItem from '../../products/selector_items/ProductInvItem';
 import YieldInvItem from '../../yields/selector_items/YieldInvItem';
 import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
 import YieldsSelectorList from '../../yields/selector_items/YieldsSelectorList';
-import {randomImageColor} from '../../../structure/app/RandomColor.js';
+import AmountChanges from '../../amount_changes/AmountChanges';
 import {factoryInventory} from '../faker/factoryInventory';
 
 
@@ -75,6 +75,7 @@ export default class InventoriesNew extends React.Component{
         transitionAppearTimeout={500}>
           {this.state.showFields &&
             <FormFields
+              isUpdate={this.props.isUpdate}
               inventory={this.inventory}
               toggleYieldSelector={this.toggleYieldSelector}
               toggleProductSelector={this.toggleProductSelector}/>
@@ -209,31 +210,12 @@ class FormFields extends React.Component{
           </div>
         </div>
 
-        <div className="row">
-          <div className='col-xs-8 sm-p-right'  >
-            <TextArea
-              name="movement_note"
-              type="text"
-              className=""
-              defaultValue="Initial amount"
-              floatingLabelText="Movement Notes"
-              fullWidth={true}
-              multiLine={true}
-              showCount={true}
-              maxCount={512}
-              rows={1} />
-          </div>
-
-          <div className='col-xs-4 sm-p-left'>
-            <TextField
-                name="amount"
-                type="number"
-                defaultValue="0"
-                hintText=""
-                floatingLabelText="Amount"
-                fullWidth={true}/>
-          </div>
-        </div>
+        <AmountChanges
+          type='Inventory'
+          identifer={identifer}
+          isUpdate={this.props.isUpdate}
+          defaultValue={this.props.inventory.amount}
+          amountLabel='Amount'/>
 
         <div className='row'>
           <div className='col-xs-12'>

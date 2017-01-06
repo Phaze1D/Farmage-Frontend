@@ -2,3 +2,47 @@
   margin: 20px 0 -20px !important;
   padding-left: 0 !important;
 }
+
+.movement-overlay{
+  z-index: 3000 !important;
+}
+
+.movement-dialog{
+  width: 100% !important;
+  min-height: 100% !important;
+  height: auto !important;
+
+  @media(min-width:  @layout-breakpoint-sm){
+    width: 35% !important;
+    min-height: 356px !important;
+  }
+}
+
+.am-info-section{
+
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px 0;
+
+
+  .am-info{
+    cursor: default;
+    flex-grow: 1;
+    margin: 25px 0 0;
+    font-size: 20px;
+
+    span{
+      display: block;
+      font-size: 13px;
+      color: @grey-500;
+    }
+  }
+}
+
+.am-input-div{
+  padding: 0px 15px;
+}
+
+.am-actions{
+  border: none !important
+}
