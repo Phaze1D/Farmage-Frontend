@@ -143,7 +143,7 @@ const YieldDetail = (props) => {
           className={props.resourceID}
           boxClass="input-row"
           hintText=""
-          floatingLabelText="Taken"
+          floatingLabelText="Take"
           fullWidth={true}
           step='any'
           min={0}
