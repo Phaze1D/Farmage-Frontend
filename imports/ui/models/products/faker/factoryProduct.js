@@ -23,7 +23,7 @@ const testUnitPrice = () => {
 }
 
 const testTaxRate = () => {
-  return Math.round(Math.random() * 100)
+  return Math.round(Math.random() * 20)
 }
 
 const testStock = () => {

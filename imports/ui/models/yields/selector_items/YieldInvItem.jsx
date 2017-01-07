@@ -96,61 +96,77 @@ export default class YieldInvItem extends React.Component{
 }
 
 
-const YieldDetail = (props) => {
-  const error = props.hasError ? ' ' : null;
-  const identifer = props.yield.identifer ? props.yield.identifer : props.yield._id
-  const createdAt = new DateTimeFormat('en-US', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  }).format(props.yield.createdAt)
+class YieldDetail extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {available: this.props.yield.amount}
 
-  let expiresAt = 'Never'
-  if(props.yield.expiresAt){
-    expiresAt = new DateTimeFormat('en-US', {
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  handleOnChange(event, newValue){
+    newValue = newValue.length > 0 ? newValue : 0;
+    let newAvi = Big(this.props.yield.amount).minus(newValue)
+    this.setState({available: newAvi.toString()})
+    this.props.onRequestChange(event, newValue)
+  }
+
+  render(){
+    const error = this.props.hasError ? ' ' : null;
+    const identifer = this.props.yield.identifer ? this.props.yield.identifer : this.props.yield._id
+    const createdAt = new DateTimeFormat('en-US', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
-    }).format(props.yield.expiresAt)
+    }).format(this.props.yield.createdAt)
+
+    let expiresAt = 'Never'
+    if(this.props.yield.expiresAt){
+      expiresAt = new DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }).format(this.props.yield.expiresAt)
+    }
+
+    return (
+      <div className='yield-section'>
+        <div className='yield-info'>
+          <span>Yield Identifier</span>
+          {identifer}
+        </div>
+
+        <div className='yield-info'>
+          <span>Available</span>
+          {this.state.available}
+        </div>
+
+        <div className='yield-info'>
+          <span>Created Date</span>
+          {createdAt}
+        </div>
+
+        <div className='yield-info'>
+          <span>Expires At</span>
+          {expiresAt}
+        </div>
+
+        <MTextField
+            name="amount_taken"
+            type="number"
+            errorText={error}
+            className={this.props.resourceID}
+            boxClass="input-row"
+            hintText=""
+            floatingLabelText="Take"
+            fullWidth={true}
+            step='any'
+            min={0}
+            onChange={this.handleOnChange}
+            prefix={this.props.measurementUnit}
+            prefixSide="right"/>
+
+      </div>
+    )
   }
-
-  return (
-    <div className='yield-section'>
-      <div className='yield-info'>
-        <span>Yield Identifier</span>
-        {identifer}
-      </div>
-
-      <div className='yield-info'>
-        <span>Yield Amount</span>
-        {props.yield.amount}
-      </div>
-
-      <div className='yield-info'>
-        <span>Created Date</span>
-        {createdAt}
-      </div>
-
-      <div className='yield-info'>
-        <span>Expires At</span>
-        {expiresAt}
-      </div>
-
-      <MTextField
-          name="amount_taken"
-          type="number"
-          errorText={error}
-          className={props.resourceID}
-          boxClass="input-row"
-          hintText=""
-          floatingLabelText="Take"
-          fullWidth={true}
-          step='any'
-          min={0}
-          onChange={props.onRequestChange}
-          prefix={props.measurementUnit}
-          prefixSide="right"/>
-
-    </div>
-  )
 }

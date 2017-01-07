@@ -13,6 +13,8 @@ import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import Details from './Details';
 import {factorySell} from '../faker/factorySell';
+import Big from 'big.js';
+Big.DP = 10
 
 
 export default class SellsNew extends React.Component{
@@ -29,7 +31,7 @@ export default class SellsNew extends React.Component{
   }
 
   componentDidMount(){
-    setTimeout(() => {this.setState({showFields: true})}, 500)
+    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){
@@ -81,9 +83,6 @@ export default class SellsNew extends React.Component{
           }
         </ReactCSSTransitionGroup>
 
-
-
-
       </MainPanel>
     )
   }
@@ -93,16 +92,52 @@ export default class SellsNew extends React.Component{
 class FormFields extends React.Component{
   constructor(props){
     super(props)
-    this.state = {discount_type: "%"}
+    this.state = {discount_type: "%", total: 0, subTotal: 0, taxTotal: 0}
+    this.details = this.props.sell.details ? this.props.sell.details : []
 
     this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+  }
+
+  componentDidMount() {
+    let subT = Big(0);
+    let taxT = Big(0);
+
+    for (let i = 0; i < this.details.length; i++) {
+      let detail = this.props.sell.details[i];
+      let psubT = Big(detail.unitPrice).times(detail.quantity)
+      let pTaxT = Big(detail.taxRate).div(100).times(psubT)
+      subT = subT.plus(psubT)
+      taxT = taxT.plus(pTaxT)
+    }
+
+
+    this.setState({
+      total: Number(subT.toString()) + Number(taxT.toString()),
+      subTotal: Number(subT.toString()),
+      taxTotal: Number(taxT.toString())
+    })
+
   }
 
   handleOnClose(event){
     this.refs.details.closeSelectorLists();
   }
 
+  handleQuantityChange(previousAmounts, newAmounts){
+    let difSubT = Big(newAmounts.subTotal).minus(previousAmounts.subTotal);
+    let difTaxT = Big(newAmounts.taxTotal).minus(previousAmounts.taxTotal);
+    let difToT = Big(newAmounts.total).minus(previousAmounts.total);
+
+    let newSubT = Number(difSubT.plus(this.state.subTotal).toString());
+    let newTaxT = Number(difTaxT.plus(this.state.taxTotal).toString());
+    let newToT = Number(difToT.plus(this.state.total).toString());
+
+    this.setState({total: newToT, subTotal: newSubT, taxTotal: newTaxT})
+
+
+  }
 
   handleDiscountToggle(){
     if(this.state.discount_type === '%'){
@@ -117,7 +152,10 @@ class FormFields extends React.Component{
     return(
       <div>
 
-        <Details ref='details'/>
+        <Details
+          onRequestQuantity={this.handleQuantityChange}
+          ref='details'
+          details={this.details}/>
 
         <div className="row">
           <div className="col-xs-12">
@@ -127,6 +165,7 @@ class FormFields extends React.Component{
                 className='input-lg'
                 floatingLabelText="Total Price"
                 fullWidth={true}
+                value={this.state.total.toFixed(2)}
                 disabled={true}
                 prefix="$"
                 prefixClass="input-lg"
@@ -141,6 +180,7 @@ class FormFields extends React.Component{
                 type="number"
                 floatingLabelText="Sub Total"
                 fullWidth={true}
+                value={this.state.subTotal.toFixed(2)}
                 disabled={true}
                 prefix="$"
                 prefixSide="left"/>
@@ -153,6 +193,7 @@ class FormFields extends React.Component{
                 type="number"
                 floatingLabelText="Tax Total"
                 fullWidth={true}
+                value={this.state.taxTotal.toFixed(2)}
                 disabled={true}
                 prefix="$"
                 prefixSide="left"/>

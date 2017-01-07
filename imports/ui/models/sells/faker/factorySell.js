@@ -31,7 +31,7 @@ const testStatus = () => {
 const testDetails = () => {
   let details = []
 
-  for(let i = 0; i < Math.round(Math.random() * 50); i++){
+  for(let i = 0; i < Math.round(Math.random() * 500); i++){
     const product = factoryProduct();
     let inventories = [];
     let productQuantity = 0;
@@ -42,6 +42,7 @@ const testDetails = () => {
       productQuantity += qt;
       inventories.push(
         {
+          inventory: inventory,
           inventoryID: inventory._id,
           quantityTaken: qt
         }
@@ -52,6 +53,7 @@ const testDetails = () => {
 
     details.push(
       {
+        product: product,
         productID: product._id,
         productName: product.name,
         quantity: productQuantity,
@@ -61,6 +63,8 @@ const testDetails = () => {
       }
     )
   }
+
+  return details
 }
 
 

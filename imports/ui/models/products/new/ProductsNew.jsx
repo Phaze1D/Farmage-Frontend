@@ -28,7 +28,7 @@ export default class ProductsNew extends React.Component{
   }
 
   componentDidMount() {
-    setTimeout(() => {this.setState({showFields: true})}, 500)
+    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){

@@ -21,11 +21,11 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: fade(darkBlack, 0.15),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: orange500,
     clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
-    disabledTextColor: fade(darkBlack, 0.15),
+    disabledTextColor: fade(darkBlack, 0.3),
   },
   textField: {
     hintColor: fade(darkBlack, 0.4),

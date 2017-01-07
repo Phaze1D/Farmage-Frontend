@@ -37,6 +37,15 @@ export default class Details extends React.Component{
 
 
   render() {
+
+    const productList = this.props.details.map((detail) =>
+      <ProductSellItem
+        onRequestQuantity={this.props.onRequestQuantity}
+        key={detail.productID}
+        detail={detail}
+        toggleInventorySelector={this.toggleInventorySelector}/>
+    )
+
     return (
       <div>
         <div className='details-header'>
@@ -53,26 +62,7 @@ export default class Details extends React.Component{
           </IconButton>
         </div>
 
-
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-        <ProductSellItem
-          backgroundColor={randomImageColor()}
-          toggleInventorySelector={this.toggleInventorySelector}/>
-
+        {productList}
 
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}
