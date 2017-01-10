@@ -26,13 +26,15 @@ export default class MCard extends React.Component{
   handleOnExpand(event){
     let pos = event.currentTarget.closest('.mcard').getBoundingClientRect();
     console.log(pos);
+    const height = pos.bottom - pos.top;
+    const width = pos.right - pos.left;
     this.showStyle = {
       top: 0,
       left: 0,
       width: '100%',
       height: '100vh',
-      transformOrigin: `${pos.left * (0.3125 + 1)}px 100px`,
-      transform: `scale(${(pos.right - pos.left)/ window.innerWidth }, ${(pos.bottom - pos.top) / window.innerHeight})`
+      transformOrigin: `${pos.left}px ${height/2 + pos.top}px`,
+      transform: `scale(${width/ window.innerWidth }, ${height / window.innerHeight})`
     }
     this.setState({showCard: true})
     console.log(this.showStyle);
