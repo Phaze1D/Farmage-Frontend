@@ -20,7 +20,7 @@ import classnames from 'classnames';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class InventoryCard extends React.Component{
+export default class BatchCard extends React.Component{
   constructor(props){
     super(props);
     this.handleUpdate = this.handleUpdate.bind(this)
@@ -76,7 +76,7 @@ export default class InventoryCard extends React.Component{
       <MCard options={this.cardOptions()}>
 
         <div className='card-top' style={{marginBottom: '8px'}}>
-          <CardTitle className='card-title' title={title} subtitle='Inventory Identifer'/>
+          <CardTitle className='card-title' title={title} subtitle='Batch Identifer'/>
         </div>
 
         <EnhancedButton style={{textAlign: 'left'}}>

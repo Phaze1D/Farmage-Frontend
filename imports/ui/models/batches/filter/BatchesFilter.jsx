@@ -8,7 +8,7 @@ import MSelectSort from '../../../structure/mselect_sort/MSelectSort';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class InventoriesFilter extends React.Component{
+export default class BatchesFilter extends React.Component{
   constructor(props){
     super(props);
     this.state = {

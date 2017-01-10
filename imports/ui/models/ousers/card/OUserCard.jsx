@@ -64,9 +64,9 @@ export default class OUserCard extends React.Component{
           <span>View and edit expenses and providers</span>
         </div>
 
-        <div className={classnames('ouser-permission', {'on': permissions.inventoriesManager})}>
-          Inventories Manager
-          <span>View and edit inventories and products</span>
+        <div className={classnames('ouser-permission', {'on': permissions.batchesManager})}>
+          Batches Manager
+          <span>View and edit batches and products</span>
         </div>
 
         <div className={classnames('ouser-permission', {'on': permissions.usersManager})}>

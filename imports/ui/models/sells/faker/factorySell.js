@@ -1,6 +1,6 @@
 import faker from 'faker'
 import { factoryPerson } from '../../person/faker/factoryPerson';
-import { factoryInventory } from '../../inventories/faker/factoryInventory';
+import { factoryBatch } from '../../batches/faker/factoryBatch';
 import { factoryProduct } from '../../products/faker/factoryProduct';
 import { Random } from 'meteor/random'
 
@@ -33,17 +33,17 @@ const testDetails = () => {
 
   for(let i = 0; i < Math.round(Math.random() * 500); i++){
     const product = factoryProduct();
-    let inventories = [];
+    let batches = [];
     let productQuantity = 0;
 
     for(let j = 0; j < Math.round(Math.random() * 5); j++){
-      const inventory = factoryInventory();
+      const batch = factoryBatch();
       const qt = Math.round(Math.random() * 50);
       productQuantity += qt;
-      inventories.push(
+      batches.push(
         {
-          inventory: inventory,
-          inventoryID: inventory._id,
+          batch: batch,
+          batchID: batch._id,
           quantityTaken: qt
         }
       )
@@ -59,7 +59,7 @@ const testDetails = () => {
         quantity: productQuantity,
         unitPrice: product.unitPrice,
         taxRate: product.taxRate,
-        inventories: inventories
+        batches: batches
       }
     )
   }

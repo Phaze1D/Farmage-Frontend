@@ -6,7 +6,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import ProductSellItem from '../../products/selector_items/ProductSellItem';
 import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
-import InventoriesSelectorList from '../../inventories/selector_items/InventoriesSelectorList';
+import BatchesSelectorList from '../../batches/selector_items/BatchesSelectorList';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 
 
@@ -17,14 +17,21 @@ import {randomImageColor} from '../../../structure/app/RandomColor.js';
 export default class Details extends React.Component{
   constructor(props){
     super(props);
-    this.state = {psopen: false, isopen: false}
+    this.state = {psopen: false, isopen: false, bTitle: ''}
 
     this.toggleProductSelector = this.toggleProductSelector.bind(this);
-    this.toggleInventorySelector = this.toggleInventorySelector.bind(this);
+    this.toggleBatchSelector = this.toggleBatchSelector.bind(this);
   }
 
-  toggleInventorySelector(event){
-    this.setState({isopen: !this.state.isopen, psopen: false});
+  toggleBatchSelector(event, title){
+    if(this.state.bTitle === title || title === undefined){
+      this.setState({isopen: !this.state.isopen, psopen: false});
+    }else if(this.state.isopen){
+      this.setState({bTitle: title})
+    }else{
+      this.setState({bTitle: title, isopen: true, psopen: false});
+    }
+
   }
 
   toggleProductSelector(event){
@@ -43,7 +50,7 @@ export default class Details extends React.Component{
         onRequestQuantity={this.props.onRequestQuantity}
         key={detail.productID}
         detail={detail}
-        toggleInventorySelector={this.toggleInventorySelector}/>
+        toggleBatchSelector={this.toggleBatchSelector}/>
     )
 
     return (
@@ -96,7 +103,7 @@ export default class Details extends React.Component{
           transitionAppearTimeout={400}>
 
           {this.state.isopen &&
-            <InventoriesSelectorList key='ys' onRequestChange={this.toggleInventorySelector} title='Product Inventories' onlyOne={false}/>
+            <BatchesSelectorList key='ys' onRequestChange={this.toggleBatchSelector} title={this.state.bTitle} onlyOne={false}/>
           }
 
           </ReactCSSTransitionGroup>

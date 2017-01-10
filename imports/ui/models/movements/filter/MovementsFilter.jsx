@@ -67,7 +67,7 @@ export default class MovementsFilter extends React.Component{
           autoWidth={true}>
 
             <MenuItem key={0} value={0} primaryText='All' />
-            <MenuItem key={1} value={1} primaryText='Inventory' />
+            <MenuItem key={1} value={1} primaryText='Batch' />
             <MenuItem key={2} value={2} primaryText='Yield' />
             <MenuItem key={3} value={2} primaryText='Unit' />
 

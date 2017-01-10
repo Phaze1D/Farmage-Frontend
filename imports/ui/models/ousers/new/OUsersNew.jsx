@@ -97,8 +97,8 @@ export default class UnitsNew extends React.Component{
           defaultToggled={false}/>
 
         <LToggler
-          title="Inventories Manager"
-          subTitle="View and edit inventories and products"
+          title="Batches Manager"
+          subTitle="View and edit batches and products"
           defaultToggled={false}/>
 
         <LToggler

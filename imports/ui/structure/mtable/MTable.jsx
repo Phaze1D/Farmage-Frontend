@@ -60,7 +60,7 @@ export default class MTable extends React.Component{
               targetOrigin={{horizontal: 'right', vertical: 'top'}}>
 
               <MenuItem primaryText="Movements" />
-              <MenuItem primaryText="Inventories"/>
+              <MenuItem primaryText="Batches"/>
               <Divider />
               <MenuItem primaryText="Edit" leftIcon={<ImageEdit />} />
               <MenuItem primaryText="Delete" leftIcon={<ActionDelete />} />

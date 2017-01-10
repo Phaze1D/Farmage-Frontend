@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import NavigationExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
-import InventorySelected from '../../inventories/selector_items/InventorySelected';
+import BatchSelected from '../../batches/selector_items/BatchSelected';
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import classnames from 'classnames';
 import Big from 'big.js';
@@ -24,15 +24,16 @@ export default class ProductSellItem extends React.Component{
     }
 
     this.handleExpand = this.handleExpand.bind(this);
-    this.handleInventoryChange = this.handleInventoryChange.bind(this);
+    this.handleBatchChange = this.handleBatchChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.calculateOldNew = this.calculateOldNew.bind(this);
+    this.handleBatchSelectorClick = this.handleBatchSelectorClick.bind(this);
   }
 
   componentDidMount(){
   }
 
-  handleInventoryChange(event){
+  handleBatchChange(event){
     const tfs = document.getElementsByClassName(this.props.detail.productID)
     let sum = Big(0);
     for (var i = 0; i < tfs.length; i++) {
@@ -87,6 +88,10 @@ export default class ProductSellItem extends React.Component{
     this.props.onRequestQuantity(previousAmounts, newAmounts)
   }
 
+  handleBatchSelectorClick(event){
+    this.props.toggleBatchSelector(event, `${this.props.detail.productName} Batches`)
+  }
+
 
   render(){
     const butClass = classnames('expand-button', {'rotate': this.state.show});
@@ -94,12 +99,12 @@ export default class ProductSellItem extends React.Component{
     const product = this.props.detail.product;
     const char = this.props.detail.productName.toUpperCase().charAt(0);
 
-    const inventoryList = this.props.detail.inventories.map((dinventory) =>
-      <InventorySelected
-        onRequestChange={this.handleInventoryChange}
-        key={dinventory.inventoryID}
+    const batchList = this.props.detail.batches.map((dbatch) =>
+      <BatchSelected
+        onRequestChange={this.handleBatchChange}
+        key={dbatch.batchID}
         productID={this.props.detail.productID}
-        dinventory={dinventory}/>
+        dbatch={dbatch}/>
     )
 
     return (
@@ -136,11 +141,11 @@ export default class ProductSellItem extends React.Component{
                 detail={this.props.detail}/>
 
               <SelectorButton
-                title="Inventories"
-                highlight={inventoryList.length > 0}
-                toggleSelector={this.props.toggleInventorySelector}/>
+                title="Batches"
+                highlight={batchList.length > 0}
+                toggleSelector={this.handleBatchSelectorClick}/>
 
-              {inventoryList}
+              {batchList}
 
             </div>
           </div>
@@ -157,7 +162,7 @@ const ProductDetail = (props) => {
   subTotal *= props.quantity
 
   let tfprops = {}
-  if(props.detail.inventories.length > 0){
+  if(props.detail.batches.length > 0){
     tfprops.disabled = true;
     tfprops.value = props.quantity
   }else{

@@ -6,7 +6,7 @@ import MAvatar from '../../../structure/mavatar/MAvatar';
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
 
-export class InventoryCheckBoxItem extends React.Component{
+export class BatchCheckBoxItem extends React.Component{
   constructor(props){
     super(props)
     this.state = {checked: false}
@@ -73,7 +73,7 @@ export class InventoryCheckBoxItem extends React.Component{
 }
 
 
-export class InventoryRadioItem extends React.Component{
+export class BatchRadioItem extends React.Component{
   constructor(props){
     super(props)
 

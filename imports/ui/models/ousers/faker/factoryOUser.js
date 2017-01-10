@@ -11,7 +11,7 @@ const testPermissions = () => {
     expensesManager: (faker.random.boolean() || owner),
     sellsManager: (faker.random.boolean() || owner),
     unitsManager: (faker.random.boolean() || owner),
-    inventoriesManager: (faker.random.boolean() || owner),
+    batchesManager: (faker.random.boolean() || owner),
     usersManager: (faker.random.boolean() || owner)
   }
 }

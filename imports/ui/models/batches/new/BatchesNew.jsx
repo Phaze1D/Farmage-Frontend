@@ -16,23 +16,23 @@ import YieldInvItem from '../../yields/selector_items/YieldInvItem';
 import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
 import YieldsSelectorList from '../../yields/selector_items/YieldsSelectorList';
 import AmountChanges from '../../amount_changes/AmountChanges';
-import {factoryInventory} from '../faker/factoryInventory';
+import {factoryBatch} from '../faker/factoryBatch';
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class InventoriesNew extends React.Component{
+export default class BatchesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {psopen: false, ysopen: false, showFields: false}
+    this.state = {psopen: false, ysopen: false, showFields: false, yTitle: ''}
     this.handleOnClose = this.handleOnClose.bind(this);
 
     this.toggleProductSelector = this.toggleProductSelector.bind(this);
     this.toggleYieldSelector = this.toggleYieldSelector.bind(this);
 
-    this.inventory = {}
+    this.batch = {}
     if(this.props.objectID){
-      this.inventory = factoryInventory();
+      this.batch = factoryBatch();
     }
   }
 
@@ -45,8 +45,14 @@ export default class InventoriesNew extends React.Component{
     this.props.onCloseRight(false);
   }
 
-  toggleYieldSelector(event){
-    this.setState({ysopen: !this.state.ysopen, psopen: false});
+  toggleYieldSelector(event, title){
+    if(this.state.yTitle === title || title === undefined){
+      this.setState({ysopen: !this.state.ysopen, psopen: false});
+    }else if(this.state.ysopen){
+      this.setState({yTitle: title})
+    }else{
+      this.setState({yTitle: title, ysopen: true, psopen: false});
+    }
   }
 
   toggleProductSelector(event){
@@ -76,7 +82,7 @@ export default class InventoriesNew extends React.Component{
           {this.state.showFields &&
             <FormFields
               isUpdate={this.props.isUpdate}
-              inventory={this.inventory}
+              batch={this.batch}
               toggleYieldSelector={this.toggleYieldSelector}
               toggleProductSelector={this.toggleProductSelector}/>
           }
@@ -116,7 +122,7 @@ export default class InventoriesNew extends React.Component{
           transitionAppearTimeout={400}>
 
           {this.state.ysopen &&
-            <YieldsSelectorList key='ys' onRequestChange={this.toggleYieldSelector} title='Resource Yields' onlyOne={false}/>
+            <YieldsSelectorList key='ys' onRequestChange={this.toggleYieldSelector} title={this.state.yTitle} onlyOne={false}/>
           }
 
           </ReactCSSTransitionGroup>
@@ -130,18 +136,18 @@ export default class InventoriesNew extends React.Component{
 class FormFields extends React.Component{
   constructor(props){
     super(props)
-    this.state = {minDate: this.props.inventory.createdAt ? this.props.inventory.createdAt : new Date()}
+    this.state = {minDate: this.props.batch.createdAt ? this.props.batch.createdAt : new Date()}
 
   }
 
   render(){
-    const identifer = this.props.inventory.identifer ? this.props.inventory.identifer : this.props.inventory._id;
+    const identifer = this.props.batch.identifer ? this.props.batch.identifer : this.props.batch._id;
 
 
     let resourceList = []
 
-    if(this.props.inventory && this.props.inventory.product){
-      resourceList = this.props.inventory.product.resources.map((resource) =>
+    if(this.props.batch && this.props.batch.product){
+      resourceList = this.props.batch.product.resources.map((resource) =>
         <YieldInvItem
           key={resource._id}
           resource={resource}
@@ -172,7 +178,7 @@ class FormFields extends React.Component{
               floatingLabelText="Created Date"
               fullWidth={true}
               onChange={ (event, date) => {this.setState({minDate: date}) } }
-              defaultDate={this.props.inventory.createdAt ? this.props.inventory.createdAt : new Date()}
+              defaultDate={this.props.batch.createdAt ? this.props.batch.createdAt : new Date()}
               formatDate={new DateTimeFormat('en-US', {
                 day: 'numeric',
                 month: 'short',
@@ -199,7 +205,7 @@ class FormFields extends React.Component{
             <TextArea
               name="notes"
               type="text"
-              defaultValue={this.props.inventory.notes}
+              defaultValue={this.props.batch.notes}
               className=""
               floatingLabelText="Notes"
               fullWidth={true}
@@ -211,20 +217,20 @@ class FormFields extends React.Component{
         </div>
 
         <AmountChanges
-          type='Inventory'
+          type='Batch'
           identifer={identifer}
           isUpdate={this.props.isUpdate}
-          defaultValue={this.props.inventory.amount}
+          defaultValue={this.props.batch.amount}
           amountLabel='Amount'/>
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Product" highlight={this.props.inventory.product} toggleSelector={this.props.toggleProductSelector}/>
+            <SelectorButton title="Product" highlight={this.props.batch.product} toggleSelector={this.props.toggleProductSelector}/>
           </div>
         </div>
 
-        {this.props.inventory.product &&
-          <ProductInvItem product={this.props.inventory.product}/>
+        {this.props.batch.product &&
+          <ProductInvItem product={this.props.batch.product}/>
         }
 
         {resourceList}

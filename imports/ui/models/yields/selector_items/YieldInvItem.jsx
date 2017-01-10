@@ -13,9 +13,10 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class YieldInvItem extends React.Component{
   constructor(props){
     super(props);
-    this.state = {inventoryAmount: 0}
+    this.state = {batchAmount: 0}
 
     this.handleOnYieldChanged = this.handleOnYieldChanged.bind(this);
+    this.handleResourceSelectorClick = this.handleResourceSelectorClick.bind(this)
 
     this.yields = []
     for(let i = 0; i < Math.round(Math.random() * 10); i++){
@@ -33,15 +34,18 @@ export default class YieldInvItem extends React.Component{
     }
     const newInvA = sum.div(this.props.resource.amountPre)
     if(newInvA.mod(1).eq(0) ){
-      this.setState({inventoryAmount: newInvA.toFixed(0)})
+      this.setState({batchAmount: newInvA.toFixed(0)})
     }else{
-      this.setState({inventoryAmount: newInvA.toString()})
+      this.setState({batchAmount: newInvA.toString()})
     }
+  }
 
+  handleResourceSelectorClick(event){
+    this.props.toggleYieldSelector(event, `${this.props.resource.name} Yields`)
   }
 
   render(){
-    const modError = !Big(this.state.inventoryAmount).mod(1).eq(0);
+    const modError = !Big(this.state.batchAmount).mod(1).eq(0);
     const inAClasses = classnames('ytitle-info', {'error': modError})
     let errorMessage = modError ? 'Must be an Integer' : ''
 
@@ -67,7 +71,7 @@ export default class YieldInvItem extends React.Component{
               showImage={true}
               imageUrl={this.props.resource.resource.imageUrl}
               highlight={yieldList.length > 0}
-              toggleSelector={this.props.toggleYieldSelector}/>
+              toggleSelector={this.handleResourceSelectorClick}/>
           </div>
         </div>
 
@@ -77,7 +81,7 @@ export default class YieldInvItem extends React.Component{
               <div className='selector-item'>
 
                 <div className={inAClasses}>
-                  Inventory Amount - {this.state.inventoryAmount}
+                  Batch Amount - {this.state.batchAmount}
 
                   <span>
                     {errorMessage}

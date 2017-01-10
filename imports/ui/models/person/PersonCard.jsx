@@ -25,12 +25,16 @@ export default class PersonCard extends React.Component{
 
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+    this.onExpand = this.onExpand.bind(this)
+  }
+
+  onExpand(event){
+    this.refs.mcard.handleOnExpand(event)
   }
 
   handleUpdate(){
     this.props.onRequestUpdate(this.props._id)
   }
-
 
   cardOptions(){
     return [
@@ -60,9 +64,9 @@ export default class PersonCard extends React.Component{
 
 
     return(
-      <MCard options={this.cardOptions()}>
+      <MCard ref='mcard' options={this.cardOptions()}>
 
-        <div className='card-top'>
+        <div className='card-top' onTouchTap={this.onExpand}>
           <MAvatar className='card-avatar'
             style={{marginRight: '15px', padding: '1px 0 0 1px'}}
             size={56} cha={char} src={avatarURL}/>

@@ -118,8 +118,8 @@ export default class YieldCard extends React.Component{
         <CardActions className='card-actions' style={{marginTop: '8px'}}>
           <FlatButton className='action' label='Movements' secondary={true}
             onTouchTap={() => {browserHistory.push('/movements')} }/>
-          <FlatButton className='action' label='Inventories' secondary={true}
-            onTouchTap={() => {browserHistory.push('/inventories')} }/>
+          <FlatButton className='action' label='Batches' secondary={true}
+            onTouchTap={() => {browserHistory.push('/batches')} }/>
         </CardActions>
 
       </MCard>

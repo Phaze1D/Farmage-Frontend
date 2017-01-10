@@ -13,6 +13,7 @@ export default class MVirtualGrid extends React.Component{
     return(
       <ReactCSSTransitionGroup
         component='div'
+        className='row is-flex'
         transitionName={ {
           enter: 'enter-index',
           leave: 'leave-index',
@@ -23,9 +24,7 @@ export default class MVirtualGrid extends React.Component{
         transitionAppear={true}
         transitionAppearTimeout={400}>
 
-        <div className='row is-flex'>
           {this.props.children}
-        </div>
       </ReactCSSTransitionGroup>
     )
   }

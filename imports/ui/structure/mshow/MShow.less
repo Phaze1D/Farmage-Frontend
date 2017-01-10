@@ -1,0 +1,67 @@
+.show-card{
+  position: fixed;
+  // will-change: height, top, width, left;
+  background-color: transparent;
+  border: 3px solid black;
+  z-index: @z-index-highest;
+  border-radius: 3px;
+  transition-timing-function: @animation-curve-default;
+  transition-delay: 0;
+  transition-duration: @animation-duration;
+  transition-property: all;
+  overflow: hidden;
+}
+
+.show-header{
+  position: absolute;
+  height: 250px;
+  width: 100%;
+  background-color: @color-primary;
+  z-index: -1;
+}
+
+.show-main{
+  overflow: scroll;
+  padding-top: 250px;
+  height: 100vh;
+}
+
+
+.appear-quick-fade{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.appear-quick-fade.appear-quick-fade-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration/3 !important;
+  transition-property: opacity !important;
+}
+
+.enter-quick-fade{
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.enter-quick-fade.enter-quick-fade-active {
+  opacity: 1 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration/3 !important;
+  transition-property: opacity !important;
+}
+
+.leave-quick-fade {
+  width: 100%;
+  opacity: 1 !important;
+}
+
+.leave-quick-fade.leave-quick-fade-active {
+  opacity: 0 !important;
+  transition-timing-function: @animation-curve-default !important;
+  transition-delay: 0 !important;
+  transition-duration: @animation-duration/3 !important;
+  transition-property: opacity !important;
+}

@@ -28,8 +28,8 @@ const testNotes = () => {
   }
 }
 
-const factoryInventory = () => {
-  let inventory = {
+const factoryBatch = () => {
+  let batch = {
     _id: Random.id(),
     identifer: testIdentifer(),
     amount: (Math.random() * 400).toFixed(0),
@@ -38,7 +38,7 @@ const factoryInventory = () => {
     expiresAt: testExpires(),
     product: factoryProduct()
   }
-  return inventory;
+  return batch;
 }
 
-exports.factoryInventory = factoryInventory;
+exports.factoryBatch = factoryBatch;

@@ -6,28 +6,28 @@ Big.DP = 10
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class InventorySelected extends React.Component{
+export default class BatchSelected extends React.Component{
   constructor(props){
     super(props);
-    this.state = {available: this.props.dinventory.inventory.amount}
+    this.state = {available: this.props.dbatch.batch.amount}
 
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
-    this.handleChange(null, `${this.props.dinventory.quantityTaken}`)
+    this.handleChange(null, `${this.props.dbatch.quantityTaken}`)
   }
 
   handleChange(event, newAmount){
     newAmount = newAmount.length > 0 ? newAmount : 0
-    const avi = Big(this.props.dinventory.inventory.amount).minus(newAmount)
+    const avi = Big(this.props.dbatch.batch.amount).minus(newAmount)
     this.setState({available: avi.toString()})
     this.props.onRequestChange(event)
   }
 
   render(){
-    const inventory = this.props.dinventory.inventory
-    const identifier = inventory.identifier ? inventory.identifier : inventory._id
+    const batch = this.props.dbatch.batch
+    const identifier = batch.identifier ? batch.identifier : batch._id
 
     return (
       <div className='yield-section'>
@@ -42,7 +42,7 @@ export default class InventorySelected extends React.Component{
             day: 'numeric',
             month: 'short',
             year: 'numeric',
-          }).format(inventory.createdAt)}
+          }).format(batch.createdAt)}
         </div>
 
         <div className='yield-info'>
@@ -51,7 +51,7 @@ export default class InventorySelected extends React.Component{
             day: 'numeric',
             month: 'short',
             year: 'numeric',
-          }).format(inventory.expiresAt)}
+          }).format(batch.expiresAt)}
         </div>
 
         <div className='yield-info'>
@@ -66,7 +66,7 @@ export default class InventorySelected extends React.Component{
             hintText=""
             floatingLabelText="Take"
             onChange={this.handleChange}
-            defaultValue={this.props.dinventory.quantityTaken}
+            defaultValue={this.props.dbatch.quantityTaken}
             fullWidth={true}/>
       </div>
     )
