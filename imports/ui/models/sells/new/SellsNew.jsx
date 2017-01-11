@@ -150,7 +150,7 @@ class FormFields extends React.Component{
   render(){
 
     return(
-      <div>
+      <div className='form-fields'>
 
         <Details
           onRequestQuantity={this.handleQuantityChange}

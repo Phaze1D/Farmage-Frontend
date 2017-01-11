@@ -18,38 +18,17 @@ import MShow from '../mshow/MShow';
 export default class MCard extends React.Component{
   constructor(props){
     super(props);
-    this.state = {optionsShown: false, showCard: false}
-    this.showStyle = {}
-    this.handleOnExpand = this.handleOnExpand.bind(this);
+    this.state = {optionsShown: false, showCard: false, isOpened: false}
+    this.handleOnShow = this.handleOnShow.bind(this);
   }
 
-  handleOnExpand(event){
-    let pos = event.currentTarget.closest('.mcard').getBoundingClientRect();
-    console.log(pos);
-    const height = pos.bottom - pos.top;
-    const width = pos.right - pos.left;
-    this.showStyle = {
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100vh',
-      transformOrigin: `${pos.left}px ${height/2 + pos.top}px`,
-      transform: `scale(${width/ window.innerWidth }, ${height / window.innerHeight})`
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
     }
-    this.setState({showCard: true})
-    console.log(this.showStyle);
-
-    // setTimeout(() => {
-    //   this.showStyle = {
-    //     top: 0,
-    //     left: 0,
-    //     width: '100%',
-    //     height: '100vh',
-    //     transformOrigin: `${pos.left * (0.3125 + 1)}px 100px`,
-    //     transform: `scale(1, 1)`
-    //   }
-    //   this.setState({showCard: true})
-    // }, 300)
   }
 
   render(){
@@ -73,9 +52,16 @@ export default class MCard extends React.Component{
 
         {this.props.children}
 
-        <MShow open={this.state.showCard} openStyle={this.showStyle}>
+        {this.state.isOpened &&
+          <MShow
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}>
 
-        </MShow>
+          </MShow>
+        }
+
+
+
 
       </div>
     )

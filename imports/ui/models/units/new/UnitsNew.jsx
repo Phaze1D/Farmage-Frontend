@@ -138,7 +138,7 @@ class FormFields extends React.Component{
     if(trackable === undefined) trackable = true;
 
     return(
-      <div>
+      <div className='form-fields'>
         <div className='row'>
           <div className='col-xs-12'>
             <TextField

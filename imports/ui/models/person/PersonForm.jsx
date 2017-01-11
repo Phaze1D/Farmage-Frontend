@@ -76,7 +76,7 @@ export default class PersonForm extends React.Component{
 const FormFields = (props) => {
 
   return (
-    <div>
+    <div className='form-fields'>
       <div className='row'>
 
         <div className='col-xs-12 col-flex'>

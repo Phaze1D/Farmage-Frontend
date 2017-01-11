@@ -29,7 +29,7 @@ export default class PersonCard extends React.Component{
   }
 
   onExpand(event){
-    this.refs.mcard.handleOnExpand(event)
+    this.refs.mcard.handleOnShow(event)
   }
 
   handleUpdate(){

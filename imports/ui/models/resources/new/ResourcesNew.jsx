@@ -75,7 +75,6 @@ export default class ResourcesNew extends React.Component{
 
 const FormFields = (props) => (
   <div className='row'>
-
     <div className='col-xs-12 col-flex'>
       <IconButton className='avatar-button' style={props.imageBStyle}>
         <ImageCameraAlt />

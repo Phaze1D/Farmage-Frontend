@@ -139,7 +139,7 @@ class FormFields extends React.Component{
     const identifer = this.props.yield.identifer ? this.props.yield.identifer : this.props.yield._id;
 
     return(
-      <div>
+      <div className='form-fields'>
         <div className='row'>
           <div className='col-xs-12'>
             <TextField

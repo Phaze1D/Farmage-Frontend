@@ -141,7 +141,7 @@ class FormFields extends React.Component {
     )
 
     return(
-      <div>
+      <div className='form-fields'>
         <div className='row'>
 
           <div className='col-xs-12 col-flex'>
