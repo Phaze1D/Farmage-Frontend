@@ -12,6 +12,11 @@ import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
+
+import YieldShow from './YieldShow';
+import ResourceShow from '../../resources/card/ResourceShow'
+import UnitShow from '../../units/card/UnitShow'
 
 
 
@@ -20,8 +25,46 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class YieldCard extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      showCard: false,
+      showResource: false,
+      showUnit: false,
+      isOpened: false
+    }
+
+    this.handleOnShow = this.handleOnShow.bind(this);
+    this.handleOnShowUnit = this.handleOnShowUnit.bind(this);
+    this.handleOnShowResource = this.handleOnShowResource.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+
+  }
+
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
+  }
+
+  handleOnShowResource(event){
+    if(this.state.showResource){
+      this.setState({showResource: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showResource: true, isOpened: true})
+    }
+  }
+
+  handleOnShowUnit(event){
+    if(this.state.showUnit){
+      this.setState({showUnit: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showUnit: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -67,11 +110,11 @@ export default class YieldCard extends React.Component{
     return(
       <MCard options={this.cardOptions()}>
 
-        <div className='card-top' style={{marginBottom: '8px'}}>
+        <div className='card-top' style={{marginBottom: '8px'}} onTouchTap={this.handleOnShow}>
           <CardTitle className='card-title' title={title} subtitle='Yield Identifer'/>
         </div>
 
-        <EnhancedButton style={{textAlign: 'left'}}>
+        <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowResource}>
 
           <div className='cyield-info-flex clickable-info'>
             <span>Resource</span>
@@ -92,7 +135,7 @@ export default class YieldCard extends React.Component{
           </div>
         </div>
 
-        <EnhancedButton style={{textAlign: 'left'}}>
+        <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowUnit}>
           <div className='cyield-info sm clickable-info'>
             <span>From Unit</span>
             {unit.name}
@@ -121,6 +164,32 @@ export default class YieldCard extends React.Component{
           <FlatButton className='action' label='Batches' secondary={true}
             onTouchTap={() => {browserHistory.push('/batches')} }/>
         </CardActions>
+
+        <AutoLockScrolling lock={this.state.isOpened}/>
+
+        {this.state.isOpened &&
+          <YieldShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
+
+        {this.state.isOpened &&
+          <ResourceShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShowResource}
+            open={this.state.showResource}/>
+        }
+
+        {this.state.isOpened &&
+          <UnitShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShowUnit}
+            open={this.state.showUnit}/>
+        }
 
       </MCard>
 

@@ -4,10 +4,12 @@ import {randomImageColor, alphaImageColor} from '../app/RandomColor.js';
 
 
 const MAvatar = (props) => {
-  const {
+  let {
     cha,
     ...avatarProps
   } = props;
+
+  if(avatarProps.icon) cha = '';
 
   if(props.src && props.src.length > 0){
     avatarProps.style.padding = ''

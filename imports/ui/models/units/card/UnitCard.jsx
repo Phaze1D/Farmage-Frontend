@@ -9,7 +9,9 @@ import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 
+import UnitShow from './UnitShow';
 
 import classnames from 'classnames';
 import {deepPurple500} from 'material-ui/styles/colors';
@@ -22,9 +24,21 @@ import { browserHistory } from 'react-router'
 export default class UnitCard extends React.Component{
   constructor(props){
     super(props)
+    this.state = {showCard: false, isOpened: false}
 
+    this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+
+  }
+
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -68,7 +82,7 @@ export default class UnitCard extends React.Component{
     return(
       <MCard options={this.cardOptions()}>
 
-        <div className='card-top' style={{display: 'block'}}>
+        <div className='card-top' style={{display: 'block'}} onTouchTap={this.handleOnShow}>
           <CardTitle className='card-title' title={name}/>
           <div className={traClasses}>
             Trackable
@@ -108,6 +122,16 @@ export default class UnitCard extends React.Component{
           }
 
         </CardActions>
+
+        <AutoLockScrolling lock={this.state.isOpened}/>
+        
+        {this.state.isOpened &&
+          <UnitShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
       </MCard>
     )
   }

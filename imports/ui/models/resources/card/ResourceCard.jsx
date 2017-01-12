@@ -10,6 +10,9 @@ import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
+
+import ResourceShow from './ResourceShow';
 
 
 import classnames from 'classnames';
@@ -17,9 +20,21 @@ import classnames from 'classnames';
 export default class ResourceCard extends React.Component{
   constructor(props){
     super(props);
+    this.state = {showCard: false, isOpened: false}
 
+    this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+
+  }
+
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -63,7 +78,7 @@ export default class ResourceCard extends React.Component{
         </div>
 
         <div className='info-col'>
-          <div className='card-top resource-top' style={{border: 'none'}}>
+          <div className='card-top resource-top' style={{border: 'none'}} onTouchTap={this.handleOnShow}>
             <CardTitle className='card-title' title={title} subtitle=''/>
           </div>
           <div className='product-csection'>
@@ -80,6 +95,16 @@ export default class ResourceCard extends React.Component{
               onTouchTap={() => {browserHistory.push('/products')} }/>
           </CardActions>
         </div>
+
+        <AutoLockScrolling lock={this.state.showCard}/>
+
+        {this.state.isOpened &&
+          <ResourceShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
       </MCard>
 
     )

@@ -10,10 +10,13 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
-
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
+import BatchShow from './BatchShow';
+import ProductShow from '../../products/card/ProductShow';
+
 import classnames from 'classnames';
 
 
@@ -23,8 +26,31 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class BatchCard extends React.Component{
   constructor(props){
     super(props);
+    this.state = {showCard: false, showProduct: false, isOpened: false}
+
+    this.handleOnShowProduct = this.handleOnShowProduct.bind(this)
+    this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+
+  }
+
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
+  }
+
+  handleOnShowProduct(event){
+    if(this.state.showProduct){
+      this.setState({showProduct: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showProduct: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -75,11 +101,11 @@ export default class BatchCard extends React.Component{
     return(
       <MCard options={this.cardOptions()}>
 
-        <div className='card-top' style={{marginBottom: '8px'}}>
+        <div className='card-top' style={{marginBottom: '8px'}} onTouchTap={this.handleOnShow}>
           <CardTitle className='card-title' title={title} subtitle='Batch Identifer'/>
         </div>
 
-        <EnhancedButton style={{textAlign: 'left'}}>
+        <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowProduct}>
           <div className='cyield-info-flex clickable-info'>
             <span>Product</span>
             <MAvatar className='cyield-img'
@@ -120,6 +146,25 @@ export default class BatchCard extends React.Component{
           <FlatButton className='action' label='Sales' secondary={true}
             onTouchTap={() => {browserHistory.push('/sells')} }/>
         </CardActions>
+
+
+        <AutoLockScrolling lock={this.state.isOpened}/>
+
+        {this.state.isOpened &&
+          <BatchShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
+
+        {this.state.isOpened &&
+          <ProductShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShowProduct}
+            open={this.state.showProduct}/>
+        }
 
       </MCard>
 

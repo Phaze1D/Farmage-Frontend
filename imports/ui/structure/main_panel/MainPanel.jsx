@@ -87,6 +87,8 @@ export default class MainPanel extends React.Component{
 
     }
 
+    if(this.props.onScroll) this.props.onScroll(currentScrollTop, this.previousScrollTop);
+
     this.previousScrollTop = currentScrollTop
   }
 

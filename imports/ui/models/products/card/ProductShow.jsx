@@ -1,18 +1,18 @@
 import React from 'react';
-import MShow from '../../structure/mshow/MShow';
-import MTabs from '../../structure/mtabs/MTabs';
+import MShow from '../../../structure/mshow/MShow';
+import MTabs from '../../../structure/mtabs/MTabs';
 
-import {factoryPerson} from './faker/factoryPerson';
+import {factoryProduct} from '../faker/factoryProduct';
 
 
-export default class PersonShow extends React.Component{
+export default class ProductShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.person = factoryPerson();
+    this.product = factoryProduct();
   }
 
   handleTabChange(event, value){
@@ -20,17 +20,15 @@ export default class PersonShow extends React.Component{
   }
 
   render(){
-    if(this.person.lastName === undefined) this.person.lastName = '';
-    const title = `${this.person.firstName} ${this.person.lastName}`
 
     return(
       <MShow
         onFabClick={this.props.onFabClick}
-        title={title}
-        subTitle={this.person.company}
+        title={this.product.name}
+        subTitle={this.product.sku}
         hasFAB={true}
         hasAvatar={true}
-        avatarURL={this.person.avatarURL}
+        avatarURL={this.product.imageUrl}
         onRequestChange={this.props.onRequestChange}
         open={this.props.open}>
 

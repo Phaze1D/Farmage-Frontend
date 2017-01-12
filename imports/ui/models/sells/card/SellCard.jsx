@@ -10,14 +10,45 @@ import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
+
+import SellShow from './SellShow';
+import PersonShow from '../../person/PersonShow';
+
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class SellCard extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      showCard: false,
+      showCustomer: false,
+      isOpened: false}
+
+    this.handleOnShowCustomer = this.handleOnShowCustomer.bind(this)
+    this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+
+  }
+
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
+  }
+
+  handleOnShowCustomer(event){
+    if(this.state.showCustomer){
+      this.setState({showCustomer: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCustomer: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -69,7 +100,7 @@ export default class SellCard extends React.Component{
 
     return(
       <MCard options={this.cardOptions()}>
-        <div className='card-top' style={{border: 'none'}}>
+        <div className='card-top' style={{border: 'none'}} onTouchTap={this.handleOnShow}>
           <CardTitle className='card-title' title={title} subtitle={createdS}/>
         </div>
 
@@ -81,7 +112,7 @@ export default class SellCard extends React.Component{
         </div>
 
         {customer ?
-          <EnhancedButton style={{textAlign: 'left'}}>
+          <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowCustomer}>
             <div className='cyield-info-flex clickable-info'>
               <span>Customer</span>
               <MAvatar className='cyield-img'
@@ -124,6 +155,24 @@ export default class SellCard extends React.Component{
           <FlatButton className='action' label='Batches' secondary={true}
             onTouchTap={() => {browserHistory.push('/batches')} }/>
         </CardActions>*/}
+
+        <AutoLockScrolling lock={this.state.isOpened}/>
+
+        {this.state.isOpened &&
+          <SellShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
+
+        {this.state.isOpened &&
+          <PersonShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShowCustomer}
+            open={this.state.showCustomer}/>
+        }
       </MCard>
     )
   }

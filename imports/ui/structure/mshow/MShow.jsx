@@ -9,6 +9,7 @@ import ToolbarTitle from '../main_panel/ToolbarTitle';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MAvatar from '../mavatar/MAvatar';
+import MTabs from '../mtabs/MTabs';
 
 export default class MShow extends React.Component{
 
@@ -35,28 +36,31 @@ export default class MShow extends React.Component{
 
   handleScroll(event){
     let scrollTop = event.currentTarget.scrollTop
-    let a = scrollTop/260
+    let topNum = 276 - this.refs.showBarTitle.clientHeight
+    let a = scrollTop/topNum
     this.refs.showBarTitle.style.color = `rgba(255,255,255, ${a})`
 
-    if(scrollTop <= 260){
+    if(scrollTop <= topNum){
+      document.getElementById('mtabs').className = 'mtabs'
       let fab = document.getElementsByClassName('show-fab')[0]
 
       if(scrollTop > this.previousScroll && !this.fabLeft){
-        console.log('leaving');
         fab.className = "fab show-fab leave-fab leave-fab-active";
         this.fabLeft = true;
       }else if(scrollTop < this.previousScroll && this.fabLeft){
-        console.log('entering');
         fab.className = "fab show-fab enter-fab enter-fab-active";
         this.fabLeft = false;
       }
-
+    }else{
+      document.getElementById('mtabs').className = 'mtabs isFixed'
     }
+
 
     this.previousScroll = scrollTop
   }
 
   render(){
+    const char = this.props.title.toUpperCase().charAt(0);
     return(
       <Portal isOpened={true}>
 
@@ -83,7 +87,7 @@ export default class MShow extends React.Component{
                   <BackArrow/>
                 </IconButton>
                 <div className='show-bar-title' ref='showBarTitle'>
-                  David Villarreal
+                  {this.props.title}
                 </div>
                 <IconButton className='form-done-b'>
                   <MoreVert/>
@@ -91,27 +95,38 @@ export default class MShow extends React.Component{
               </div>
 
               <div className='show-header'>
-                <MAvatar className='show-avatar'
-                  style={{marginRight: '15px', padding: '1px 0 0 1px'}}
-                  cha='G' src=''/>
+
+                {this.props.hasAvatar &&
+                  <MAvatar
+                    className='show-avatar'
+                    icon={this.props.avatarIcon}
+                    size={140}
+                    style={{marginRight: '15px', padding: '1px 0 0 1px'}}
+                    cha={char} src={this.props.avatarURL}/>
+                }
 
                 <div className='show-title'>
-                  David Villarreal
+                  {this.props.title}
                 </div>
 
                 <div className='show-sub'>
-                  Company Name
+                  {this.props.subTitle}
                 </div>
               </div>
 
               <div id='show-main' className='show-main'>
 
-                <FAB show={this.state.showFAB}/>
+                {this.props.hasFAB &&
+                  <FAB
+                    onClicked={this.props.onFabClick}
+                    show={this.state.showFAB}/>
+                }
+
 
                 <div className='content'>
-                  <div style={{height: '48px', backgroundColor: 'rgb(255,152,0)'}}>
 
-                  </div>
+                  {this.props.children}
+
                 </div>
               </div>
 
@@ -123,6 +138,8 @@ export default class MShow extends React.Component{
     )
   }
 }
+
+
 
 
 let FAB = (props) => (

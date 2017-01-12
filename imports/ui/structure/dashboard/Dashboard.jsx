@@ -22,6 +22,7 @@ import MFAB from './MFAB';
 export default class Dashboard extends React.Component{
   constructor(props){
     super(props);
+    window.scrollTo(0,0);
     this.state = {
       lopen: false, ropen: false, fopen: false, sopen: false,
       showMFAB: this.props.showMFAB, isUpdate: false,

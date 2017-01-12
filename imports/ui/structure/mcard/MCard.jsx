@@ -18,18 +18,9 @@ import MShow from '../mshow/MShow';
 export default class MCard extends React.Component{
   constructor(props){
     super(props);
-    this.state = {optionsShown: false, showCard: false, isOpened: false}
-    this.handleOnShow = this.handleOnShow.bind(this);
+    this.state = {optionsShown: false}
   }
 
-  handleOnShow(event){
-    if(this.state.showCard){
-      this.setState({showCard: false})
-      setTimeout(() => {this.setState({isOpened: false})}, 500)
-    }else{
-      this.setState({showCard: true, isOpened: true})
-    }
-  }
 
   render(){
     const classes = classnames('mcard', this.props.className)
@@ -48,20 +39,9 @@ export default class MCard extends React.Component{
           {this.props.options}
         </IconMenu>
 
-        <AutoLockScrolling lock={this.state.optionsShown || this.state.showCard}/>
+        <AutoLockScrolling lock={this.state.optionsShown}/>
 
         {this.props.children}
-
-        {this.state.isOpened &&
-          <MShow
-            onRequestChange={this.handleOnShow}
-            open={this.state.showCard}>
-
-          </MShow>
-        }
-
-
-
 
       </div>
     )

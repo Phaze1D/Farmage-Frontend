@@ -1,18 +1,18 @@
 import React from 'react';
-import MShow from '../../structure/mshow/MShow';
-import MTabs from '../../structure/mtabs/MTabs';
+import MShow from '../../../structure/mshow/MShow';
+import MTabs from '../../../structure/mtabs/MTabs';
 
-import {factoryPerson} from './faker/factoryPerson';
+import {factoryYield} from '../faker/factoryYield';
 
 
-export default class PersonShow extends React.Component{
+export default class YieldShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.person = factoryPerson();
+    this.yield = factoryYield();
   }
 
   handleTabChange(event, value){
@@ -20,17 +20,15 @@ export default class PersonShow extends React.Component{
   }
 
   render(){
-    if(this.person.lastName === undefined) this.person.lastName = '';
-    const title = `${this.person.firstName} ${this.person.lastName}`
+    const title = this.yield.identifer ? this.yield.identifer : this.yield._id
 
     return(
       <MShow
         onFabClick={this.props.onFabClick}
         title={title}
-        subTitle={this.person.company}
+        subTitle='Yield Identifer'
         hasFAB={true}
-        hasAvatar={true}
-        avatarURL={this.person.avatarURL}
+        hasAvatar={false}
         onRequestChange={this.props.onRequestChange}
         open={this.props.open}>
 

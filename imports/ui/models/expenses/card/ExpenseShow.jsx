@@ -1,18 +1,20 @@
 import React from 'react';
-import MShow from '../../structure/mshow/MShow';
-import MTabs from '../../structure/mtabs/MTabs';
+import ActionReceipt from 'material-ui/svg-icons/action/receipt';
 
-import {factoryPerson} from './faker/factoryPerson';
+import MShow from '../../../structure/mshow/MShow';
+import MTabs from '../../../structure/mtabs/MTabs';
+
+import {factoryExpense} from '../faker/factoryExpense';
 
 
-export default class PersonShow extends React.Component{
+export default class ExpenseShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.person = factoryPerson();
+    this.expense = factoryExpense();
   }
 
   handleTabChange(event, value){
@@ -20,17 +22,15 @@ export default class PersonShow extends React.Component{
   }
 
   render(){
-    if(this.person.lastName === undefined) this.person.lastName = '';
-    const title = `${this.person.firstName} ${this.person.lastName}`
 
     return(
       <MShow
         onFabClick={this.props.onFabClick}
-        title={title}
-        subTitle={this.person.company}
+        title={`${this.expense.quantity} ${this.expense.itemName}`}
         hasFAB={true}
         hasAvatar={true}
-        avatarURL={this.person.avatarURL}
+        avatarIcon={<ActionReceipt/>}
+        avatarURL={null}
         onRequestChange={this.props.onRequestChange}
         open={this.props.open}>
 

@@ -1,18 +1,18 @@
 import React from 'react';
-import MShow from '../../structure/mshow/MShow';
-import MTabs from '../../structure/mtabs/MTabs';
+import MShow from '../../../structure/mshow/MShow';
+import MTabs from '../../../structure/mtabs/MTabs';
 
-import {factoryPerson} from './faker/factoryPerson';
+import {factoryBatch} from '../faker/factoryBatch';
 
 
-export default class PersonShow extends React.Component{
+export default class BatchShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.person = factoryPerson();
+    this.batch = factoryBatch();
   }
 
   handleTabChange(event, value){
@@ -20,17 +20,15 @@ export default class PersonShow extends React.Component{
   }
 
   render(){
-    if(this.person.lastName === undefined) this.person.lastName = '';
-    const title = `${this.person.firstName} ${this.person.lastName}`
+    const title = this.batch.identifer ? this.batch.identifer : this.batch._id
 
     return(
       <MShow
         onFabClick={this.props.onFabClick}
         title={title}
-        subTitle={this.person.company}
+        subTitle='Batch Identifer'
         hasFAB={true}
-        hasAvatar={true}
-        avatarURL={this.person.avatarURL}
+        hasAvatar={false}
         onRequestChange={this.props.onRequestChange}
         open={this.props.open}>
 

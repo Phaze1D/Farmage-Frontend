@@ -21,7 +21,9 @@ export default class SellsNew extends React.Component{
   constructor(props){
     super(props);
     this.state = {showFields: false}
+    this.fabLeft = false;
 
+    this.handleScroll = this.handleScroll.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
 
     this.sell = {}
@@ -39,12 +41,29 @@ export default class SellsNew extends React.Component{
     this.refs.formFields.handleOnClose();
   }
 
+  handleScroll(scrollTop, previousScroll){  
+    let topNum = 212 - document.getElementsByClassName('toolbar')[0].clientHeight
+
+    if(scrollTop <= topNum){
+      let fab = document.getElementsByClassName('sell-fab')[0]
+      if(scrollTop > previousScroll && !this.fabLeft){
+        fab.className = "sell-fab leave-fab leave-fab-active";
+        this.fabLeft = true;
+      }else if(scrollTop < previousScroll && this.fabLeft){
+
+        fab.className = "sell-fab enter-fab enter-fab-active";
+        this.fabLeft = false;
+      }
+    }
+  }
+
 
   render(){
     return(
       <MainPanel
         classes='container-fluid'
         panelID='right-drawer'
+        onScroll={this.handleScroll}
         toolbar={
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>

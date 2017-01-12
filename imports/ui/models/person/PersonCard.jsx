@@ -10,26 +10,35 @@ import MAvatar from '../../structure/mavatar/MAvatar';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import { browserHistory } from 'react-router'
 
 import classnames from 'classnames';
 
-import MCard from '../../structure/mcard/MCard'
+import MCard from '../../structure/mcard/MCard';
+import PersonShow from './PersonShow';
 
 
 export default class PersonCard extends React.Component{
   constructor(props){
     super(props);
+    this.state = {showCard: false, isOpened: false}
 
+    this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
-    this.onExpand = this.onExpand.bind(this)
+
   }
 
-  onExpand(event){
-    this.refs.mcard.handleOnShow(event)
+  handleOnShow(event){
+    if(this.state.showCard){
+      this.setState({showCard: false})
+      setTimeout(() => {this.setState({isOpened: false})}, 500)
+    }else{
+      this.setState({showCard: true, isOpened: true})
+    }
   }
 
   handleUpdate(){
@@ -66,7 +75,7 @@ export default class PersonCard extends React.Component{
     return(
       <MCard ref='mcard' options={this.cardOptions()}>
 
-        <div className='card-top' onTouchTap={this.onExpand}>
+        <div className='card-top' onTouchTap={this.handleOnShow}>
           <MAvatar className='card-avatar'
             style={{marginRight: '15px', padding: '1px 0 0 1px'}}
             size={56} cha={char} src={avatarURL}/>
@@ -84,6 +93,17 @@ export default class PersonCard extends React.Component{
           <FlatButton className='action' label={actionLabel} secondary={true}
             onTouchTap={() => {browserHistory.push('/' + actionLabel)} }/>
         </CardActions>
+
+        <AutoLockScrolling lock={this.state.showCard}/>
+
+        {this.state.isOpened &&
+          <PersonShow
+            onFabClick={this.handleUpdate}
+            personID={this.props._id}
+            onRequestChange={this.handleOnShow}
+            open={this.state.showCard}/>
+        }
+
 
       </MCard>
     )

@@ -19,6 +19,7 @@
   flex-direction: column;
   position: absolute;
   padding-top: 68px;
+  padding-bottom: 10px;
   top: 0;
   height: 276px;
   width: 100%;
@@ -31,17 +32,19 @@
 .show-avatar{
   width: 140px !important;
   height: 140px !important;
-  font-size: 68px !important;
-  margin: 0 0 10px !important;
+  font-size: 60px !important;
+  margin: 0 0 5px !important;
 }
 
 .show-title{
   font-size: 24px;
   color: white;
+  font-weight: 500;
 }
 
 .show-sub{
-  color: rgba(255,255,255, .7);
+  color: rgba(255,255,255, .8);
+  font-weight: 500;
 }
 
 .show-main{
@@ -54,7 +57,7 @@
   max-width: 900px;
 
   .content{
-    background-color: white;
+    background-color: @grey-200;
     min-height: ~"calc(100vh - 276px)";
     height: 1000px;
   }
@@ -73,6 +76,7 @@
   font-size: 20px;
   flex-grow: 1;
   margin-left: -5px;
+  font-weight: 500;
   color: rgba(255,255,255,0);
 
   @media(min-width:  @layout-breakpoint-sm){
