@@ -37,7 +37,7 @@ export default class ExpenseShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports', 'Analyzes']}/>
+          tabs={['Summary']}/>
 
       </MShow>
     )

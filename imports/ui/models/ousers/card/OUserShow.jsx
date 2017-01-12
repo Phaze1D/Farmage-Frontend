@@ -2,17 +2,17 @@ import React from 'react';
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
 
-import {factorySell} from '../faker/factorySell';
+import {factoryOUser} from '../faker/factoryOUser';
 
 
-export default class SellShow extends React.Component{
+export default class OUserShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.sell = factorySell();
+    this.ouser = factoryOUser();
   }
 
   handleTabChange(event, value){
@@ -20,21 +20,24 @@ export default class SellShow extends React.Component{
   }
 
   render(){
+    if(this.ouser.lastName === undefined) this.ouser.lastName = '';
+    const title = `${this.ouser.firstName} ${this.ouser.lastName}`
 
     return(
       <MShow
         onFabClick={this.props.onFabClick}
-        title={this.sell.reference}
-        subTitle='Referecne ID'
+        title={title}
+        subTitle={this.ouser.email}
         hasFAB={true}
-        hasAvatar={false}
+        hasAvatar={true}
+        avatarURL={this.ouser.avatarURL}
         onRequestChange={this.props.onRequestChange}
         open={this.props.open}>
 
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Details']}/>
+          tabs={['Summary', 'Reports', 'Analyzes']}/>
 
       </MShow>
     )

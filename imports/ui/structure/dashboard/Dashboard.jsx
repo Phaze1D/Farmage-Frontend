@@ -24,8 +24,7 @@ export default class Dashboard extends React.Component{
     super(props);
     window.scrollTo(0,0);
     this.state = {
-      lopen: false, ropen: false, fopen: false, sopen: false,
-      showMFAB: this.props.showMFAB, isUpdate: false,
+      lopen: false, ropen: false, fopen: false, sopen: false, isUpdate: false,
       rightTitle: this.props.defaultRightTitle, rightObjectID: null
     };
 
@@ -59,17 +58,21 @@ export default class Dashboard extends React.Component{
   }
 
   hideFAB(){
-    let mfab = document.getElementsByClassName('fab')[0]
-    let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
-    if(mfabUnit) mfabUnit.className = 'fab-unit-toggle leave-fab leave-fab-active'
-    mfab.className = 'fab leave-fab leave-fab-active'
+    if(this.props.showMFAB){
+      let mfab = document.getElementsByClassName('fab')[0]
+      let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
+      if(mfabUnit) mfabUnit.className = 'fab-unit-toggle leave-fab leave-fab-active'
+      mfab.className = 'fab leave-fab leave-fab-active'
+    }
   }
 
   showFAB(){
-    let mfab = document.getElementsByClassName('fab')[0]
-    let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
-    if(mfabUnit) mfabUnit.className = 'fab-unit-toggle enter-fab enter-fab-active'
-    mfab.className = 'fab enter-fab enter-fab-active'
+    if(this.props.showMFAB){
+      let mfab = document.getElementsByClassName('fab')[0]
+      let mfabUnit = document.getElementsByClassName('fab-unit-toggle ')[0]
+      if(mfabUnit) mfabUnit.className = 'fab-unit-toggle enter-fab enter-fab-active'
+      mfab.className = 'fab enter-fab enter-fab-active'
+    }
   }
 
   render(){
@@ -102,7 +105,7 @@ export default class Dashboard extends React.Component{
 
         {this.props.children}
 
-        <MFAB show={this.state.showMFAB} onClicked={this.toggleRight}/>
+        <MFAB show={this.props.showMFAB} onClicked={this.toggleRight}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           {React.cloneElement(this.props.right, {

@@ -22,6 +22,13 @@ const testCreatedAt = () => {
   return faker.date.past()
 }
 
+const testNotes = () => {
+  if(Math.round(Math.random()) === 0){
+    return faker.lorem.sentences();
+  }
+  return;
+}
+
 const factoryMovement = () => {
   return {
     _id: Random.id(),
@@ -29,6 +36,7 @@ const factoryMovement = () => {
     forType: testForType(),
     forId: testForIdentifer(),
     createdAt: testCreatedAt(),
+    notes: testNotes(),
     manuel: faker.random.boolean(),
     user: factoryOUser()
   }

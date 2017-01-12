@@ -1,18 +1,20 @@
 import React from 'react';
+import ActionReceipt from 'material-ui/svg-icons/action/receipt';
+
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
 
-import {factorySell} from '../faker/factorySell';
+import {factoryMovement} from '../faker/factoryMovement';
 
 
-export default class SellShow extends React.Component{
+export default class MovementShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0}
 
     this.handleTabChange = this.handleTabChange.bind(this)
 
-    this.sell = factorySell();
+    this.movement = factoryMovement();
   }
 
   handleTabChange(event, value){
@@ -24,8 +26,8 @@ export default class SellShow extends React.Component{
     return(
       <MShow
         onFabClick={this.props.onFabClick}
-        title={this.sell.reference}
-        subTitle='Referecne ID'
+        title={`${this.movement.forType} Movement`}
+        subTitle={this.movement.forId}
         hasFAB={true}
         hasAvatar={false}
         onRequestChange={this.props.onRequestChange}
@@ -34,7 +36,7 @@ export default class SellShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Details']}/>
+          tabs={['Summary']}/>
 
       </MShow>
     )

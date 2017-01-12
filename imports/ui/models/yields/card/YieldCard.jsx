@@ -127,6 +127,13 @@ export default class YieldCard extends React.Component{
 
         </EnhancedButton>
 
+        <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowUnit}>
+          <div className='cyield-info sm clickable-info'>
+            <span>From Unit</span>
+            {unit.name}
+          </div>
+        </EnhancedButton>
+
         <div className='cyield-info'>
           <span>Amount</span>
           {amount}
@@ -135,12 +142,7 @@ export default class YieldCard extends React.Component{
           </div>
         </div>
 
-        <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowUnit}>
-          <div className='cyield-info sm clickable-info'>
-            <span>From Unit</span>
-            {unit.name}
-          </div>
-        </EnhancedButton>
+
 
 
         <div className='cyield-info sm'>

@@ -14,6 +14,7 @@ export default class CustomersIndex extends React.Component{
   constructor(props){
     super(props);
     this.onCardUpdate = this.onCardUpdate.bind(this);
+
   }
 
   onCardUpdate(customer_id){

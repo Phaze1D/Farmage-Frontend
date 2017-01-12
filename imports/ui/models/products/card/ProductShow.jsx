@@ -35,7 +35,7 @@ export default class ProductShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports', 'Analyzes']}/>
+          tabs={['Summary', 'Resources', 'Reports', 'Analyzes']}/>
 
       </MShow>
     )
