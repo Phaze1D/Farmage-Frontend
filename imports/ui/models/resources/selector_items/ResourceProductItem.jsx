@@ -28,7 +28,7 @@ let ResourceProductItem = (props) => {
               hintText=""
               floatingLabelText="Amount Pre Product"
               fullWidth={true}
-              prefix=""
+              prefix={props.resource.measurementUnit}
               prefixSide="right"/>
         </div>
       </div>

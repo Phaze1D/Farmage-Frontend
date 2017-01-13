@@ -1,6 +1,8 @@
 import React from 'react';
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
+import RightDrawer from '../../../structure/right_drawer/RightDrawer';
+import ProductsNew from '../new/ProductsNew';
 
 import {factoryProduct} from '../faker/factoryProduct';
 
@@ -8,9 +10,10 @@ import {factoryProduct} from '../faker/factoryProduct';
 export default class ProductShow extends React.Component{
   constructor(props){
     super(props);
-    this.state = {tabValue: 0}
+    this.state = {tabValue: 0, ropen: false}
 
     this.handleTabChange = this.handleTabChange.bind(this)
+    this.toggleRight = this.toggleRight.bind(this);
 
     this.product = factoryProduct();
   }
@@ -19,11 +22,15 @@ export default class ProductShow extends React.Component{
     this.setState({tabValue: value})
   }
 
+  toggleRight(event){
+    this.setState({ropen: !this.state.ropen})
+  }
+
   render(){
 
     return(
       <MShow
-        onFabClick={this.props.onFabClick}
+        onFabClick={this.toggleRight}
         title={this.product.name}
         subTitle={this.product.sku}
         hasFAB={true}
@@ -36,6 +43,17 @@ export default class ProductShow extends React.Component{
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
           tabs={['Summary', 'Resources', 'Reports', 'Analyzes']}/>
+
+
+
+        <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
+          <ProductsNew
+            onCloseRight={this.toggleRight}
+            headerTitle='Update Product'
+            objectID='asdfadf'
+            isUpdate={true}/>
+
+        </RightDrawer>
 
       </MShow>
     )
