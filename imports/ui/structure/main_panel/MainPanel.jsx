@@ -43,7 +43,7 @@ export default class MainPanel extends React.Component{
 
     if(currentScrollTop < f ){
 
-      let scale = - (currentScrollTop / f ) + 1;
+      let scale = - (currentScrollTop / (f * 2) ) + 1;
       let y = 100 * (1 - currentScrollTop / f);
       let a = this.toolbar.clientWidth > 840 ? 40 : 0;
       let x = a * (1 - currentScrollTop / f);
@@ -56,7 +56,7 @@ export default class MainPanel extends React.Component{
 
     }else if (currentScrollTop < f + this.toolbar.clientHeight) {
 
-      this.title.style.transform = 'scale(1) translate(0,0)';
+      this.title.style.transform = 'scale(.5) translate(0,0)';
 
       if(!this.toolBarShown || !this.firstStage){
         this.toolbar.style.transition = ``
@@ -67,7 +67,7 @@ export default class MainPanel extends React.Component{
 
 
     }else{
-      this.title.style.transform = 'scale(1) translate(0,0)';
+      this.title.style.transform = 'scale(.5) translate(0,0)';
 
       if(!this.firstStage){
         if(this.props.onRequestHide) this.props.onRequestHide();
