@@ -36,7 +36,7 @@
 }
 
 .mheader-title{
-  font-size: 20px;
+  font-size: 44px;
   font-weight: 400;
   color: @white;
   display: flex;
@@ -45,15 +45,16 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  transform: scale(2) translate(15%, 54px);
+  transform: translate(0%, 100px);
+  transform-origin: left center;
   will-change: transform;
 
   @media(min-width: @layout-breakpoint-sm){
-    font-size: 22px;
+    font-size: 48px;
   }
 
   &.large{
-    transform: scale(2) translate(40%, 54px);
+    transform: translate(40%, 100px);
   }
 
 }

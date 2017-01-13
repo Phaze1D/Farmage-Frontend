@@ -43,9 +43,9 @@ export default class MainPanel extends React.Component{
 
     if(currentScrollTop < f ){
 
-      let scale = - (currentScrollTop / f ) + 2;
-      let y = 54 * (1 - currentScrollTop / f);
-      let a = this.toolbar.clientWidth > 840 ? 40 : 15;
+      let scale = - (currentScrollTop / f ) + 1;
+      let y = 100 * (1 - currentScrollTop / f);
+      let a = this.toolbar.clientWidth > 840 ? 40 : 0;
       let x = a * (1 - currentScrollTop / f);
       this.title.style.transform = `scale(${scale}) translate(${x}%, ${y}px)`
       this.toolbar.style.transition = ``
