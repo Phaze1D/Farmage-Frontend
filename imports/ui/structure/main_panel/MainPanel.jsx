@@ -45,9 +45,12 @@ export default class MainPanel extends React.Component{
 
       let scale = - (currentScrollTop / (f * 2) ) + 1;
       let y = 100 * (1 - currentScrollTop / f);
-      let a = this.toolbar.clientWidth > 840 ? 40 : 0;
+      let a = this.toolbar.clientWidth > 840 ? 35 : -25;
       let x = a * (1 - currentScrollTop / f);
-      this.title.style.transform = `scale(${scale}) translate(${x}%, ${y}px)`
+      this.title.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`
+      this.title.style.overflow = '';
+      this.title.style.fontSize = '';
+      this.title.style.marginRight = '';
       this.toolbar.style.transition = ``
       this.toolbar.style.transform = `translate(0, 0)`;
       this.toolbar.style.boxShadow = ``
@@ -56,7 +59,16 @@ export default class MainPanel extends React.Component{
 
     }else if (currentScrollTop < f + this.toolbar.clientHeight) {
 
-      this.title.style.transform = 'scale(.5) translate(0,0)';
+      let style = {
+        transform: 'scale(1) translate(0,0)',
+        overflow: 'auto',
+        fontSize: this.toolbar.clientWidth > 840 ? '24px' : '22px',
+      }
+      this.title.style.transform = style.transform;
+      this.title.style.overflow = style.overflow;
+      this.title.style.fontSize = style.fontSize;
+      this.title.style.marginRight = '0';
+
 
       if(!this.toolBarShown || !this.firstStage){
         this.toolbar.style.transition = ``
@@ -67,7 +79,17 @@ export default class MainPanel extends React.Component{
 
 
     }else{
-      this.title.style.transform = 'scale(.5) translate(0,0)';
+      let style = {
+        transform: 'scale(1) translate(0,0)',
+        overflow: 'auto',
+        fontSize: this.toolbar.clientWidth > 840 ? '24px' : '22px',
+
+      }
+      this.title.style.transform = style.transform;
+      this.title.style.overflow = style.overflow;
+      this.title.style.fontSize = style.fontSize;
+      this.title.style.marginRight = '0';
+
 
       if(!this.firstStage){
         if(this.props.onRequestHide) this.props.onRequestHide();

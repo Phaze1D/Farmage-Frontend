@@ -27,16 +27,20 @@ export default class ToolbarTitle extends React.Component {
   }
 
   render(){
+    const wrapClasses = classnames('title-wrapper', this.props.wrapClasses)
     const titClasses = classnames('mheader-title', {'large': this.state.large})
 
     return(
-      <div id={this.props.titleID} className={titClasses} ref='title'>
-        <EventListener
-          target={window}
-          onResize={this.handleWidth}/>
+      <div className={wrapClasses}>
+        <div id={this.props.titleID} className={titClasses} ref='title'>
+          <EventListener
+            target={window}
+            onResize={this.handleWidth}/>
 
-        {this.props.children}
+          {this.props.children}
+        </div>
       </div>
+
     )
   }
 }

@@ -131,7 +131,7 @@ const IndexToolBar = (props) => (
       <NavigationMenu/>
     </IconButton>
 
-    <ToolbarTitle titleID='dashboard-ttbar'>{props.title}</ToolbarTitle>
+    <ToolbarTitle wrapClasses='am-3' titleID='dashboard-ttbar'>{props.title}</ToolbarTitle>
 
     <IconButton className='search-button' onTouchTap={props.toggleSearch}>
       <ActionSearch/>
