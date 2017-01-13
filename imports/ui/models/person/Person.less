@@ -54,7 +54,7 @@
   flex-grow: 1;
   overflow: hidden;
 
-  .swrapper{
+  .react-swipeable-view-container{
     width: 0;
     flex-grow: 1;
     white-space: nowrap;
@@ -62,6 +62,10 @@
     transition-delay: @animation-delay !important;
     transition-duration: @animation-duration !important;
     transition-property: transform !important;
+
+    div{
+      overflow: hidden !important;
+    }
   }
 
 }

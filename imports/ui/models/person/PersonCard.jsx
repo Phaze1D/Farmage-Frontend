@@ -13,6 +13,7 @@ import MapsPlace from 'material-ui/svg-icons/maps/place';
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+import SwipeableViews from 'react-swipeable-views';
 import { browserHistory } from 'react-router'
 
 import classnames from 'classnames';
@@ -212,6 +213,11 @@ class ScrollableInfo extends React.Component{
 
     this.handleRight = this.handleRight.bind(this);
     this.handleLeft = this.handleLeft.bind(this);
+    this.handleSwipe = this.handleSwipe.bind(this);
+  }
+
+  handleSwipe(index, indexLatest){
+    this.setState({current: index})
   }
 
   handleRight(event){
@@ -231,7 +237,6 @@ class ScrollableInfo extends React.Component{
   render(){
     const arClasses = classnames('snav', {'disabled': this.state.current === this.props.arrayInfo.length - 1});
     const alClasses = classnames('snav', {'disabled': this.state.current === 0});
-    const traStyle = {transform: `translate(-${100 * this.state.current}%, 0)`}
 
 
     return(
@@ -239,11 +244,13 @@ class ScrollableInfo extends React.Component{
 
         {this.props.icon}
 
-        <div className='slist'>
-          <div className='swrapper' style={traStyle}>
-            {this.props.children}
-          </div>
-        </div>
+        <SwipeableViews
+          resistance={false}
+          onChangeIndex={this.handleSwipe}
+          index={this.state.current}
+          className='slist'>
+          {this.props.children}
+        </SwipeableViews>
 
 
         {this.props.arrayInfo.length > 1 &&
@@ -256,3 +263,10 @@ class ScrollableInfo extends React.Component{
     )
   }
 }
+
+
+// <div className='slist'>
+//   <div className='swrapper' style={traStyle}>
+//     {this.props.children}
+//   </div>
+// </div>
