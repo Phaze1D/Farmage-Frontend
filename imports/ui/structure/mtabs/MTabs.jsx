@@ -17,6 +17,25 @@ export default class MTabs extends React.Component{
     this.handleTabClick(null, 0)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    this.handleSwipe(this.props.value)
+  }
+
+  handleSwipe(value){
+    let showMain = document.getElementById('show-main')
+    let theight = window.innerWidth > 840 ? 68 : 58
+    if(showMain.scrollTop > 276 - theight){
+      showMain.scrollTop = 276 - theight + 1
+    }
+
+    let tabs = this.refs.mtabs.getElementsByClassName('mtab')
+    let xtrans = 0;
+    for (let i = 0; i < value; i++) {
+      xtrans += (tabs[i].clientWidth / this.refs.mtabs.clientWidth)
+    }
+    this.refs.line.style.transform = `translateX(${xtrans * 100}%) scaleX(${tabs[value].clientWidth / this.refs.mtabs.clientWidth})`
+  }
+
   handleTabClick(event, value){
     let tabs = this.refs.mtabs.getElementsByClassName('mtab')
     let xtrans = 0;

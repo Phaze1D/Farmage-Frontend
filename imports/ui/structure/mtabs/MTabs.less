@@ -6,7 +6,7 @@
 .mtabs{
   position: relative;
   height: 48px;
-  background-color: @color-primary;
+  background-color: @color-primary-dark;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -17,6 +17,7 @@
     max-width: 900px;
     width: 100%;
     top: 58px;
+    z-index: @z-index-high;
 
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0),
     0 4px 3px -2px rgba(0, 0, 0, 0.3),
@@ -28,11 +29,134 @@
   }
 }
 
+
 .mtabs::-webkit-scrollbar {
   display: none;
 }
 
-.mtabs-line{
+.mtab-content{
+  min-height: ~"calc(100vh - 324px)";
+  padding: 30px 8px;
+
+  h3{
+    font-weight: 500;
+    margin: 0 0 16px 25px;
+  }
+
+  h4{
+    font-size: 15px;
+    font-weight: 500;
+    color: @grey-600;
+    margin: 16px 0 0px 25px;
+
+    &.none{
+      color: @grey-500;
+      font-weight: 400;
+      margin: 0px 0 0px 25px;
+    }
+  }
+}
+
+
+
+.mtab-show-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mtab-info{
+  font-size: 15px;
+  min-width: 100px;
+  align-self: center;
+  margin: 0 0px 16px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.none{
+    color: @grey-400;
+    font-size: 14px;
+  }
+
+  &.text-wrap{
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.right-align{
+    margin-left: auto;
+    height: 100%;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  span{
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: @grey-500;
+    margin: 0px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .flex{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.mtab-content-card{
+  flex-shrink: 0;
+  min-width: 48%;
+  min-height: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 0px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 0px 0 rgba(0, 0, 0, 0.12);
+  background-color: white;
+  border-radius: 3px;
+  padding: 15px;
+  margin: 8px;
+
+  &.none{
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &.flex{
+    display: flex;
+    align-items: center;
+  }
+
+  @media(min-width: 816px){
+    max-width: ~"calc(50% - 16px)";
+  }
+
+}
+
+.mtab-section{
+  flex-shrink: 0;
+  // min-width: 48%;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: -21px 0px 8px;
+
+  span{
+    display: block;
+    font-size: 15px;
+    color: @grey-600;
+    margin: 0px 16px;
+  }
+}
+
+.mtabs-line {
 
   transform-origin: left center;
   position: absolute;

@@ -19,6 +19,7 @@ import { browserHistory } from 'react-router'
 import classnames from 'classnames';
 
 import MCard from '../../structure/mcard/MCard';
+import CustomerShow from '../customers/show/CustomerShow';
 import PersonShow from './PersonShow';
 
 
@@ -98,7 +99,7 @@ export default class PersonCard extends React.Component{
         <AutoLockScrolling lock={this.state.showCard}/>
 
         {this.state.isOpened &&
-          <PersonShow
+          <CustomerShow
             onFabClick={this.handleUpdate}
             personID={this.props._id}
             onRequestChange={this.handleOnShow}

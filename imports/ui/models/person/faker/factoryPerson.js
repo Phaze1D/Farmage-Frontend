@@ -1,4 +1,5 @@
 import faker from 'faker'
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
 
 
 const testEmail = () => {
@@ -86,7 +87,11 @@ const factoryPerson = () => {
     telephones: testTelephones(),
     addresses: testAddresses(),
     notes: testNotes(),
-    avatarURL: testAvatar()
+    avatarURL: testAvatar(),
+    createdAt: testDateOfBirth(),
+    updatedAt: testDateOfBirth(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
   }
 
   return person;
