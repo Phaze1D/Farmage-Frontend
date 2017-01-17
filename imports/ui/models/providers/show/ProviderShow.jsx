@@ -1,18 +1,25 @@
 import React from 'react';
-import MShow from '../../structure/mshow/MShow';
-import MTabs from '../../structure/mtabs/MTabs';
-import RightDrawer from '../../structure/right_drawer/RightDrawer';
-import PersonNew from './PersonForm';
+import {Random} from 'meteor/random'
+import SwipeableViews from 'react-swipeable-views';
+import MShow from '../../../structure/mshow/MShow';
+import MTabs from '../../../structure/mtabs/MTabs';
+import RightDrawer from '../../../structure/right_drawer/RightDrawer';
+import PersonNew from '../../person/PersonForm';
+import UserShowInfo from '../../ousers/UserShowInfo';
+import PersonSummary from '../../person/PersonSummary';
+import {factoryPerson} from '../../person/faker/factoryPerson';
 
-import {factoryPerson} from './faker/factoryPerson';
+
+let DateTimeFormat = global.Intl.DateTimeFormat;
 
 
-export default class PersonShow extends React.Component{
+export default class ProviderShow extends React.Component{
   constructor(props){
     super(props);
     this.state = {tabValue: 0, ropen: false}
 
     this.handleTabChange = this.handleTabChange.bind(this)
+    this.handleSwipe = this.handleSwipe.bind(this);
     this.toggleRight = this.toggleRight.bind(this);
 
     this.person = factoryPerson();
@@ -20,6 +27,10 @@ export default class PersonShow extends React.Component{
 
   handleTabChange(event, value){
     this.setState({tabValue: value})
+  }
+
+  handleSwipe(index, indexLatest){
+    this.setState({tabValue: index})
   }
 
   toggleRight(event){
@@ -46,16 +57,36 @@ export default class PersonShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Reports', 'Analyzes']}/>
 
+
+        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue}>
+          <PersonSummary person={this.person}/>
+          <div>Reports</div>
+          <div>Analyzes</div>
+        </SwipeableViews>
+
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <PersonNew
             onCloseRight={this.toggleRight}
-            headerTitle='Update Person'
+            headerTitle='Update Provider'
             objectID='asdfadf'
             isUpdate={true}/>
 
         </RightDrawer>
-
       </MShow>
     )
   }
 }
+
+
+
+
+// Notes
+// Email
+// Telephones
+// Addresses
+// Created By
+// Updated By
+// Last Sell
+// Total Spent
+// Average Total Per Sale
+// Top 5 Products

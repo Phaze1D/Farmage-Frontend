@@ -15,6 +15,16 @@ export default class CustomersIndex extends React.Component{
     super(props);
     this.onCardUpdate = this.onCardUpdate.bind(this);
 
+    this.customers = [];
+
+    for(let i = 0; i < 20; i++){
+        this.customers.push(factoryPerson());
+    }
+
+    this.customers.sort((a, b) => {
+      return a.firstName.localeCompare(b.firstName)
+    });
+
   }
 
   onCardUpdate(customer_id){
@@ -22,19 +32,10 @@ export default class CustomersIndex extends React.Component{
   }
 
   render(){
-    let customers = [];
 
-    for(let i = 0; i < 20; i++){
-        customers.push(factoryPerson());
-    }
-
-    customers.sort((a, b) => {
-      return a.firstName.localeCompare(b.firstName)
-    });
-
-    const listItems = customers.map((person) =>
+    const listItems = this.customers.map((person) =>
       <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3' key={person._id}>
-        <PersonCard {...person} actionLabel='sells' onRequestUpdate={this.onCardUpdate}/>
+        <PersonCard {...person} isCustomer={true} actionLabel='sells' onRequestUpdate={this.onCardUpdate}/>
       </div>
     );
 

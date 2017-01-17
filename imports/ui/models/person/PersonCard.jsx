@@ -1,4 +1,5 @@
 import React from 'react';
+import {Random} from 'meteor/random';
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
@@ -20,7 +21,8 @@ import classnames from 'classnames';
 
 import MCard from '../../structure/mcard/MCard';
 import CustomerShow from '../customers/show/CustomerShow';
-import PersonShow from './PersonShow';
+import ProviderShow from '../providers/show/ProviderShow';
+
 
 
 export default class PersonCard extends React.Component{
@@ -73,6 +75,7 @@ export default class PersonCard extends React.Component{
     const title = `${firstName} ${lastName}`
     const char = title.toUpperCase().charAt(0)
 
+    const ShowCard = this.props.isCustomer ? CustomerShow : ProviderShow;
 
     return(
       <MCard ref='mcard' options={this.cardOptions()}>
@@ -99,13 +102,12 @@ export default class PersonCard extends React.Component{
         <AutoLockScrolling lock={this.state.showCard}/>
 
         {this.state.isOpened &&
-          <CustomerShow
+          <ShowCard
             onFabClick={this.handleUpdate}
             personID={this.props._id}
             onRequestChange={this.handleOnShow}
             open={this.state.showCard}/>
         }
-
 
       </MCard>
     )
@@ -137,30 +139,30 @@ const EmailSection = (props) => {
 
 
 const TelephonesSection = (props) => {
-  const hasTelephones = (props.telephones.length > 0)
+  const hasTelephones = (props.telephones.length > 0 )
   const eClasses = classnames('sinfo', {'empty': !hasTelephones} )
   const iconClasses = classnames('sicon', {'empty': !hasTelephones})
 
-  if(!hasTelephones){
-    props.telephones.push({})
-  }
-
-  let key = 'a'
-  const tels = props.telephones.map((telephone) => {
-    key+='b'
-    return(
-      <div className={eClasses} key={key}>
-        <span>
-          {telephone.name ? telephone.name : 'Telephone'}
-        </span>
-        {telephone.number}
-      </div>
-    )
-  })
+  const tels = props.telephones.map((telephone) =>
+    <div className={eClasses} key={Random.id()}>
+      <span>
+        {telephone.name ? telephone.name : 'Telephone'}
+      </span>
+      {telephone.number}
+    </div>
+  )
 
   return (
     <ScrollableInfo arrayInfo={props.telephones} icon={<CommunicationCall className={iconClasses}/>}>
-      {tels}
+
+      {hasTelephones ? tels :
+        <div className={eClasses}>
+          <span>
+            Telephone
+          </span>
+        </div>
+      }
+
     </ScrollableInfo>
   )
 }
@@ -171,36 +173,35 @@ const AddressesSection = (props) => {
   const eClasses = classnames('sinfo', {'empty': !hasAddresses} )
   const iconClasses = classnames('sicon', {'empty': !hasAddresses})
 
-  if(!hasAddresses){
-    props.addresses.push({})
-  }
 
-  let key = 'a'
-  const adds = props.addresses.map((address) => {
-    key+= 'b'
-    return(
-      <div className={eClasses} key={key}>
-        <span>
-          {address.name ? address.name : 'Address'}
-        </span>
-        {address.street1}
-        <div> {address.street2} </div>
-        <div>
-          {address.city}
-          {address.state && address.city &&
-             <i>, </i>
-          }
-          {address.state}
-        </div>
-        <div> {address.zip_code} </div>
-        <div> {address.country} </div>
+  const adds = props.addresses.map((address) =>
+    <div className={eClasses} key={Random.id()}>
+      <span>
+        {address.name ? address.name : 'Address'}
+      </span>
+      {address.street1}
+      <div> {address.street2} </div>
+      <div>
+        {address.city}
+        {address.state && address.city &&
+           <i>, </i>
+        }
+        {address.state}
       </div>
-    )
-  });
+      <div> {address.zip_code} </div>
+      <div> {address.country} </div>
+    </div>
+  )
 
   return (
     <ScrollableInfo arrayInfo={props.addresses} icon={<MapsPlace className={iconClasses}/>}>
-      {adds}
+      {hasAddresses ? adds :
+        <div className={eClasses} key={Random.id()}>
+          <span>
+            Address
+          </span>
+        </div>
+      }
     </ScrollableInfo>
   )
 }

@@ -13,7 +13,7 @@ import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 
 import SellShow from './SellShow';
-import PersonShow from '../../person/PersonShow';
+import CustomerShow from '../../customers/show/CustomerShow';
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -167,7 +167,7 @@ export default class SellCard extends React.Component{
         }
 
         {this.state.isOpened &&
-          <PersonShow
+          <CustomerShow
             onFabClick={this.handleUpdate}
             personID={this.props._id}
             onRequestChange={this.handleOnShowCustomer}

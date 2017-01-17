@@ -14,7 +14,7 @@ import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 
 import ExpenseShow from './ExpenseShow';
 import UnitShow from '../../units/card/UnitShow';
-import PersonShow from '../../person/PersonShow';
+import ProviderShow from '../../providers/show/ProviderShow';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -166,7 +166,7 @@ export default class ExpenseCard extends React.Component{
         }
 
         {this.state.isOpened &&
-          <PersonShow
+          <ProviderShow
             onFabClick={this.handleUpdate}
             personID={this.props._id}
             onRequestChange={this.handleOnShowProvider}
