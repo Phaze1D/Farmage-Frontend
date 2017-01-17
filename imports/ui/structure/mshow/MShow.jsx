@@ -26,6 +26,12 @@ export default class MShow extends React.Component{
     setTimeout(() => {this.setState({showFAB: true})}, 400)
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    // if(!nextProps.open){
+    //   document.getElementById('show-main').scrollTop = 0;
+    // }
+  }
+
 
   handleOverlayTouch(event){
     event.stopPropagation();
@@ -64,8 +70,6 @@ export default class MShow extends React.Component{
 
   render(){
     const char = this.props.title.toUpperCase().charAt(0);
-    let leaveClas = 'leave-quick-fade'
-
 
     return(
       <Portal isOpened={true}>
@@ -73,7 +77,7 @@ export default class MShow extends React.Component{
         <ReactCSSTransitionGroup component={FirstChild}
         transitionName={ {
           enter: 'enter-quick-fade',
-          leave: leaveClas,
+          leave: 'leave-quick-fade-without',
           appear: 'appear-quick-fade'
         } }
         transitionEnterTimeout={450}

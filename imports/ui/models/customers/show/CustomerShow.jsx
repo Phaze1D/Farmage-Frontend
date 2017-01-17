@@ -58,7 +58,7 @@ export default class CustomerShow extends React.Component{
           tabs={['Summary', 'Reports', 'Analyzes']}/>
 
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue}>
+        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
           <PersonSummary person={this.person}/>
           <div>Reports</div>
           <div>Analyzes</div>

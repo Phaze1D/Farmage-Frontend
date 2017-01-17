@@ -212,22 +212,9 @@
 }
 
 .leave-quick-fade-without {
+  opacity: 1;
   background-color: rgba(0,0,0,.74);
 
-  .show-header{
-    transition: none;
-    transform: translate(0, -100%);
-  }
-
-  .show-toolbar{
-    transition: none;
-    transform: translate(0, 0);
-  }
-
-  .show-main{
-    transition: none;
-    transform: translate(0, 0);
-  }
 }
 
 .leave-quick-fade-without.leave-quick-fade-without-active {
@@ -235,26 +222,7 @@
   transition-timing-function: @animation-curve-default ;
   transition-delay: 0;
   transition-duration: @animation-duration ;
-  transition-property: background-color;
+  transition-property: all;
+  opacity: 0;
 
-  .show-header{
-    transition: none;
-    transform: translate(0, -100%);
-  }
-
-  .show-toolbar{
-    transform: translate(0, -100%);
-    transition-timing-function: @animation-curve-default ;
-    transition-delay: 0;
-    transition-duration: @animation-duration ;
-    transition-property: transform ;
-  }
-
-  .show-main{
-    transform: translate(0, 100%);
-    transition-timing-function: @animation-curve-default ;
-    transition-delay: 0;
-    transition-duration: @animation-duration ;
-    transition-property: transform ;
-  }
 }
