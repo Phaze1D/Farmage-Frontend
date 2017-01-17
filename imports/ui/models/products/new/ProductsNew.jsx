@@ -25,6 +25,11 @@ export default class ProductsNew extends React.Component{
     this.state = {rsopen: false, showFields: false}
     this.handleOnClose = this.handleOnClose.bind(this);
     this.toggleResourceSelector = this.toggleResourceSelector.bind(this);
+
+    this.product = {}
+    if(this.props.objectID){
+      this.product = factoryProduct();
+    }
   }
 
   componentDidMount() {
@@ -41,16 +46,10 @@ export default class ProductsNew extends React.Component{
   }
 
   render(){
-
-    let product = {}
     let imageBStyle = {}
-    if(this.props.objectID){
-      product = factoryProduct();
-
-      if(product.imageUrl){
-        imageBStyle = {
-          background: `url(${product.imageUrl})`
-        }
+    if(this.product.imageUrl){
+      imageBStyle = {
+        background: `url(${this.product.imageUrl})`
       }
     }
 
@@ -75,7 +74,7 @@ export default class ProductsNew extends React.Component{
         transitionAppearTimeout={500}>
           {this.state.showFields &&
             <FormFields
-              product={product}
+              product={this.product}
               imageBStyle={imageBStyle}
               onRequestChange={this.toggleResourceSelector}/>
           }
@@ -137,7 +136,7 @@ class FormFields extends React.Component {
     if(!product.resources) product.resources = []
 
     const resourcesList = product.resources.map((resource) =>
-      <ResourceProductItem key={resource._id} resource={resource}/>
+      <ResourceProductItem key={resource.resourceID} resource={resource}/>
     )
 
     return(

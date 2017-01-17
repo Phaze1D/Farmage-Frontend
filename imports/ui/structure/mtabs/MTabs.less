@@ -39,6 +39,7 @@
   padding: 30px 8px;
 
   h3{
+    color: @grey-700;
     font-weight: 500;
     margin: 0 0 16px 25px;
   }
@@ -65,7 +66,7 @@
 }
 
 .mtab-info{
-  font-size: 15px;
+  font-size: 16px;
   min-width: 100px;
   align-self: center;
   margin: 0 0px 16px 0;
@@ -96,7 +97,7 @@
     font-size: 13px;
     font-weight: 400;
     color: @grey-500;
-    margin: 0px 0;
+    margin: 0px 0 2px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -119,7 +120,7 @@
   flex-grow: 1;
   flex-basis: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 0px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 0px 0 rgba(0, 0, 0, 0.12);
-  background-color: white;
+  background-color: @white;
   border-radius: 3px;
   padding: 15px;
   margin: 8px;
@@ -135,8 +136,44 @@
     align-items: center;
   }
 
+  &.flex-column{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+
+    .mtab-info{
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+  }
+
   @media(min-width: 816px){
     max-width: ~"calc(50% - 16px)";
+  }
+
+  .select-title{
+    display: flex;
+  }
+
+  h2{
+    font-size: 20px;
+    flex-grow: 1;
+    font-weight: 400;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 15px;
+
+    span{
+      display: block;
+      font-size: 12px;
+      color: @grey-500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 15px;
+    }
   }
 
 }

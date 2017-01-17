@@ -1,6 +1,8 @@
 import faker from 'faker'
 import { Random } from 'meteor/random'
 import { factoryResource } from '../../resources/faker/factoryResource';
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
+
 
 
 const testName = () => {
@@ -50,7 +52,7 @@ const testResources = () => {
   for (var i = 0; i < count; i++) {
     let re = factoryResource()
     array.push({
-      _id: re._id,
+      resourceID: re._id,
       resource: re,
       name: re.name,
       measurementUnit: re.measurementUnit,
@@ -59,6 +61,13 @@ const testResources = () => {
   }
 
   return array
+}
+
+const testDate = () => {
+  if(Math.round(Math.random()) === 0){
+    return faker.date.past();
+  }
+  return faker.date.past();
 }
 
 const factoryProduct = () => {
@@ -72,6 +81,10 @@ const factoryProduct = () => {
     stock: testStock(),
     description: testDescription(),
     imageUrl: testImageUrl(),
+    createdAt: testDate(),
+    updatedAt: testDate(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser(),
     resources: testResources()
   }
 }
