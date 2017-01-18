@@ -149,12 +149,10 @@ export default class SellCard extends React.Component{
           </div>
         }
 
-        {/*<CardActions className='card-actions' style={{marginTop: '8px'}}>
-          <FlatButton className='action' label='Products' secondary={true}
-            onTouchTap={() => {browserHistory.push('/products')} }/>
-          <FlatButton className='action' label='Batches' secondary={true}
-            onTouchTap={() => {browserHistory.push('/batches')} }/>
-        </CardActions>*/}
+        <CardActions className='card-actions' style={{marginTop: '8px'}}>
+          <FlatButton className='action' label='Events' secondary={true}
+            onTouchTap={() => {browserHistory.push('')} }/>
+        </CardActions>
 
         <AutoLockScrolling lock={this.state.isOpened}/>
 

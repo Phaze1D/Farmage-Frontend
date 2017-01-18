@@ -129,7 +129,7 @@ let UnitSummary = (props) => {
         </div>
 
         <div className='mtab-content-card'>
-          <div className={desClas} style={{marginBottom: '0'}}>
+          <div className={desClas} >
             <span>Description</span>
             {description}
           </div>

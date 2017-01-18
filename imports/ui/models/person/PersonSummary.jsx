@@ -68,7 +68,7 @@ export default class PersonSummary extends React.Component {
               {company}
             </div>
 
-            <div className={emaClas} style={{marginBottom: '0'}}>
+            <div className={emaClas} >
               <span>Email</span>
               {email}
             </div>
@@ -76,7 +76,7 @@ export default class PersonSummary extends React.Component {
 
           <div className='mtab-content-card'>
             <div className={notClas}>
-              <span>Notes</span>
+              <span>Description</span>
               {notes}
             </div>
           </div>

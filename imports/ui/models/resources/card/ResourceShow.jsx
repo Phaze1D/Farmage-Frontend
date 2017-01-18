@@ -106,7 +106,7 @@ let ResourceSummary = (props) => {
             {resource.measurementUnit}
           </div>
 
-          <div className='mtab-info' style={{marginBottom: '0'}}>
+          <div className='mtab-info' >
             <span>In Stock</span>
             {resource.stock} {resource.measurementUnit}
           </div>
@@ -114,7 +114,7 @@ let ResourceSummary = (props) => {
 
         {/*<div className='mtab-content-card'>
           <div className={desClas}>
-            <span>Notes</span>
+            <span>Description</span>
             {notes}
           </div>
         </div>*/}

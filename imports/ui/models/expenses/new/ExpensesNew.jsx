@@ -245,7 +245,7 @@ class FormFields extends React.Component{
               type="text"
               defaultValue={this.props.expense.notes}
               className=""
-              floatingLabelText="Notes"
+              floatingLabelText="Description"
               fullWidth={true}
               multiLine={true}
               showCount={true}

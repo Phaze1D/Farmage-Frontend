@@ -80,7 +80,7 @@ export default class CustomerShow extends React.Component{
 
 
 
-// Notes
+// Description
 // Email
 // Telephones
 // Addresses

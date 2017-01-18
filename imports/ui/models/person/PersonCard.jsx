@@ -97,6 +97,8 @@ export default class PersonCard extends React.Component{
         <CardActions className='card-actions'>
           <FlatButton className='action' label={actionLabel} secondary={true}
             onTouchTap={() => {browserHistory.push('/' + actionLabel)} }/>
+          <FlatButton className='action' label='Events' secondary={true}
+            onTouchTap={() => {browserHistory.push('')} }/>
         </CardActions>
 
         <AutoLockScrolling lock={this.state.showCard}/>

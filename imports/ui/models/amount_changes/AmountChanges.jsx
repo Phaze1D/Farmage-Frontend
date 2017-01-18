@@ -154,7 +154,7 @@ let NewEvent = (props) => (
         name="description"
         type="text"
         defaultValue="Initial amount"
-        floatingLabelText="Movement Notes"
+        floatingLabelText="Movement Description"
         fullWidth={true}
         multiLine={true}
         showCount={true}

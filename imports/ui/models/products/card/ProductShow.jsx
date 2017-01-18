@@ -117,7 +117,7 @@ let ProductSummary = (props) => {
             {product.sku}
           </div>
 
-          <div className={sizeClas} style={{marginBottom: '0'}}>
+          <div className={sizeClas} >
             <span>Size</span>
             {size}
           </div>
@@ -139,7 +139,7 @@ let ProductSummary = (props) => {
             ${(product.unitPrice * (1 + (product.taxRate/100))).toFixed(2)}
           </div>
 
-          <div className='mtab-info'>
+          <div className='mtab-info' style={{marginBottom: '16px'}}>
             <span>In Stock</span>
             {product.stock}
           </div>
@@ -147,7 +147,7 @@ let ProductSummary = (props) => {
         </div>
 
         <div className='mtab-content-card'>
-          <div className={desClas} style={{marginBottom: '0'}}>
+          <div className={desClas} >
             <span>Description</span>
             {description}
           </div>

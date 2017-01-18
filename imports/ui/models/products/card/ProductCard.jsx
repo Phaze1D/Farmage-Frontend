@@ -97,6 +97,8 @@ export default class ProductCard extends React.Component{
                 onTouchTap={() => {browserHistory.push('/batches')} }/>
               <FlatButton className='action' label='Sales' secondary={true}
                 onTouchTap={() => {browserHistory.push('/sells')} }/>
+              <FlatButton className='action' label='Events' secondary={true}
+                onTouchTap={() => {browserHistory.push('')} }/>
               {/*<FlatButton className='action' label='Resources' secondary={true}/>*/}
             </CardActions>
           </div>

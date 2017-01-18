@@ -190,7 +190,7 @@ class FormFields extends React.Component{
               type="text"
               className=""
               defaultValue={this.props.yield.notes}
-              floatingLabelText="Notes"
+              floatingLabelText="Description"
               fullWidth={true}
               multiLine={true}
               showCount={true}

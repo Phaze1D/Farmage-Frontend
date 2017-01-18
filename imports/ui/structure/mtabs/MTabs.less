@@ -75,6 +75,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
   &.none{
     color: @grey-400;
     font-size: 14px;
@@ -131,6 +135,26 @@
   }
 }
 
+.mtab-info-flex{
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid @color-divider;
+  padding-top: 15px;
+
+  .mtab-info{
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 50%;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+
+  &:last-child {
+    margin-bottom: -16px;
+  }
+
+}
+
 .mtab-content-card{
   flex-shrink: 0;
   min-width: 48%;
@@ -162,6 +186,10 @@
     .mtab-info{
       flex-grow: 1;
       flex-basis: 0;
+    }
+
+    .mtab-info:last-child{
+      margin-bottom: 16px;
     }
   }
 

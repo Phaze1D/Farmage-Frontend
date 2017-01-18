@@ -165,6 +165,8 @@ export default class YieldCard extends React.Component{
             onTouchTap={() => {browserHistory.push('/movements')} }/>
           <FlatButton className='action' label='Batches' secondary={true}
             onTouchTap={() => {browserHistory.push('/batches')} }/>
+          <FlatButton className='action' label='Events' secondary={true}
+            onTouchTap={() => {browserHistory.push('')} }/>
         </CardActions>
 
         <AutoLockScrolling lock={this.state.isOpened}/>

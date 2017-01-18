@@ -2,6 +2,14 @@ import faker from 'faker'
 import { Random } from 'meteor/random'
 
 import {factoryProduct} from '../../products/faker/factoryProduct.js'
+import {factoryYield} from '../../yields/faker/factoryYield.js'
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
+
+
+import Big from 'big.js'
+Big.DP = 10
+
+
 
 
 const testIdentifer = () => {
@@ -28,7 +36,33 @@ const testNotes = () => {
   }
 }
 
+const testResourceYields = (product) => {
+  let rYields = []
+  for (pResource of product.resources) {
+    let yields = []
+
+    for(let i = 0; i < Math.random() * 10 ; i ++){
+      let y = factoryYield()
+      yields.push({
+        amountTaken: Big((Math.random() * 500).toFixed(8)).toString(),
+        yieldID: y._id,
+        yield: y
+      })
+    }
+
+    rYields.push({
+      resource: pResource.resource,
+      amountPre: pResource.amountPre,
+      resourceID: pResource.resource._id,
+      yields: yields,
+    })
+  }
+
+  return rYields
+}
+
 const factoryBatch = () => {
+  let product = factoryProduct();
   let batch = {
     _id: Random.id(),
     identifer: testIdentifer(),
@@ -36,7 +70,13 @@ const factoryBatch = () => {
     notes: testNotes(),
     createdAt: testCreated(),
     expiresAt: testExpires(),
-    product: factoryProduct()
+    product: product,
+    rYields: testResourceYields(product),
+    createdAt: testCreated(),
+    updatedAt: testCreated(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
+
   }
   return batch;
 }

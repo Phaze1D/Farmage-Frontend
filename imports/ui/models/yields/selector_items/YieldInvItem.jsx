@@ -25,7 +25,7 @@ export default class YieldInvItem extends React.Component{
   }
 
   handleOnYieldChanged(event, newValue){
-    const tfs = document.getElementsByClassName(this.props.resource._id)
+    const tfs = document.getElementsByClassName(this.props.resource.resourceID)
     let sum = Big(0);
     for (var i = 0; i < tfs.length; i++) {
       let value = tfs[i].getElementsByTagName("INPUT")[0].value;
@@ -52,7 +52,7 @@ export default class YieldInvItem extends React.Component{
     const yieldList = this.yields.map((_yield) =>
       <YieldDetail
         key={_yield._id}
-        resourceID={this.props.resource._id}
+        resourceID={this.props.resource.resourceID}
         hasError={modError}
         yield={_yield}
         onRequestChange={this.handleOnYieldChanged}
@@ -65,8 +65,7 @@ export default class YieldInvItem extends React.Component{
         <div className='row'>
           <div className='col-xs-12'>
             <SelectorButton
-              title={this.props.resource.name}
-              secTitle='Yields'
+              title={`${this.props.resource.name} Yields`}
               subTitle={`Pre Product - ${this.props.resource.amountPre} ${this.props.resource.measurementUnit}`}
               showImage={true}
               imageUrl={this.props.resource.resource.imageUrl}

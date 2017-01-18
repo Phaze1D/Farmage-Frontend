@@ -25,7 +25,7 @@ let UserShowInfo = (props) => {
         </div>
       </div>
 
-        <div className='mtab-info right-align' style={{marginBottom: '0'}}>
+        <div className='mtab-info right-align' >
           <span>{`${props.subTitle} Date`}</span>
             {new DateTimeFormat('en-US', {
               day: 'numeric',

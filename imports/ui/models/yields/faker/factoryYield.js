@@ -3,6 +3,8 @@ import { Random } from 'meteor/random'
 
 import {factoryResource} from '../../resources/faker/factoryResource.js'
 import {factoryUnit} from '../../units/faker/factoryUnit.js'
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
+
 
 
 const testIdentifer = () => {
@@ -38,7 +40,11 @@ const factoryYield = () => {
     expiresAt: testExpires(),
     notes: testNotes(),
     resource: factoryResource(),
-    unit: factoryUnit()
+    unit: factoryUnit(),
+    createdAt: testCreated(),
+    updatedAt: testCreated(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
   }
   return _yield;
 }

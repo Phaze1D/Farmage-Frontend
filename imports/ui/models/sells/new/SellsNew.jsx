@@ -260,7 +260,7 @@ class FormFields extends React.Component{
               name="notes"
               type="text"
               className=""
-              floatingLabelText="Notes"
+              floatingLabelText="Description"
               fullWidth={true}
               multiLine={true}
               showCount={true}

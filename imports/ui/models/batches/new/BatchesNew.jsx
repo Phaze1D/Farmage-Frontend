@@ -149,7 +149,7 @@ class FormFields extends React.Component{
     if(this.props.batch && this.props.batch.product){
       resourceList = this.props.batch.product.resources.map((resource) =>
         <YieldInvItem
-          key={resource._id}
+          key={resource.resourceID}
           resource={resource}
           toggleYieldSelector={this.props.toggleYieldSelector}/>
       )
@@ -207,7 +207,7 @@ class FormFields extends React.Component{
               type="text"
               defaultValue={this.props.batch.notes}
               className=""
-              floatingLabelText="Notes"
+              floatingLabelText="Description"
               fullWidth={true}
               multiLine={true}
               showCount={true}

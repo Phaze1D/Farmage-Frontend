@@ -151,7 +151,7 @@ const FormFields = (props) => {
             type="text"
             defaultValue={props.person.notes}
             className=""
-            floatingLabelText="Notes"
+            floatingLabelText="Description"
             fullWidth={true}
             multiLine={true}
             showCount={true}

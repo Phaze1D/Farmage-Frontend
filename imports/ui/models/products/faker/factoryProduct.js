@@ -47,7 +47,7 @@ const testSize = () => {
 }
 
 const testResources = () => {
-  let count = Math.round(Math.random() * 10)
+  let count = Math.round(Math.random() * 10) + 1
   let array = []
   for (var i = 0; i < count; i++) {
     let re = factoryResource()
