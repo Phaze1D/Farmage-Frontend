@@ -39,7 +39,7 @@
   padding: 30px 8px;
 
   h3{
-    color: @grey-700;
+    color: @grey-800;
     font-weight: 500;
     margin: 0 0 16px 25px;
   }
@@ -90,6 +90,23 @@
     height: 100%;
     text-align: right;
     font-size: 13px;
+  }
+
+  &.bool{
+    svg{
+      width: 16px !important;
+      height: 16px !important;
+      fill: @grey-500 !important;
+      margin-bottom: -2px;
+    }
+
+    &.on{
+      color:  @deep-purple-500;
+      font-weight: 500;
+      svg{
+        fill: @deep-purple-500 !important;
+      }
+    }
   }
 
   span{

@@ -55,13 +55,13 @@ export default class ProviderShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports', 'Analyzes']}/>
+          tabs={['Summary', 'Analytics', 'Reports']}/>
 
 
         <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue}>
           <PersonSummary person={this.person}/>
           <div>Reports</div>
-          <div>Analyzes</div>
+          <div>Analytics</div>
         </SwipeableViews>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>

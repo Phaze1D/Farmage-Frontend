@@ -45,7 +45,7 @@ export default class OUserShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports', 'Analyzes']}/>
+          tabs={['Summary', 'Analytics', 'Reports']}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <OUsersNew

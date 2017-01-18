@@ -52,12 +52,12 @@ export default class ProductShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports', 'Analyzes']}/>
+          tabs={['Summary', 'Analytics', 'Reports']}/>
 
         <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
           <ProductSummary product={this.product}/>
           <div>Reports</div>
-          <div>Analyzes</div>
+          <div>Analytics</div>
         </SwipeableViews>
 
 
@@ -147,7 +147,7 @@ let ProductSummary = (props) => {
         </div>
 
         <div className='mtab-content-card'>
-          <div className={desClas}>
+          <div className={desClas} style={{marginBottom: '0'}}>
             <span>Description</span>
             {description}
           </div>

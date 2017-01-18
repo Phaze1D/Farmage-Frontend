@@ -42,7 +42,7 @@ export default class BatchShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Yields', 'Reports', 'Analyzes']}/>
+          tabs={['Summary', 'Yields', 'Analytics', 'Reports']}/>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <BatchesNew

@@ -77,7 +77,7 @@ export default class MShow extends React.Component{
         <ReactCSSTransitionGroup component={FirstChild}
         transitionName={ {
           enter: 'enter-quick-fade',
-          leave: 'leave-quick-fade-without',
+          leave: 'leave-quick-fade',
           appear: 'appear-quick-fade'
         } }
         transitionEnterTimeout={450}

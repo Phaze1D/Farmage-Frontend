@@ -74,29 +74,31 @@ export default class ResourcesNew extends React.Component{
 
 
 const FormFields = (props) => (
-  <div className='row'>
-    <div className='col-xs-12 col-flex'>
-      <IconButton className='avatar-button' style={props.imageBStyle}>
-        <ImageCameraAlt />
-      </IconButton>
+  <div className='form-fields'>
+    <div className='row'>
+      <div className='col-xs-12 col-flex'>
+        <IconButton className='avatar-button' style={props.imageBStyle}>
+          <ImageCameraAlt />
+        </IconButton>
 
-      <div style={{width: '100%'}}>
-        <TextField
-          name="name"
-          type="text"
-          defaultValue={props.resource.name}
-          className="input-lg"
-          hintText=""
-          floatingLabelText="Name"
-          fullWidth={true}/>
+        <div style={{width: '100%'}}>
+          <TextField
+            name="name"
+            type="text"
+            defaultValue={props.resource.name}
+            className="input-lg"
+            hintText=""
+            floatingLabelText="Name"
+            fullWidth={true}/>
 
-        <TextField
-          name="measurement_unit"
-          type="text"
-          defaultValue={props.resource.measurementUnit}
-          hintText=""
-          floatingLabelText="Measurement Unit"
-          fullWidth={true}/>
+          <TextField
+            name="measurement_unit"
+            type="text"
+            defaultValue={props.resource.measurementUnit}
+            hintText=""
+            floatingLabelText="Measurement Unit"
+            fullWidth={true}/>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,7 @@
 import faker from 'faker'
 import { Random } from 'meteor/random'
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
+
 
 
 const testName = () => {
@@ -11,12 +13,6 @@ const testTracking = () => {
 }
 
 const testActive = () => {
-  const rand = Math.round(Math.random() * 100);
-  if( rand < 30){
-    return 1;
-  }else if(rand < 50 && rand > 30){
-    return 0
-  }
   return Math.round(Math.random() * 400);
 }
 
@@ -24,6 +20,13 @@ const testDescription = () => {
   if(faker.random.boolean()){
     return faker.lorem.paragraph();
   }
+}
+
+const testDate = () => {
+  if(Math.round(Math.random()) === 0){
+    return faker.date.past();
+  }
+  return faker.date.past();
 }
 
 
@@ -47,7 +50,11 @@ const factoryUnit = () => {
     activeSub: testActive(),
     trackable: testTracking(),
     description: testDescription(),
-    parentUnit: mparentUnit
+    parentUnit: mparentUnit,
+    createdAt: testDate(),
+    updatedAt: testDate(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
   }
   return unit;
 }
@@ -67,7 +74,11 @@ const factoryUnitsTree = (parentU, count) => {
         activeSub: testActive(),
         trackable: testTracking(),
         hasYields: faker.random.boolean(),
-        parentUnit: parentU
+        parentUnit: parentU,
+        createdAt: testDate(),
+        updatedAt: testDate(),
+        createdBy: factoryOUser(),
+        updatedBy: factoryOUser()
       }
 
       if(!unit.trackable){
