@@ -49,7 +49,6 @@ export default class MShow extends React.Component{
 
     if(scrollTop <= topNum){
       document.getElementById('mtabs').className = 'mtabs'
-      document.getElementById('content').style.paddingTop = '0px'
       let fab = document.getElementsByClassName('show-fab')[0]
 
       if(scrollTop > this.previousScroll && !this.fabLeft){
@@ -61,7 +60,6 @@ export default class MShow extends React.Component{
       }
     }else{
       document.getElementById('mtabs').className = 'mtabs isFixed'
-      document.getElementById('content').style.paddingTop = '48px'
 
     }
 
