@@ -110,8 +110,7 @@ export default class UnitCard extends React.Component{
           {this.props.hasYields &&
             <FlatButton className='action' label='Yields' secondary={true} onTouchTap={() => {browserHistory.push('/yields')} }/>
           }
-          <FlatButton className='action' label='Events' secondary={true}
-            onTouchTap={() => {browserHistory.push('')} }/>
+
           <FlatButton className='action' label='Expenses' secondary={true} onTouchTap={() => {browserHistory.push('/expenses')} }/>
           {movementAction}
 

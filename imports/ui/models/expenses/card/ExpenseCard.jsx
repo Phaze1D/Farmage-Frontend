@@ -142,10 +142,7 @@ export default class ExpenseCard extends React.Component{
           </div>
         </EnhancedButton>
 
-        <CardActions className='card-actions' style={{marginTop: '8px'}}>
-          <FlatButton className='action' label='Events' secondary={true}
-            onTouchTap={() => {browserHistory.push('')} }/>
-        </CardActions>
+        {/*<CardActions className='card-actions' style={{marginTop: '8px'}}></CardActions>*/}
 
         <AutoLockScrolling lock={this.state.isOpened}/>
 
