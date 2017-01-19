@@ -98,7 +98,7 @@ let UnitSummary = (props) => {
 
       <div className='mtab-show-flex'>
 
-        <div className='mtab-content-card flex-column'>
+        <div className='mtab-content-card'>
           <div className='mtab-info'>
             <span>Name</span>
             {unit.name}

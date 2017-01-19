@@ -48,5 +48,10 @@ export default {
     borderColor: grey700,
     checkedColor: blueA400,
     requiredColor: blueA400,
-  },
+  }
+  // toggle: {
+  //     thumbDisabledColor: fade(blueA400, 0.5),
+  //     trackDisabledColor: fade(blueA400, 0.5),
+  //     labelDisabledColor: fade(blueA400, 0.5),
+  //   }
 };
