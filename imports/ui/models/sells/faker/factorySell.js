@@ -31,7 +31,7 @@ const testStatus = () => {
 const testDetails = () => {
   let details = []
 
-  for(let i = 0; i < Math.round(Math.random() * 500); i++){
+  for(let i = 0; i < Math.round(Math.random() * 10); i++){
     const product = factoryProduct();
     let batches = [];
     let productQuantity = 0;
@@ -49,7 +49,7 @@ const testDetails = () => {
       )
     }
 
-    productQuantity = productQuantity === 0 ? Math.round(Math.random() * 500) : productQuantity
+    productQuantity = productQuantity === 0 ? Math.round(Math.random() * 50) : productQuantity
 
     details.push(
       {

@@ -135,13 +135,6 @@ let BatchSummary = (props) => {
         </div>
 
         <div className='mtab-content-card'>
-          <div className={desClas} >
-            <span>Description</span>
-            {description}
-          </div>
-        </div>
-
-        <div className='mtab-content-card'>
           <div className='cyield-info-flex' style={{padding: '0 0 16px'}}>
             <span style={{fontSize: '13px'}}>Product</span>
             <MAvatar className='cyield-img'
@@ -160,6 +153,15 @@ let BatchSummary = (props) => {
               {props.batch.amount}
           </div>
         </div>
+
+        <div className='mtab-content-card'>
+          <div className={desClas} >
+            <span>Description</span>
+            {description}
+          </div>
+        </div>
+
+
 
       </div>
 
