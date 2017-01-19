@@ -50,6 +50,22 @@ let FormFields = (props) => (
   <div className='form-fields'>
 
     <div className='row'>
+      <div className='col-xs-12'>
+        <TextArea
+          name="notes"
+          type="text"
+          defaultValue={props.movement.notes}
+          className=""
+          floatingLabelText="Description"
+          fullWidth={true}
+          multiLine={true}
+          showCount={true}
+          maxCount={512}
+          rows={1} />
+      </div>
+    </div>
+
+    <div className='row'>
       <div className='col-xs-4 sm-p-right'>
         <TextField
             name="amount"
@@ -87,21 +103,6 @@ let FormFields = (props) => (
       </div>
     </div>
 
-    <div className='row'>
-      <div className='col-xs-12'>
-        <TextArea
-          name="notes"
-          type="text"
-          defaultValue={props.movement.notes}
-          className=""
-          floatingLabelText="Description"
-          fullWidth={true}
-          multiLine={true}
-          showCount={true}
-          maxCount={512}
-          rows={1} />
-      </div>
-    </div>
 
     <LToggler
       title="Is Manuel"

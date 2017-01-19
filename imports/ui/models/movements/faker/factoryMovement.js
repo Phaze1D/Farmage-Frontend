@@ -35,10 +35,12 @@ const factoryMovement = () => {
     amount: testAmount(),
     forType: testForType(),
     forId: testForIdentifer(),
-    createdAt: testCreatedAt(),
     notes: testNotes(),
     manuel: faker.random.boolean(),
-    user: factoryOUser()
+    createdAt: testCreatedAt(),
+    createdBy: factoryOUser(),
+    updatedAt: testCreatedAt(),
+    updatedBy: factoryOUser()
   }
 }
 

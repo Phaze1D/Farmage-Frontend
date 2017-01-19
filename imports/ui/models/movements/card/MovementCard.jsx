@@ -109,13 +109,13 @@ export default class MovementCard extends React.Component{
       forId,
       createdAt,
       manuel,
-      user,
+      createdBy,
       ...others
     } = this.props;
 
-    let userTitle = user.firstName;
-    if(user.lastName){
-      userTitle += (" " + user.lastName);
+    let userTitle = createdBy.firstName;
+    if(createdBy.lastName){
+      userTitle += (" " + createdBy.lastName);
     }
 
     let char = userTitle.charAt(0);
@@ -145,7 +145,7 @@ export default class MovementCard extends React.Component{
             <span>Created By</span>
             <MAvatar className='cyield-img'
               style={{marginRight: '15px', padding: '1px 0 0 0px'}}
-              size={32} cha={char} src={user.avatarURL}/>
+              size={32} cha={char} src={createdBy.avatarURL}/>
 
             {userTitle}
           </div>
