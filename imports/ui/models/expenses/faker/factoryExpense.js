@@ -1,6 +1,8 @@
 import faker from 'faker'
 import { factoryPerson } from '../../person/faker/factoryPerson.js'
 import { factoryUnit } from '../../units/faker/factoryUnit.js'
+import {factoryOUser} from '../../ousers/faker/factoryOUser'
+
 
 const testItemName = () => {
   return faker.commerce.productName();
@@ -53,10 +55,14 @@ const factoryExpense = () => {
     unitPrice: testUnitPrice(),
     taxRate: testTaxRate(),
     notes: testNotes(),
-    createdAt: testCreatedAt(),
+    dateBought: testCreatedAt(),
     receiptUrl: testRecipt(),
     provider: testProvider(),
-    unit: factoryUnit()
+    unit: factoryUnit(),
+    createdAt: testCreatedAt(),
+    updatedAt: testCreatedAt(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
   }
 }
 
