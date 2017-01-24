@@ -143,7 +143,7 @@ const factorySell = () => {
     discount: testDiscount(dt),
     paid: paid,
     paidAt: paidAt,
-    details: testDetails(),
+    details: details,
     notes: testDescription(),
     customer: testCustomer(),
     telephone: testTelephone(),
