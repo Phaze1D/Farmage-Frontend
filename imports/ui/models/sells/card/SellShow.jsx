@@ -49,139 +49,17 @@ export default class SellShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Details']}/>
+          tabs={['Summary']}/>
 
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <SellSummary sell={this.sell}/>
-            <DetailsSummary details={this.sell.details}/>
           </SwipeableViews>
         </MFade>
 
       </MShow>
     )
   }
-}
-
-
-let DetailsSummary = (props) => {
-
-  let productList = props.details.map( (detail) =>
-    <Detail key={detail.productID} detail={detail}/>
-  )
-
-  return (
-    <div className='mtab-content'>
-      <h3>Products</h3>
-
-      {productList}
-
-    </div>
-  )
-}
-
-let Detail = (props) => {
-
-  const batchList = props.detail.batches.map( (batch) =>
-    <Batch key={batch.batchID} batch={batch} />
-  )
-
-  return(
-    <div className='mtab-content-card' style={{maxWidth: 'calc(100% - 16px)', minWidth: 'calc(100% - 16px)', flexBasis: 'initial'}}>
-
-      <div className='cyield-info-flex' style={{padding: '0 0 16px', flexWrap: 'nowrap'}}>
-        <MAvatar className='cyield-img'
-          style={{marginRight: '15px', padding: '1px 0 0 0px', flexShrink: '0'}}
-          size={48} cha={props.detail.productName.toUpperCase().charAt(0)} src={props.detail.product.imageUrl}/>
-
-        <div className='e-overflow' style={{flexGrow: '1'}}>
-          <div className='e-overflow'>
-            {props.detail.productName}
-            <span>
-              {props.detail.product.sku}
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-      <div className='mtab-product-info'>
-        <div className='mtab-info'>
-          <span>Unit Price</span>
-          ${props.detail.unitPrice}
-        </div>
-
-        <div className='mtab-info'>
-          <span>Tax Rate</span>
-          {props.detail.taxRate}%
-        </div>
-
-        <div className='mtab-info'>
-          <span>Quantity</span>
-          {props.detail.quantity}
-        </div>
-
-        <div className='mtab-info'>
-          <span>Sub Total</span>
-          ${((props.detail.unitPrice*props.detail.quantity) * (1 + (props.detail.taxRate/100))).toFixed(2)}
-        </div>
-      </div>
-
-      <div className='sell-show-subtitle'>Batches</div>
-
-      {batchList.length > 0 ? batchList:
-        <div className='mtab-info none'>
-          None
-        </div>
-      }
-
-    </div>
-  )
-}
-
-let Batch = (props) => {
-
-  let identifer = props.batch.batch.identifer && props.batch.batch.identifer.length > 0
-    ? props.batch.batch.identifer : props.batch.batch._id;
-
-  let expireDateString = ''
-  if(props.batch.batch.expiresAt){
-    expireDateString = new DateTimeFormat('en-US', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    }).format(props.batch.batch.expiresAt);
-  }else{
-    expireDateString = 'Never'
-  }
-
-  return(
-    <div className='mtab-info-flex'>
-      <div className='mtab-info'>
-        <span>Batch Identifer</span>
-        {identifer}
-      </div>
-
-      <div className='mtab-info'>
-        <span>Amount Taken</span>
-        {props.batch.quantityTaken}
-      </div>
-
-      <div className='mtab-info'>
-        <span>Created Date</span>
-          {new DateTimeFormat('en-US', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-          }).format(props.batch.batch.createdAt)}
-      </div>
-
-      <div className='mtab-info' style={{marginBottom: '16px'}}>
-        <span>Expiration Date</span>
-        {expireDateString}
-      </div>
-    </div>
-  )
 }
 
 
@@ -303,6 +181,10 @@ let SellSummary = (props) => {
 
       </div>
 
+      <h3 style={{marginTop: '25px'}}>Products</h3>
+
+      <DetailsSummary details={sell.details}/>
+
       <h3 style={{marginTop: '25px'}}>User Information</h3>
 
       <div className='mtab-show-flex'>
@@ -313,6 +195,127 @@ let SellSummary = (props) => {
   )
 }
 
+
+let DetailsSummary = (props) => {
+
+  let productList = props.details.map( (detail) =>
+    <Detail key={detail.productID} detail={detail}/>
+  )
+
+  return (
+    <div className='mtab-show-flex'>
+
+      {productList}
+
+    </div>
+  )
+}
+
+let Detail = (props) => {
+
+  const batchList = props.detail.batches.map( (batch) =>
+    <Batch key={batch.batchID} batch={batch} />
+  )
+
+  return(
+    <div className='mtab-content-card' style={{maxWidth: 'calc(100% - 16px)', minWidth: 'calc(100% - 16px)', flexBasis: 'initial'}}>
+
+      <div className='cyield-info-flex' style={{padding: '0 0 16px'}}>
+        <MAvatar className='cyield-img'
+          style={{marginRight: '15px', padding: '1px 0 0 0px', flexShrink: '0'}}
+          size={48} cha={props.detail.productName.toUpperCase().charAt(0)} src={props.detail.product.imageUrl}/>
+
+        <div className='e-overflow' style={{flexGrow: '1'}}>
+          <div className='e-overflow'>
+            {props.detail.productName}
+            <span>
+              {props.detail.product.sku}
+            </span>
+          </div>
+        </div>
+
+
+
+      <div className='mtab-product-info'>
+        <div className='mtab-info'>
+          <span>Unit Price</span>
+          ${props.detail.unitPrice}
+        </div>
+
+        <div className='mtab-info'>
+          <span>Tax Rate</span>
+          {props.detail.taxRate}%
+        </div>
+
+        <div className='mtab-info'>
+          <span>Quantity</span>
+          {props.detail.quantity}
+        </div>
+
+        <div className='mtab-info'>
+          <span>Sub Total</span>
+          ${((props.detail.unitPrice*props.detail.quantity) * (1 + (props.detail.taxRate/100))).toFixed(2)}
+        </div>
+      </div>
+
+      </div>
+
+      <div className='sell-show-subtitle'>Batches</div>
+
+      {batchList.length > 0 ? batchList:
+        <div className='mtab-info none'>
+          None
+        </div>
+      }
+
+    </div>
+  )
+}
+
+let Batch = (props) => {
+
+  let identifer = props.batch.batch.identifer && props.batch.batch.identifer.length > 0
+    ? props.batch.batch.identifer : props.batch.batch._id;
+
+  let expireDateString = ''
+  if(props.batch.batch.expiresAt){
+    expireDateString = new DateTimeFormat('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(props.batch.batch.expiresAt);
+  }else{
+    expireDateString = 'Never'
+  }
+
+  return(
+    <div className='mtab-info-flex'>
+      <div className='mtab-info'>
+        <span>Batch Identifer</span>
+        {identifer}
+      </div>
+
+      <div className='mtab-info'>
+        <span>Amount Taken</span>
+        {props.batch.quantityTaken}
+      </div>
+
+      <div className='mtab-info'>
+        <span>Created Date</span>
+          {new DateTimeFormat('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }).format(props.batch.batch.createdAt)}
+      </div>
+
+      <div className='mtab-info' style={{marginBottom: '16px'}}>
+        <span>Expiration Date</span>
+        {expireDateString}
+      </div>
+    </div>
+  )
+}
 
 
 let Address = (props) => {
