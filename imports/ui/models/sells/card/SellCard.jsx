@@ -106,7 +106,7 @@ export default class SellCard extends React.Component{
 
         <div className='cresource-info ceboarder' style={{alignItems: 'center'}}>
           <div className='total' style={{fontSize: '30px'}}>
-            ${totalPrice}
+            ${totalPrice.toFixed(2)}
             <span></span>
           </div>
         </div>

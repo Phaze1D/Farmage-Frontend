@@ -198,14 +198,21 @@ let ResourceCard = (props) => {
           size={36} cha={props.bResource.resource.name.toUpperCase().charAt(0)} src={props.bResource.resource.imageUrl}/>
 
         <div>
-          {props.bResource.resource.name} Yields
+          {props.bResource.resource.name}
           <span style={{fontWeight: '500'}}>
             Pre Product {props.bResource.amountPre} {props.bResource.resource.measurementUnit}
           </span>
         </div>
       </div>
 
-      {yieldList}
+      <div className='sell-show-subtitle'>Yields</div>
+
+      {yieldList.length > 0 ? yieldList :
+
+        <div className='mtab-info none'>
+          None
+        </div>
+      }
     </div>
   )
 }

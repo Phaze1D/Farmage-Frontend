@@ -4,6 +4,7 @@ import {Random} from 'meteor/random'
 import SwipeableViews from 'react-swipeable-views';
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
+import MAvatar from '../../../structure/mavatar/MAvatar';
 import UserShowInfo from '../../ousers/UserShowInfo';
 
 
@@ -75,6 +76,7 @@ let ExpenseSummary = (props) => {
     notClas = 'mtab-info none'
   }
 
+
   return(
     <div className='mtab-content'>
       <h3>Expense Information</h3>
@@ -87,10 +89,6 @@ let ExpenseSummary = (props) => {
             {expense.itemName}
           </div>
 
-          <div className='mtab-info'>
-            <span>Quantity</span>
-            {expense.quantity}
-          </div>
 
           <div className='mtab-info'>
             <span>Date Bought</span>
@@ -103,7 +101,7 @@ let ExpenseSummary = (props) => {
 
         </div>
 
-        <div className='mtab-content-card'>
+        <div className='mtab-content-card flex-column'>
 
           <div className='mtab-info'>
             <span>Unit Cost</span>
@@ -116,10 +114,44 @@ let ExpenseSummary = (props) => {
           </div>
 
           <div className='mtab-info'>
+            <span>Quantity</span>
+            {expense.quantity}
+          </div>
+
+          <div className='mtab-info'>
             <span>Total Cost</span>
             ${((expense.quantity * expense.unitPrice) * (1 + (expense.taxRate/100))).toFixed(2)}
           </div>
 
+        </div>
+
+        <div className='mtab-content-card'>
+          {expense.provider ?
+            <div className='cyield-info-flex' style={{padding: '0 0 16px'}}>
+              <span style={{fontSize: '13px'}}>Provider</span>
+              <MAvatar className='cyield-img'
+                style={{marginRight: '15px', padding: '1px 0 0 0px'}}
+                size={48} cha={expense.provider.firstName.toUpperCase().charAt(0)} src={expense.provider.avatarURL}/>
+
+              <div>
+                {expense.provider.firstName} {expense.provider.lastName}
+                <span>
+                  {expense.provider.company}
+                </span>
+              </div>
+
+            </div>
+            :
+            <div className='mtab-info none'>
+              <span>Provider</span>
+                Empty
+            </div>
+          }
+
+          <div className='mtab-info'>
+            <span>For Unit</span>
+              {expense.unit.name}
+          </div>
         </div>
 
         <div className='mtab-content-card'>

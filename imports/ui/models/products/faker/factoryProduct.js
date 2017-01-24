@@ -21,7 +21,7 @@ const testImageUrl = () => {
 }
 
 const testUnitPrice = () => {
-  return (Math.random() * 400).toFixed(2);
+  return (Math.random() * 100).toFixed(2);
 }
 
 const testTaxRate = () => {
@@ -89,4 +89,23 @@ const factoryProduct = () => {
   }
 }
 
+const factoryProductNOR = () => {
+  return {
+    _id: faker.random.uuid(),
+    name: testName(),
+    sku: testSKU(),
+    size: testSize(),
+    unitPrice: parseFloat(testUnitPrice()),
+    taxRate: parseFloat(testTaxRate()),
+    stock: testStock(),
+    description: testDescription(),
+    imageUrl: testImageUrl(),
+    createdAt: testDate(),
+    updatedAt: testDate(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
+  }
+}
+
 exports.factoryProduct = factoryProduct;
+exports.factoryProductNOR = factoryProductNOR;

@@ -95,7 +95,9 @@ export default class MShow extends React.Component{
                   <BackArrow/>
                 </IconButton>
                 <div className='show-bar-title' ref='showBarTitle'>
-                  {this.props.title}
+                  <div>
+                    {this.props.title}
+                  </div>
                 </div>
                 <IconButton className='form-done-b'>
                   <MoreVert/>

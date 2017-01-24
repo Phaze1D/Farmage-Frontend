@@ -41,7 +41,7 @@ export default class SellsNew extends React.Component{
     this.refs.formFields.handleOnClose();
   }
 
-  handleScroll(scrollTop, previousScroll){  
+  handleScroll(scrollTop, previousScroll){
     let topNum = 212 - document.getElementsByClassName('toolbar')[0].clientHeight
 
     if(scrollTop <= topNum){
@@ -260,7 +260,7 @@ class FormFields extends React.Component{
               name="notes"
               type="text"
               className=""
-              floatingLabelText="Description"
+              floatingLabelText="Notes"
               fullWidth={true}
               multiLine={true}
               showCount={true}
