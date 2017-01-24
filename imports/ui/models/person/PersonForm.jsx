@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import DatePicker from 'material-ui/DatePicker';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
+import MFade from '../../structure/mfade/MFade';
 import MainPanel from '../../structure/main_panel/MainPanel';
 import ContactInfo from '../contact_info/ContactInfo';
 import FormActionBar from '../../structure/form_action_bar/FormActionBar';
@@ -18,13 +19,8 @@ import {factoryPerson} from './faker/factoryPerson'
 export default class PersonForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {showFields: false}
 
     this.handleOnClose = this.handleOnClose.bind(this);
-  }
-
-  componentDidMount() {
-    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){
@@ -52,22 +48,10 @@ export default class PersonForm extends React.Component{
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields person={person} avatarBStyle={avatarBStyle}/>
-          }
-        </ReactCSSTransitionGroup>
-
-
+        <MFade>
+          <FormFields person={person} avatarBStyle={avatarBStyle}/>
+        </MFade>
+            
       </MainPanel>
     )
   }

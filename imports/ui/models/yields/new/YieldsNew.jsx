@@ -17,6 +17,7 @@ import ResourcesSelectorList from '../../resources/selector_items/ResourcesSelec
 import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
 import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
 import AmountChanges from '../../amount_changes/AmountChanges';
+import MFade from '../../../structure/mfade/MFade';
 import {factoryYield} from '../faker/factoryYield';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -24,7 +25,7 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class YieldsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {usopen: false, rsopen: false, showFields: false}
+    this.state = {usopen: false, rsopen: false}
 
     this.handleOnClose = this.handleOnClose.bind(this);
     this.toggleUnitSelector = this.toggleUnitSelector.bind(this);
@@ -34,10 +35,6 @@ export default class YieldsNew extends React.Component{
     if(this.props.objectID){
       this.yield = factoryYield();
     }
-  }
-
-  componentDidMount(){
-    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){
@@ -64,27 +61,15 @@ export default class YieldsNew extends React.Component{
         <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
       }>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields
-              isUpdate={this.props.isUpdate}
-              yield={this.yield}
-              toggleUnitSelector={this.toggleUnitSelector}
-              toggleResourceSelector={this.toggleResourceSelector}/>
-          }
-        </ReactCSSTransitionGroup>
+        <MFade>
+          <FormFields
+            isUpdate={this.props.isUpdate}
+            yield={this.yield}
+            toggleUnitSelector={this.toggleUnitSelector}
+            toggleResourceSelector={this.toggleResourceSelector}/>
+        </MFade>
 
-
-
+            
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}
           transitionName={ {

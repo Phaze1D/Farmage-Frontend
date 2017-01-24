@@ -7,6 +7,7 @@ import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
+import MFade from '../../../structure/mfade/MFade';
 import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
@@ -22,7 +23,7 @@ import {factoryProduct} from '../faker/factoryProduct'
 export default class ProductsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {rsopen: false, showFields: false}
+    this.state = {rsopen: false}
     this.handleOnClose = this.handleOnClose.bind(this);
     this.toggleResourceSelector = this.toggleResourceSelector.bind(this);
 
@@ -30,10 +31,6 @@ export default class ProductsNew extends React.Component{
     if(this.props.objectID){
       this.product = factoryProduct();
     }
-  }
-
-  componentDidMount() {
-    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){
@@ -62,26 +59,12 @@ export default class ProductsNew extends React.Component{
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields
-              product={this.product}
-              imageBStyle={imageBStyle}
-              onRequestChange={this.toggleResourceSelector}/>
-          }
-        </ReactCSSTransitionGroup>
-
-
-
+        <MFade>
+          <FormFields
+            product={this.product}
+            imageBStyle={imageBStyle}
+            onRequestChange={this.toggleResourceSelector}/>
+        </MFade>
 
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}

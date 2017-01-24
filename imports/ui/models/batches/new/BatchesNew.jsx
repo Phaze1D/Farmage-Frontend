@@ -16,6 +16,7 @@ import YieldInvItem from '../../yields/selector_items/YieldInvItem';
 import ProductsSelectorList from '../../products/selector_items/ProductsSelectorList';
 import YieldsSelectorList from '../../yields/selector_items/YieldsSelectorList';
 import AmountChanges from '../../amount_changes/AmountChanges';
+import MFade from '../../../structure/mfade/MFade';
 import {factoryBatch} from '../faker/factoryBatch';
 
 
@@ -24,7 +25,7 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class BatchesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {psopen: false, ysopen: false, showFields: false, yTitle: ''}
+    this.state = {psopen: false, ysopen: false, yTitle: ''}
     this.handleOnClose = this.handleOnClose.bind(this);
 
     this.toggleProductSelector = this.toggleProductSelector.bind(this);
@@ -34,10 +35,6 @@ export default class BatchesNew extends React.Component{
     if(this.props.objectID){
       this.batch = factoryBatch();
     }
-  }
-
-  componentDidMount(){
-    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   handleOnClose(event){
@@ -69,27 +66,16 @@ export default class BatchesNew extends React.Component{
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields
-              isUpdate={this.props.isUpdate}
-              batch={this.batch}
-              toggleYieldSelector={this.toggleYieldSelector}
-              toggleProductSelector={this.toggleProductSelector}/>
-          }
-        </ReactCSSTransitionGroup>
 
+        <MFade>
+          <FormFields
+            isUpdate={this.props.isUpdate}
+            batch={this.batch}
+            toggleYieldSelector={this.toggleYieldSelector}
+            toggleProductSelector={this.toggleProductSelector}/>
+        </MFade>
 
-
+        
         <Portal isOpened={true}>
           <ReactCSSTransitionGroup component={FirstChild}
           transitionName={ {

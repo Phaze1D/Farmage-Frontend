@@ -12,7 +12,7 @@ const testReference = () => {
 }
 
 const testTotalPrice = () => {
-  return (Math.random() * 100).toFixed(2);
+  return (Math.random() * 100);
 }
 
 const testCreatedAt = () => {
@@ -33,12 +33,12 @@ const testStatus = () => {
 const testDetails = () => {
   let details = []
 
-  for(let i = 0; i < Math.round(Math.random() * 20); i++){
+  for(let i = 0; i < Math.round(Math.random() * 10); i++){
     const product = factoryProductNOR();
     let batches = [];
     let productQuantity = 0;
 
-    for(let j = 0; j < Math.round(Math.random() * 10); j++){
+    for(let j = 0; j < Math.round(Math.random() * 5); j++){
       const batch = factoryBatchNOR();
       const qt = Math.round(Math.random() * 50);
       productQuantity += qt;
@@ -121,14 +121,10 @@ const factorySell = () => {
 
   let details = testDetails();
   let total = 0;
-  let subTotal = 0;
-  let taxTotal = 0;
+  let subTotal = testTotalPrice();
+  let taxTotal = testTotalPrice();
   let dt = faker.random.boolean()
 
-  for (detail of details) {
-    subTotal += (detail.unitPrice * detail.quantity)
-    taxTotal += ((detail.unitPrice * detail.quantity) * (detail.taxRate/100))
-  }
 
   total = subTotal + taxTotal;
 

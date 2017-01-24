@@ -12,6 +12,7 @@ import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
 import Details from './Details';
+import MFade from '../../../structure/mfade/MFade';
 import {factorySell} from '../faker/factorySell';
 import Big from 'big.js';
 Big.DP = 10
@@ -20,7 +21,6 @@ Big.DP = 10
 export default class SellsNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {showFields: false}
     this.fabLeft = false;
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -32,9 +32,6 @@ export default class SellsNew extends React.Component{
     }
   }
 
-  componentDidMount(){
-    setTimeout(() => {this.setState({showFields: true})}, 550)
-  }
 
   handleOnClose(event){
     this.props.onCloseRight(false);
@@ -84,24 +81,14 @@ export default class SellsNew extends React.Component{
           </FloatingActionButton>
         </ReactCSSTransitionGroup>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields
-              ref='formFields'
-              isUpdate={this.props.isUpdate}
-              sell={this.sell}/>
-          }
-        </ReactCSSTransitionGroup>
 
+        <MFade>
+          <FormFields
+            ref='formFields'
+            isUpdate={this.props.isUpdate}
+            sell={this.sell}/>
+        </MFade>
+            
       </MainPanel>
     )
   }

@@ -9,7 +9,8 @@ export default class MFade extends React.Component{
   }
 
   componentDidMount() {
-    setTimeout(() => {this.setState({showChildren: true})}, 550)
+    let time = this.props.time ? this.props.time : 550
+    setTimeout(() => {this.setState({showChildren: true})}, time)
   }
 
 

@@ -16,6 +16,7 @@ import UnitSelected from '../../units/selector_items/UnitSelected';
 import PersonSelected from '../../person/PersonSelected';
 import PersonsSelectorList from '../../person/PersonsSelectorList';
 import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
+import MFade from '../../../structure/mfade/MFade';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 import {factoryExpense} from '../faker/factoryExpense';
 
@@ -28,7 +29,7 @@ let DateTimeFormat = global.Intl.DateTimeFormat;
 export default class ExpensesNew extends React.Component{
   constructor(props){
     super(props);
-    this.state = {usopen: false, psopen: false, showFields: false};
+    this.state = {usopen: false, psopen: false};
     this.handleOnClose = this.handleOnClose.bind(this);
     this.toggleUnitSelector = this.toggleUnitSelector.bind(this);
     this.togglePersonSelector = this.togglePersonSelector.bind(this);
@@ -37,10 +38,6 @@ export default class ExpensesNew extends React.Component{
     if(this.props.objectID){
       this.expense = factoryExpense();
     }
-  }
-
-  componentDidMount(){
-    setTimeout(() => {this.setState({showFields: true})}, 550)
   }
 
   toggleUnitSelector(event){
@@ -65,25 +62,12 @@ export default class ExpensesNew extends React.Component{
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <ReactCSSTransitionGroup component={FirstChild}
-        transitionName={ {
-          enter: 'enter-fade',
-          leave: 'leave-fade',
-          appear: 'appear-fade'
-        } }
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionAppearTimeout={500}>
-          {this.state.showFields &&
-            <FormFields
-              expense={this.expense}
-              toggleUnitSelector={this.toggleUnitSelector}
-              togglePersonSelector={this.togglePersonSelector}/>
-          }
-        </ReactCSSTransitionGroup>
-
-
+        <MFade>
+          <FormFields
+            expense={this.expense}
+            toggleUnitSelector={this.toggleUnitSelector}
+            togglePersonSelector={this.togglePersonSelector}/>
+        </MFade>
 
 
         <Portal isOpened={true}>

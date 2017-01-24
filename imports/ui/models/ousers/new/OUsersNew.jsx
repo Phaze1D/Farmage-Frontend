@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ImageCameraAlt from 'material-ui/svg-icons/image/camera-alt';
 
+import MFade from '../../../structure/mfade/MFade';
 import MainPanel from '../../../structure/main_panel/MainPanel';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import LToggler from '../../../structure/ltoggler/LToggler';
@@ -35,11 +36,13 @@ export default class OUsersNew extends React.Component{
           <FormActionBar onClear={this.handleOnClose} title={this.props.headerTitle}/>
         }>
 
-        <FormFields
-          ouser={this.ouser}
-          permissions={this.ouser.permissions ? this.ouser.permissions : {}}
-          isUpdate={this.props.isUpdate}/>
-
+        <MFade>
+          <FormFields
+            ouser={this.ouser}
+            permissions={this.ouser.permissions ? this.ouser.permissions : {}}
+            isUpdate={this.props.isUpdate}/>
+        </MFade>
+        
       </MainPanel>
     )
   }

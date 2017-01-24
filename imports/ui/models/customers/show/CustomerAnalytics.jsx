@@ -1,15 +1,31 @@
 
-/*
-Sells Graph
-  x-axis = time
-  y-axis = total price
+import React from 'react'
+import MFade from '../../../structure/mfade/MFade';
+import SellsGraph from '../../sells/reports/SellsGraph';
 
-Sum of Total Spent
 
-Conditions
-  isPaid
-  status
-*/
+
+export default class CustomerAnalytics extends React.Component{
+  constructor(props){
+    super(props);
+
+  }
+
+
+  render(){
+
+    return(
+      <div className='mtab-content'>
+        <MFade time={1000}>
+          <SellsGraph />
+        </MFade>
+      </div>
+    )
+  }
+}
+
+
+
 
 
 
@@ -23,4 +39,5 @@ Top 5 Products
 Conditions
   hasBatch
   sellIsPaid
+  time Range
 */
