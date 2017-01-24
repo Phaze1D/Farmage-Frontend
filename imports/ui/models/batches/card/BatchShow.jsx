@@ -7,6 +7,8 @@ import MAvatar from '../../../structure/mavatar/MAvatar';
 import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import BatchesNew from '../new/BatchesNew';
 import UserShowInfo from '../../ousers/UserShowInfo';
+import MFade from '../../../structure/mfade/MFade';
+
 
 
 import {factoryBatch} from '../faker/factoryBatch';
@@ -55,11 +57,13 @@ export default class BatchShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <BatchSummary batch={this.batch}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <BatchSummary batch={this.batch}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <BatchesNew

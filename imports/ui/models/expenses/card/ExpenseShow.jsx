@@ -6,6 +6,8 @@ import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import UserShowInfo from '../../ousers/UserShowInfo';
+import MFade from '../../../structure/mfade/MFade';
+
 
 
 import {factoryExpense} from '../faker/factoryExpense';
@@ -51,11 +53,13 @@ export default class ExpenseShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <ExpenseSummary expense={this.expense}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <ExpenseSummary expense={this.expense}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
       </MShow>
     )

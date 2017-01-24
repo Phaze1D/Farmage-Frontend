@@ -9,6 +9,8 @@ import MTabs from '../../../structure/mtabs/MTabs';
 import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import UnitsNew from '../new/UnitsNew';
 import UserShowInfo from '../../ousers/UserShowInfo';
+import MFade from '../../../structure/mfade/MFade';
+
 import classnames from 'classnames'
 
 import {factoryUnit} from '../faker/factoryUnit';
@@ -54,11 +56,13 @@ export default class UnitShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <UnitSummary unit={this.unit}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <UnitSummary unit={this.unit}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <UnitsNew

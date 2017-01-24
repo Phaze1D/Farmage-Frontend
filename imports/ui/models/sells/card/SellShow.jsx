@@ -6,6 +6,7 @@ import MapsPlace from 'material-ui/svg-icons/maps/place';
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
 import MAvatar from '../../../structure/mavatar/MAvatar';
+import MFade from '../../../structure/mfade/MFade';
 import UserShowInfo from '../../ousers/UserShowInfo';
 
 
@@ -50,10 +51,12 @@ export default class SellShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Details']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <SellSummary sell={this.sell}/>
-          <DetailsSummary details={this.sell.details}/>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <SellSummary sell={this.sell}/>
+            <DetailsSummary details={this.sell.details}/>
+          </SwipeableViews>
+        </MFade>
 
       </MShow>
     )

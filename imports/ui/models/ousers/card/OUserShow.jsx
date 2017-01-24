@@ -11,6 +11,8 @@ import MTabs from '../../../structure/mtabs/MTabs';
 import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import UserShowInfo from '../../ousers/UserShowInfo';
 import OUsersNew from '../new/OUsersNew';
+import MFade from '../../../structure/mfade/MFade';
+
 import classnames from 'classnames'
 
 
@@ -62,11 +64,13 @@ export default class OUserShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <OUserSummary ouser={this.ouser}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <OUserSummary ouser={this.ouser}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <OUsersNew

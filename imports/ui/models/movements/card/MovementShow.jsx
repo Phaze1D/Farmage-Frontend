@@ -7,6 +7,8 @@ import TrackOff from 'material-ui/svg-icons/image/panorama-fish-eye';
 import MShow from '../../../structure/mshow/MShow';
 import MTabs from '../../../structure/mtabs/MTabs';
 import UserShowInfo from '../../ousers/UserShowInfo';
+import MFade from '../../../structure/mfade/MFade';
+
 import classnames from 'classnames'
 
 
@@ -50,11 +52,13 @@ export default class MovementShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary']}/>
 
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <MovementSummary movement={this.movement}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <MovementSummary movement={this.movement}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
       </MShow>
     )

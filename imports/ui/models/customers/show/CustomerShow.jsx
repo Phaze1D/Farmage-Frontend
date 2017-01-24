@@ -8,6 +8,8 @@ import PersonNew from '../../person/PersonForm';
 import UserShowInfo from '../../ousers/UserShowInfo';
 import PersonSummary from '../../person/PersonSummary';
 import {factoryPerson} from '../../person/faker/factoryPerson';
+import MFade from '../../../structure/mfade/MFade';
+
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -57,12 +59,13 @@ export default class CustomerShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-
-        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-          <PersonSummary person={this.person}/>
-          <div>Reports</div>
-          <div>Analytics</div>
-        </SwipeableViews>
+        <MFade>
+          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+            <PersonSummary person={this.person}/>
+            <div>Reports</div>
+            <div>Analytics</div>
+          </SwipeableViews>
+        </MFade>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <PersonNew
