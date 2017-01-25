@@ -149,7 +149,7 @@ export default class SellsGraph extends React.Component{
 
     return(
       <div className='report-card'>
-        <div className='report-title'>Customer Sells Pre Month</div>
+        <div className='report-title'>Customer Spent Pre Month</div>
 
           <div className='graph-div'>
             <canvas id="myChart"></canvas>
