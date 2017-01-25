@@ -115,23 +115,26 @@ export default class SellsGraph extends React.Component{
               }],
 
               xAxes: [{
-                  type: 'time',
-                  time: {
-                    unit: 'month',
-                    displayFormats: {
-                      'millisecond': 'MMM YY',
-                      'second': 'MMM YY',
-                      'minute': 'MMM YY',
-                      'hour': 'MMM YY',
-                      'day': 'MMM YY',
-                      'week': 'MMM YY',
-                      'month': 'MMM YY',
-                      'quarter': 'MMM YY',
-                      'year': 'MMM YY',
-                    },
-                  },
+                  // type: 'time',
+                  // time: {
+                  //   unit: 'month',
+                  //   displayFormats: {
+                  //     'millisecond': 'MMM YY',
+                  //     'second': 'MMM YY',
+                  //     'minute': 'MMM YY',
+                  //     'hour': 'MMM YY',
+                  //     'day': 'MMM YY',
+                  //     'week': 'MMM YY',
+                  //     'month': 'MMM YY',
+                  //     'quarter': 'MMM YY',
+                  //     'year': 'MMM YY',
+                  //   },
+                  // },
                   ticks: {
                       maxRotation: 0,
+                      callback: function(value, index, values) {
+                        return moment(value).format('MMM YY');
+                      }
                   },
 
               }]
