@@ -22,29 +22,43 @@ export default class SellsGraph extends React.Component{
 
 
     this.sells.sort((a, b) => {
-      return  b.createdAt - a.createdAt;
+      return  a.createdAt - b.createdAt;
     });
 
-    this.byM = {}
+    this.dx = []
+    this.dy = []
+
+    this.dx.push(0)
+    this.dy.push(moment(this.sells[0].createdAt).startOf('month').toString())
+
+    let di = 0;
+
 
     for (var i = 0; i < this.sells.length; i++) {
-      let month = moment(this.sells[i].createdAt).format('MMM YY')
-      if(this.byM[month]){
-        this.byM[month] += this.sells[i].totalPrice
+
+
+      if(moment(this.sells[i].createdAt).isSame(this.dy[di], 'month') ){
+        this.dx[di] += this.sells[i].totalPrice
+
       }else{
-        this.byM[month] = this.sells[i].totalPrice
+
+        let nxMonth = moment(this.dy[di]).add(1, 'month')
+
+        while ( !nxMonth.isSame(this.sells[i].createdAt, 'month') ) {
+          di++;
+          this.dy.push(nxMonth.toString())
+          this.dx.push(0)
+          nxMonth = moment(this.dy[di]).add(1, 'month')
+        }
+
+        di++;
+        this.dy.push(moment(this.sells[i].createdAt).startOf('month').toString())
+        this.dx.push(this.sells[i].totalPrice)
+
       }
 
     }
 
-    this.dy = []
-    this.dx = []
-    for (var key in this.byM) {
-      if (this.byM.hasOwnProperty(key)) {
-        this.dx.push(key)
-        this.dy.push(this.byM[key])
-      }
-    }
 
     console.log(this.dy);
     console.log(this.dx);
@@ -53,15 +67,15 @@ export default class SellsGraph extends React.Component{
   componentDidUpdate(prevProps, prevState) {
     let ctx = document.getElementById("myChart");
     let myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-          labels: this.dx,
+          labels: this.dy,
           datasets: [
                   {
                       backgroundColor: "rgba(75,192,192,0.4)",
                       borderColor: "rgba(75,192,192,1)",
                       borderWidth: 1,
-                      data: this.dy,
+                      data: this.dx,
                   }
               ]
         },
@@ -83,7 +97,7 @@ export default class SellsGraph extends React.Component{
           						title = labels[item.index];
             				}
 
-            				return title
+            				return moment(title).format('MMMM YYYY')
             			},
                   label: (tooltipItem, data) => {
             				return '$' + tooltipItem.yLabel.toFixed(2);
@@ -135,7 +149,7 @@ export default class SellsGraph extends React.Component{
 
     return(
       <div className='report-card'>
-        <div className='report-title'>Sells Report</div>
+        <div className='report-title'>Customer Sells Pre Month</div>
 
           <div className='graph-div'>
             <canvas id="myChart"></canvas>
