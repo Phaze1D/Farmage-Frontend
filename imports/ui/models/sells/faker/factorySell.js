@@ -4,7 +4,7 @@ import { factoryBatch, factoryBatchNOR } from '../../batches/faker/factoryBatch'
 import { factoryProduct, factoryProductNOR } from '../../products/faker/factoryProduct';
 import { Random } from 'meteor/random';
 import {factoryOUser} from '../../ousers/faker/factoryOUser'
-
+import moment from 'moment'
 
 
 const testReference = () => {
@@ -16,7 +16,7 @@ const testTotalPrice = () => {
 }
 
 const testCreatedAt = () => {
-  return faker.date.past();
+  return faker.date.past(1);
 }
 
 const testCustomer = () => {

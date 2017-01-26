@@ -2,6 +2,8 @@
 import React from 'react'
 import MFade from '../../../structure/mfade/MFade';
 import SellsGraph from '../../sells/reports/SellsGraph';
+import ProductsGraph from '../../products/reports/ProductsGraph';
+
 
 
 
@@ -17,27 +19,12 @@ export default class CustomerAnalytics extends React.Component{
     return(
       <div className='mtab-content'>
         <MFade time={1000}>
-          <SellsGraph />
+          <div>
+            <SellsGraph />
+            <ProductsGraph/>
+          </div>
         </MFade>
       </div>
     )
   }
 }
-
-
-
-
-
-
-/*
-Product Graph
-  x-axis = time
-  y-axis = quantity
-
-Top 5 Products
-
-Conditions
-  hasBatch
-  sellIsPaid
-  time Range
-*/
