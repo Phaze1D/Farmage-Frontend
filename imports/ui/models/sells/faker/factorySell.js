@@ -1,7 +1,7 @@
 import faker from 'faker'
 import { factoryPerson } from '../../person/faker/factoryPerson';
 import { factoryBatch, factoryBatchNOR } from '../../batches/faker/factoryBatch';
-import { factoryProduct, factoryProductNOR } from '../../products/faker/factoryProduct';
+import { factoryProduct, factoryProductNOR, factoryProductSID } from '../../products/faker/factoryProduct';
 import { Random } from 'meteor/random';
 import {factoryOUser} from '../../ousers/faker/factoryOUser'
 import moment from 'moment'
@@ -30,11 +30,11 @@ const testStatus = () => {
   return faker.random.word();
 }
 
-const testDetails = () => {
+const testDetails = (sid = false) => {
   let details = []
 
-  for(let i = 0; i < Math.round(Math.random() * 10); i++){
-    const product = factoryProductNOR();
+  for(let i = 0; i < Math.round(Math.random() * 10) + 1; i++){
+    const product = sid ? factoryProductSID() : factoryProductNOR();
     let batches = [];
     let productQuantity = 0;
 
@@ -153,3 +153,4 @@ const factorySell = () => {
 }
 
 exports.factorySell = factorySell;
+exports.factoryDetails = testDetails;

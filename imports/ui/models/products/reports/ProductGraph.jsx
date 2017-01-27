@@ -6,62 +6,76 @@ import MenuItem from 'material-ui/MenuItem';
 import {cyanA700, purpleA700, greenA700} from 'material-ui/styles/colors'
 
 
-import {factorySell} from '../faker/factorySell';
+import {factorySell} from '../../sells/faker/factorySell';
+import {factoryProduct} from '../faker/factoryProduct';
 import faker from 'faker'
 
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class SellsGraph extends React.Component{
+export default class ProductGraph extends React.Component{
   constructor(props){
     super(props)
     this.state = {dvalue: 0, pvalue: 0, svalue: 0}
 
 
+    this.product = factoryProduct()
+
     this.testStatus = ['All']
-    for (var i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       this.testStatus.push(faker.random.word())
     }
 
-    this.sells = []
+    this.productSells = []
 
     for(let i = 0; i < 20; i++){
-      this.sells.push(factorySell());
+      let sell = factorySell();
+      this.productSells.push({
+        createdAt: sell.createdAt,
+        paidAt: sell.paidAt,
+        status: sell.status,
+        productID: sell.details[0].productID,
+        productName: sell.details[0].productName,
+        quantity: sell.details[0].quantity,
+        subTotal: (sell.details[0].quantity* sell.details[0].unitPrice) * (1 + (sell.details[0].taxRate/100)),
+      });
     }
 
-    this.sells.sort((a, b) => {
+    this.productSells.sort((a, b) => {
       return  a.createdAt - b.createdAt;
     });
 
     this.yData = []
     this.xData = []
     this.total = 0;
+    this.totalUnits = 0;
     this.bestMonth = {
       amount: 0,
       month: ''
     };
 
     this.yData.push(0)
-    this.xData.push(moment(this.sells[0].createdAt.toISOString()).startOf('month').toISOString())
+    this.xData.push(moment(this.productSells[0].createdAt.toISOString()).startOf('month').toISOString())
 
 
 
     let di = 0;
 
 
-    for (var i = 0; i < this.sells.length; i++) {
-      this.total += this.sells[i].totalPrice;
+    for (var i = 0; i < this.productSells.length; i++) {
+      this.total += this.productSells[i].subTotal;
+      this.totalUnits += this.productSells[i].quantity;
 
 
-      if(moment(this.sells[i].createdAt.toISOString()).isSame(this.xData[di], 'month') ){
-        this.yData[di] += this.sells[i].totalPrice
+      if(moment(this.productSells[i].createdAt.toISOString()).isSame(this.xData[di], 'month') ){
+        this.yData[di] += this.productSells[i].quantity
 
       }else{
 
         let nxMonth = moment(this.xData[di]).add(1, 'month')
 
-        while ( !nxMonth.isSame(this.sells[i].createdAt.toISOString(), 'month') ) {
+        while ( !nxMonth.isSame(this.productSells[i].createdAt.toISOString(), 'month') ) {
           di++;
           this.xData.push(nxMonth.toISOString())
           this.yData.push(0)
@@ -69,8 +83,8 @@ export default class SellsGraph extends React.Component{
         }
 
         di++;
-        this.xData.push(moment(this.sells[i].createdAt.toISOString()).startOf('month').toISOString())
-        this.yData.push(this.sells[i].totalPrice)
+        this.xData.push(moment(this.productSells[i].createdAt.toISOString()).startOf('month').toISOString())
+        this.yData.push(this.productSells[i].quantity)
 
       }
     }
@@ -86,7 +100,7 @@ export default class SellsGraph extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let ctx = document.getElementById("sellChart");
+    let ctx = document.getElementById("productChart");
     let myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -132,17 +146,19 @@ export default class SellsGraph extends React.Component{
             				return moment(title).format('MMMM YYYY')
             			},
                   label: (tooltipItem, data) => {
-            				return '$' + tooltipItem.yLabel.toFixed(2);
+
+            				return `${tooltipItem.yLabel}`;
                   }
                 }
             },
             scales: {
               yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Units Sold'
+                  },
                   ticks: {
                       beginAtZero:true,
-                      callback: function(value, index, values) {
-                        return '$' + value.toFixed(2);
-                      }
                   },
               }],
 
@@ -171,7 +187,7 @@ export default class SellsGraph extends React.Component{
       <div className='report-card'>
         <div className='report-top'>
           <div className='report-title'>
-            Monthly Purchases
+            Sold Pre Month
           </div>
 
         </div>
@@ -215,8 +231,8 @@ export default class SellsGraph extends React.Component{
 
         </div>
 
-        <div className='graph-div'>
-          <canvas id="sellChart"></canvas>
+        <div className='graph-div' style={{padding: '16px'}}>
+          <canvas id="productChart"></canvas>
         </div>
 
         <div className='report-bottom'>
@@ -224,20 +240,9 @@ export default class SellsGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: cyanA700}}>
               <span>
-                Total Revenue
+                Total Units Sold
               </span>
-              ${this.total.toFixed(2)}
-            </div>
-
-          </div>
-
-          <div className='section'>
-
-            <div className='total-div' style={{backgroundColor: purpleA700}}>
-              <span>
-                Highest Month
-              </span>
-              {moment(this.bestMonth.month).format('MMM YYYY')}
+              {this.totalUnits}
             </div>
 
           </div>
@@ -246,12 +251,27 @@ export default class SellsGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: greenA700}}>
               <span>
-                Monthly Average Revenue
+                Monthly Average Units Sold
               </span>
-              ${(this.total/this.yData.length).toFixed(2)}
+              {(this.totalUnits/this.yData.length).toFixed(1)}
             </div>
 
           </div>
+
+
+
+          <div className='section'>
+
+            <div className='total-div' style={{backgroundColor: purpleA700}}>
+              <span>
+                Total Revenue
+              </span>
+              ${this.total.toFixed(2)}
+            </div>
+
+          </div>
+
+
 
         </div>
 
@@ -259,20 +279,3 @@ export default class SellsGraph extends React.Component{
     )
   }
 }
-
-
-
-/*
-Sells Graph
-  x-axis = time
-  y-axis = total price
-
-Sum of Total Spent
-
-Conditions
-  isPaid
-  status
-  time Range
-*/
-
-//

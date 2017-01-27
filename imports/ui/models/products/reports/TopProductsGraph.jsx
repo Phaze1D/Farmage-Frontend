@@ -3,13 +3,16 @@ import Chart from 'chart.js'
 import moment from 'moment'
 import SelectField from 'material-ui/SelectField';
 import DatePicker from 'material-ui/DatePicker';
-
+import {fade} from 'material-ui/utils/colorManipulator';
 import MenuItem from 'material-ui/MenuItem';
-import {cyanA700, purpleA700, greenA700} from 'material-ui/styles/colors'
+import {
+  green700, tealA700, pinkA700, indigoA700, yellowA700,
+  cyanA700, purpleA700, greenA700
+} from 'material-ui/styles/colors'
 
 
 import {factoryProduct} from '../faker/factoryProduct';
-import {factorySell} from '../../sells/faker/factorySell';
+import {factorySell, factoryDetails} from '../../sells/faker/factorySell';
 
 import faker from 'faker'
 
@@ -17,24 +20,53 @@ import faker from 'faker'
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class ProductsGraph extends React.Component{
+export default class TopProductsGraph extends React.Component{
   constructor(props){
     super(props)
-    this.state = {dvalue: 0, pvalue: 0, svalue: 0}
+    this.state = {bvalue: 0}
 
 
-    this.sells = []
+    this.details = []
+    let productIndex = {}
+    this.products = []
 
     for(let i = 0; i < 20; i++){
-      this.sells.push(factorySell());
+      this.details = this.details.concat(factoryDetails(true));
     }
 
-    this.sells.sort((a, b) => {
-      return  a.createdAt - b.createdAt;
+    for (let i = 0; i < this.details.length; i++) {
+      var detail = this.details[i]
+      var prodIndex = productIndex[detail.productID]
+      if(prodIndex){
+        var prod = this.products[prodIndex]
+        prod.quantity += detail.quantity
+        prod.subTotal += (detail.quantity * detail.unitPrice) * ( 1 + (detail.taxRate/100));
+
+      }else{
+        this.products.push(
+          {
+            productName: detail.productName,
+            quantity: detail.quantity,
+            subTotal: (detail.quantity * detail.unitPrice) * ( 1 + (detail.taxRate/100))
+          }
+        )
+        productIndex[detail.productID] = this.products.length - 1
+      }
+    }
+
+    this.products.sort((a, b) => {
+      return  (b.quantity - a.quantity)
     });
+
 
     this.yData = []
     this.xData = []
+
+    for (var i = 0; i < 5; i++) {
+      this.yData.push(this.products[i].quantity)
+      this.xData.push(this.products[i].productName)
+    }
+
 
 
   }
@@ -44,13 +76,17 @@ export default class ProductsGraph extends React.Component{
     let myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: this.xData,
           datasets: [
                   {
-                      borderWidth: 2,
-                      backgroundColor: "rgba(75,192,192,0.4)",
-                      borderColor: "rgba(75,192,192,1)",
-                      data: [65, 59, 80, 81, 56, 55, 40],
+                      borderWidth: 1,
+                      backgroundColor: [
+                        fade(greenA700, .75), fade(tealA700, .75), fade(pinkA700, .75), fade(indigoA700, .75), fade(yellowA700, .75)
+                      ],
+                      hoverBackgroundColor: [
+                        greenA700, tealA700, pinkA700, indigoA700, yellowA700
+                      ],
+                      data: this.yData,
                   }
               ]
         },
@@ -94,6 +130,19 @@ export default class ProductsGraph extends React.Component{
 
         <div className='report-mid'>
 
+          <SelectField
+            className='s-field'
+            floatingLabelText="With Batch"
+            autoWidth={true}
+            value={this.state.bvalue}
+            onChange={(event, index, value) => {this.setState({bvalue: value})}}>
+            <MenuItem value={0} primaryText="All" />
+            <MenuItem value={1} primaryText="Yes" />
+            <MenuItem value={2} primaryText="No" />
+          </SelectField>
+
+          <div className='s-field'></div>
+
           <DatePicker
             className='s-field'
             name="created_from"
@@ -116,7 +165,6 @@ export default class ProductsGraph extends React.Component{
               year: 'numeric',
             }).format} />
 
-          <div className='s-field'></div>
 
         </div>
 
@@ -131,7 +179,7 @@ export default class ProductsGraph extends React.Component{
               <span>
                 Favorite Product
               </span>
-              0
+              {this.products[0].productName}
             </div>
 
           </div>
@@ -140,20 +188,9 @@ export default class ProductsGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: purpleA700}}>
               <span>
-                Most Recent Product
+                Total Spent On Favorite
               </span>
-              0
-            </div>
-
-          </div>
-
-          <div className='section'>
-
-            <div className='total-div' style={{backgroundColor: greenA700}}>
-              <span>
-                Average Pre Monthly
-              </span>
-              0
+              ${this.products[0].subTotal.toFixed(2)}
             </div>
 
           </div>

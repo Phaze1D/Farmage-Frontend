@@ -107,5 +107,24 @@ const factoryProductNOR = () => {
   }
 }
 
+const factoryProductSID = () => {
+  return {
+    _id: Math.round(Math.random() * 20),
+    name: testName(),
+    sku: testSKU(),
+    size: testSize(),
+    unitPrice: parseFloat(testUnitPrice()),
+    taxRate: parseFloat(testTaxRate()),
+    stock: testStock(),
+    description: testDescription(),
+    imageUrl: testImageUrl(),
+    createdAt: testDate(),
+    updatedAt: testDate(),
+    createdBy: factoryOUser(),
+    updatedBy: factoryOUser()
+  }
+}
+
 exports.factoryProduct = factoryProduct;
 exports.factoryProductNOR = factoryProductNOR;
+exports.factoryProductSID = factoryProductSID;

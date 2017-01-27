@@ -8,6 +8,7 @@ import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import ProductsNew from '../new/ProductsNew';
 import UserShowInfo from '../../ousers/UserShowInfo';
 import MFade from '../../../structure/mfade/MFade';
+import ProductAnalytics from './ProductAnalytics';
 
 
 
@@ -56,13 +57,18 @@ export default class ProductShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <MFade>
+
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-            <ProductSummary product={this.product}/>
+            <MFade>
+              <ProductSummary product={this.product}/>
+            </MFade>
+
+            <ProductAnalytics product={this.product}/>
+
+
             <div>Reports</div>
-            <div>Analytics</div>
           </SwipeableViews>
-        </MFade>
+
 
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>

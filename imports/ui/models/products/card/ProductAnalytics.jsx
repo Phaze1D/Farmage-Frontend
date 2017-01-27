@@ -1,13 +1,12 @@
 
 import React from 'react'
 import MFade from '../../../structure/mfade/MFade';
-import SellsGraph from '../../sells/reports/SellsGraph';
-import TopProductsGraph from '../../products/reports/TopProductsGraph';
+import ProductGraph from '../reports/ProductGraph';
 
 
 
 
-export default class CustomerAnalytics extends React.Component{
+export default class ProductAnalytics extends React.Component{
   constructor(props){
     super(props);
 
@@ -20,8 +19,7 @@ export default class CustomerAnalytics extends React.Component{
       <div className='mtab-content'>
         <MFade time={1000}>
           <div>
-            <SellsGraph />
-            <TopProductsGraph/>
+            <ProductGraph/>
           </div>
         </MFade>
       </div>
