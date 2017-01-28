@@ -1,7 +1,8 @@
 
 import React from 'react'
 import MFade from '../../../structure/mfade/MFade';
-import ProductGraph from '../reports/ProductGraph';
+import ProductSoldGraph from '../reports/ProductSoldGraph';
+import ProductProducedGraph from '../reports/ProductProducedGraph';
 
 
 
@@ -19,7 +20,8 @@ export default class ProductAnalytics extends React.Component{
       <div className='mtab-content'>
         <MFade time={1000}>
           <div>
-            <ProductGraph/>
+            <ProductSoldGraph/>
+            <ProductProducedGraph/>
           </div>
         </MFade>
       </div>

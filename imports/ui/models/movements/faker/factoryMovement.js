@@ -37,6 +37,7 @@ const factoryMovement = () => {
     forId: testForIdentifer(),
     notes: testNotes(),
     manuel: faker.random.boolean(),
+    productive: faker.random.boolean(),
     createdAt: testCreatedAt(),
     createdBy: factoryOUser(),
     updatedAt: testCreatedAt(),
