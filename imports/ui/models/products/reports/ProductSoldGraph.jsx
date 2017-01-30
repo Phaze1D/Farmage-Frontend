@@ -207,7 +207,7 @@ export default class ProductSoldGraph extends React.Component{
 
           <SelectField
             className='s-field'
-            floatingLabelText="By Status"
+            floatingLabelText="By Sell Status"
             autoWidth={true}
             value={this.state.svalue}
             onChange={(event, index, value) => {this.setState({svalue: value})}}>
