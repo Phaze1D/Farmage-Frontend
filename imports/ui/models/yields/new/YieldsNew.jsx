@@ -206,7 +206,7 @@ class FormFields extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="From Unit" highlight={this.props.yield.unit} toggleSelector={this.props.toggleUnitSelector}/>
+            <SelectorButton title="From Sector" highlight={this.props.yield.unit} toggleSelector={this.props.toggleUnitSelector}/>
           </div>
         </div>
 

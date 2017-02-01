@@ -265,7 +265,7 @@ class FormFields extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Unit" highlight={this.props.expense.unit} toggleSelector={this.props.toggleUnitSelector}/>
+            <SelectorButton title="Sector" highlight={this.props.expense.unit} toggleSelector={this.props.toggleUnitSelector}/>
           </div>
         </div>
 

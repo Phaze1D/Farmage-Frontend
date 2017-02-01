@@ -7,20 +7,20 @@ import {cyanA700, purpleA700, greenA700} from 'material-ui/styles/colors'
 
 
 import {factoryMovement} from '../../movements/faker/factoryMovement';
-import {factoryProduct} from '../faker/factoryProduct';
+import {factoryResource} from '../faker/factoryResource';
 import faker from 'faker'
 
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class ProductProducedGraph extends React.Component{
+export default class ResourceProducedGraph extends React.Component{
   constructor(props){
     super(props)
     this.state = {dvalue: 0, svalue: 0}
 
 
-    this.product = factoryProduct()
+    this.resource = factoryResource()
 
     this.movements = []
 
@@ -86,7 +86,7 @@ export default class ProductProducedGraph extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let ctx = document.getElementById("productProductChart");
+    let ctx = document.getElementById("resourceProductChart");
     let myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -133,7 +133,7 @@ export default class ProductProducedGraph extends React.Component{
             			},
                   label: (tooltipItem, data) => {
 
-            				return `${tooltipItem.yLabel} Units Produced`;
+            				return `${tooltipItem.yLabel} ${this.resource.measurementUnit}`;
                   }
                 }
             },
@@ -209,7 +209,7 @@ export default class ProductProducedGraph extends React.Component{
         </div>
 
         <div className='graph-div' style={{padding: '16px'}}>
-          <canvas id="productProductChart"></canvas>
+          <canvas id="resourceProductChart"></canvas>
         </div>
 
         <div className='report-bottom'>

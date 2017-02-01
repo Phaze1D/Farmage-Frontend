@@ -5,31 +5,32 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import {cyanA700, purpleA700, greenA700} from 'material-ui/styles/colors'
 
-
 import {factoryMovement} from '../../movements/faker/factoryMovement';
-import {factoryProduct} from '../faker/factoryProduct';
 import faker from 'faker'
 
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class ProductProducedGraph extends React.Component{
+export default class ResourcePackagedGraph extends React.Component{
   constructor(props){
     super(props)
-    this.state = {dvalue: 0, svalue: 0}
+    this.state = {dvalue: 0, pvalue: 0, svalue: 0}
 
 
-    this.product = factoryProduct()
+    this.testStatus = ['All']
+    for (let i = 0; i < 5; i++) {
+      this.testStatus.push(faker.commerce.productName())
+    }
+
 
     this.movements = []
 
     for(let i = 0; i < 200; i++){
       let m = factoryMovement();
-
-      m.amount = (!m.productive && m.amount > 0) ? m.amount * -1 : m.amount
-
-      this.movements.push(m)
+      if(m.productive & m.amount < 0){
+        this.movements.push(m)
+      }
     }
 
     this.movements.sort((a, b) => {
@@ -38,55 +39,58 @@ export default class ProductProducedGraph extends React.Component{
 
     this.yData = []
     this.xData = []
-    this.loses = 0;
+    this.total = 0;
     this.totalUnits = 0;
-
+    this.bestMonth = {
+      amount: 0,
+      month: ''
+    };
 
     this.yData.push(0)
     this.xData.push(moment(this.movements[0].createdAt.toISOString()).startOf('month').toISOString())
 
 
+
     let di = 0;
 
+
     for (var i = 0; i < this.movements.length; i++) {
+      this.totalUnits += (this.movements[i].amount * -1);
 
-      if(this.movements[i].productive && this.movements[i].amount > 0){
 
-        this.totalUnits += this.movements[i].amount;
+      if(moment(this.movements[i].createdAt.toISOString()).isSame(this.xData[di], 'month') ){
+        this.yData[di] += (this.movements[i].amount * -1)
 
-        if(moment(this.movements[i].createdAt.toISOString()).isSame(this.xData[di], 'month') ){
-          this.yData[di] += this.movements[i].amount
+      }else{
 
-        }else{
+        let nxMonth = moment(this.xData[di]).add(1, 'month')
 
-          let nxMonth = moment(this.xData[di]).add(1, 'month')
-
-          while ( !nxMonth.isSame(this.movements[i].createdAt.toISOString(), 'month') ) {
-            di++;
-            this.xData.push(nxMonth.toISOString())
-            this.yData.push(0)
-            nxMonth = moment(this.xData[di]).add(1, 'month')
-          }
-
+        while ( !nxMonth.isSame(this.movements[i].createdAt.toISOString(), 'month') ) {
           di++;
-          this.xData.push(moment(this.movements[i].createdAt.toISOString()).startOf('month').toISOString())
-          this.yData.push(this.movements[i].amount)
+          this.xData.push(nxMonth.toISOString())
+          this.yData.push(0)
+          nxMonth = moment(this.xData[di]).add(1, 'month')
         }
 
+        di++;
+        this.xData.push(moment(this.movements[i].createdAt.toISOString()).startOf('month').toISOString())
+        this.yData.push((this.movements[i].amount * -1))
+
       }
-
-      if(!this.movements[i].productive){
-        this.loses += this.movements[i].amount;
-      }
-
-
     }
 
-
+    this.bestMonth.amount = this.yData[0]
+    this.bestMonth.month = this.xData[0]
+    for (var i = 0; i < this.yData.length; i++) {
+      if(this.yData[i] >= this.bestMonth.amount){
+        this.bestMonth.amount = this.yData[i];
+        this.bestMonth.month = this.xData[i];
+      }
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let ctx = document.getElementById("productProductChart");
+    let ctx = document.getElementById("resourcePackageChart");
     let myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -95,7 +99,7 @@ export default class ProductProducedGraph extends React.Component{
                   {
                       cubicInterpolationMode: 'monotone',
                       borderWidth: 2,
-                      fill: true,
+                      fill: false,
                       backgroundColor: "rgba(75,192,192,0.4)",
                       borderColor: "rgba(75,192,192,1)",
                       pointBorderColor: "rgba(75,192,192,1)",
@@ -133,7 +137,7 @@ export default class ProductProducedGraph extends React.Component{
             			},
                   label: (tooltipItem, data) => {
 
-            				return `${tooltipItem.yLabel} Units Produced`;
+            				return `${tooltipItem.yLabel}`;
                   }
                 }
             },
@@ -141,7 +145,7 @@ export default class ProductProducedGraph extends React.Component{
               yAxes: [{
                   scaleLabel: {
                     display: true,
-                    labelString: 'Units Produced'
+                    labelString: 'Units Packaged'
                   },
                   ticks: {
                       beginAtZero:true,
@@ -165,13 +169,15 @@ export default class ProductProducedGraph extends React.Component{
 
   render(){
 
-
+    const statusArray = this.testStatus.map((status, index) =>
+      <MenuItem key={index} value={index} primaryText={status} />
+    )
 
     return(
       <div className='report-card'>
         <div className='report-top'>
           <div className='report-title'>
-            Monthly Production
+            Packaged Pre Month
           </div>
 
         </div>
@@ -180,13 +186,11 @@ export default class ProductProducedGraph extends React.Component{
 
           <SelectField
             className='s-field'
-            floatingLabelText="With Loses"
+            floatingLabelText="By Product"
             autoWidth={true}
             value={this.state.svalue}
             onChange={(event, index, value) => {this.setState({svalue: value})}}>
-            <MenuItem value={0} primaryText="Yes" />
-            <MenuItem value={1} primaryText="No" />
-
+            {statusArray}
           </SelectField>
 
           <div className='s-field'></div>
@@ -209,7 +213,7 @@ export default class ProductProducedGraph extends React.Component{
         </div>
 
         <div className='graph-div' style={{padding: '16px'}}>
-          <canvas id="productProductChart"></canvas>
+          <canvas id="resourcePackageChart"></canvas>
         </div>
 
         <div className='report-bottom'>
@@ -217,7 +221,7 @@ export default class ProductProducedGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: cyanA700}}>
               <span>
-                Total Units Produced
+                Total Units Packaged
               </span>
               {this.totalUnits}
             </div>
@@ -228,27 +232,12 @@ export default class ProductProducedGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: greenA700}}>
               <span>
-                Average Units Produced
+                Average Units Packaged
               </span>
-              {(this.totalUnits/this.yData.length).toFixed(1)}
+              {(this.totalUnits /this.yData.length).toFixed(1)}
             </div>
 
           </div>
-
-
-
-          <div className='section'>
-
-            <div className='total-div' style={{backgroundColor: purpleA700}}>
-              <span>
-                Total Units Lost
-              </span>
-              {this.loses.toFixed(0)}
-            </div>
-
-          </div>
-
-
 
         </div>
 

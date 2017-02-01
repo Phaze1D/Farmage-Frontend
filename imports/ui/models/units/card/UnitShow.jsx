@@ -10,6 +10,7 @@ import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import UnitsNew from '../new/UnitsNew';
 import UserShowInfo from '../../ousers/UserShowInfo';
 import MFade from '../../../structure/mfade/MFade';
+import SectorAnalytics from './SectorAnalytics';
 
 import classnames from 'classnames'
 
@@ -56,18 +57,22 @@ export default class UnitShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <MFade>
+
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-            <UnitSummary unit={this.unit}/>
+            <MFade>
+              <UnitSummary unit={this.unit}/>
+            </MFade>
+            
+            <SectorAnalytics unit={this.unit}/>
             <div>Reports</div>
-            <div>Analytics</div>
+
           </SwipeableViews>
-        </MFade>
+
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <UnitsNew
             onCloseRight={this.toggleRight}
-            headerTitle='Update Unit'
+            headerTitle='Update Sector'
             objectID='asdfadf'
             isUpdate={true}/>
 
@@ -98,7 +103,7 @@ let UnitSummary = (props) => {
 
   return(
     <div className='mtab-content'>
-      <h3>Unit Information</h3>
+      <h3>Sector Information</h3>
 
       <div className='mtab-show-flex'>
 
@@ -120,13 +125,13 @@ let UnitSummary = (props) => {
             </div>
           :
             <div className='mtab-info'>
-              <span>Active Sub Units</span>
+              <span>Active Sub Sectors</span>
               {unit.activeSub}
             </div>
           }
 
           <div className='mtab-info'>
-            <span>Parent Unit</span>
+            <span>Parent Sector</span>
             {unit.parentUnit ? unit.parentUnit.name : 'Organization '}
           </div>
 
@@ -181,7 +186,7 @@ let ParentUnit = (props) => {
               {props.unit.trackable ?
                 <span> Active - {props.unit.active} </span>
                 :
-                <span> Active Sub Units - {props.unit.activeSub} </span>
+                <span> Active Sub Sectors - {props.unit.activeSub} </span>
               }
             </h2>
 

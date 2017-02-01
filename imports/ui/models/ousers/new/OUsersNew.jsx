@@ -119,7 +119,7 @@ let FormFields = (props) => (
       defaultToggled={props.permissions.sellsManager}/>
 
     <LToggler
-      title="Units Manager"
+      title="Sector Manager"
       subTitle="View and edit units and yields"
       defaultToggled={props.permissions.unitsManager}/>
 

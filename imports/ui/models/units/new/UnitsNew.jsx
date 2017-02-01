@@ -132,7 +132,7 @@ class FormFields extends React.Component{
                 defaultValue={this.props.unit.name}
                 className="input-lg"
                 hintText=""
-                floatingLabelText="Unit Name"
+                floatingLabelText="Sector Name"
                 fullWidth={true}/>
           </div>
         </div>
@@ -154,8 +154,8 @@ class FormFields extends React.Component{
         </div>
 
         <LToggler
-          title="Track the unit's amount"
-          subTitle="Trackable Units cannot have sub-units"
+          title="Track the sector's amount"
+          subTitle="Trackable Sectors cannot have sub sectors"
           defaultToggled={trackable}
           onToggle={this.handleTracking}/>
 
@@ -172,7 +172,7 @@ class FormFields extends React.Component{
 
         <div className='row'>
           <div className='col-xs-12'>
-            <SelectorButton title="Parent Unit" highlight={this.props.unit.parentUnit} toggleSelector={this.props.toggleUnitSelector}/>
+            <SelectorButton title="Parent Sector" highlight={this.props.unit.parentUnit} toggleSelector={this.props.toggleUnitSelector}/>
           </div>
         </div>
 

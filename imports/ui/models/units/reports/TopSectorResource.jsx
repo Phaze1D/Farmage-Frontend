@@ -12,8 +12,9 @@ import {
 } from 'material-ui/styles/colors'
 
 
-import {factoryProduct} from '../faker/factoryProduct';
-import {factorySell, factoryDetails} from '../../sells/faker/factorySell';
+import {factoryYield} from '../../yields/faker/factoryYield';
+import {factoryResource} from '../../resources/faker/factoryResource';
+
 
 import faker from 'faker'
 
@@ -21,51 +22,51 @@ import faker from 'faker'
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class TopProductsGraph extends React.Component{
+export default class TopSectorResource extends React.Component{
   constructor(props){
     super(props)
     this.state = {bvalue: 0}
 
+    this.resource = factoryResource();
+    this.yields = [] // THIS SHOULD BE MOVEMENTS
+    this.total = 0;
+    let sectorIndex = {}
+    this.sectors = []
 
-    this.details = []
-    let productIndex = {}
-    this.products = []
-
-    for(let i = 0; i < 20; i++){
-      this.details = this.details.concat(factoryDetails(true));
+    for(let i = 0; i < 50; i++){
+      this.yields = this.yields.concat(factoryYield());
     }
 
-    for (let i = 0; i < this.details.length; i++) {
-      var detail = this.details[i]
-      var prodIndex = productIndex[detail.productID]
-      if(prodIndex){
-        var prod = this.products[prodIndex]
-        prod.quantity += detail.quantity
-        prod.subTotal += (detail.quantity * detail.unitPrice) * ( 1 + (detail.taxRate/100));
+    for (let i = 0; i < this.yields.length; i++) {
+      var _yield = this.yields[i]
+      var sectIndex = sectorIndex[_yield.unit._id]
+      if(sectIndex){
+        var sect = this.sectors[sectIndex]
+        sect.amount += _yield.amount
 
       }else{
-        this.products.push(
+        this.sectors.push(
           {
-            productName: detail.productName,
-            quantity: detail.quantity,
-            subTotal: (detail.quantity * detail.unitPrice) * ( 1 + (detail.taxRate/100))
+            sectorName: _yield.unit.name,
+            amount: _yield.amount,
           }
         )
-        productIndex[detail.productID] = this.products.length - 1
+        sectorIndex[_yield.unit._id] = this.sectors.length - 1
       }
     }
 
-    this.products.sort((a, b) => {
-      return  (b.quantity - a.quantity)
+    this.sectors.sort((a, b) => {
+      return  (b.amount - a.amount)
     });
 
 
     this.yData = []
     this.xData = []
 
-    for (var i = 0; i < 5; i++) {
-      this.yData.push(this.products[i].quantity)
-      this.xData.push(this.products[i].productName)
+    for (var i = 0; i < 20; i++) {
+      this.total += Number(this.sectors[i].amount)
+      this.yData.push(this.sectors[i].amount)
+      this.xData.push(this.sectors[i].sectorName)
     }
 
 
@@ -73,14 +74,14 @@ export default class TopProductsGraph extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let ctx = document.getElementById("productChart");
+    let ctx = document.getElementById("topSectorsChart");
     let colors = randomColor({
                    luminosity: 'bright',
                    format: 'rgb',
                    count: this.xData.length
                 });
     let myChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: {
           labels: this.xData,
           datasets: [
@@ -94,6 +95,9 @@ export default class TopProductsGraph extends React.Component{
         },
         options: {
             maintainAspectRatio: false,
+            legend:{
+              display: false
+            },
             tooltips: {
                 displayColors: false,
                 callbacks: {
@@ -110,7 +114,7 @@ export default class TopProductsGraph extends React.Component{
             				return title
             			},
                   label: (tooltipItem, data) => {
-            				return data.datasets[0].data[tooltipItem.index]
+            				return `${data.datasets[0].data[tooltipItem.index]} ${this.resource.measurementUnit}`
                   }
                 }
             },
@@ -125,7 +129,7 @@ export default class TopProductsGraph extends React.Component{
       <div className='report-card'>
         <div className='report-top'>
           <div className='report-title'>
-            Top 5 Products
+            Production Pre Sector
           </div>
 
         </div>
@@ -134,13 +138,12 @@ export default class TopProductsGraph extends React.Component{
 
           <SelectField
             className='s-field'
-            floatingLabelText="With Batch"
+            floatingLabelText="With Loses"
             autoWidth={true}
             value={this.state.bvalue}
             onChange={(event, index, value) => {this.setState({bvalue: value})}}>
-            <MenuItem value={0} primaryText="All" />
-            <MenuItem value={1} primaryText="Yes" />
-            <MenuItem value={2} primaryText="No" />
+            <MenuItem value={0} primaryText="Yes" />
+            <MenuItem value={1} primaryText="No" />
           </SelectField>
 
           <div className='s-field'></div>
@@ -171,7 +174,7 @@ export default class TopProductsGraph extends React.Component{
         </div>
 
         <div className='graph-div'>
-          <canvas id="productChart"></canvas>
+          <canvas id="topSectorsChart"></canvas>
         </div>
 
         <div className='report-bottom'>
@@ -179,9 +182,9 @@ export default class TopProductsGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: cyanA700}}>
               <span>
-                Favorite Product
+                Top Sector
               </span>
-              {this.products[0].productName}
+              {this.sectors[0].sectorName}
             </div>
 
           </div>
@@ -190,9 +193,9 @@ export default class TopProductsGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: purpleA700}}>
               <span>
-                Total Spent On Favorite
+                Total Units Produced
               </span>
-              ${this.products[0].subTotal.toFixed(2)}
+              {this.total.toFixed(8)}
             </div>
 
           </div>
@@ -208,7 +211,7 @@ export default class TopProductsGraph extends React.Component{
 /*
 Product Graph
   x-axis = product Name
-  y-axis = quantity
+  y-axis = amount
 
 Top 5 Products
 

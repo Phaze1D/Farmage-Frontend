@@ -137,7 +137,7 @@ export default class ExpenseCard extends React.Component{
 
         <EnhancedButton style={{textAlign: 'left', flexGrow: '1'}} onTouchTap={this.handleOnShowUnit}>
           <div className='cyield-info sm clickable-info'>
-            <span>For Unit</span>
+            <span>For Sector</span>
             {unit.name}
           </div>
         </EnhancedButton>

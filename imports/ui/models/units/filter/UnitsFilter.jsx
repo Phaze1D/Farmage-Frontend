@@ -40,10 +40,10 @@ export default class UnitsFilter extends React.Component{
   render(){
 
     const itemsArray = [
-      {primaryText: "Unit Name", value: 0},
+      {primaryText: "Sector Name", value: 0},
       {primaryText: "Active Amount", value: 1},
-      {primaryText: "Active Sub Units", value: 2},
-      {primaryText: "Parent Unit", value: 3},
+      {primaryText: "Active Sub Sectors", value: 2},
+      {primaryText: "Parent Sector", value: 3},
       {primaryText: "Created At", value: 4},
       {primaryText: "Updated At", value: 5}
     ]

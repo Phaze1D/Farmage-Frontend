@@ -65,7 +65,7 @@ export default class OrganizationMenu extends React.Component{
 
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
             <Link to="/units" className='menu-link'>
-              Units
+              Sectors
             </Link>
           </MenuItem>
 

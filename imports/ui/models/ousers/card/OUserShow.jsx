@@ -138,7 +138,7 @@ let OUserSummary = (props) => {
           </div>
 
           <div className={classnames('mtab-info bool', {'on': permissions.unitsManager})}>
-            <span>Unit Manager</span>
+            <span>Sector Manager</span>
             {permissions.unitsManager ? <TrackOn/> : <TrackOff/>}
           </div>
 

@@ -24,7 +24,7 @@ let UnitSelected = (props) => {
               {props.unit.trackable ?
                 <span> Active - {props.unit.active} </span>
                 :
-                <span> Active Sub Units - {props.unit.activeSub} </span>
+                <span> Active Sub Sectors - {props.unit.activeSub} </span>
               }
             </h3>
 

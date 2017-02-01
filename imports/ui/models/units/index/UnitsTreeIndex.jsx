@@ -176,7 +176,7 @@ class TreeRow extends React.Component {
   }
 
   render(){
-    const title = this.props.isRoot ? 'Organization Root Units' : `${this.props.unit.name} Sub Units`;
+    const title = this.props.isRoot ? 'Organization Root Sectors' : `${this.props.unit.name} Sub Sectors`;
     const treClass = classnames('tree', {'tree-row': this.props.isRoot})
 
     return(

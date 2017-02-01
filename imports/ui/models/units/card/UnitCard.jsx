@@ -96,7 +96,7 @@ export default class UnitCard extends React.Component{
             {active}
           </div>:
           <div className='cyield-info sm'>
-            <span>Active Sub Units</span>
+            <span>Active Sub Sectors</span>
             {activeSub}
           </div>
         }

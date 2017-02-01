@@ -30,7 +30,7 @@ export default class YieldsFilter extends React.Component{
       {primaryText: "Identifer", value: 0},
       {primaryText: "Resource", value: 1},
       {primaryText: "Amount", value: 2},
-      {primaryText: "Unit", value: 3},
+      {primaryText: "Sector", value: 3},
       {primaryText: "Expiration Date", value: 4},
       {primaryText: "Created Date", value: 5},
       {primaryText: "Updated Date", value: 6}

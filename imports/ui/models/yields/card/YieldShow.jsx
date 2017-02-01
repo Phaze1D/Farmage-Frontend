@@ -147,7 +147,7 @@ let YieldSummary = (props) => {
 
 
           <div className='mtab-info'>
-            <span>From Unit</span>
+            <span>From Sector</span>
               {props.yield.unit.name}
           </div>
 

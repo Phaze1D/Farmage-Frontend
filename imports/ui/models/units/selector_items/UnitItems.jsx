@@ -49,7 +49,7 @@ export class UnitCheckBoxItem extends React.Component{
           {trackable ?
             <span style={{color: grey700}}>Active - {active}</span>
               :
-            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
+            <span style={{fontSize: '12px'}}>Active Sub Sectors - {activeSub}</span>
           }
         </div>
 
@@ -100,7 +100,7 @@ export class UnitRadioItem extends React.Component{
           {trackable ?
             <span style={{color: grey700}}>Active - {active}</span>
               :
-            <span style={{fontSize: '12px'}}>Active Sub Units - {activeSub}</span>
+            <span style={{fontSize: '12px'}}>Active Sub Sectors - {activeSub}</span>
           }
         </div>
 

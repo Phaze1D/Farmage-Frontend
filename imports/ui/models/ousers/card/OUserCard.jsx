@@ -90,7 +90,7 @@ export default class OUserCard extends React.Component{
         </div>
 
         <div className={classnames('ouser-permission', {'on': permissions.unitsManager})}>
-          Units Manager
+          Sectors Manager
           <span>View and edit units and yields</span>
         </div>
 

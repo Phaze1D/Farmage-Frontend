@@ -7,8 +7,7 @@ import RightDrawer from '../../../structure/right_drawer/RightDrawer';
 import ResourcesNew from '../new/ResourcesNew';
 import UserShowInfo from '../../ousers/UserShowInfo';
 import MFade from '../../../structure/mfade/MFade';
-
-
+import ResourceAnalytics from './ResourceAnalytics';
 
 import {factoryResource} from '../faker/factoryResource';
 
@@ -56,14 +55,15 @@ export default class ResourceShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <MFade>
-          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+          <MFade>
             <ResourceSummary resource={this.resource}/>
-            <div>Reports</div>
-            <div>Analytics</div>
-          </SwipeableViews>
-        </MFade>
+          </MFade>
 
+          <ResourceAnalytics resource={this.resource}/>
+
+          <div>Reports</div>
+        </SwipeableViews>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <ResourcesNew

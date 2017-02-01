@@ -7,20 +7,25 @@ import {cyanA700, purpleA700, greenA700} from 'material-ui/styles/colors'
 
 
 import {factoryMovement} from '../../movements/faker/factoryMovement';
-import {factoryProduct} from '../faker/factoryProduct';
+import {factoryUnit} from '../faker/factoryUnit';
 import faker from 'faker'
 
 
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
-export default class ProductProducedGraph extends React.Component{
+export default class SectorProducedGraph extends React.Component{
   constructor(props){
     super(props)
-    this.state = {dvalue: 0, svalue: 0}
+    this.state = {dvalue: 0, svalue: 0, pvalue: 0, rvalue: 0}
 
 
-    this.product = factoryProduct()
+    this.testStatus = ['All']
+    for (var i = 0; i < 5; i++) {
+      this.testStatus.push(faker.random.word())
+    }
+
+    this.sector = factoryUnit()
 
     this.movements = []
 
@@ -86,7 +91,7 @@ export default class ProductProducedGraph extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState) {
-    let ctx = document.getElementById("productProductChart");
+    let ctx = document.getElementById("resourceProductChart");
     let myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -133,7 +138,7 @@ export default class ProductProducedGraph extends React.Component{
             			},
                   label: (tooltipItem, data) => {
 
-            				return `${tooltipItem.yLabel} Units Produced`;
+            				return `${tooltipItem.yLabel}`;
                   }
                 }
             },
@@ -141,7 +146,7 @@ export default class ProductProducedGraph extends React.Component{
               yAxes: [{
                   scaleLabel: {
                     display: true,
-                    labelString: 'Units Produced'
+                    labelString: 'Resources Produced'
                   },
                   ticks: {
                       beginAtZero:true,
@@ -165,7 +170,9 @@ export default class ProductProducedGraph extends React.Component{
 
   render(){
 
-
+    const resourceArray = this.testStatus.map((status, index) =>
+      <MenuItem key={index} value={index} primaryText={status} />
+    )
 
     return(
       <div className='report-card'>
@@ -189,7 +196,24 @@ export default class ProductProducedGraph extends React.Component{
 
           </SelectField>
 
-          <div className='s-field'></div>
+          <SelectField
+            className='s-field'
+            floatingLabelText="Include Sub Sectors"
+            autoWidth={true}
+            value={this.state.pvalue}
+            onChange={(event, index, value) => {this.setState({pvalue: value})}}>
+            <MenuItem value={0} primaryText="Yes" />
+            <MenuItem value={1} primaryText="No" />
+          </SelectField>
+
+          <SelectField
+            className='s-field'
+            floatingLabelText="By Resource"
+            autoWidth={true}
+            value={this.state.rvalue}
+            onChange={(event, index, value) => {this.setState({rvalue: value})}}>
+            {resourceArray}
+          </SelectField>
 
           <SelectField
             className='s-field'
@@ -209,7 +233,7 @@ export default class ProductProducedGraph extends React.Component{
         </div>
 
         <div className='graph-div' style={{padding: '16px'}}>
-          <canvas id="productProductChart"></canvas>
+          <canvas id="resourceProductChart"></canvas>
         </div>
 
         <div className='report-bottom'>
@@ -217,7 +241,7 @@ export default class ProductProducedGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: cyanA700}}>
               <span>
-                Total Units Produced
+                Total Resources Produced
               </span>
               {this.totalUnits}
             </div>
@@ -228,7 +252,7 @@ export default class ProductProducedGraph extends React.Component{
 
             <div className='total-div' style={{backgroundColor: greenA700}}>
               <span>
-                Average Units Produced
+                Average Resources Produced
               </span>
               {(this.totalUnits/this.yData.length).toFixed(1)}
             </div>
@@ -236,12 +260,11 @@ export default class ProductProducedGraph extends React.Component{
           </div>
 
 
-
           <div className='section'>
 
             <div className='total-div' style={{backgroundColor: purpleA700}}>
               <span>
-                Total Units Lost
+                Total Resources Lost
               </span>
               {this.loses.toFixed(0)}
             </div>

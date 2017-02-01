@@ -32,14 +32,14 @@ export default class UnitSelectorList extends React.Component{
         <UnitCheckboxItem {...resource} key={resource._id}/>
     })
 
-    const sortBy = ['Identifier', 'Active', 'Active Sub Units']
+    const sortBy = ['Identifier', 'Active', 'Active Sub Sectors']
     return(
         <div className='mselector-wrapper'>
           <div className='mselector-list'>
 
             <SelectorHeader
               vID='unit-list'
-              title='Units'
+              title='Sectors'
               sortBy={sortBy}
               backTouched={this.props.onRequestChange}/>
 

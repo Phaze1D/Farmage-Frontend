@@ -153,7 +153,7 @@ let ExpenseSummary = (props) => {
           }
 
           <div className='mtab-info'>
-            <span>For Unit</span>
+            <span>For Sector</span>
               {expense.unit.name}
           </div>
         </div>

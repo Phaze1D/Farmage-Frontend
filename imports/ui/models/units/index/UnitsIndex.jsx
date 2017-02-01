@@ -24,7 +24,7 @@ export default class UnitsIndex extends React.Component{
   }
 
   onCardUpdate(unit_id){
-    this.refs.dashboard.toggleRight(unit_id, 'Update Unit');
+    this.refs.dashboard.toggleRight(unit_id, 'Update Sector');
   }
 
   toggleUFAB(event){
@@ -56,8 +56,8 @@ export default class UnitsIndex extends React.Component{
 
     return (
       <Dashboard
-        defaultRightTitle='New Unit'
-        headerTitle='Units'
+        defaultRightTitle='New Sector'
+        headerTitle='Sectors'
         showMFAB={true}
         right={right}
         filter={filter}

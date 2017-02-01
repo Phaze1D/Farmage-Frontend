@@ -13,7 +13,7 @@ const testQuantity = () => {
 }
 
 const testUnitPrice = () => {
-  return (Math.random() * 30).toFixed(2);
+  return Number((Math.random() * 30).toFixed(2));
 }
 
 const testPrice = () => {
@@ -21,7 +21,7 @@ const testPrice = () => {
 }
 
 const testCreatedAt = () => {
-  return faker.date.past();
+  return faker.date.past(1);
 }
 
 const testRecipt = () => {
@@ -54,6 +54,7 @@ const factoryExpense = () => {
     quantity: testQuantity(),
     unitPrice: testUnitPrice(),
     taxRate: testTaxRate(),
+    totalPrice: testUnitPrice(),
     notes: testNotes(),
     dateBought: testCreatedAt(),
     receiptUrl: testRecipt(),
