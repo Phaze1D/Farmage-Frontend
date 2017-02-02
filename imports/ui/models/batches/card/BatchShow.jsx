@@ -29,10 +29,20 @@ export default class BatchShow extends React.Component{
 
   handleTabChange(event, value){
     this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
-  handleSwipe(index, indexLatest){
-    this.setState({tabValue: index})
+  handleSwipe(value, indexLatest){
+    this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
   toggleRight(event){
@@ -44,6 +54,7 @@ export default class BatchShow extends React.Component{
 
     return(
       <MShow
+        ref='mshow'
         onFabClick={this.toggleRight}
         title={title}
         subTitle='Batch Identifer'

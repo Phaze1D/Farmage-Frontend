@@ -29,16 +29,27 @@ export default class ExpenseShow extends React.Component{
 
   handleTabChange(event, value){
     this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
-  handleSwipe(index, indexLatest){
-    this.setState({tabValue: index})
+  handleSwipe(value, indexLatest){
+    this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
   render(){
 
     return(
       <MShow
+        ref='mshow'
         onFabClick={this.props.onFabClick}
         title={`${this.expense.quantity} ${this.expense.itemName}`}
         hasFAB={true}

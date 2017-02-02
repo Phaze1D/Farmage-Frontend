@@ -31,10 +31,20 @@ export default class UnitShow extends React.Component{
 
   handleTabChange(event, value){
     this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
-  handleSwipe(index, indexLatest){
-    this.setState({tabValue: index})
+  handleSwipe(value, indexLatest){
+    this.setState({tabValue: value})
+    if(this.refs.mshow && value !== 0){
+      this.refs.mshow.hideFAB()
+    }else if (this.refs.mshow && value === 0) {
+      this.refs.mshow.showFAB()
+    }
   }
 
   toggleRight(event){
@@ -45,6 +55,7 @@ export default class UnitShow extends React.Component{
 
     return(
       <MShow
+        ref='mshow'
         onFabClick={this.toggleRight}
         title={this.unit.name}
         hasFAB={true}
@@ -62,7 +73,7 @@ export default class UnitShow extends React.Component{
             <MFade>
               <UnitSummary unit={this.unit}/>
             </MFade>
-            
+
             <SectorAnalytics unit={this.unit}/>
             <div>Reports</div>
 

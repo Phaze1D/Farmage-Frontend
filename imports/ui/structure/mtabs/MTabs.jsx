@@ -30,7 +30,7 @@ export default class MTabs extends React.Component{
 
     let container = showMain.querySelector('.react-swipeable-view-container')
     let wcontent = showMain.querySelector('[aria-hidden=false]');
-    if(wcontent.querySelector('.mtab-content')){
+    if(wcontent && wcontent.querySelector('.mtab-content')){
       container.style.height = wcontent.querySelector('.mtab-content').clientHeight + 'px'
     }else{
       setTimeout(() => {

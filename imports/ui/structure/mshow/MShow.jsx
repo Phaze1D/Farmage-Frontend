@@ -20,6 +20,7 @@ export default class MShow extends React.Component{
     this.handleScroll = this.handleScroll.bind(this);
     this.previousScroll = 0;
     this.fabLeft = false;
+    this.fabKeepHidden = false;
   }
 
   componentDidMount() {
@@ -54,7 +55,7 @@ export default class MShow extends React.Component{
       if(scrollTop > this.previousScroll && !this.fabLeft){
         fab.className = "fab show-fab leave-fab leave-fab-active";
         this.fabLeft = true;
-      }else if(scrollTop < this.previousScroll && this.fabLeft){
+      }else if(scrollTop < this.previousScroll && this.fabLeft && !this.fabKeepHidden){
         fab.className = "fab show-fab enter-fab enter-fab-active";
         this.fabLeft = false;
       }
@@ -64,6 +65,24 @@ export default class MShow extends React.Component{
     }
 
     this.previousScroll = scrollTop
+  }
+
+  hideFAB(){
+    let fab = document.getElementsByClassName('show-fab')[0]
+    fab.className = "fab show-fab leave-fab leave-fab-active";
+    this.fabLeft = true;
+    this.fabKeepHidden = true;
+  }
+
+  showFAB(){
+    let topNum = 276 - this.refs.showBarTitle.clientHeight
+    if(document.getElementById('show-main').scrollTop <= topNum){
+      let fab = document.getElementsByClassName('show-fab')[0]
+      fab.className = "fab show-fab enter-fab enter-fab-active";
+      this.fabLeft = false;
+    }
+
+    this.fabKeepHidden = false;
   }
 
   render(){
