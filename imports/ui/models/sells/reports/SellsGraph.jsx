@@ -171,7 +171,7 @@ export default class SellsGraph extends React.Component{
       <div className='report-card'>
         <div className='report-top'>
           <div className='report-title'>
-            Monthly Purchases
+            Monthly Sales
           </div>
 
         </div>

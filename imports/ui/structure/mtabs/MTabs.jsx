@@ -28,6 +28,19 @@ export default class MTabs extends React.Component{
       showMain.scrollTop = 276 - theight + 1
     }
 
+    let container = showMain.querySelector('.react-swipeable-view-container')
+    let wcontent = showMain.querySelector('[aria-hidden=false]');
+    if(wcontent.querySelector('.mtab-content')){
+      container.style.height = wcontent.querySelector('.mtab-content').clientHeight + 'px'
+    }else{
+      setTimeout(() => {
+        let showMain = document.getElementById('show-main')
+        let container = showMain.querySelector('.react-swipeable-view-container')
+        let wcontent = showMain.querySelector('[aria-hidden=false]');
+        container.style.height = wcontent.querySelector('.mtab-content').clientHeight + 'px'
+      }, 550)
+    }
+
     let tabs = this.refs.mtabs.getElementsByClassName('mtab')
     let xtrans = 0;
     for (let i = 0; i < value; i++) {

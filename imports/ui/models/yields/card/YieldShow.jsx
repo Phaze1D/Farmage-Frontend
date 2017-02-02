@@ -55,13 +55,12 @@ export default class YieldShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Analytics', 'Reports']}/>
+          tabs={['Summary', 'Reports']}/>
 
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <YieldSummary yield={this.yield}/>
             <div>Reports</div>
-            <div>Analytics</div>
           </SwipeableViews>
         </MFade>
 

@@ -118,6 +118,13 @@ export default class TopSectorResource extends React.Component{
                   }
                 }
             },
+            scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true,
+                  },
+              }],
+            }
         }
     });
   }
@@ -193,7 +200,7 @@ export default class TopSectorResource extends React.Component{
 
             <div className='total-div' style={{backgroundColor: purpleA700}}>
               <span>
-                Total Units Produced
+                Total {this.resource.measurementUnit} Produced
               </span>
               {this.total.toFixed(8)}
             </div>

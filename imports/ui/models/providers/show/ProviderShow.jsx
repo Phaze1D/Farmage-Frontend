@@ -9,6 +9,7 @@ import UserShowInfo from '../../ousers/UserShowInfo';
 import PersonSummary from '../../person/PersonSummary';
 import {factoryPerson} from '../../person/faker/factoryPerson';
 import MFade from '../../../structure/mfade/MFade';
+import ProviderAnalytics from './ProviderAnalytics';
 
 
 
@@ -59,13 +60,15 @@ export default class ProviderShow extends React.Component{
           value={this.state.tabValue}
           tabs={['Summary', 'Analytics', 'Reports']}/>
 
-        <MFade>
+
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue}>
-            <PersonSummary person={this.person}/>
+            <MFade>
+              <PersonSummary person={this.person}/>
+            </MFade>
+
+            <ProviderAnalytics provider={this.person}/>
             <div>Reports</div>
-            <div>Analytics</div>
           </SwipeableViews>
-        </MFade>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>
           <PersonNew

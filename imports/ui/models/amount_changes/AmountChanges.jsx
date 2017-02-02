@@ -23,6 +23,10 @@ export default class AmountChanges extends React.Component{
     this.onAmountChanged = this.onAmountChanged.bind(this);
   }
 
+  componentDidMount() {
+    document.getElementsByClassName('disabled-input')[0].getElementsByTagName('input')[0].disabled = true
+  }
+
   handleChange(event){
     value = event.target.value.length > 0 ? event.target.value : 0
     this.setState({amount: value})
@@ -139,7 +143,7 @@ let UpdateEvent = (props) => (
           type="number"
           value={props.amount}
           hintText=""
-          className="input-lg"
+          className="input-lg disabled-input"
           floatingLabelText={props.amountLabel}
           fullWidth={true}/>
     </div>
