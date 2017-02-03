@@ -38,7 +38,7 @@ const testDetails = (sid = false) => {
     let batches = [];
     let productQuantity = 0;
 
-    for(let j = 0; j < Math.round(Math.random() * 5); j++){
+    for(let j = 0; j < Math.round(Math.random() * 10); j++){
       const batch = factoryBatchNOR();
       const qt = Math.round(Math.random() * 50);
       productQuantity += qt;

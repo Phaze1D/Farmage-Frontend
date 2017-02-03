@@ -66,7 +66,7 @@ export default class ProductShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Analytics', 'Reports']}/>
+          tabs={['Summary', 'Analytics', 'Tables']}/>
 
 
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
@@ -77,7 +77,7 @@ export default class ProductShow extends React.Component{
             <ProductAnalytics product={this.product}/>
 
 
-            <div>Reports</div>
+            <div>Tables</div>
           </SwipeableViews>
 
 

@@ -110,7 +110,7 @@ export default class TopProductsGraph extends React.Component{
             				return title
             			},
                   label: (tooltipItem, data) => {
-            				return data.datasets[0].data[tooltipItem.index]
+            				return "Total Purchesed: " + data.datasets[0].data[tooltipItem.index]
                   }
                 }
             },

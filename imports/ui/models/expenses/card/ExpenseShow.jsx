@@ -67,7 +67,7 @@ export default class ExpenseShow extends React.Component{
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <ExpenseSummary expense={this.expense}/>
-            <div>Reports</div>
+            <div>Tables</div>
             <div>Analytics</div>
           </SwipeableViews>
         </MFade>

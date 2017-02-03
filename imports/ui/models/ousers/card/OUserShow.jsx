@@ -73,12 +73,12 @@ export default class OUserShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports']}/>
+          tabs={['Summary', 'Tables']}/>
 
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <OUserSummary ouser={this.ouser}/>
-            <div>Reports</div>
+            <div>Tables</div>
           </SwipeableViews>
         </MFade>
 

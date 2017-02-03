@@ -66,12 +66,12 @@ export default class BatchShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Reports']}/>
+          tabs={['Summary', 'Tables']}/>
 
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <BatchSummary batch={this.batch}/>
-            <div>Reports</div>
+            <div>Tables</div>
           </SwipeableViews>
         </MFade>
 

@@ -66,7 +66,7 @@ export default class MovementShow extends React.Component{
         <MFade>
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <MovementSummary movement={this.movement}/>
-            <div>Reports</div>
+            <div>Tables</div>
             <div>Analytics</div>
           </SwipeableViews>
         </MFade>

@@ -11,7 +11,37 @@
 
 
 .sell-show-subtitle{
-  margin-top: 15px;
-  color: @grey-500;
+  margin: 15px 0 0px;
+  color: @grey-600;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  // justify-content: space-between;
+
+
+  svg{
+    margin-right: 15px;
+  }
+
+  &.expanded{
+
+    svg{
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.expandable{
+  height: 0;
+  overflow: hidden;
+  transition-timing-function: @animation-curve-default;
+  transition-delay: 0 ;
+  transition-duration: @animation-duration ;
+  transition-property: height ;
+
+  &.expanded{
+    // height: auto;
+    // overflow: inherit;
+  }
 }
