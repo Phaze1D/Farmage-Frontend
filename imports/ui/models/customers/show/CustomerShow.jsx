@@ -68,7 +68,7 @@ export default class CustomerShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Analytics', 'Tables']}/>
+          tabs={['Summary', 'Analytics']}/>
 
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
             <MFade>
@@ -76,7 +76,7 @@ export default class CustomerShow extends React.Component{
             </MFade>
 
             <CustomerAnalytics customer={this.person}/>
-            <div>Tables</div>
+            
           </SwipeableViews>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>

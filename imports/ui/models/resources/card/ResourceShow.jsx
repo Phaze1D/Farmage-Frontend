@@ -64,7 +64,7 @@ export default class ResourceShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Analytics', 'Tables']}/>
+          tabs={['Summary', 'Analytics']}/>
 
         <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
           <MFade>
@@ -72,8 +72,6 @@ export default class ResourceShow extends React.Component{
           </MFade>
 
           <ResourceAnalytics resource={this.resource}/>
-
-          <div>Tables</div>
         </SwipeableViews>
 
         <RightDrawer open={this.state.ropen} onRequestChange={(open) => this.setState({ropen: open})}>

@@ -66,7 +66,7 @@ export default class UnitShow extends React.Component{
         <MTabs
           onTabChange={this.handleTabChange}
           value={this.state.tabValue}
-          tabs={['Summary', 'Analytics', 'Tables']}/>
+          tabs={['Summary', 'Analytics']}/>
 
 
           <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
@@ -75,8 +75,6 @@ export default class UnitShow extends React.Component{
             </MFade>
 
             <SectorAnalytics unit={this.unit}/>
-            <div>Tables</div>
-
           </SwipeableViews>
 
 

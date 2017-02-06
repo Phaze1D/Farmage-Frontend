@@ -3,6 +3,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
 import Subheader from 'material-ui/Subheader';
+import StorageSVG from 'material-ui/svg-icons/device/storage';
+import RaisedButton from 'material-ui/RaisedButton';
 import ReactDOM from 'react-dom';
 import MSelectSort from '../../../structure/mselect_sort/MSelectSort';
 
@@ -124,6 +126,12 @@ export default class BatchesFilter extends React.Component{
             month: 'short',
             year: 'numeric',
           }).format} />
+
+        <Subheader className='filter-header'></Subheader>
+        <div className='mselect-field'>
+          <RaisedButton label="Export" primary={true} fullWidth={true} icon={<StorageSVG className='raised-bsvg' />} />
+        </div>
+        <Subheader className='filter-header'></Subheader>
 
 
       </div>

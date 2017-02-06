@@ -1,7 +1,11 @@
 import React from 'react';
 import SelectField from 'material-ui/SelectField';
-import ArrowUp from 'material-ui/svg-icons/action/trending-up';
-import ArrowDown from 'material-ui/svg-icons/action/trending-down';
+// import ArrowUp from 'material-ui/svg-icons/action/trending-up';
+// import ArrowDown from 'material-ui/svg-icons/action/trending-down';
+import ArrowDown from 'material-ui/svg-icons/navigation/arrow-downward';
+import ArrowUp from 'material-ui/svg-icons/navigation/arrow-upward';
+
+
 import MenuItem from 'material-ui/MenuItem';
 import {cyan500, teal500} from 'material-ui/styles/colors';
 

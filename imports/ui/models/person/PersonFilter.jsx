@@ -1,7 +1,9 @@
 import React from "react"
 import DatePicker from 'material-ui/DatePicker';
 import Subheader from 'material-ui/Subheader';
+import StorageSVG from 'material-ui/svg-icons/device/storage';
 import ReactDOM from 'react-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 import MSelectSort from '../../structure/mselect_sort/MSelectSort';
 
 
@@ -94,6 +96,15 @@ export default class PersonFilter extends React.Component{
             month: 'short',
             year: 'numeric',
           }).format} />
+
+
+        <Subheader className='filter-header'></Subheader>
+        <div className='mselect-field'>
+          <RaisedButton label="Export" primary={true} fullWidth={true} icon={<StorageSVG className='raised-bsvg' />}/>
+        </div>
+        <Subheader className='filter-header'></Subheader>
+
+
 
       </div>
     )
