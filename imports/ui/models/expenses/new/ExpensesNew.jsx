@@ -139,7 +139,7 @@ class FormFields extends React.Component{
 
         <Details items={this.items} toggleSelector={this.props.toggleUnitSelector}/>
 
-          
+
         <div className="row">
           <div className="col-xs-6 sm-p-right">
             <MTextField
@@ -183,6 +183,35 @@ class FormFields extends React.Component{
                 prefixSide="left"/>
           </div>
         </div>
+
+        <div className='row'>
+          <div className="col-xs-6">
+            <TextField
+              name="reference"
+              type="text"
+              hintText=""
+              floatingLabelText="Custom Reference ID"
+              fullWidth={true}/>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-xs-12'>
+            <TextArea
+              name="notes"
+              type="text"
+              defaultValue={this.props.expense.notes}
+              className=""
+              floatingLabelText="Description"
+              fullWidth={true}
+              multiLine={true}
+              showCount={true}
+              maxCount={512}
+              rows={1} />
+          </div>
+        </div>
+
+
 
 
 
