@@ -46,7 +46,7 @@ export default class MTextField extends React.Component{
 
 
     const tfClasses = classnames('m-textfield', prefixSide, textFieldProps.className ,{
-      'm-transition': this.state.mTranstion || (this.props.value && this.props.value.length > 0 && prefixSide === 'left')
+      'm-transition': this.state.mTranstion || (this.props.value && this.props.value.length > 0 && prefixSide === 'left') || this.props.defaultValue
     })
 
     const preClasses = classnames(prefixSide, prefixClass);

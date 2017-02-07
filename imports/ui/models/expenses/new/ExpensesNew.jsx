@@ -17,6 +17,7 @@ import PersonSelected from '../../person/PersonSelected';
 import PersonsSelectorList from '../../person/PersonsSelectorList';
 import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
 import MFade from '../../../structure/mfade/MFade';
+import Details from './Details'
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
 import {factoryExpense} from '../faker/factoryExpense';
 
@@ -116,9 +117,11 @@ export default class ExpensesNew extends React.Component{
 class FormFields extends React.Component{
   constructor(props){
     super(props)
-    this.state = {total_price: ''}
+    this.state = {total: 0, subTotal: 0}
 
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+
+    this.items = []
   }
 
   componentDidMount() {
@@ -126,16 +129,7 @@ class FormFields extends React.Component{
   }
 
   handleTotalPriceChange(){
-    uv = this.unitPriceTF.input.value;
-    rv = this.taxRateTF.input.value;
-    qv = this.quantityTF.input.value;
 
-    uv = uv.length > 0 ? uv : 0.00;
-    rv = rv.length > 0 ? rv/100 : 0.00;
-    qv = qv.length > 0 ? qv : 0;
-    tp = uv * (1 + rv)
-    tp *= qv;
-    this.setState({total_price: tp.toFixed(2)});
   }
 
   render(){
@@ -143,114 +137,54 @@ class FormFields extends React.Component{
     return(
       <div className='form-fields'>
 
-        <div className='row'>
-          <div className='col-xs-12 col-flex'>
-            <IconButton className='avatar-button'>
-              <ActionReceipt />
-            </IconButton>
+        <Details items={this.items} toggleSelector={this.props.toggleUnitSelector}/>
 
-            <div style={{width: '100%'}}>
-              <AutoComplete
-                  name="name"
-                  type="text"
-                  className="input-lg"
-                  filter={AutoComplete.caseInsensitiveFilter}
-                  maxSearchResults={5}
-                  hintText=""
-                  searchText={this.props.expense.itemName}
-                  floatingLabelText="Item Name"
-                  fullWidth={true}
-                  dataSource={dataS}/>
-
-              <TextField
-                  name="quantity"
-                  type="number"
-                  hintText=""
-                  defaultValue={this.props.expense.quantity}
-                  floatingLabelText="Quantity"
-                  ref={(input) => this.quantityTF = input}
-                  onChange={this.handleTotalPriceChange}
-                  fullWidth={true}/>
-
-            </div>
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-xs-4 sm-p-right'>
+          
+        <div className="row">
+          <div className="col-xs-6 sm-p-right">
             <MTextField
-                name="unit_price"
+                name="sub_total"
                 type="number"
-                defaultValue={this.props.expense.unitPrice}
-                className=""
-                hintText=""
-                floatingLabelText="Unit Cost"
-                mref={(input) => this.unitPriceTF = input}
-                onChange={this.handleTotalPriceChange}
+                floatingLabelText="Sub Total"
                 fullWidth={true}
-                prefix="$"
-                prefixSide="left"/>
-          </div>
-
-          <div className='col-xs-4 sm-p-left sm-p-right'>
-            <MTextField
-                name="tax_rate"
-                type="number"
-                defaultValue={this.props.expense.taxRate}
-                className=""
-                hintText=""
-                floatingLabelText="Tax Rate"
-                mref={(input) => this.taxRateTF = input}
-                onChange={this.handleTotalPriceChange}
-                fullWidth={true}
-                prefix="%"
-                prefixSide="right"/>
-          </div>
-
-          <div className='col-xs-4 sm-p-left'>
-            <MTextField
-                name="tprice"
-                type="number"
-                className=""
-                hintText=""
-                value={this.state.total_price}
+                value={this.state.subTotal.toFixed(2)}
                 disabled={true}
-                floatingLabelText="Total Cost"
-                fullWidth={true}
                 prefix="$"
+                prefixSide="left"/>
+
+          </div>
+
+          <div className="col-xs-6 sm-p-left">
+            <MTextField
+                name="tax_total"
+                type="number"
+                floatingLabelText="Extra Costs or Discounts"
+                fullWidth={true}
+                disabled={false}
+                defaultValue='0.00'
+                prefix="$"
+                prefixSide="left"/>
+
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-12">
+            <MTextField
+                name="total"
+                type="number"
+                className='input-lg'
+                floatingLabelText="Total Price"
+                fullWidth={true}
+                value={this.state.total.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixClass="input-lg"
                 prefixSide="left"/>
           </div>
         </div>
 
-        <div className='row'>
-          <div className='col-xs-8 sm-p-right'>
-            <TextArea
-              name="notes"
-              type="text"
-              defaultValue={this.props.expense.notes}
-              className=""
-              floatingLabelText="Description"
-              fullWidth={true}
-              multiLine={true}
-              showCount={true}
-              maxCount={512}
-              rows={1} />
-          </div>
 
-          <div className="col-xs-4 sm-p-left">
-            <DatePicker
-              name="date_bought"
-              hintText="Bought"
-              floatingLabelText="Bought"
-              fullWidth={true}
-              defaultDate={this.props.expense.createdAt ? this.props.expense.createdAt : new Date()}
-              formatDate={new DateTimeFormat('en-US', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-              }).format} />
-          </div>
-        </div>
 
         <div className='row'>
           <div className='col-xs-12'>
@@ -263,15 +197,7 @@ class FormFields extends React.Component{
         }
 
 
-        <div className='row'>
-          <div className='col-xs-12'>
-            <SelectorButton title="Sector" highlight={this.props.expense.unit} toggleSelector={this.props.toggleUnitSelector}/>
-          </div>
-        </div>
 
-        {this.props.expense.unit &&
-          <UnitSelected unit={this.props.expense.unit}/>
-        }
 
       </div>
     )
