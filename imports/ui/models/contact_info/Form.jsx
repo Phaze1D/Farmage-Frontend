@@ -59,7 +59,7 @@ const AddressForm = (props) => {
 
         </div>
 
-        <IconButton onTouchTap={props.handleRemoveTouch}>
+        <IconButton onTouchTap={props.handleRemoveTouch} disableTouchRipple={true}>
           <ContentRemoveCircle />
         </IconButton>
       </div>
@@ -92,7 +92,7 @@ const TelephoneForm = (props) => {
           defaultValue={props.number}
           floatText='Number' />
 
-        <IconButton onTouchTap={props.handleRemoveTouch}>
+        <IconButton onTouchTap={props.handleRemoveTouch} disableTouchRipple={true}>
           <ContentRemoveCircle />
         </IconButton>
       </div>

@@ -19,11 +19,14 @@ import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
 import MFade from '../../../structure/mfade/MFade';
 import Details from './Details'
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
+
+import Big from 'big.js';
+Big.DP = 10
+
 import {factoryExpense} from '../faker/factoryExpense';
 
 
 
-const dataS = ["Sheep Food", 'Chicken Food', "Dog Food", "Employee Salary", "Gasoline", "LightBulb", "Some Very Long Item To Check Phone Handling"]
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
 
@@ -84,7 +87,7 @@ export default class ExpensesNew extends React.Component{
           transitionAppearTimeout={400}>
 
           {this.state.usopen &&
-            <UnitSelectorList key='us' onRequestChange={this.toggleUnitSelector} onlyOne={true}/>
+            <UnitSelectorList key='us' onRequestChange={this.toggleUnitSelector} onlyOne={false}/>
           }
 
           </ReactCSSTransitionGroup>
@@ -185,13 +188,26 @@ class FormFields extends React.Component{
         </div>
 
         <div className='row'>
-          <div className="col-xs-6">
+          <div className="col-xs-8 sm-p-right">
             <TextField
               name="reference"
               type="text"
               hintText=""
               floatingLabelText="Custom Reference ID"
               fullWidth={true}/>
+          </div>
+
+          <div className="col-xs-4 sm-p-left">
+            <DatePicker
+              name="date_bought"
+              floatingLabelText="Date Bought"
+              fullWidth={true}
+              defaultDate={this.props.expense.createdAt ? this.props.expense.createdAt : new Date()}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              }).format} />
           </div>
         </div>
 

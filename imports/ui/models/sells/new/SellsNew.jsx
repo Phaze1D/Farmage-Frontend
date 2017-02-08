@@ -5,6 +5,8 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PayIcon from 'material-ui/svg-icons/maps/local-atm';
+import DatePicker from 'material-ui/DatePicker';
+
 
 import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import MainPanel from '../../../structure/main_panel/MainPanel';
@@ -17,6 +19,8 @@ import {factorySell} from '../faker/factorySell';
 import Big from 'big.js';
 Big.DP = 10
 
+
+let DateTimeFormat = global.Intl.DateTimeFormat;
 
 export default class SellsNew extends React.Component{
   constructor(props){
@@ -88,7 +92,7 @@ export default class SellsNew extends React.Component{
             isUpdate={this.props.isUpdate}
             sell={this.sell}/>
         </MFade>
-            
+
       </MainPanel>
     )
   }
@@ -231,13 +235,26 @@ class FormFields extends React.Component{
         </div>
 
         <div className='row'>
-          <div className="col-xs-12">
+          <div className="col-xs-8 sm-p-right">
             <TextField
               name="reference"
               type="text"
               hintText=""
               floatingLabelText="Custom Reference ID"
               fullWidth={true}/>
+          </div>
+
+          <div className="col-xs-4 sm-p-left">
+            <DatePicker
+              name="date_due"
+              floatingLabelText="Date Due"
+              fullWidth={true}
+              defaultDate={this.props.sell.dateDue ? this.props.sell.dateDue : new Date()}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              }).format} />
           </div>
         </div>
 

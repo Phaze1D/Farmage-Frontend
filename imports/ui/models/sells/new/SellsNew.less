@@ -46,7 +46,7 @@
   }
 
   .add{
-    fill: @color-accent-dark !important;
+    fill: @green-a400 !important;
     margin-right: 0 !important;
   }
 
@@ -117,4 +117,25 @@
   transition-delay: 0 !important;
   transition-duration: @animation-duration !important;
   transition-property: transform !important;
+}
+
+
+.row-item{
+  overflow: hidden;
+  height: 0;
+  transition-timing-function: @animation-curve-default;
+  transition-delay: 0;
+  transition-duration: @animation-duration;
+  transition-property: height;
+
+  .remove{
+    fill: @red-500 !important;
+    margin-right: 0 !important;
+  }
+
+  .remove-b{
+    position: absolute !important;
+    top: 5px;
+    right: 15px;
+  }
 }
