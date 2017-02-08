@@ -24,7 +24,8 @@ export default class AmountChanges extends React.Component{
   }
 
   componentDidMount() {
-    document.getElementsByClassName('disabled-input')[0].getElementsByTagName('input')[0].disabled = true
+    if(this.props.isUpdate)
+      document.getElementsByClassName('disabled-input')[0].getElementsByTagName('input')[0].disabled = true
   }
 
   handleChange(event){

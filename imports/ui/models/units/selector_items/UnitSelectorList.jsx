@@ -1,6 +1,6 @@
 import React from 'react';
 import {RadioButton} from 'material-ui/RadioButton';
-import {UnitCheckboxItem, UnitRadioItem} from './UnitItems';
+import {UnitCheckBoxItem, UnitRadioItem} from './UnitItems';
 import SelectorHeader, {handleRadioGroup} from '../../../structure/mselector_list/SelectorHeader';
 import MVirtualList from '../../../structure/mvirtual_list/MVirtualList';
 import {factoryUnit} from '../faker/factoryUnit.js'
@@ -29,7 +29,7 @@ export default class UnitSelectorList extends React.Component{
           checked={resource._id === this.state.keyChecked}
           onRadioClick={handleRadioGroup.bind(this)}/>
       :
-        <UnitCheckboxItem {...resource} key={resource._id}/>
+        <UnitCheckBoxItem {...resource} key={resource._id}/>
     })
 
     const sortBy = ['Identifier', 'Active', 'Active Sub Sectors']

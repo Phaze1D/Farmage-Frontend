@@ -10,7 +10,6 @@ import classnames from 'classnames';
 import Big from 'big.js';
 Big.DP = 10
 
-
 const PADDING_BORDER = 42;
 
 export default class ProductSellItem extends React.Component{
@@ -158,8 +157,8 @@ export default class ProductSellItem extends React.Component{
 
 const ProductDetail = (props) => {
 
-  let subTotal = props.detail.unitPrice * (1 + (props.detail.taxRate / 100))
-  subTotal *= props.quantity
+  let subTotal = props.detail.unitPrice * props.quantity
+  subTotal *= (1 + (props.detail.taxRate / 100))
 
   let tfprops = {}
   if(props.detail.batches.length > 0){

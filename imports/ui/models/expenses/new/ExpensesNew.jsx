@@ -12,10 +12,11 @@ import MainPanel from '../../../structure/main_panel/MainPanel';
 import TextArea from '../../../structure/textarea/TextArea';
 import FormActionBar from '../../../structure/form_action_bar/FormActionBar';
 import MTextField from '../../../structure/textfield/MTextField';
-import UnitSelected from '../../units/selector_items/UnitSelected';
 import PersonSelected from '../../person/PersonSelected';
+
 import PersonsSelectorList from '../../person/PersonsSelectorList';
 import UnitSelectorList from '../../units/selector_items/UnitSelectorList';
+
 import MFade from '../../../structure/mfade/MFade';
 import Details from './Details'
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
@@ -240,8 +241,6 @@ class FormFields extends React.Component{
         {this.props.expense.provider &&
           <PersonSelected person={this.props.expense.provider}/>
         }
-
-
 
 
       </div>
