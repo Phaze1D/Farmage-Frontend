@@ -22,13 +22,11 @@ export default class ExpenseCard extends React.Component{
     super(props);
     this.state = {
       showExpense: false,
-      showUnit: false,
       showProvider: false,
       isOpened: false
     }
 
     this.handleOnShowProvider = this.handleOnShowProvider.bind(this)
-    this.handleOnShowUnit = this.handleOnShowUnit.bind(this)
     this.handleOnShow = this.handleOnShow.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
@@ -44,14 +42,6 @@ export default class ExpenseCard extends React.Component{
     }
   }
 
-  handleOnShowUnit(event){
-    if(this.state.showUnit){
-      this.setState({showUnit: false})
-      setTimeout(() => {this.setState({isOpened: false})}, 500)
-    }else{
-      this.setState({showUnit: true, isOpened: true})
-    }
-  }
 
   handleOnShowProvider(event){
     if(this.state.showProvider){
@@ -110,7 +100,7 @@ export default class ExpenseCard extends React.Component{
         </div>
 
         {provider ?
-          <EnhancedButton style={{textAlign: 'left'}} onTouchTap={this.handleOnShowProvider}>
+          <EnhancedButton style={{textAlign: 'left', marginBottom: '10px'}} onTouchTap={this.handleOnShowProvider}>
             <div className='cyield-info-flex clickable-info'>
               <span>Provider</span>
               <MAvatar className='cyield-img'
