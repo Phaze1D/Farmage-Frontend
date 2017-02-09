@@ -18,7 +18,7 @@ export default class ProductSellItem extends React.Component{
     super(props);
     this.state = {
       itemHeight: '',
-      quantity:  this.props.detail.quantity,
+      quantity:  props.detail.quantity,
       show: true
     }
 
@@ -77,12 +77,12 @@ export default class ProductSellItem extends React.Component{
     let previousAmounts = {}
     previousAmounts.subTotal = Number(Big(this.props.detail.unitPrice).times(this.state.quantity).toString()),
     previousAmounts.taxTotal = Number(Big(this.props.detail.taxRate).div(100).times(previousAmounts.subTotal).toString())
-    previousAmounts.total = Number(Big(previousAmounts.subTotal).plus(previousAmounts.taxTotal))
+    previousAmounts.total = Number(Big(previousAmounts.subTotal).plus(previousAmounts.taxTotal).toString())
 
     let newAmounts = {}
     newAmounts.subTotal = Number(Big(this.props.detail.unitPrice).times(newQuantity).toString()),
     newAmounts.taxTotal = Number(Big(this.props.detail.taxRate).div(100).times(newAmounts.subTotal).toString())
-    newAmounts.total = Number(Big(newAmounts.subTotal).plus(newAmounts.taxTotal))
+    newAmounts.total = Number(Big(newAmounts.subTotal).plus(newAmounts.taxTotal).toString())
 
     this.props.onRequestQuantity(previousAmounts, newAmounts)
   }

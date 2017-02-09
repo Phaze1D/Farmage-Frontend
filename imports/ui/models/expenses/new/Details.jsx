@@ -11,7 +11,8 @@ import SelectorButton from '../../../structure/selector_button/SelectorButton';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentRemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import {randomImageColor} from '../../../structure/app/RandomColor.js';
-
+import Big from 'big.js';
+Big.DP = 10
 
 
 const dataS = ["Sheep Food", 'Chicken Food', "Dog Food", "Employee Salary", "Gasoline", "LightBulb", "Some Very Long Item To Check Phone Handling"]
@@ -19,7 +20,7 @@ const dataS = ["Sheep Food", 'Chicken Food', "Dog Food", "Employee Salary", "Gas
 export default class Details extends React.Component{
   constructor(props){
     super(props);
-    this.state = {items: this.props.items};
+    this.state = {items: props.items};
 
     this.handleTouchAdd = this.handleTouchAdd.bind(this);
 
@@ -51,6 +52,7 @@ export default class Details extends React.Component{
       <Item
         key={item._id}
         item={item}
+        onRequestQuantity={this.props.onRequestQuantity}
         onRemoveCall={() => this.handleRemoveTouch(i)}
         toggleSelector={this.props.toggleSelector} />
     ));
@@ -78,9 +80,11 @@ export default class Details extends React.Component{
 class Item extends React.Component{
   constructor(props){
     super(props);
-    this.state = {quantity: 0}
+    this.state = {quantity: props.item.quantity, unitPrice: props.item.unitPrice, taxRate: props.item.taxRate}
 
     this.onRemove = this.onRemove.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.calculateOldNew = this.calculateOldNew.bind(this)
   }
 
   componentDidMount() {
@@ -92,12 +96,47 @@ class Item extends React.Component{
 
   onRemove(event){
     this.refs.row.style.height = this.refs.row.getElementsByClassName('col-xs-12')[0].clientHeight + "px"
-
+    this.calculateOldNew(0, 0, 0)
     setTimeout(() => {
       this.refs.row.style.height = '0px'
     }, 150)
 
     setTimeout(() => {this.props.onRemoveCall()}, 700)
+  }
+
+  handleChange(event){
+    let det = document.getElementById(`${this.props.item._id}`)
+    let inputs = det.getElementsByTagName('INPUT')
+
+    let unitP = 0;
+    let taxR = 0;
+    let quantity = 0;
+    for (var i = 0; i < inputs.length; i++) {
+      if(inputs[i].name === 'unit_price')
+        unitP = Number(inputs[i].value);
+
+      if(inputs[i].name === 'tax_rate')
+        taxR = Number(inputs[i].value);
+
+      if(inputs[i].name === 'quantity')
+        quantity = Number(inputs[i].value);
+    }
+
+    this.calculateOldNew(quantity, unitP, taxR)
+    this.setState({unitPrice: unitP, taxRate: taxR, quantity: quantity})
+  }
+
+  calculateOldNew(newQuantity, newUnitP, newTaxR){
+    let previousAmounts = {}
+    let qu = Number(Big(this.state.unitPrice).times(this.state.quantity).toString())
+    tax = Number(Big(this.state.taxRate).div(100).times(qu).toString())
+    previousAmounts.subTotal = Number(Big(qu).plus(tax).toString())
+
+    let newAmounts = {}
+    let nqu = Number(Big(newUnitP).times(newQuantity).toString())
+    ntax = Number(Big(newTaxR).div(100).times(nqu).toString())
+    newAmounts.subTotal = Number(Big(nqu).plus(ntax).toString())
+    this.props.onRequestQuantity(previousAmounts, newAmounts)
   }
 
   render(){
@@ -124,7 +163,13 @@ class Item extends React.Component{
                 fullWidth={true}
                 dataSource={dataS}/>
 
-            <ItemDetail item={this.props.item} quantity={this.state.quantity}/>
+            <ItemDetail
+              id={this.props.item._id}
+              handleChange={this.handleChange}
+              hasUnits={this.props.item.units > 0}
+              unitPrice={this.state.unitPrice}
+              taxRate={this.state.taxRate}
+              quantity={this.state.quantity}/>
 
             <SelectorButton
               title="Sectors"
@@ -142,11 +187,10 @@ class Item extends React.Component{
 
 const ItemDetail = (props) => {
 
-  let subTotal = props.item.unitPrice * props.quantity
-  subTotal = subTotal * (1 + (props.item.taxRate / 100))
-
+  let subTotal = props.unitPrice * props.quantity
+  subTotal = subTotal * (1 + (props.taxRate / 100))
   let tfprops = {}
-  if(props.item.units.length > 0){
+  if(props.hasUnits){
     tfprops.disabled = true;
     tfprops.value = props.quantity
   }else{
@@ -155,7 +199,7 @@ const ItemDetail = (props) => {
   }
 
   return(
-    <div className='pi-detail'>
+    <div id={props.id} className='pi-detail'>
 
       <MTextField
         name="unit_price"
@@ -163,9 +207,10 @@ const ItemDetail = (props) => {
         hintText=""
         boxClass="quantity-input"
         floatingLabelText="Unit Price"
+        onChange={props.handleChange}
         prefix="$"
         prefixSide="left"
-        defaultValue={props.item.unitPrice.toFixed(2)}
+        defaultValue={props.unitPrice.toFixed(2)}
         fullWidth={true}/>
 
       <MTextField
@@ -174,16 +219,17 @@ const ItemDetail = (props) => {
         hintText=""
         boxClass="quantity-input"
         floatingLabelText="Tax Rate"
+        onChange={props.handleChange}
         prefix="%"
         prefixSide="right"
-        defaultValue={props.item.taxRate.toFixed(2)}
+        defaultValue={props.taxRate.toFixed(0)}
         fullWidth={true}/>
 
       <TextField
           name="quantity"
           type="number"
           hintText=""
-          onChange={props.handleQuantityChange}
+          onChange={props.handleChange}
           className="quantity-input"
           floatingLabelText="Quantity"
           {...tfprops}

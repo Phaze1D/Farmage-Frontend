@@ -102,51 +102,21 @@ export default class SellsNew extends React.Component{
 class FormFields extends React.Component{
   constructor(props){
     super(props)
-    this.state = {discount_type: "%", total: 0, subTotal: 0, taxTotal: 0}
-    this.details = this.props.sell.details ? this.props.sell.details : []
+    this.state = {discount_type: "%"}
+    this.details = props.sell.details ? props.sell.details : []
 
     this.handleDiscountToggle = this.handleDiscountToggle.bind(this);
-    this.handleOnClose = this.handleOnClose.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
   }
 
-  componentDidMount() {
-    let subT = Big(0);
-    let taxT = Big(0);
 
-    for (let i = 0; i < this.details.length; i++) {
-      let detail = this.props.sell.details[i];
-      let psubT = Big(detail.unitPrice).times(detail.quantity)
-      let pTaxT = Big(detail.taxRate).div(100).times(psubT)
-      subT = subT.plus(psubT)
-      taxT = taxT.plus(pTaxT)
-    }
-
-
-    this.setState({
-      total: Number(subT.toString()) + Number(taxT.toString()),
-      subTotal: Number(subT.toString()),
-      taxTotal: Number(taxT.toString())
-    })
-
+  handleQuantityChange(previousAmounts, newAmounts){
+    this.refs.totalFields.handleQuantityChange(previousAmounts, newAmounts)
   }
 
   handleOnClose(event){
     this.refs.details.closeSelectorLists();
-  }
-
-  handleQuantityChange(previousAmounts, newAmounts){
-    let difSubT = Big(newAmounts.subTotal).minus(previousAmounts.subTotal);
-    let difTaxT = Big(newAmounts.taxTotal).minus(previousAmounts.taxTotal);
-    let difToT = Big(newAmounts.total).minus(previousAmounts.total);
-
-    let newSubT = Number(difSubT.plus(this.state.subTotal).toString());
-    let newTaxT = Number(difTaxT.plus(this.state.taxTotal).toString());
-    let newToT = Number(difToT.plus(this.state.total).toString());
-
-    this.setState({total: newToT, subTotal: newSubT, taxTotal: newTaxT})
-
-
   }
 
   handleDiscountToggle(){
@@ -167,49 +137,9 @@ class FormFields extends React.Component{
           ref='details'
           details={this.details}/>
 
-        <div className="row">
-          <div className="col-xs-12">
-            <MTextField
-                name="total"
-                type="number"
-                className='input-lg'
-                floatingLabelText="Total Price"
-                fullWidth={true}
-                value={this.state.total.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixClass="input-lg"
-                prefixSide="left"/>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-xs-6 sm-p-right">
-            <MTextField
-                name="sub_total"
-                type="number"
-                floatingLabelText="Sub Total"
-                fullWidth={true}
-                value={this.state.subTotal.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixSide="left"/>
-
-          </div>
-
-          <div className="col-xs-6 sm-p-left">
-            <MTextField
-                name="tax_total"
-                type="number"
-                floatingLabelText="Tax Total"
-                fullWidth={true}
-                value={this.state.taxTotal.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixSide="left"/>
-
-          </div>
-        </div>
+        <TotalFields
+          ref='totalFields'
+          details={this.details}/>
 
         <div className="row">
           <div className="col-xs-6 sm-p-right">
@@ -297,6 +227,100 @@ class FormFields extends React.Component{
           </div>
         </div>
 
+      </div>
+    )
+  }
+}
+
+
+class TotalFields extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {total: 0, subTotal: 0, taxTotal: 0}
+
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+  }
+
+  componentDidMount() {
+    let subT = Big(0);
+    let taxT = Big(0);
+
+    for (let i = 0; i < this.props.details.length; i++) {
+      let detail = this.props.details[i];
+      let psubT = Big(detail.unitPrice).times(detail.quantity)
+      let pTaxT = Big(detail.taxRate).div(100).times(psubT)
+      subT = subT.plus(psubT)
+      taxT = taxT.plus(pTaxT)
+    }
+
+
+    this.setState({
+      total: Number(subT.toString()) + Number(taxT.toString()),
+      subTotal: Number(subT.toString()),
+      taxTotal: Number(taxT.toString())
+    })
+  }
+
+  handleQuantityChange(previousAmounts, newAmounts){
+    let difSubT = Big(newAmounts.subTotal).minus(previousAmounts.subTotal);
+    let difTaxT = Big(newAmounts.taxTotal).minus(previousAmounts.taxTotal);
+    let difToT = Big(newAmounts.total).minus(previousAmounts.total);
+
+    let newSubT = Number(difSubT.plus(this.state.subTotal).toString());
+    let newTaxT = Number(difTaxT.plus(this.state.taxTotal).toString());
+    let newToT = Number(difToT.plus(this.state.total).toString());
+
+    this.setState({total: newToT, subTotal: newSubT, taxTotal: newTaxT})
+  }
+
+
+  render(){
+
+    return(
+      <div>
+        <div className="row">
+          <div className="col-xs-12">
+            <MTextField
+                name="total"
+                type="number"
+                className='input-lg'
+                floatingLabelText="Total Price"
+                fullWidth={true}
+                value={this.state.total.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixClass="input-lg"
+                prefixSide="left"/>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-6 sm-p-right">
+            <MTextField
+                name="sub_total"
+                type="number"
+                floatingLabelText="Sub Total"
+                fullWidth={true}
+                value={this.state.subTotal.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixSide="left"/>
+
+          </div>
+
+          <div className="col-xs-6 sm-p-left">
+            <MTextField
+                name="tax_total"
+                type="number"
+                floatingLabelText="Tax Total"
+                fullWidth={true}
+                value={this.state.taxTotal.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixSide="left"/>
+
+          </div>
+        </div>
       </div>
     )
   }

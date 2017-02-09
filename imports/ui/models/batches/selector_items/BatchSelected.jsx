@@ -15,7 +15,7 @@ export default class BatchSelected extends React.Component{
   }
 
   componentDidMount() {
-    this.handleChange(null, `${this.props.dbatch.quantityTaken}`)
+    // this.handleChange(null, `${this.props.dbatch.quantityTaken}`)
   }
 
   handleChange(event, newAmount){

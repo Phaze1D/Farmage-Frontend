@@ -24,7 +24,7 @@ import {randomImageColor} from '../../../structure/app/RandomColor.js';
 import Big from 'big.js';
 Big.DP = 10
 
-import {factoryExpense} from '../faker/factoryExpense';
+import {factoryExpenseR} from '../faker/factoryExpense';
 
 
 
@@ -41,7 +41,7 @@ export default class ExpensesNew extends React.Component{
 
     this.expense = {}
     if(this.props.objectID){
-      this.expense = factoryExpense();
+      this.expense = factoryExpenseR();
     }
   }
 
@@ -121,19 +121,13 @@ export default class ExpensesNew extends React.Component{
 class FormFields extends React.Component{
   constructor(props){
     super(props)
-    this.state = {total: 0, subTotal: 0}
 
     this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
-
-    this.items = []
+    this.items = props.expense.items ? props.expense.items : []
   }
 
-  componentDidMount() {
-    this.handleTotalPriceChange()
-  }
-
-  handleTotalPriceChange(){
-
+  handleTotalPriceChange(previousAmounts, newAmounts){
+    this.refs.totalFields.handleTotalPriceChange(previousAmounts, newAmounts)
   }
 
   render(){
@@ -141,52 +135,15 @@ class FormFields extends React.Component{
     return(
       <div className='form-fields'>
 
-        <Details items={this.items} toggleSelector={this.props.toggleUnitSelector}/>
+        <Details
+          onRequestQuantity={this.handleTotalPriceChange}
+          items={this.items}
+          toggleSelector={this.props.toggleUnitSelector}/>
 
-
-        <div className="row">
-          <div className="col-xs-6 sm-p-right">
-            <MTextField
-                name="sub_total"
-                type="number"
-                floatingLabelText="Sub Total"
-                fullWidth={true}
-                value={this.state.subTotal.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixSide="left"/>
-
-          </div>
-
-          <div className="col-xs-6 sm-p-left">
-            <MTextField
-                name="tax_total"
-                type="number"
-                floatingLabelText="Extra Costs or Discounts"
-                fullWidth={true}
-                disabled={false}
-                defaultValue='0.00'
-                prefix="$"
-                prefixSide="left"/>
-
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-xs-12">
-            <MTextField
-                name="total"
-                type="number"
-                className='input-lg'
-                floatingLabelText="Total Price"
-                fullWidth={true}
-                value={this.state.total.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixClass="input-lg"
-                prefixSide="left"/>
-          </div>
-        </div>
+        <TotalFields
+          ref='totalFields'
+          extraCost={this.props.expense.extra}
+          items={this.items}/>
 
         <div className='row'>
           <div className="col-xs-8 sm-p-right">
@@ -194,6 +151,7 @@ class FormFields extends React.Component{
               name="reference"
               type="text"
               hintText=""
+              defaultValue={this.props.expense.customRef}
               floatingLabelText="Custom Reference ID"
               fullWidth={true}/>
           </div>
@@ -229,9 +187,6 @@ class FormFields extends React.Component{
         </div>
 
 
-
-
-
         <div className='row'>
           <div className='col-xs-12'>
             <SelectorButton title="Provider" highlight={this.props.expense.provider} toggleSelector={this.props.togglePersonSelector}/>
@@ -243,6 +198,105 @@ class FormFields extends React.Component{
         }
 
 
+      </div>
+    )
+  }
+}
+
+
+class TotalFields extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {total: 0, subTotal: 0, extra: 0}
+
+    this.handleTotalPriceChange = this.handleTotalPriceChange.bind(this);
+    this.handleExtraChange = this.handleExtraChange.bind(this)
+  }
+
+  componentDidMount() {
+    let subT = Big(0);
+    let taxT = Big(0);
+
+    for (let i = 0; i < this.props.items.length; i++) {
+      let item = this.props.items[i];
+      let psubT = Big(item.unitPrice).times(item.quantity)
+      let pTaxT = Big(item.taxRate).div(100).times(psubT)
+      subT = subT.plus(psubT).plus(pTaxT)
+    }
+
+    let extra = this.props.extraCost ? this.props.extraCost : 0
+    this.setState({
+      total: Number(subT.toString()) + Number(taxT.toString()) + extra,
+      subTotal: Number(subT.toString()),
+      extra: extra
+      })
+  }
+
+
+  handleTotalPriceChange(previousAmounts, newAmounts){
+    let difSubT = Big(newAmounts.subTotal).minus(previousAmounts.subTotal);
+
+    let newSubT = Number(difSubT.plus(this.state.subTotal).toString());
+    let newToT = Number(difSubT.plus(this.state.total).toString());
+
+    this.setState({total: newToT, subTotal: newSubT})
+  }
+
+  handleExtraChange(event){
+    let extra = Number(event.currentTarget.value)
+
+    let newT = this.state.total + (extra - this.state.extra)
+    this.setState({total: newT, extra: extra })
+  }
+
+  render(){
+
+    return(
+      <div>
+        <div className="row">
+          <div className="col-xs-6 sm-p-right">
+            <MTextField
+                name="sub_total"
+                type="number"
+                floatingLabelText="Sub Total"
+                fullWidth={true}
+                value={this.state.subTotal.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixSide="left"/>
+
+          </div>
+
+          <div className="col-xs-6 sm-p-left">
+            <MTextField
+                name="tax_total"
+                type="number"
+                floatingLabelText="Extra Costs or Discounts"
+                fullWidth={true}
+                disabled={false}
+                defaultValue={this.props.extraCost ? this.props.extraCost.toFixed(2) : '0.00'}
+                onChange={this.handleExtraChange}
+                prefix="$"
+                prefixSide="left"/>
+
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-12">
+            <MTextField
+                name="total"
+                type="number"
+                className='input-lg'
+                floatingLabelText="Total Price"
+                fullWidth={true}
+                value={this.state.total.toFixed(2)}
+                disabled={true}
+                prefix="$"
+                prefixClass="input-lg"
+                prefixSide="left"/>
+          </div>
+        </div>
       </div>
     )
   }
