@@ -1,5 +1,5 @@
 import React from 'react';
-import {factoryExpense} from '../faker/factoryExpense.js';
+import {factoryExpenseR} from '../faker/factoryExpense.js';
 import ExpenseCard from '../card/ExpenseCard';
 import ExpensesNew from '../new/ExpensesNew';
 import ExpensesFilter from '../filter/ExpensesFilter';
@@ -23,7 +23,7 @@ export default class ExpensesIndex extends React.Component{
     let expenses = [];
 
     for(let i = 0; i < 20; i++){
-        expenses.push(factoryExpense());
+      expenses.push(factoryExpenseR());
     }
 
     expenses.sort((a, b) => {

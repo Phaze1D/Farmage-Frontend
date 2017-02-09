@@ -166,7 +166,7 @@ class Item extends React.Component{
             <ItemDetail
               id={this.props.item._id}
               handleChange={this.handleChange}
-              hasUnits={this.props.item.units > 0}
+              hasUnits={this.props.item.units.length > 0}
               unitPrice={this.state.unitPrice}
               taxRate={this.state.taxRate}
               quantity={this.state.quantity}/>

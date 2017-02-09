@@ -14,7 +14,7 @@ const testQuantity = () => {
 }
 
 const testUnitPrice = () => {
-  return Number((Math.random() * 30).toFixed(2));
+  return Number( (Math.random() * 30).toFixed(2) );
 }
 
 const testPrice = () => {
@@ -102,7 +102,7 @@ const testItems = () => {
       units: units
     }
 
-    subTotal += (items.unitPrice * item.quantity * (1 + item.taxRate/100))
+    subTotal += (item.unitPrice * item.quantity * (1 + item.taxRate/100))
     items.push(item)
   }
 
@@ -118,7 +118,6 @@ const factoryExpenseR = () => {
     subTotal,
     extra
   } = testItems()
-
 
   return {
     _id: faker.random.uuid(),

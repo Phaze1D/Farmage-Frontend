@@ -13,7 +13,6 @@ import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
 
 import ExpenseShow from './ExpenseShow';
-import UnitShow from '../../units/card/UnitShow';
 import ProviderShow from '../../providers/show/ProviderShow';
 
 let DateTimeFormat = global.Intl.DateTimeFormat;
@@ -78,27 +77,23 @@ export default class ExpenseCard extends React.Component{
 
   render(){
     const {
-      itemName,
-      quantity,
-      unitPrice,
+      customRef,
+      totalPrice,
       createdAt,
       receiptUrl,
       provider,
-      unit,
       ...others
     } = this.props;
 
-    const title = `${quantity} ${itemName}`;
+    const title = `${customRef}`;
     let lastName = (provider && provider.lastName) ? provider.lastName : '';
     let char = provider ? char = provider.firstName.toUpperCase().charAt(0) : '';
 
-    const totalPrice = (unitPrice * quantity).toFixed(2);
     const createdS = new DateTimeFormat('en-US', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
     }).format(createdAt);
-
 
 
     return(
@@ -109,7 +104,7 @@ export default class ExpenseCard extends React.Component{
 
         <div className='cresource-info ceboarder' style={{alignItems: 'center'}}>
           <div className='total' style={{fontSize: '30px'}}>
-            -${totalPrice}
+            -${totalPrice.toFixed(2)}
             <span></span>
           </div>
         </div>
@@ -135,12 +130,6 @@ export default class ExpenseCard extends React.Component{
           </div>
         }
 
-        <EnhancedButton style={{textAlign: 'left', flexGrow: '1'}} onTouchTap={this.handleOnShowUnit}>
-          <div className='cyield-info sm clickable-info'>
-            <span>For Sector</span>
-            {unit.name}
-          </div>
-        </EnhancedButton>
 
         {/*<CardActions className='card-actions' style={{marginTop: '8px'}}></CardActions>*/}
 
@@ -154,13 +143,7 @@ export default class ExpenseCard extends React.Component{
             open={this.state.showExpense}/>
         }
 
-        {this.state.isOpened &&
-          <UnitShow
-            onFabClick={this.handleUpdate}
-            personID={this.props._id}
-            onRequestChange={this.handleOnShowUnit}
-            open={this.state.showUnit}/>
-        }
+
 
         {this.state.isOpened &&
           <ProviderShow
