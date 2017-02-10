@@ -84,6 +84,7 @@ class Item extends React.Component{
 
     this.onRemove = this.onRemove.bind(this)
     this.handleChange = this.handleChange.bind(this);
+    this.handleUnitChange = this.handleUnitChange.bind(this)
     this.calculateOldNew = this.calculateOldNew.bind(this)
   }
 
@@ -102,6 +103,20 @@ class Item extends React.Component{
     }, 150)
 
     setTimeout(() => {this.props.onRemoveCall()}, 700)
+  }
+
+  handleUnitChange(event){
+    const tfs = document.getElementsByClassName(this.props.item._id)
+    let sum = Big(0);
+    for (var i = 0; i < tfs.length; i++) {
+      let value = tfs[i].getElementsByTagName("INPUT")[0].value;
+      value = value.length > 0 ? value : 0;
+      sum = sum.plus(value)
+    }
+
+    const newQuantity = Number(sum.toString())
+    this.calculateOldNew(newQuantity, this.state.unitPrice, this.state.taxRate);
+    this.setState({quantity: newQuantity })
   }
 
   handleChange(event){
@@ -139,7 +154,17 @@ class Item extends React.Component{
     this.props.onRequestQuantity(previousAmounts, newAmounts)
   }
 
+
+
   render(){
+
+    const unitList = this.props.item.units.map( (unit) =>
+      <UnitDetail
+        key={unit.unitID}
+        unit={unit}
+        itemID={this.props.item._id}
+        onRequestChange={this.handleUnitChange}/>
+    )
 
     return(
       <div className='row row-item' ref='row'>
@@ -177,11 +202,35 @@ class Item extends React.Component{
               highlight={this.props.item.units.length > 0}
               toggleSelector={this.props.toggleSelector}/>
 
+            {unitList}
+
           </div>
         </div>
       </div>
     )
   }
+}
+
+const UnitDetail = (props) => {
+
+  return(
+    <div className='pi-detail'>
+      <div className='pi-info'>
+        <span>For Sector</span>
+        {props.unit.unit.name}
+      </div>
+
+      <TextField
+          name="amount_taken"
+          type="number"
+          className={`quantity-input ${props.itemID}`}
+          hintText=""
+          floatingLabelText="Quantity"
+          onChange={props.onRequestChange}
+          defaultValue={props.unit.quantity}
+          fullWidth={false}/>
+    </div>
+  )
 }
 
 

@@ -253,37 +253,40 @@ class TotalFields extends React.Component{
 
     return(
       <div>
-        <div className="row">
-          <div className="col-xs-6 sm-p-right">
-            <MTextField
-                name="sub_total"
-                type="number"
-                floatingLabelText="Sub Total"
-                fullWidth={true}
-                value={this.state.subTotal.toFixed(2)}
-                disabled={true}
-                prefix="$"
-                prefixSide="left"/>
+        <div className='row'>
+          <div className='col-xs-12 col-flex'>
+            <IconButton className='avatar-button'>
+              <ActionReceipt />
+            </IconButton>
 
-          </div>
+            <div style={{width: '100%'}}>
+              <MTextField
+                  name="sub_total"
+                  type="number"
+                  floatingLabelText="Sub Total"
+                  fullWidth={true}
+                  value={this.state.subTotal.toFixed(2)}
+                  disabled={true}
+                  prefix="$"
+                  prefixSide="left"/>
 
-          <div className="col-xs-6 sm-p-left">
-            <MTextField
-                name="tax_total"
-                type="number"
-                floatingLabelText="Extra Costs or Discounts"
-                fullWidth={true}
-                disabled={false}
-                defaultValue={this.props.extraCost ? this.props.extraCost.toFixed(2) : '0.00'}
-                onChange={this.handleExtraChange}
-                prefix="$"
-                prefixSide="left"/>
 
+              <MTextField
+                  name="tax_total"
+                  type="number"
+                  floatingLabelText="Extra Costs or Discounts"
+                  fullWidth={true}
+                  disabled={false}
+                  defaultValue={this.props.extraCost ? this.props.extraCost.toFixed(2) : '0.00'}
+                  onChange={this.handleExtraChange}
+                  prefix="$"
+                  prefixSide="left"/>
+            </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-xs-12">
+        <div className='row'>
+          <div className='col-xs-12'>
             <MTextField
                 name="total"
                 type="number"
