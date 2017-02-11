@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import { Link } from 'react-router';
+import classnames from 'classnames'
 
 
 export default class OrganizationMenu extends React.Component{
@@ -10,11 +11,10 @@ export default class OrganizationMenu extends React.Component{
   }
 
   render(){
-    if(this.props.title){
-      return(
-        <div>
-          <Subheader className='sub-title'>{this.props.title}</Subheader>
-
+    const exClass = classnames('sub-menu-expandable', {'open': this.props.open})
+    return(
+      <div className={exClass}>
+        <div className='sub-menu'>
           <MenuItem className="menu-item" onTouchTap={this.props.handleClose}>
             <Link to="/customers" className='menu-link'>
               Customers
@@ -81,9 +81,7 @@ export default class OrganizationMenu extends React.Component{
             </Link>
           </MenuItem>
         </div>
-      )
-    }else {
-      return null;
-    }
+      </div>
+    )
   }
 }

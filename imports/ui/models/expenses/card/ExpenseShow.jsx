@@ -297,6 +297,9 @@ let Unit = (props) => {
         <span>Quantity</span>
         {props.unit.quantity}
       </div>
+
+      <div className='mtab-info'>
+      </div>
     </div>
   )
 }

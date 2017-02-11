@@ -13,13 +13,25 @@
   }
 
   .menu-item{
-    font-size: 15px !important;
-    font-weight: 400 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    color: @color-accent;
 
     a{
+      text-transform: capitalize;
       text-decoration: none;
-      color:inherit;
+      color: inherit;
       display: block;
+    }
+
+
+    svg{
+      fill: @color-accent !important;
+      transition-timing-function: @animation-curve-default ;
+      transition-delay: @animation-delay ;
+      transition-duration: @animation-duration ;
+      transition-property: transform;
     }
   }
 
@@ -27,5 +39,27 @@
     color: rgba(0, 0, 0, .3) !important;
     font-size: 13px !important;
     font-weight: 400 !important;
+  }
+
+  .sub-menu{
+
+    a{
+      padding-left: 20px;
+    }
+  }
+
+  .sub-menu-expandable{
+    max-height: 0;
+    height: auto;
+    overflow: hidden;
+
+    transition-timing-function: @animation-curve-default ;
+    transition-delay: @animation-delay ;
+    transition-duration: @animation-duration ;
+    transition-property: max-height;
+
+    &.open{
+      max-height: 528px
+    }
   }
 }
