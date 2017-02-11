@@ -298,7 +298,7 @@ class Detail extends React.Component{
 
         <div ref='expandable' className={expClasses} style={{height: this.state.expanded ? this.height : '0px'}}>
           {batchList.length > 0 ? batchList:
-            <div className='mtab-info none'>
+            <div className='mtab-info-flex none'>
               None
             </div>
           }

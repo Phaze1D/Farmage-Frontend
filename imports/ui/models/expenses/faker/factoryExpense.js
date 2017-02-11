@@ -125,7 +125,7 @@ const factoryExpenseR = () => {
     totalPrice: totalPrice,
     extra: extra,
     items: items,
-    customRef: faker.random.uuid(),
+    customRef: Random.id(),
     notes: testNotes(),
     dateBought: testCreatedAt(),
     receiptUrl: testRecipt(),
