@@ -14,7 +14,7 @@ const testForIdentifer = () => {
 }
 
 const testForType = () => {
-  const ar = ['unit', 'yield', 'batch'];
+  const ar = ['sector', 'yield', 'batch'];
   return ar[Math.round(Math.random() * 2)];
 }
 

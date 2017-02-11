@@ -122,7 +122,7 @@ export default class MovementCard extends React.Component{
 
     let forMethod = null;
     if(forType === 'yield') forMethod = this.handleOnShowYield;
-    if(forType === 'unit') forMethod = this.handleOnShowUnit;
+    if(forType === 'sector') forMethod = this.handleOnShowUnit;
     if(forType === 'batch') forMethod = this.handleOnShowBatch;
 
     const traClasses = classnames('unit-tr', {'on': manuel});
