@@ -228,7 +228,7 @@ class Detail extends React.Component{
     )
 
     return(
-      <div ref='card' className='mtab-content-card'>
+      <div ref='card' className='mtab-content-card' style={{alignSelf: 'flex-start'}}>
 
         <div className='cyield-info-flex' style={{padding: '0 0 16px'}}>
           <div className='e-overflow' style={{flexGrow: '1'}}>
