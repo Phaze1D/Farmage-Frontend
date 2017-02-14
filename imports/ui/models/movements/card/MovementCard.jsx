@@ -130,7 +130,7 @@ export default class MovementCard extends React.Component{
 
 
     return(
-      <MCard ref='mcard' options={this.cardOptions()}>
+      <MCard  options={this.cardOptions()}>
 
         <div className='card-top' style={{display: 'block'}} onTouchTap={this.handleOnShow}>
           <CardTitle className='card-title' title={forType + ' Movement'} subtitle='' style={{textTransform: 'capitalize'}}/>

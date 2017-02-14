@@ -64,7 +64,7 @@ export default class OUserCard extends React.Component{
     const char = title.toUpperCase().charAt(0);
 
     return(
-      <MCard ref='mcard' options={this.cardOptions()}>
+      <MCard  options={this.cardOptions()}>
         <div className='card-top' onTouchTap={this.handleOnShow}>
           <MAvatar className='card-avatar'
             style={{marginRight: '15px', padding: '1px 0 0 1px'}}

@@ -47,7 +47,6 @@ export default class UnitCard extends React.Component{
 
   cardOptions(){
     return [
-      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
       <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
       <Divider key='divider'/>,
       <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,

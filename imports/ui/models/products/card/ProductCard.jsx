@@ -1,7 +1,8 @@
 import React from 'react';
+import { browserHistory } from 'react-router'
+
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { browserHistory } from 'react-router'
 import MAvatar from '../../../structure/mavatar/MAvatar';
 import MCard from '../../../structure/mcard/MCard';
 import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
@@ -11,7 +12,6 @@ import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
-
 import ProductShow from './ProductShow';
 import classnames from 'classnames';
 
@@ -41,7 +41,6 @@ export default class ProductCard extends React.Component{
 
   cardOptions(){
     return [
-      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
       <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
       <Divider key='divider'/>,
       <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
@@ -80,7 +79,7 @@ export default class ProductCard extends React.Component{
 
           <div className='info-col'>
             <div className='card-top resource-top' style={{border: 'none'}} onTouchTap={this.handleOnShow}>
-              <CardTitle className='card-title' title={title} subtitle={`${sku}`}/>
+              <CardTitle className='card-title' title={title} subtitle={sku}/>
             </div>
             <div className='product-csection'>
               <div className='product-cinfo'>

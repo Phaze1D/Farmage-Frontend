@@ -39,7 +39,6 @@ export default class ContactInfo extends React.Component{
   }
 
   handleRemoveTouch(i){
-    console.log(i);
     let newForms = this.state.forms.slice();
     newForms.splice(i, 1);
     this.setState({forms: newForms});

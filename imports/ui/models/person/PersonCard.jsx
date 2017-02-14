@@ -51,7 +51,6 @@ export default class PersonCard extends React.Component{
 
   cardOptions(){
     return [
-      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
       <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
       <Divider key='divider'/>,
       <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
@@ -78,7 +77,7 @@ export default class PersonCard extends React.Component{
     const ShowCard = this.props.isCustomer ? CustomerShow : ProviderShow;
 
     return(
-      <MCard ref='mcard' options={this.cardOptions()}>
+      <MCard  options={this.cardOptions()}>
 
         <div className='card-top' onTouchTap={this.handleOnShow}>
           <MAvatar className='card-avatar'

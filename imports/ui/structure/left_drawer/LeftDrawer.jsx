@@ -44,35 +44,37 @@ export default class LeftDrawer extends React.Component{
 
           <div className="mid">
             <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>
-              <Link to="/dashboard" className='menu-link' style={{textTransform: 'uppercase'}}>
+              <Link to="/dashboard" className='menu-link'>
                 Profile
               </Link>
             </MenuItem>
             <MenuItem className="menu-item" onTouchTap={this.handleResetOMenu}>
-              <Link to="/dashboard/organizations" className='menu-link' style={{textTransform: 'uppercase'}}>
+              <Link to="/organizations" className='menu-link'>
                 Organizations
               </Link>
             </MenuItem>
             <Divider/>
 
             <Subheader className='sub-title'>Organizations</Subheader>
-            <MenuItem
-              rightIcon={<ExpandDown style={{transform: this.state.subIndex == 0 ? 'rotate(180deg)': 'rotate(0deg)'}} className='menu-svg'/>}
-              className="menu-item"
-              onTouchTap={this.handleOMenu.bind(this, 0)}>
-              Steady Path Studios
-            </MenuItem>
 
-            <OrganizationMenu open={this.state.subIndex == 0} handleClose={this.handleClose}/>
 
-            <MenuItem
-              rightIcon={<ExpandDown style={{transform: this.state.subIndex == 1 ? 'rotate(180deg)': 'rotate(0deg)'}} className='menu-svg'/>}
-              className="menu-item"
-              onTouchTap={this.handleOMenu.bind(this, 1)}>
-              Granja Granada
-            </MenuItem>
+            <OrganizationMenu
+              mainTitle='Steady Path Studios'
+              onTopTap={this.handleOMenu.bind(this, 0)}
+              open={this.state.subIndex == 0}
+              handleClose={this.handleClose}/>
 
-            <OrganizationMenu open={this.state.subIndex == 1} handleClose={this.handleClose}/>
+            <OrganizationMenu
+              mainTitle='Granja Granda'
+              onTopTap={this.handleOMenu.bind(this, 1)}
+              open={this.state.subIndex == 1}
+              handleClose={this.handleClose}/>
+
+            <OrganizationMenu
+              mainTitle='MixMax'
+              onTopTap={this.handleOMenu.bind(this, 2)}
+              open={this.state.subIndex == 2}
+              handleClose={this.handleClose}/>
 
 
 

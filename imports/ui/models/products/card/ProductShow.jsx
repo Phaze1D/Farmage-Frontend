@@ -69,13 +69,13 @@ export default class ProductShow extends React.Component{
           tabs={['Summary', 'Analytics']}/>
 
 
-          <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
-            <MFade>
-              <ProductSummary product={this.product}/>
-            </MFade>
+        <SwipeableViews onChangeIndex={this.handleSwipe} index={this.state.tabValue} animateHeight={false}>
+          <MFade>
+            <ProductSummary product={this.product}/>
+          </MFade>
 
-            <ProductAnalytics product={this.product}/>
-          </SwipeableViews>
+          <ProductAnalytics product={this.product}/>
+        </SwipeableViews>
 
 
 

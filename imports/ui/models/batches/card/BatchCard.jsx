@@ -59,7 +59,6 @@ export default class BatchCard extends React.Component{
 
   cardOptions(){
     return [
-      <MenuItem key='expand' primaryText="Expand" leftIcon={<FullScreen />} />,
       <MenuItem key='edit' primaryText="Edit" leftIcon={<Edit />} onTouchTap={this.handleUpdate}/>,
       <Divider key='divider'/>,
       <MenuItem key='delete' primaryText="Delete" leftIcon={<ActionDelete />} />,
@@ -144,7 +143,7 @@ export default class BatchCard extends React.Component{
           {/*<FlatButton className='action' label='Yields' secondary={true}
             onTouchTap={() => {browserHistory.push('/yields')} }/>*/}
 
-        
+
           <FlatButton className='action' label='Sales' secondary={true}
             onTouchTap={() => {browserHistory.push('/sells')} }/>
         </CardActions>

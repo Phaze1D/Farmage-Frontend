@@ -1,31 +1,29 @@
 import React from 'react';
+import { browserHistory } from 'react-router'
 import {CardActions, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { browserHistory } from 'react-router'
-import MAvatar from '../../../structure/mavatar/MAvatar';
-import MCard from '../../../structure/mcard/MCard';
-import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
-import FullScreen from 'material-ui/svg-icons/navigation/fullscreen';
+import MCard from '../../../structure/mcard/MCard';
+import {randomImageColor, alphaImageColor} from '../../../structure/app/RandomColor.js';
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling';
+import OrganizationShow from './OrganizationShow';
 
-import ResourceShow from './ResourceShow';
 
 
-import classnames from 'classnames';
-
-export default class ResourceCard extends React.Component{
+export default class OrganizationCard extends React.Component{
   constructor(props){
     super(props);
     this.state = {showCard: false, isOpened: false}
-
-    this.handleOnShow = this.handleOnShow.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this)
     this.cardOptions = this.cardOptions.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleOnShow = this.handleOnShow.bind(this)
+  }
 
+  handleUpdate(){
+    this.props.onRequestUpdate(this.props._id)
   }
 
   handleOnShow(event){
@@ -37,10 +35,6 @@ export default class ResourceCard extends React.Component{
     }
   }
 
-  handleUpdate(){
-    this.props.onRequestUpdate(this.props._id)
-  }
-
   cardOptions(){
     return [
       <MenuItem key='edit' primaryText="Edit" leftIcon={<ImageEdit />} onTouchTap={this.handleUpdate}/>,
@@ -49,24 +43,26 @@ export default class ResourceCard extends React.Component{
     ]
   }
 
+
   render(){
+
     const {
       name,
-      measurementUnit,
-      imageUrl,
-      stock,
-      ...others
-    } = this.props;
+      email,
+      telephones,
+      addresses,
+      avatarURL
+    } = this.props
 
-    const title = `${name}`;
+    const title = name;
     let char = '';
 
-    if(!imageUrl){
+    if(!avatarURL){
       char = title.toUpperCase().charAt(0);
     }
 
     const iStyle = {
-      backgroundImage: "url('" + imageUrl + "')",
+      backgroundImage: "url('" + avatarURL + "')",
       backgroundColor: alphaImageColor(char)
     }
 
@@ -82,30 +78,29 @@ export default class ResourceCard extends React.Component{
           </div>
           <div className='product-csection'>
             <div className='product-cinfo'>
-              <span>In Stock</span>
-              {stock}
-              <span style={{display: 'inline-block', marginLeft: '5px'}}>{measurementUnit}</span>
+              <span>Founder</span>
+              David Villarreal
             </div>
+
           </div>
+
           <CardActions className='card-actions'>
-            <FlatButton className='action' label='Yields' secondary={true}
-              onTouchTap={() => {browserHistory.push('/yields')} }/>
-            <FlatButton className='action' label='Products' secondary={true}
-              onTouchTap={() => {browserHistory.push('/products')} }/>
+            <FlatButton className='action' label='Users' secondary={true}
+              onTouchTap={() => {browserHistory.push('/ousers')} }/>
           </CardActions>
+
         </div>
 
         <AutoLockScrolling lock={this.state.showCard}/>
 
         {this.state.isOpened &&
-          <ResourceShow
+          <OrganizationShow
             onFabClick={this.handleUpdate}
             personID={this.props._id}
             onRequestChange={this.handleOnShow}
             open={this.state.showCard}/>
         }
       </MCard>
-
     )
   }
 }
