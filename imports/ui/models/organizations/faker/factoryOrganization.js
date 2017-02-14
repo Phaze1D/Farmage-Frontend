@@ -54,6 +54,7 @@ const factoryOrganization = () => {
     telephones: testTelephones(),
     addresses: testAddresses(),
     avatarURL: null,
+    founder: factoryOUser(),
     createdAt: faker.date.past(),
     updatedAt: faker.date.past(),
     createdBy: factoryOUser(),

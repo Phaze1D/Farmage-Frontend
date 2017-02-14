@@ -51,7 +51,8 @@ export default class OrganizationCard extends React.Component{
       email,
       telephones,
       addresses,
-      avatarURL
+      avatarURL,
+      founder,
     } = this.props
 
     const title = name;
@@ -79,15 +80,12 @@ export default class OrganizationCard extends React.Component{
           <div className='product-csection'>
             <div className='product-cinfo'>
               <span>Founder</span>
-              David Villarreal
+              {founder.firstName} {founder.lastName}
             </div>
 
           </div>
 
-          <CardActions className='card-actions'>
-            <FlatButton className='action' label='Users' secondary={true}
-              onTouchTap={() => {browserHistory.push('/ousers')} }/>
-          </CardActions>
+          
 
         </div>
 
