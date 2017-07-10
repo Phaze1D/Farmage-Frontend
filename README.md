@@ -21,14 +21,7 @@ Since this is just the frontend part of the project all the data comes from [fak
 This is the first app that I built with ReactJS so it may have some rust. I had to stop the development of the app do to work, but I do hope to continue making it. I planned on using MeteorJS as the backend so to get started you need to have [MeteorJS](https://www.meteor.com/) installed. Once you have installed MeteorJS, run `meteor ` in the root directory of the app which should start the application on `localhost:3000`
 
 ### Folder Structure
-The two main folders in this app are
-
-* import
-	* ui
-		* [models](import/ui/models)
-		* [structure](import/ui/structure)
-
-Theses folders contain all the current frontend code that I've work on so far. The models folder contains the React components for each data model and the structure folder contains all the custom UI components that I built.
+The two main folders in this app are [import/ui/models](import/ui/models) and [import/ui/structure](import/ui/structure). Theses folders contain all the current frontend code that I've work on so far. The models folder contains the React components for each data model and the structure folder contains all the custom UI components that I built.
 
 
 ## Dependencies
